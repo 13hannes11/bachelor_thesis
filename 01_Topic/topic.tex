@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
 
 %% --------------------------------
 %% | Quotation                 |
@@ -30,13 +30,15 @@
 
 \section{Motivation}
 
-Produktkonfiguratoren unterstützen den Sales-Prozess im Unternehmen durch die Möglichkeit Produktwissen strukturiert zu pflegen und stellen den Vertriebsmitarbeitern ein Toolset zur Verfügung, mit dem valide Konfigurationen von Vertriebseinheiten garantiert werden. Typischerweise wird die Konfiguration von einem einzelnen Nutzer ausgeführt \cite{felferningGroupBasedConfiguration2016, velasquez-guevaraMultiSPLOTSupportingMultiuser2018a}.
-Wenn es sich beim Konfigurationsprozess um komplexe Produkte handelt oder ein Szenario vorliegt in dem eine Gruppe beteiligt ist, steigt die Wahrscheinlichkeit, dass ein einzelner Nutzer falsche Entscheidungen trifft \cite{felfernigGroupDecisionSupport2011}. 
-Beispielhafte Szenarien sind zum Beispiel Software Release Planungen, Urlaubsplanungen für Gruppen oder Planungen für den Bau von Gebäuden \cite{felfernigOpenConfiguration2014}. 
-Bei diesen Szenarien handelt es sich um gruppenbasierte Konfigurationsprozesse, die in der Literatur "Collaborative Configuration", "Community Configuration" oder auch "Group-based Configuration" genannt werden \cite{felferningGroupBasedConfiguration2016, felfernigOpenConfiguration2014,mendoncaCollaborativeProductConfiguration2008,felfernigKnowledgebasedConfigurationResearch2014}.
+Product configuration supports sales processes in companies through the possibility to structure and update knowledge about a product. A product configurator guarantees only valid product configurations are sold by a sales person. Usually, configuration processes are only done by a single user \cite{felferningGroupBasedConfiguration2016, velasquez-guevaraMultiSPLOTSupportingMultiuser2018a}.
+In complex group configuration processes the risk of a single user making a mistake increases \cite{felfernigGroupDecisionSupport2011}.
+Example scenarios are software release planning, travel planning, and construction planning \cite{felfernigOpenConfiguration2014}. All of these scenarios are group based configuration processes which are called "collaborative configuration", "community configuration", or "group-based configuration" \cite{felferningGroupBasedConfiguration2016, felfernigOpenConfiguration2014,mendoncaCollaborativeProductConfiguration2008,felfernigKnowledgebasedConfigurationResearch2014}.
 
-Im gruppenbasierten Konfigurationsprozess konfiguriert eine Gruppe kollaborativ ein Produkt. Das Ergebnis ist eine Konfiguration, die möglichst alle Präferenzen der Gruppenmitglieder berücksichtigt. Für die Umsetzung eines solchen Prozesses werden sowohl Konzepte für die Kollaboration, als auch für die Entscheidungsfindung benötigt. Dafür werden zusätzliche Funktionalitäten benötigt, wie beispielsweise Empfehlungssysteme zur Lösungsfindung oder Konfliktauflösung \cite{felfernigKnowledgebasedConfigurationResearch2014}. 
-Erschwerend kommt hinzu, dass in Gruppen häufig eine dynamik oder auch eine hierarchie vorherrscht, die berücksichtig werden muss. Einzelne Mitglieder einer Gruppe sind beispielsweise nicht immer gleichberechtigt oder manche Entscheidungsprozesse nicht unbedingt demokratisch.
+In a group based configuration processes a group of people collaboratively configures a product which results in a configuration that ideally includes all preferences of participants. Implementation of such processes build upon concepts for collaboration, decision-making and require additional functionality such as recommender systems for finding solutions and conflict resolution \cite{felfernigKnowledgebasedConfigurationResearch2014}.
+
+%TODO: Research gap and previous work -> are there many existing methods?
+
+Furthermore, groups often have hierarchies or split competences that need to be considered. Moreover, decision processes in groups are not always democratic and individual members can have different roles.
 
 \section{Ziel der Arbeit}
 
