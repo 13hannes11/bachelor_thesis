@@ -5,13 +5,49 @@
 
 \begin{figure}
     \begin{center}
-        \begin{ganttchart}{1}{12}
-            \gantttitle{2011}{12} \\
-            \gantttitlelist{1,...,12}{1} \\
-            \ganttgroup{Group 1}{1}{7} \\
-            \ganttbar{Task 1}{1}{2} \\
-            \ganttlinkedbar{Task 2}{3}{7} 
-            \ganttnewline\ganttmilestone{Milestone}{7} \ganttnewline\ganttbar{Final Task}{8}{12}\ganttlink{elem2}{elem3}\ganttlink{elem3}{elem4}
+        \begin{ganttchart}[y unit title=0.7cm,
+            y unit chart=0.8cm,
+            %x unit =0.8cm,
+            %vgrid, 
+            title height=1,
+            bar height=0.6,
+            group right shift=0,
+            group top shift=.6,
+            group height=.3
+            ]{1}{17}
+            \gantttitle{Wochen}{17}\ganttnewline
+            \gantttitlelist{1,...,17}{1}\ganttnewline
+            \ganttgroup{Thesis}{1}{17}\ganttnewline
+    
+            \ganttgroup{Problem Identification}{1}{2}\ganttnewline
+            \ganttbar{Literature Research}{1}{1}\ganttnewline
+            \ganttbar{Defintion of Objectives}{1}{2}\ganttnewline
+            
+            
+            \ganttgroup{Design and Implementation}{3}{10}\ganttnewline
+            \ganttbar{Design}{3}{4}\ganttnewline
+            \ganttbar{Implementation}{4}{9}\ganttnewline
+            \ganttmilestone{Code Review}{8}\ganttnewline
+            \ganttmilestone{Fully Working Prototype}{9}\ganttnewline
+            \ganttbar{Buffer}{10}{10}\ganttnewline
+
+            \ganttgroup{Demonstration and Evaluation}{11}{12}\ganttnewline
+            \ganttbar{Demonstration}{11}{11}\ganttnewline
+            \ganttbar{Evaluation}{12}{12}\ganttnewline
+
+            \ganttgroup{Documentation}{1}{16}\ganttnewline
+            \ganttbar{Write Documentation}{1}{12}\ganttnewline
+            \ganttmilestone{First Draft}{12}\ganttnewline
+            \ganttbar{Finalize Thesis}{13}{14}\ganttnewline
+            \ganttmilestone{Final Draft}{14}\ganttnewline
+            \ganttbar{Proof Reading and Corrections}{15}{16}\ganttnewline
+            \ganttmilestone{Finished Thesis}{16}\ganttnewline
+            \ganttbar{Buffer}{17}{17}\ganttnewline
+
+            \ganttvrule{}{2}
+            \ganttvrule{}{10}
+            \ganttvrule{}{12}
+            \ganttvrule{}{16}
         \end{ganttchart}
     \end{center}
     \caption{Gantt Chart}
