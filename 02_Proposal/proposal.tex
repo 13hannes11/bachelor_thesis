@@ -1,0 +1,144 @@
+%% LaTeX2e class for student theses
+%% thesis.tex
+%% 
+%% Karlsruhe Institute of Technology
+%% Institute for Program Structures and Data Organization
+%% Chair for Software Design and Quality (SDQ)
+%%
+%% Dr.-Ing. Erik Burger
+%% burger@kit.edu
+%%
+%% See https://sdqweb.ipd.kit.edu/wiki/Dokumentvorlagen
+%%
+%% {$HeadURL: https://svnserver.informatik.kit.edu/i43/svn/lehre/Abschlussarbeiten-Vorlage/thesis.tex $}
+%% {$LastChangedDate: 2018-08-02 14:19:06 +0200 (Do, 02 Aug 2018) $}
+%% {$LastChangedRevision: 5705 $}
+%% {$LastChangedBy: burger $}
+
+%% Available page modes: oneside, twoside
+%% Available languages: english, ngerman
+%% Available modes: draft, final (see README)
+\documentclass[twoside, english, draft]{sdqthesis}
+
+%% ---------------------------------
+%% | Information about the thesis  |
+%% ---------------------------------
+
+%% Name of the author
+\author{Hannes F. Kuchelmeister}
+
+%% Title (and possibly subtitle) of the thesis
+\title{Collaborative Decision-Making in Group-Based Configuration Processes}
+
+%% Type of the thesis 
+\thesistype{Bachelor's Thesis Proposal}
+
+%% Change the institute here, ``IPD'' is default
+% \myinstitute{Institute for \dots}
+
+%% You can put a logo in the ``logos'' directory and include it here
+%% instead of the SDQ logo
+% \grouplogo{myfile}
+%% Alternatively, you can disable the group logo
+% \nogrouplogo
+
+%% The reviewers are the professors that grade your thesis
+\reviewerone{Prof. A} %TODO: reviewer 1
+\reviewertwo{Prof. B} %TODO: reviewer 2
+
+%% The advisors are PhDs or Postdocs
+\advisorone{M.Sc. C} %TODO: advisor 1
+%% The second advisor can be omitted
+\advisortwo{M.Sc. D} %TODO: advisor 2
+
+%% Please enter the start end end time of your thesis
+\editingtime{15th October 2019}{xx. Month 20XX}
+
+\settitle
+
+%% --------------------------------
+%% | Settings for word separation |
+%% --------------------------------
+
+%% Describe separation hints here.
+%% For more details, see 
+%% http://en.wikibooks.org/wiki/LaTeX/Text_Formatting#Hyphenation
+\hyphenation{
+% me-ta-mo-del
+}
+
+%% --------------------------------
+%% | Gantt Charts                 |
+%% --------------------------------
+\usepackage{pgfgantt}
+
+%% --------------------------------
+%% | Quotation                 |
+%% --------------------------------
+
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+
+%% --------------------------------
+%% | Bibliography                 |
+%% --------------------------------
+
+%% Use biber instead of BibTeX, see README
+\usepackage[citestyle=numeric,style=numeric,backend=biber]{biblatex}
+\addbibresource{proposal.bib}
+
+%% ====================================
+%% ====================================
+%% ||                                ||
+%% || Beginning of the main document ||
+%% ||                                ||
+%% ====================================
+%% ====================================
+\begin{document}
+
+%% Set PDF metadata
+\setpdf
+
+%% Set the title
+\maketitle
+
+%% The Preamble begins here
+\frontmatter
+
+\setcounter{page}{1}
+\pagenumbering{roman}
+
+%% ------------------------
+%% |   Table of Contents  |
+%% ------------------------
+\tableofcontents
+
+\listoffigures
+\listoftables
+
+%% -----------------
+%% |   Main part   |
+%% -----------------
+
+\mainmatter
+
+\input{sections/00_introduction.tex}
+\input{sections/10_foundation.tex}
+\input{sections/20_related_work.tex}
+\input{sections/30_concept.tex}
+\input{sections/40_organisation.tex}
+
+%% --------------------
+%% |   Bibliography   |
+%% --------------------
+
+%% Add entry to the table of contents for the bibliography
+\printbibliography[heading=bibintoc]
+
+%% ----------------
+%% |   Appendix   |
+%% ----------------
+\appendix
+%\input{sections/appendix.tex}
+
+\end{document}
