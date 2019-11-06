@@ -4,6 +4,8 @@ topic.pdf
 thesis.pdf
 proposal.pdf
 
+.vscode
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
