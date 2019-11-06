@@ -84,3 +84,23 @@ The planned schedule can be seen in \ref{fig:Organisation:Schedule:Gant}.
 
 \section{Risks Assessment}
 \label{sec:Organisation:RiskAssessment}
+
+\begin{enumerate}[label=Risk \arabic*:, align=left, leftmargin=*]
+    \item Underestimation of effort for \emph{Design and Implementation} phase
+        \begin{description}
+            \item[Explanation:] Tasks might take more effort then expected and therefore cannot be completed in the planned time. This is especially problematic for the \emph{Design and Implementation} phase as the \emph{Demonstration and Evaluation} phase requires  a working prototype.
+            \item[Mitigation:] There are planned explicit buffers. One for the \emph{Design and Implementation} phase and one general buffer. This amounts to two weeks of buffer. Additionally it is possible to shorten \emph{Finalize Thesis} and \emph{Proof Reading and Corrections} phases as the time planned for these phases is overestimated. Overall in a worst-case scenario it is possible to extend \emph{Design and Implementation} by up to four weeks.
+        \end{description}
+    
+    \item Delay due to unforeseen circumstances outside of the authors control
+        \begin{description}
+            \item[Explanation:] Outside influence could delay the thesis. An example of that is sickness.
+            \item[Mitigation:] According to "Prüfungsordnung" §14.6 it is possible to extend the period of the thesis of up to a month \cite[~ p. 724]{StudienUndPrufungsordnung2015}.
+        \end{description}
+
+    \item Bugs and architectural problems in prototype
+        \begin{description}
+            \item[Explanation:] Bugs in the prototype that this thesis will extend could delay implementation of features. Also architectural problems could make it harder then expected to extend the prototype.
+            \item[Mitigation:] To reduce work in such a case less features could be implemented or some features could just use a mock implementation.
+        \end{description}
+\end{enumerate}
