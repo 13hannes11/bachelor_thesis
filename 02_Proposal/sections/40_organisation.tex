@@ -9,31 +9,40 @@ This chapter provides an overview on time schedule, advisers and other organisat
 \section{Artefacts}
 \label{sec:Organisation:Artefacts}
 
+This thesis consist of multiple artefacts. Those are:
+\begin{itemize}
+    \item The written thesis
+    \item Design documentation
+    \item Code documentation
+    \item One or multiple sample configurations
+    \item Evaluation data
+    \item A working Prototype
+\end{itemize}
+
 \section{Tools}
 \label{sec:Organisation:Tools}
 
 \section{Process}
 \label{sec:Organisation:Process}
 
-%TODO: citation for Scrum
-Scrum is used during the creation of this thesis. Daily meetings with status updates and suggestions with advisory and colleagues at CAS are held every day. The Sprint length will be one week but during later development this potentially will be lengthened to two weeks.
+A slightly reduced version of Scrum is used during the creation of this thesis. Scrum is the de-facto standard for agile software development \cite{glogerScrumPradigmenwechselIm2010}. Daily meetings with status updates and suggestions with advisory and colleagues at CAS are held every day. The Sprint length is one week but during later development this potentially will be lengthened to two weeks. Sprint reviews, retrospective and sprint planning are not explicitly done. Hereby the process is not used for coordination of a team that works on a single software project but to improve knowledge exchange and communication.
 
 \section{Schedule}
 \label{sec:Organisation:Schedule}
 
+The planned schedule can be seen in \ref{fig:Organisation:Schedule:Gant}.
+
 \begin{figure}
     \begin{center}
         \begin{ganttchart}[y unit title=0.7cm,
-            y unit chart=0.8cm,
-            %x unit =0.8cm,
-            %vgrid, 
+            y unit chart=0.8cm, 
             title height=1,
             bar height=0.6,
             group right shift=0,
             group top shift=.6,
             group height=.3
             ]{1}{17}
-            \gantttitle{Wochen}{17}\ganttnewline
+            \gantttitle{Week}{17}\ganttnewline
             \gantttitlelist{1,...,17}{1}\ganttnewline
             \ganttgroup{Thesis}{1}{17}\ganttnewline
     
@@ -68,5 +77,10 @@ Scrum is used during the creation of this thesis. Daily meetings with status upd
             \ganttvrule{}{16}
         \end{ganttchart}
     \end{center}
-    \caption{Gantt Chart}
+    \caption{Gantt chart representing the schedule of this thesis.
+    }
+    \label{fig:Organisation:Schedule:Gant}
 \end{figure}
+
+\section{Risks Assessment}
+\label{sec:Organisation:RiskAssessment}
