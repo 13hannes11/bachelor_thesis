@@ -98,6 +98,18 @@
 %% --------------
 
 % Logos
+\makeatletter
+
+\newcommand{\theexternallogo}{sdqlogo}
+\newcommand{\externallogo}[1]{\renewcommand{\theexternallogo}{#1}}
+\newcommand{\printexternallogo}{\includegraphics[height=1.8cm]{logos/\theexternallogo}}
+\newcommand{\noexternallogo}{\renewcommand{\printexternallogo}{}}
+
+\newcommand{\thecompanylogo}{sdqlogo}
+\newcommand{\companylogo}[1]{\renewcommand{\thecompanylogo}{#1}}
+\newcommand{\printcompanylogo}{\includegraphics[height=1.8cm]{logos/\thecompanylogo}}
+\newcommand{\nocompanylogo}{\renewcommand{\printcompanylogo}{}}
+
 \newcommand{\thegrouplogo}{sdqlogo}
 \newcommand{\grouplogo}[1]{\renewcommand{\thegrouplogo}{#1}}
 \newcommand{\printgrouplogo}{\includegraphics[height=1.8cm]{logos/\thegrouplogo}}
@@ -110,6 +122,10 @@
 {\includegraphics[height=1.8cm]{logos/kitlogo_de_cmyk}}
 \hfill
 % SDQ logo
+\printexternallogo
+\hspace{5mm}
+\printcompanylogo
+\hspace{5mm}
 \printgrouplogo
 \ThisCenterWallPaper{1}{title-background.pdf}
 }
