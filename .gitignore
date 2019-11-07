@@ -6,6 +6,8 @@ proposal.pdf
 
 .vscode
 
+out/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
