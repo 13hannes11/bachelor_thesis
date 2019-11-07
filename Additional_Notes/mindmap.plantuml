@@ -1,0 +1,100 @@
+@startmindmap
++ Thesis
+
+++ Configuration
+
++++ Paradigms
+++++ Rule Based
+++++ Model Based
+++++ Case based
+
++++ Domains
+++++ Requirement Engineering
+++++ Software Release Planning
+++++ Bundle Configuration
+++++ Financial Services
+++++ Building Configuration
+++++ Funding Decisions
+
++++ Complexity
+++++ Execution Complexity
+++++ Parameter Complexity
+++++ Memory Complexity
+
++++ Benefits
+++++ Less Manpower
+++++ Faster product offer times
+++++ More complex products increase effects of benefits 
+
++++ Group Configuration
+++++ Types
++++++ Synchron
++++++ Asynchron
++++++ Consultation
++++++ Collaboration
+
+
+++ Recommender Systems
+
++++ Cold-Start Problem
+++++ New-User-Problem
+++++ New-Item-Problem
+++++ New-Community-Problem
+
++++ Type
+++++ Collaborative
+++++ Content-Based
+++++ Constraint-Based
+++++ Critique-Based
+++++ Hybrid
+
++++ Group Recommender
+++++ Preference Aggregation Strategy
++++++ Aggregated Predictions
++++++ Aggregated Models
+++++ Preference Aggregation Function
++++++ Majority-Based
++++++ Consensus-Based
++++++ Borderline
+
++++ Evaluation
+++++ Offline
++++++ Classification
+++++++ Precision
+++++++ Recall
++++++ Error
++++++ Ranking
++++++ Coverage and Serendipity
++++++ Consensus and Fairness
+++++ Online
+
++++ Collecting Prefernces
+++++ Rating Items
+++++ Ranking a List of Items
+++++ Tags or Categories
+++++ Rules/Constraints
+++++ Critique
+
+
+-- Group Decision
+--- Typical Studied Tasks
+---- Choice Dilemma "Musician versus Physician"
+---- Asylum Item
+---- Location Task
+--- Decision Outcomes
+---- Often more Rational
+---- Often more Risky
+---- Usually better decision Outcomes
+---- More selfish and self gain focused
+--- Dissent in initial phases increases information sharing
+--- Diversity increases probability of high quality outcomes 
+--- Bias
+---- Decoy Effect
+---- Serial Position Effect
+---- Framing
+---- Anchoring
+---- GroupThink
+---- Emotional Contagion
+---- Polarization
+
+@endmindmap
