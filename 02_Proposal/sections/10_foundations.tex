@@ -6,17 +6,39 @@
 
 A recommender system is a system that gives individualized recommendations to users to guide them through a large space of objects \cite[~ p. 331]{burkeHybridRecommenderSystems2002}.
 
+There are several approaches to recommender systems presented in \cite{felfernigGroupRecommenderSystems2018}, these are: collaborative filtering, content-based filtering, critiquing-based filtering, constraint-based, hybrid recommendation.
+
+\subsection{Collaborative Filtering}
+In collaborative filtering a users rating for unknown items is predicted by finding similar users who have rated it. Their rating is used as prediction
+\cite[~ pp. 7, 8]{felfernigDecisionTasksBasic2018}.
+
+\subsection{Content-Based Filtering}
+Items and users are assigned to categories. Based on consumption and rating of items a user will have implicit ratings for categories. Predictions are now made based on a categories of the new item \cite[~ pp. 10, 11]{felfernigDecisionTasksBasic2018}.
+
+\subsection{Critiquing-Based Recommendation}
+Items are recommended and a user can then critique on attributes of the recommendation. Based on that a similar item which does not have those critiques can be recommended. User preferences are implicitly collected this way \cite{knijnenburgEachHisOwn2011}.
+
+\subsection{Constraint-Based Recommendation}
+Hereby filter rules are defined which filter out items that don't fulfil specified rules. A user models their requirements with these rules and thereby gets a list of recommended items \cite[~ p. 12]{felfernigDecisionTasksBasic2018}
+
+\subsection{Hybrid Recommendation}
+A hybrid recommender combines different recommendation approaches to use the strengths of each individual one and to reduce effects of weaknesses \cite{burkeHybridRecommenderSystems2002}.
+
+\section{Group Recommender System}
+
+A group recommender system is a recommender system aimed at making recommendations for a group instead of a single user. To make recommendations group members preferences have to be aggregated. This can be done by either aggregating single user recommendations or by merging preferences of each user into a group preference model. Based on this model recommendation strategies as described in \ref{sec:Foundations:RecommenderSystem} can be used to generate recommendations.
+%TODO: citations for group recommender system
 
 \section{Product Configuration}
 \label{sec:Foundations:ProductConfiguration}
 
-Product configuration is a process consisting of a series of decision tasks whereby a product is constructed of components which interact with each other. During a configuration process no new components are created. Their interplay and specification is defined beforehand \cite[~ p. 42, 43]{sabinProductConfigurationFrameworksa1998}.
+Product configuration is a process consisting of a series of decision tasks whereby a product is constructed of components which interact with each other. During a configuration process no new components are created. Their interplay and specification is defined beforehand \cite[~ pp. 42, 43]{sabinProductConfigurationFrameworksa1998}.
 
 Formally a configuration problem can be specified as a \emph{constraint satisfaction problem (CSP)} \cite{tsangFoundationsConstraintSatisfaction1993} as 
 \[
     CSP(V,D,C)
 \]
-where \( V = \{v_1,\dots, v_n\} \) is a set of variables, \( D = dom : V \mapsto X \) is a relation of variables and their corresponding domain definitions \( X \), and \( C = C_{PREF} \cup C_{KB} \) is a set of constraints with customer preferences \( C_{PREF} \) and configuration knowledge base \( C_{KB} \) \cite{felfernigOpenConfiguration2014, felferningGroupBasedConfiguration2016}.
+where \( V = \{v_1,\dots, v_n\} \) is a set of variables, \( D = dom : V \mapsto X \) is a relation of variables and their corresponding domain definitions \( X \), and \( C = C_{PREF} \cup C_{KB} \) is a set of constraints with customer preferences \( C_{PREF} \) and configuration knowledge base \( C_{KB} \) \cite{felferningGroupBasedConfiguration2016, felfernigOpenConfiguration2014}.
 
 
 \section{Group-Based Product Configuration}
