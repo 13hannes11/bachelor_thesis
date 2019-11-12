@@ -4,19 +4,20 @@
 \section{Group-Based Configuration}
 \label{sec:Related_Work:GroupBasedConfiguration}
 
-In his thesis \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} built a collaborative configurator based on the CAS Merlin Configurator. Here groups of people are able to simultaneously configure a product. If there are any conflicts a conflict resolution process is started. However the prototype only allows a majority voting approach and does not provide any group decision support \cite{raabKollaborativeProduktkonfigurationEchtzeit2019}.
+\begin{description}[style=unboxed, leftmargin=0cm, font=\normalfont]
+    \item[\citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019}] builds a collaborative configurator based on the CAS Merlin Configurator. Here groups of people are able to simultaneously configure a product. If there are any conflicts a conflict resolution process is started. However the prototype only allows a majority voting approach and does not provide any group decision support \cite{raabKollaborativeProduktkonfigurationEchtzeit2019}.
+\end{description}
 
 \section{Recommender Systems for Configuration}
 \label{sec:Related_Work:RecommenderSystemsForGonfiguration}
+\begin{description}[style=unboxed, leftmargin=0cm, font=\normalfont]
+    \item[\citeauthor{rubinshteynEntwicklungHybridenRecommender2018}] looks at different approaches to recommendation and implements a prototype with CAS Merlin Configurator which uses a hybrid recommender system. His prototype combines constraint-based filtering with collaborative filtering \cite{rubinshteynEntwicklungHybridenRecommender2018}.
 
-\citeauthor{rubinshteynEntwicklungHybridenRecommender2018} looks at different approaches to recommendation and implements a prototype with CAS Merlin Configurator which uses a hybrid recommender system. His prototype combines constraint-based filtering with collaborative filtering \cite{rubinshteynEntwicklungHybridenRecommender2018}.
+    \item [\citeauthor{benzMoeglichkeitenIntelligenterEmpfehlungssysteme2017}] uses a constraint based recommender that uses fuzzy logic to relax constraints and thereby reducing the amount of times where the recommender is unable to make recommendations. With his approach a product manager has direct influence on the recommendations. Rules for recommendations hereby are not automatically learned but only manually created and relate to predefined user interest categories \cite{benzMoeglichkeitenIntelligenterEmpfehlungssysteme2017}.
 
-\citeauthor{benzMoeglichkeitenIntelligenterEmpfehlungssysteme2017} uses a constraint based recommender that uses fuzzy logic to relax constraints and thereby reducing the amount of times where the recommender is unable to make recommendations. With his approach a product manager has direct influence on the recommendations. Rules for recommendations hereby are not automatically learned but only manually created and relate to predefined user interest categories \cite{benzMoeglichkeitenIntelligenterEmpfehlungssysteme2017}.
+    \item [\citeauthor{ullmannEntwurfUndUmsetzung2017}] implements a recommendation engine that is able to estimate customer budgets, a k-nearest neighbour classifier for finding a base configuration and non-negative matrix factorization combines with nearest neighbour to find configurations for specific users \cite{ullmannEntwurfUndUmsetzung2017}. \par
 
-\citeauthor{ullmannEntwurfUndUmsetzung2017} implements a recommendation engine that is able to estimate customer budgets, a k-nearest neighbour classifier for finding a base configuration and non-negative matrix factorization combines with nearest neighbour to find configurations for specific users \cite{ullmannEntwurfUndUmsetzung2017}.
-
-\citeauthor{wetzelPersonalisierterUndLernender2017} combines collaborative filtering and click-stream analysis. For collaborative filtering he implements three filtering algorithms: k-nearest neighbour, weighted majority voting and non-negative matrix factorization. Collaborative filtering is used to find configurations that are similar to the current configuration. Click-stream analysis is done by using n-grams and the Smith-Waterman algorithm. \citeauthor{wetzelPersonalisierterUndLernender2017} also tries to use click-stream data in combination with Markov chains to give recommendations on how configuration options should be ordered in a configuration form
-\cite{wetzelPersonalisierterUndLernender2017}.
-
+    \item[\citeauthor{wetzelPersonalisierterUndLernender2017}] combines collaborative filtering and click-stream analysis. For collaborative filtering he implements three filtering algorithms: k-nearest neighbour, weighted majority voting and non-negative matrix factorization. Collaborative filtering is used to find configurations that are similar to the current configuration. Click-stream analysis is done by using n-grams and the Smith-Waterman algorithm. \citeauthor{wetzelPersonalisierterUndLernender2017} also tries to use click-stream data in combination with Markov chains to give recommendations on how configuration options should be ordered in a configuration form \cite{wetzelPersonalisierterUndLernender2017}.
+\end{description}
 
 \todo[inline]{other related work}
