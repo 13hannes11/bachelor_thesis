@@ -24,6 +24,8 @@ Hereby filter rules are defined which filter out items that don't fulfil specifi
 \subsection{Hybrid Recommendation}
 A hybrid recommender combines different recommendation approaches to use the strengths of each individual one and to reduce effects of weaknesses \cite{burkeHybridRecommenderSystems2002}.
 
+\todo[inline]{add more detailed description of recommendation systems - do they need historicle data  which conditions for usage are needed, strengths and weaknesses}
+
 \section{Group Recommender System}
 
 A group recommender system is a recommender system aimed at making recommendations for a group instead of a single user. To make recommendations group members preferences have to be aggregated. This can be done by either aggregating single user recommendations or by merging preferences of each user into a group preference model. Based on this model recommendation strategies as described in \ref{sec:Foundations:RecommenderSystem} can be used to generate recommendations \cite{jamesonRecommendationGroups2007}.
@@ -57,6 +59,12 @@ with preferences of user \( i \) as \( PREF_i \) \cite{ felferningGroupBasedConf
     C_{CONF} = \bigcup_{v_i \in V} \{ v_i = x_i \}, \ x_i \in dom(v_i)
 \]
 and where \( C_{CONF} \cup C_{PREF} \cup C_{KB} \) is consistent \cite{ felferningGroupBasedConfiguration2016}.
+
+\todo[inline]{add group descision part, conflict resolution, types of conflict, differences in knowledge/decision power;
+
+group dynamics (e.g. biases in decision making, anchoring, etc.)
+
+Why are group decision interesting?}
 
 
 
