@@ -30,7 +30,7 @@ M.Collab -> M.Core: build_in(configuration)
 activate M.Core
 M.Collab <-- M.Core: return configuration
 deactivate M.Core
-M.Collab -> M.Recommend : getRecommendation(configuration)
+M.Collab -> M.Recommend : getRecommendation(configuration, preferences)
 activate M.Recommend
 
 par
