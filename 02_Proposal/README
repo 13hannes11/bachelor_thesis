@@ -41,8 +41,7 @@ Draft-Modus
 -----------
 Standardmäßig ist der draft-Modus aktiv. Dieser kann ebenfalls in der
 \documentclass-Anweisung am Anfang von thesis.tex auf "final" umgestellt werden,
-um eine abgabefertige Version zu erzeugen. Im Draft-Modus werden 
-todo-Notizen sowie Platzhalter für fehlende Abbildungen angezeigt, in der
+um eine abgabefertige Version zu erzeugen. Im Draft-Modus werden todo Notizen sowie Platzhalter für fehlende Abbildungen angezeigt, in der
 Final-Version jedoch ausgeblendet.
 
 LaTeX allgemein
