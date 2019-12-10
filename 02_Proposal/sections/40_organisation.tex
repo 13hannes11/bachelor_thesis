@@ -1,8 +1,6 @@
 \chapter{Organisation}
 \label{ch:Organisation}
 
-\todo[author=Robert, inline]{Es sollten noch Workpackages im Proposal beschrieben sein.}
-
 This chapter provides an overview on time schedule, advisers and other organisational circumstances regarding this thesis.
 
 \section{Advisers and Environment}
@@ -41,6 +39,38 @@ This thesis consist of multiple artefacts. Artefacts do not have to be separate 
 \label{sec:Organisation:Process}
 
 A slightly reduced version of Scrum is used during the creation of this thesis. Scrum is the de-facto standard for agile software development \cite{glogerScrumPradigmenwechselIm2010}. Daily meetings with status updates and suggestions with advisory and colleagues at CAS are held every day. The Sprint length is one week but during later development this potentially will be lengthened to two weeks. Sprint reviews, retrospective and sprint planning are not explicitly done. Hereby the process is not used for coordination of a team that works on a single software project but to improve knowledge exchange and communication.
+
+\section{Work Packages}
+\label{sec:Organisation:WorkPackages}
+
+\begin{enumerate}[label=Work Package \arabic*:, align=left]
+    \item Basic Preference Aggregation and Voting Recommendation
+        \begin{description}
+            \item[Preference Aggregation] The system needs to have a user interface for collecting preferences and to be able to process them.
+            \item[Voting Recommender UI] A basic user interface that displays recommendations for voting which were returned by the recommender.
+            \item[REST-Api for Voting Recommendations] Define a rest api that gives recommendations for configurations and user preferences.
+            \item[Voting Recommender] Implementation of the actual recommender for voting.
+            \item[Milestone M1] The collaborative configuration prototype can aggregate preferences and gives recommendations for voting.
+        \end{description}
+    \pagebreak[3]
+    \item Recommender for Configuration Attributes
+    \begin{description}
+        \item[Attribute Recommendation UI] There 
+        \item[REST-Api for Attribute Recommendations]
+        \item[Attribute Recommender] The voting recommender extended to allow recommendations for attributes.
+        \item[Milestone M2] The collaborative configuration prototype can give suggestions for Attributes that should be build into the configuration. 
+    \end{description}
+    \pagebreak[3]
+    \item Hybridisation of Recommender
+    \begin{description}
+        \item[Other recommender types] Implement other recommender types. 
+        \item[Milestone M3] The collaborative configuration prototype can give recommendations by combining multiple recommender.
+    \end{description}
+    \pagebreak[3]
+\end{enumerate}
+
+\todo[author=Robert, inline]{Es sollten noch Workpackages im Proposal beschrieben sein.}
+
 
 \section{Schedule}
 \label{sec:Organisation:Schedule}
@@ -123,4 +153,5 @@ The planned schedule can be seen in \ref{fig:Organisation:Schedule:Gant}. Docume
             \item[Explanation:] Bugs in the prototype that this thesis will extend could delay implementation of features. Also architectural problems could make it harder then expected to extend the prototype.
             \item[Mitigation:] To reduce work in such a case less features could be implemented or some features could just use a mock implementation.
         \end{description}
+    \pagebreak[3]
 \end{enumerate}
