@@ -1,0 +1,53 @@
+@startuml
+skinparam monochrome true
+skinparam SequenceBoxBackgroundColor #ffffff
+skinparam ParticipantPadding 5
+skinparam shadowing false
+hide footbox
+
+title Configuration Step without Alternatives
+
+box "Client B"
+participant "M.Customer B"
+end box
+
+box "Client A"
+participant "M.Customer A"
+end box
+
+box "Server"
+participant M.Collab
+participant M.Core
+participant M.Recommend
+end box
+
+activate "M.Customer A"
+activate "M.Customer B"
+
+"M.Customer A" -> M.Collab: configurationStep(configuration)
+activate M.Collab
+M.Collab -> M.Core: build_in(configuration)
+activate M.Core
+M.Collab <-- M.Core: return configuration
+deactivate M.Core
+M.Collab -> M.Recommend : getRecommendation(configuration)
+activate M.Recommend
+
+par
+    M.Collab --> "M.Customer A" : broadcast (configuration)
+    M.Collab --> "M.Customer B" : broadcast (configuration)
+
+    M.Collab <-- M.Recommend : return recommendedFeatures
+    deactivate M.Recommend
+end
+
+par
+    M.Collab --> "M.Customer A" : broadcast (recommendedFeatures)
+    M.Collab --> "M.Customer B" : broadcast (recommendedFeatures)
+end
+
+
+
+
+
+@enduml
