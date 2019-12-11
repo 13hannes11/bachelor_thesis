@@ -1,21 +1,28 @@
 \chapter{Related Work}
 \label{ch:Related_Work}
 
+\section{Group Recommender Systems}
+\label{sec:Related_Work:GroupRecommender}
 
+\begin{description}[style=unboxed, leftmargin=0cm, font=\normalfont]
+    \item[\citeauthor{choudharyMulticriteriaGroupRecommender2020}] propose a multi-criteria group recommender system. An analytical hierarchy process is used to learn priorities for film features like story, action, direction and to then make a number of best recommendations for a group of users. Their approach works well for film selection and they observe that it is easier to make recommendations for homogenous groups than for random groups. Also small groups receive better recommendations compared to large ones\cite{choudharyMulticriteriaGroupRecommender2020}.
 
-\todo[author=Robert, inline]{Bei der related work bezieht bisher noch Abschlussarbeiten von Karlsruher Hochschulen mit ein. Hier sollten noch wissenschaftliche Papiere diskutiert werden.}
-
-\todo[inline]{add a few books and papers to related work}
+    \item[\citeauthor{chenInterfaceInteractionDesign2011}] looks at interface and interaction designs that supports the overall group and does not only consider each user individually. Chen design a music recommendation system \emph{GroupFun} with a focus on groups that tries to enhance mutual awareness and transparency. \citeauthor{chenInterfaceInteractionDesign2011}'s assessment is that this work is still in a preliminary stage  \cite{chenInterfaceInteractionDesign2011}. Further work in that area was conducted by \citeauthor{chenEmpatheticonsDesigningEmotion2014} looking at emotional awareness in groups and how that can be visualised in a user interface \cite{chenEmpatheticonsDesigningEmotion2014}. 
+\end{description}
 
 \section{Group-Based Configuration}
 \label{sec:Related_Work:GroupBasedConfiguration}
 
 \begin{description}[style=unboxed, leftmargin=0cm, font=\normalfont]
     \item[\citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019}] builds a collaborative configurator based on the CAS Merlin Configurator. Here groups of people are able to simultaneously configure a product. If there are any conflicts a conflict resolution process is started. However the prototype only allows a majority voting approach and does not provide any group decision support \cite{raabKollaborativeProduktkonfigurationEchtzeit2019}.
+
+    \item[\citeauthor{felferningGroupBasedConfiguration2016}] introduces basic definitions of group based configuration tasks, shows what conflicts can occur, how to deal with inconsistencies in preferences among group members and how to integrate different decision heuristics into this process \cite{felferningGroupBasedConfiguration2016}.
+
+    \item[\citeauthor{velasquez-guevaraMultiSPLOTSupportingMultiuser2018}] implement a web based simultaneous group-based configuration system that uses constraint programming. Hereby each user configures according to their own preferences and the system proposes a configuration according to different strategies \cite{velasquez-guevaraMultiSPLOTSupportingMultiuser2018}.  
 \end{description}
 
 \section{Recommender Systems for Configuration}
-\label{sec:Related_Work:RecommenderSystemsForGonfiguration}
+\label{sec:Related_Work:RecommenderSystemsForConfiguration}
 \begin{description}[style=unboxed, leftmargin=0cm, font=\normalfont]
     \item[\citeauthor{rubinshteynEntwicklungHybridenRecommender2018}] looks at different approaches to recommendation and implements a prototype with CAS Merlin Configurator which uses a hybrid recommender system. His prototype combines constraint-based filtering with collaborative filtering \cite{rubinshteynEntwicklungHybridenRecommender2018}.
 
@@ -24,6 +31,8 @@
     \item [\citeauthor{ullmannEntwurfUndUmsetzung2017}] implements a recommendation engine that is able to estimate customer budgets, a k-nearest neighbour classifier for finding a base configuration and non-negative matrix factorization combines with nearest neighbour to find configurations for specific users \cite{ullmannEntwurfUndUmsetzung2017}. \par
 
     \item[\citeauthor{wetzelPersonalisierterUndLernender2017}] combines collaborative filtering and click-stream analysis. For collaborative filtering he implements three filtering algorithms: k-nearest neighbour, weighted majority voting and non-negative matrix factorization. Collaborative filtering is used to find configurations that are similar to the current configuration. Click-stream analysis is done by using n-grams and the Smith-Waterman algorithm. \citeauthor{wetzelPersonalisierterUndLernender2017} also tries to use click-stream data in combination with Markov chains to give recommendations on how configuration options should be ordered in a configuration form \cite{wetzelPersonalisierterUndLernender2017}.
+
+    \item[\citeauthor{falknerRecommendationTechnologiesConfigurable2011}] provide an overview of recommendation approaches for configuration to improve usability of configuration systems. They look at feature recommender to recommend which features in a configuration would be useful to have and at value recommender for these features. Additionally they discuss approaches for ranking and recommending explanations for inconsistencies between customers requirements and product rules \cite{falknerRecommendationTechnologiesConfigurable2011}.
 \end{description}
 
 \section{Group Dynamics and Bias}
