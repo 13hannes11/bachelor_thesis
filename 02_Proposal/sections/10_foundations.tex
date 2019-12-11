@@ -14,6 +14,9 @@ There are several approaches to recommender systems presented in \cite{felfernig
 In collaborative filtering a users rating for unknown items is predicted by finding similar users who have rated it. Their rating is used as prediction
 \cite[~ pp. 7, 8]{felfernigDecisionTasksBasic2018}.
 
+Collaborative Filtering can not only be done using users, it can also be item-based. Hereby the similarity between items is used for a recommendation and not similar users \cite{ricciRecommenderSystemsHandbook2015}. In the context of configuration the similarity to other historic configurations can be used which makes it an item based approach. 
+
+
 \subsection{Content-Based Filtering}
 Items and users are assigned to categories. Based on consumption and rating of items a user will have implicit ratings for categories. Predictions are now made based on a categories of the new item \cite[~ pp. 10, 11]{felfernigDecisionTasksBasic2018}.
 
@@ -47,7 +50,7 @@ where \( V = \{v_1,\dots, v_n\} \) is a set of variables, \( D = dom : V \mapsto
 \section{Group-Based Product Configuration}
 \label{sec:Foundations:GroupBasedProductConfiguration}
 
-To define group-based product configuration we extend the definition (\ref{sec:Foundations:ProductConfiguration}) to 
+If instead of a single person configuring a product we would like to have a group of people which can be useful in multi-stakeholder decisions, it needs mechanisms for describing the preferences of multiple people. Therefore we extend the definition of product configuration from (\ref{sec:Foundations:ProductConfiguration}) to 
 \[ 
     C_{PREF} = \bigcup 
 PREF_i \]
