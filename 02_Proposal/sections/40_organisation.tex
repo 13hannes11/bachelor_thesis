@@ -40,6 +40,77 @@ This thesis consist of multiple artefacts. Artefacts do not have to be separate 
 
 A slightly reduced version of Scrum is used during the creation of this thesis. Scrum is the de-facto standard for agile software development \cite{glogerScrumPradigmenwechselIm2010}. Daily meetings with status updates and suggestions with advisory and colleagues at CAS are held every day. The Sprint length is one week but during later development this potentially will be lengthened to two weeks. Sprint reviews, retrospective and sprint planning are not explicitly done. Hereby the process is not used for coordination of a team that works on a single software project but to improve knowledge exchange and communication.
 
+\section{Schedule}
+\label{sec:Organisation:Schedule}
+
+The planned schedule can be seen in \ref{fig:Organisation:Schedule:Gant}. Documentation and of the thesis is planned to be written in parallel to  \emph{Problem Identification}, \emph{Design and Implementation} and \emph{Demonstration and Evaluation} phases. The Design and Implementation Phase is grouped into iterations. Each iteration will consist of implementing one work package, described in \ref{sec:Organisation:WorkPackages} and after each iteration the corresponding milestones are reached. These are not explicitly described in \ref{fig:Organisation:Schedule:Gant}. After all these phases the thesis documentation will be finalized and corrected. 
+
+\begin{figure}
+    \begin{center}
+        \begin{ganttchart}[y unit title=0.7cm,
+            y unit chart=0.7cm,
+            x unit=0.25cm, 
+            title height=1,
+            bar height=0.6,
+            group right shift=0,
+            group top shift=.6,
+            group height=.3
+            ]{1}{36}
+            \gantttitle{2019}{4}
+            \gantttitle{2020}{32}\ganttnewline
+            \gantttitlelist{51,52,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16}{2}\ganttnewline
+            \ganttgroup{Thesis}{1}{36}\ganttnewline
+    
+            \ganttgroup{Problem Identification}{1}{6}\ganttnewline
+            \ganttbar{Literature Research}{1}{4}\ganttnewline
+            \ganttbar{Defintion of Objectives}{1}{6}\ganttnewline
+            
+            
+            \ganttgroup{Design and Implementation}{7}{22}\ganttnewline
+
+            \ganttgroup{Work Package 1}{8}{11}\ganttnewline
+            \ganttbar{Design}{8}{9}\ganttnewline
+            \ganttbar{Implementation}{9}{11}\ganttnewline
+
+            \ganttgroup{Work Package 2}{12}{15}\ganttnewline
+            \ganttbar{Design}{12}{13}\ganttnewline
+            \ganttbar{Implementation}{13}{15}\ganttnewline
+
+            \ganttmilestone{Code Review}{15}\ganttnewline
+
+            \ganttgroup{Work Package 3}{16}{19}\ganttnewline
+            \ganttbar{Design}{16}{17}\ganttnewline
+            \ganttbar{Implementation}{17}{19}\ganttnewline
+
+            \ganttmilestone{Fully Working Prototype}{19}\ganttnewline
+            
+            \ganttbar{Buffer}{20}{22}\ganttnewline
+
+            \ganttgroup{Demonstration and Evaluation}{23}{26}\ganttnewline
+            \ganttbar{Demonstration}{23}{24}\ganttnewline
+            \ganttbar{Evaluation}{25}{26}\ganttnewline
+
+            \ganttgroup{Documentation}{1}{34}\ganttnewline
+            \ganttbar{Write Documentation}{1}{26}\ganttnewline
+            \ganttmilestone{First Draft}{26}\ganttnewline
+            \ganttbar{Finalize Thesis}{28}{30}\ganttnewline
+            \ganttmilestone{Final Draft}{30}\ganttnewline
+            \ganttbar{Proof Reading and Corrections}{31}{34}\ganttnewline
+            \ganttmilestone{Finished Thesis}{34}\ganttnewline
+            \ganttbar{Buffer}{35}{36}\ganttnewline
+            \ganttmilestone{Thesis Submission (\printfdate{british})}{36}
+
+            \ganttvrule{}{6}
+            \ganttvrule{}{22}
+            \ganttvrule{}{26}
+            \ganttvrule{}{34}
+        \end{ganttchart}
+    \end{center}
+    \caption{Gantt chart representing the schedule of this thesis.
+    }
+    \label{fig:Organisation:Schedule:Gant}
+\end{figure}
+
 \section{Work Packages}
 \label{sec:Organisation:WorkPackages}
 
@@ -68,69 +139,6 @@ A slightly reduced version of Scrum is used during the creation of this thesis. 
     \end{description}
     \pagebreak[3]
 \end{enumerate}
-
-\todo[author=Robert, inline]{Es sollten noch Workpackages im Proposal beschrieben sein.}
-
-
-\section{Schedule}
-\label{sec:Organisation:Schedule}
-
-The planned schedule can be seen in \ref{fig:Organisation:Schedule:Gant}. Documentation and of the thesis is planned to be written in parallel to  \emph{Problem Identification}, \emph{Design and Implementation} and \emph{Demonstration and Evaluation} phases. After all these phases the thesis documentation will be finalized and corrected. 
-
-\todo[author=Robert, inline]{Der Zeitplan sollte Iterativ gestaltet sein, sodass du in einer anderen Phase weiterarbeiten kannst, wenn es einmal Verzögerungen in einer Phase gibt.}
-
-\begin{figure}
-    \begin{center}
-        \begin{ganttchart}[y unit title=0.7cm,
-            y unit chart=0.8cm, 
-            title height=1,
-            bar height=0.6,
-            group right shift=0,
-            group top shift=.6,
-            group height=.3
-            ]{1}{18}
-            \gantttitle{2019}{2}
-            \gantttitle{2020}{16}\ganttnewline
-            \gantttitlelist{51,52,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16}{1}\ganttnewline
-            \ganttgroup{Thesis}{1}{18}\ganttnewline
-    
-            \ganttgroup{Problem Identification}{1}{3}\ganttnewline
-            \ganttbar{Literature Research}{1}{2}\ganttnewline
-            \ganttbar{Defintion of Objectives}{1}{3}\ganttnewline
-            
-            
-            \ganttgroup{Design and Implementation}{4}{11}\ganttnewline
-            \ganttbar{Design}{4}{5}\ganttnewline
-            \ganttbar{Implementation}{6}{10}\ganttnewline
-            \ganttmilestone{Code Review}{8}\ganttnewline
-            \ganttmilestone{Fully Working Prototype}{10}\ganttnewline
-            
-            \ganttbar{Buffer}{11}{11}\ganttnewline
-
-            \ganttgroup{Demonstration and Evaluation}{12}{13}\ganttnewline
-            \ganttbar{Demonstration}{12}{12}\ganttnewline
-            \ganttbar{Evaluation}{13}{13}\ganttnewline
-
-            \ganttgroup{Documentation}{1}{17}\ganttnewline
-            \ganttbar{Write Documentation}{1}{13}\ganttnewline
-            \ganttmilestone{First Draft}{13}\ganttnewline
-            \ganttbar{Finalize Thesis}{14}{15}\ganttnewline
-            \ganttmilestone{Final Draft}{15}\ganttnewline
-            \ganttbar{Proof Reading and Corrections}{16}{17}\ganttnewline
-            \ganttmilestone{Finished Thesis}{17}\ganttnewline
-            \ganttbar{Buffer}{18}{18}\ganttnewline
-            \ganttmilestone{Thesis Submission (\printfdate{british})}{18}
-
-            \ganttvrule{}{3}
-            \ganttvrule{}{11}
-            \ganttvrule{}{13}
-            \ganttvrule{}{17}
-        \end{ganttchart}
-    \end{center}
-    \caption{Gantt chart representing the schedule of this thesis.
-    }
-    \label{fig:Organisation:Schedule:Gant}
-\end{figure}
 
 \section{Risks Assessment}
 \label{sec:Organisation:RiskAssessment}
