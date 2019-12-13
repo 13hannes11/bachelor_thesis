@@ -110,6 +110,11 @@
 \newcommand{\printcompanylogo}{\includegraphics[height=1.8cm]{logos/\thecompanylogo}}
 \newcommand{\nocompanylogo}{\renewcommand{\printcompanylogo}{}}
 
+\newcommand{\thesecondgrouplogo}{sdqlogo}
+\newcommand{\secondgrouplogo}[1]{\renewcommand{\thesecondgrouplogo}{#1}}
+\newcommand{\printsecondgrouplogo}{\includegraphics[height=1.8cm]{logos/\thesecondgrouplogo}}
+\newcommand{\nosecondgrouplogo}{\renewcommand{\printsecondgrouplogo}{}}
+
 \newcommand{\thegrouplogo}{sdqlogo}
 \newcommand{\grouplogo}[1]{\renewcommand{\thegrouplogo}{#1}}
 \newcommand{\printgrouplogo}{\includegraphics[height=1.8cm]{logos/\thegrouplogo}}
@@ -126,7 +131,10 @@
 \hspace{5mm}
 \printcompanylogo
 \hspace{5mm}
+\printsecondgrouplogo
+\hspace{5mm}
 \printgrouplogo
+\hspace{5mm}
 \ThisCenterWallPaper{1}{title-background.pdf}
 }
 
