@@ -30,13 +30,13 @@ In collaborative filtering a users rating for unknown items is predicted by find
 
 Collaborative Filtering can not only be done using users, it can also be item-based. Hereby the similarity between items is used for a recommendation and not similar users \cite{ricciRecommenderSystemsHandbook2015}. In the context of configuration the similarity to other historic configurations can be used which makes it an item based approach. 
 
-Table \ref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix. A simple user-based way to calculate rating would be now to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance our closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving us a predicted rating of $4$.  If we use item based illustration instead, we will try to find similar items based on the users rating. An example of similar items here would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the sane rating and Eric's rating is off by one. Using again kNN with $k := 2$ we find that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$.
+\autoref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix. A simple user-based way to calculate rating would be now to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance our closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving us a predicted rating of $4$.  If we use item based illustration instead, we will try to find similar items based on the users rating. An example of similar items here would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the sane rating and Eric's rating is off by one. Using again kNN with $k := 2$ we find that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$.
 However this simple similarity and prediction function does not take into account different distances. For example Lucy's ratings are more similar compared to Eric's than Diane's but Diane's and Lucy's rating is valued the same amount.
 
 \subsection{Content-Based Filtering}
 Items and users are assigned to categories. Based on consumption and rating of items a user will have implicit ratings for categories. Predictions are now made based on a categories of the new item \cite[~ pp. 10, 11]{felfernigDecisionTasksBasic2018}.
 
-Using our example from Table \ref{tab:Foundations:RecommenderSystem:MoviePreferences} and using an additional category matrix (see Table \ref{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}) we can derive a rating matrix per category (using the average rating of the user of each movie contained in this category). The result can be seen in Table \ref{tab:Foundations:RecommenderSystem:ContentBasedFilteringProfiles}. To predict Eric's rating of Titanic we now can use the categories of \textit{Titanic} and average out Eric's implicit rating per category. Titanic is only in the category romance and as Eric's rating of \textit{Forest Gump} is $5$ the prediction is a rating of $5$. Categories don't have to be the genre, they could be any kind of data about a movie.
+Using our example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences} and using an additional category matrix (see \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}) we can derive a rating matrix per category (using the average rating of the user of each movie contained in this category). The result can be seen in \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringProfiles}. To predict Eric's rating of Titanic we now can use the categories of \textit{Titanic} and average out Eric's implicit rating per category. Titanic is only in the category romance and as Eric's rating of \textit{Forest Gump} is $5$ the prediction is a rating of $5$. Categories don't have to be the genre, they could be any kind of data about a movie.
 
 \begin{table}
     \centering    
@@ -48,7 +48,7 @@ Using our example from Table \ref{tab:Foundations:RecommenderSystem:MoviePrefere
          Romance & & x & & x & \\
          Family & & & & x & x \\
     \end{tabular}
-    \caption{Showing example categories for movies in Table \ref{tab:Foundations:RecommenderSystem:MoviePreferences}.}
+    \caption{Showing example categories for movies in \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}.}
     
     \label{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}
 \end{table}
@@ -62,7 +62,7 @@ Using our example from Table \ref{tab:Foundations:RecommenderSystem:MoviePrefere
         Eric  & 2.5 & 2 & 3 & 5 & 4.5 \\
         Diane & 4.5 & 4 & 5 & 3 & 3  \\
     \end{tabular}
-    \caption{User profiles generated from categories and rating from Tables \ref{tab:Foundations:RecommenderSystem:MoviePreferences} and \ref{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}.}
+    \caption{User profiles generated from categories and rating from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences} and \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}.}
     
     \label{tab:Foundations:RecommenderSystem:ContentBasedFilteringProfiles}
 \end{table}
@@ -75,14 +75,14 @@ With a critique based approach Eric sees a suggestion of watching \textit{The Is
 \subsection{Constraint-Based Recommendation}
 Hereby filter rules are defined which filter out items that don't fulfil specified rules. A user models their requirements with these rules and thereby gets a list of recommended items. This approach requires deep knowledge about a product because it needs a detailed description of features  \cite[~ p. 12]{felfernigDecisionTasksBasic2018}.
 
-Our movie example (see Table \ref{tab:Foundations:RecommenderSystem:MoviePreferences}) needs have additional information for example about plot structure, pacing, length and other attributes of the movie. Now the user could give as filter, that the movie should be no longer than 120 minutes, be categorized as action or thriller and have a fast pacing. The system will only recommend movies that fit into these categories.
+Our movie example (see \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}) needs have additional information for example about plot structure, pacing, length and other attributes of the movie. Now the user could give as filter, that the movie should be no longer than 120 minutes, be categorized as action or thriller and have a fast pacing. The system will only recommend movies that fit into these categories.
 
 \subsection{Hybrid Recommendation}
 A hybrid recommender combines different recommendation approaches to use the strengths of each individual one and to reduce effects of weaknesses \cite{burkeHybridRecommenderSystems2002}.
 
 \section{Group Recommender System}
 
-A group recommender system is a recommender system aimed at making recommendations for a group instead of a single user. To make recommendations group members preferences have to be aggregated. This can be done by either aggregating single user recommendations or by merging preferences of each user into a group preference model. Based on this model recommendation strategies as described in \ref{sec:Foundations:RecommenderSystem} can be used to generate recommendations \cite{jamesonRecommendationGroups2007}.
+A group recommender system is a recommender system aimed at making recommendations for a group instead of a single user. To make recommendations group members preferences have to be aggregated. This can be done by either aggregating single user recommendations or by merging preferences of each user into a group preference model. Based on this model recommendation strategies as described in \autoref{sec:Foundations:RecommenderSystem} can be used to generate recommendations \cite{jamesonRecommendationGroups2007}.
 
 \section{Product Configuration}
 \label{sec:Foundations:ProductConfiguration}
@@ -99,7 +99,7 @@ where \( V = \{v_1,\dots, v_n\} \) is a set of variables, \( D = dom : V \mapsto
 \section{Group-Based Product Configuration}
 \label{sec:Foundations:GroupBasedProductConfiguration}
 
-If instead of a single person configuring a product we would like to have a group of people which can be useful in multi-stakeholder decisions, it needs mechanisms for describing the preferences of multiple people. Therefore we extend the definition of product configuration from (\ref{sec:Foundations:ProductConfiguration}) to 
+If instead of a single person configuring a product we would like to have a group of people which can be useful in multi-stakeholder decisions, it needs mechanisms for describing the preferences of multiple people. Therefore we extend the definition of product configuration from (\autoref{sec:Foundations:ProductConfiguration}) to 
 \[ 
     C_{PREF} = \bigcup 
 PREF_i \]
@@ -108,7 +108,7 @@ with preferences of user \( i \) as \( PREF_i \) \cite{ felferningGroupBasedConf
 \section{Group-Based Configuration-Solution}
 \label{sec:Foundations:GroupBasedConfigurationSolution}
 
-\ref{sec:Foundations:ProductConfiguration} and \ref{sec:Foundations:GroupBasedProductConfiguration} expand to a solution of a group-based configuration with the addition of variable assignments
+\autoref{sec:Foundations:ProductConfiguration} and \autoref{sec:Foundations:GroupBasedProductConfiguration} expand to a solution of a group-based configuration with the addition of variable assignments
 \[
     C_{CONF} = \bigcup_{v_i \in V} \{ v_i = x_i \}, \ x_i \in dom(v_i)
 \]

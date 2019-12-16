@@ -4,7 +4,7 @@
 \section{CAS Configurator Merlin}
 \label{sec:Concept:ConfiguratorMerlin}
 
-\ref{fig:Concept:ConfiguratorMerlin} shows the architecture of CAS Configurator Merlin.
+\autoref{fig:Concept:ConfiguratorMerlin} shows the architecture of CAS Configurator Merlin.
 \begin{description}
     \item[M.Core] provides the base of the configurator it checks configuration against all rules in the database, provides possible alternatives on a change that invalidates other parts of a configuration.
     \item[M.Model] is the editor to create products and rules. These rules can then be uploaded to M.Core.
@@ -21,7 +21,7 @@
 \section{CAS Group-Configurator}
 \label{sec:Concept:GroupConfigurator}
 
-\citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} extends CAS Merlin Configurator in his thesis to allow simultaneous configuration. The extended architecture is shown in Figure \ref{fig:Concept:CollaborativeConfiguratorMerlin}.
+\citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} extends CAS Merlin Configurator in his thesis to allow simultaneous configuration. The extended architecture is shown in \autoref{fig:Concept:CollaborativeConfiguratorMerlin}.
 He only makes changes to M.Customer which is renamed to M.Collab-Customer and introduces a new component M.Collab.
 
 \begin{description}
@@ -40,7 +40,7 @@ He only makes changes to M.Customer which is renamed to M.Collab-Customer and in
 \section{Extended Configurator}
 \label{sec:Concept:ExtendedConfigurator}
 
-Extending \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} work a module called M.Recommender is added. Its aim is to provide a recommendation server that holds all the data needed for recommendations. M.Collab and M.Collab-Customer have to be modified to allow taking in preferences and to show  recommendations. The recommender engine is set up to be in a separate system which allows the easier replacement and the usage of different technologies. The extended architecture is shown in Figure \ref{fig:Concept:RecommenderForCollaborativeConfiguratorMerlin}.
+Extending \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} work a module called M.Recommender is added. Its aim is to provide a recommendation server that holds all the data needed for recommendations. M.Collab and M.Collab-Customer have to be modified to allow taking in preferences and to show  recommendations. The recommender engine is set up to be in a separate system which allows the easier replacement and the usage of different technologies. The extended architecture is shown in \autoref{fig:Concept:RecommenderForCollaborativeConfiguratorMerlin}.
 
 \begin{description}
     \item[M.Recommender] is a new system that will get queried from M.Collab for recommendations, when the configuration changes. M.Recommender will return recommendations which then can be presented to users by M.Collab-Customer.
