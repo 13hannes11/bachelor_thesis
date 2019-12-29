@@ -1,0 +1,38 @@
+@startuml
+skinparam monochrome true
+skinparam SequenceBoxBackgroundColor #ffffff
+skinparam ParticipantPadding 5
+skinparam shadowing false
+hide footbox
+
+title Preferences
+
+
+
+activate M.Customer
+
+
+M.Customer -> M.Collab: like/dislike
+note left
+{
+     "type": "like"|"dislike",
+     "data": //String//
+}
+end note
+activate M.Collab
+
+M.Collab -> M.Collab : update preferences
+
+M.Customer <- M.Collab: updated preference state
+deactivate M.Collab
+note right
+{
+     "type": "preferenceUpdate",
+     "data":  { 
+         "likes": //Array<String>//,
+         "dislikes": //Array<String>//
+     }
+}
+end note
+
+@enduml
