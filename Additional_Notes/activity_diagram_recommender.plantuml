@@ -1,0 +1,15 @@
+@startuml
+
+(*) --> "Using MAUT create partial configuration based on preferences"
+--> validate and repair configuration
+--> "save in db"
+
+if "has better configruation in db" then
+    -->"use best in db"
+     --> (*)
+else
+    --> "use generated"
+     --> (*)
+endif
+   
+@enduml
