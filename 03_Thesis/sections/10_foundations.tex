@@ -1,2 +1,136 @@
 \chapter{Foundations}
 \label{ch:Foundations}
+
+Since this thesis focuses on recommender systems to support group decisions in the context of group based configuration it is important to define what we mean by these terms. This chapter describes foundations that sow what a recommender system is, approaches that can be taken and how it is possible to build with these approaches a group recommender. Additionally configuration and group configuration are defined. In group decisions biases can have an effect of the groups decision making ability and some of these are presented here to consider their effect on group decisions. 
+
+\section{Recommender System}
+\label{sec:Foundations:RecommenderSystem}
+
+A recommender system is a system that gives individualized recommendations to users to guide them through a large space of objects \cite[~ p. 331]{burkeHybridRecommenderSystems2002}.
+
+There are several approaches to recommender systems presented in \cite{felfernigGroupRecommenderSystems2018}, these are: collaborative filtering, content-based filtering, critiquing-based filtering, constraint-based, hybrid recommendation.
+
+\begin{table}
+    \centering    
+    \begin{tabular}{ l | c | c | c | c | c }
+        & The Matrix & Titanic & Die Hard & Forest Gump & Wall-E \\ \hline
+         John  & 5 & 1 &   & 2 & 2 \\
+         Lucy  & 1 & 5 & 2 & 5 & 5 \\
+         Eric  & 2 & ? & 3 & 5 & 4 \\
+         Diane & 4 & 3 & 5 & 3 &   \\
+    \end{tabular}
+    \caption{An example showing users ratings for movies by \citeauthor{ningComprehensiveSurveyNeighborhoodBased2015} \cite{ningComprehensiveSurveyNeighborhoodBased2015}.}
+    
+    \label{tab:Foundations:RecommenderSystem:MoviePreferences}
+\end{table}
+
+\subsection{Collaborative Filtering}
+In collaborative filtering a users rating for unknown items is predicted by finding similar users who have rated it. Their rating is used as prediction
+\cite[~ pp. 7, 8]{felfernigDecisionTasksBasic2018}.
+
+Collaborative Filtering can not only be done using users, it can also be item-based. Hereby the similarity between items is used for a recommendation and not similar users \cite{ricciRecommenderSystemsHandbook2015}. In the context of configuration the similarity to other historic configurations can be used which makes it an item based approach. 
+
+\autoref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix. A simple user-based way to calculate rating would be now to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance our closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving us a predicted rating of $4$.  If we use item based illustration instead, we will try to find similar items based on the users rating. An example of similar items here would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the sane rating and Eric's rating is off by one. Using again kNN with $k := 2$ we find that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$.
+However this simple similarity and prediction function does not take into account different distances. For example Lucy's ratings are more similar compared to Eric's than Diane's but Diane's and Lucy's rating is valued the same amount.
+
+\subsection{Content-Based Filtering}
+Items and users are assigned to categories. Based on consumption and rating of items a user will have implicit ratings for categories. Predictions are now made based on a categories of the new item \cite[~ pp. 10, 11]{felfernigDecisionTasksBasic2018}.
+
+Using our example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences} and using an additional category matrix (see \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}) we can derive a rating matrix per category (using the average rating of the user of each movie contained in this category). The result can be seen in \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringProfiles}. To predict Eric's rating of Titanic we now can use the categories of \textit{Titanic} and average out Eric's implicit rating per category. Titanic is only in the category romance and as Eric's rating of \textit{Forest Gump} is $5$ the prediction is a rating of $5$. Categories don't have to be the genre, they could be any kind of data about a movie.
+
+\begin{table}
+    \centering    
+    \begin{tabular}{ l | c | c | c | c | c }
+        & The Matrix & Titanic & Die Hard & Forest Gump & Wall-E \\ \hline
+         Action  & x &  & x  &  &  \\
+         Sci-Fi  & x &  &  &  &  \\
+         Thriller  &  & & x &  &  \\
+         Romance & & x & & x & \\
+         Family & & & & x & x \\
+    \end{tabular}
+    \caption{Showing example categories for movies in \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}.}
+    
+    \label{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}
+\end{table}
+
+\begin{table}
+    \centering    
+    \begin{tabular}{ l | c | c | c | c | c }
+        & Action & Sci-Fi & Thriller & Romance & Family \\ \hline
+        John  & 5 & 5 & & 1.5 & 2 \\
+        Lucy  & 1.5 & 1 & 2 & 5 & 5 \\
+        Eric  & 2.5 & 2 & 3 & 5 & 4.5 \\
+        Diane & 4.5 & 4 & 5 & 3 & 3  \\
+    \end{tabular}
+    \caption{User profiles generated from categories and rating from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences} and \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}.}
+    
+    \label{tab:Foundations:RecommenderSystem:ContentBasedFilteringProfiles}
+\end{table}
+
+\subsection{Critiquing-Based Recommendation}
+Items are recommended and a user can then critique on attributes of the recommendation. Based on that a similar item which does not have those critiques can be recommended. User preferences are implicitly collected this way \cite{knijnenburgEachHisOwn2011}.
+
+With a critique based approach Eric sees a suggestion of watching \textit{The Island} and its attributes. He then can say that he finds this movie has too much action. The critique based recommender will now present a movie that has similar attributes as \textit{The Island} but with less action. For example \textit{Titanic} could be the next suggestion.
+
+\subsection{Constraint-Based Recommendation}
+Hereby filter rules are defined which filter out items that don't fulfil specified rules. A user models their requirements with these rules and thereby gets a list of recommended items. This approach requires deep knowledge about a product because it needs a detailed description of features  \cite[~ p. 12]{felfernigDecisionTasksBasic2018}.
+
+Our movie example (see \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}) needs have additional information for example about plot structure, pacing, length and other attributes of the movie. Now the user could give as filter, that the movie should be no longer than 120 minutes, be categorized as action or thriller and have a fast pacing. The system will only recommend movies that fit into these categories.
+
+\subsection{Hybrid Recommendation}
+A hybrid recommender combines different recommendation approaches to use the strengths of each individual one and to reduce effects of weaknesses \cite{burkeHybridRecommenderSystems2002}.
+
+\section{Group Recommender System}
+
+A group recommender system is a recommender system aimed at making recommendations for a group instead of a single user. To make recommendations group members preferences have to be aggregated. This can be done by either aggregating single user recommendations or by merging preferences of each user into a group preference model. Based on this model recommendation strategies as described in \autoref{sec:Foundations:RecommenderSystem} can be used to generate recommendations \cite{jamesonRecommendationGroups2007}.
+
+\section{Product Configuration}
+\label{sec:Foundations:ProductConfiguration}
+
+Product configuration is a process consisting of a series of decision tasks whereby a product is constructed of components which interact with each other. During a configuration process no new components are created. Their interplay and specification is defined beforehand \cite[~ pp. 42, 43]{sabinProductConfigurationFrameworksa1998}.
+
+Formally a configuration problem can be specified as a \emph{constraint satisfaction problem (CSP)} \cite{tsangFoundationsConstraintSatisfaction1993} as 
+\[
+    CSP(V,D,C)
+\]
+where \( V = \{v_1,\dots, v_n\} \) is a set of variables, \( D = dom : V \mapsto X \) is a relation of variables and their corresponding domain definitions \( X \), and \( C = C_{PREF} \cup C_{KB} \) is a set of constraints with customer preferences \( C_{PREF} \) and configuration knowledge base \( C_{KB} \) \cite{felferningGroupBasedConfiguration2016, felfernigOpenConfiguration2014}.
+
+
+\section{Group-Based Product Configuration}
+\label{sec:Foundations:GroupBasedProductConfiguration}
+
+If instead of a single person configuring a product we would like to have a group of people which can be useful in multi-stakeholder decisions, it needs mechanisms for describing the preferences of multiple people. Therefore we extend the definition of product configuration from (\autoref{sec:Foundations:ProductConfiguration}) to 
+\[ 
+    C_{PREF} = \bigcup 
+PREF_i \]
+with preferences of user \( i \) as \( PREF_i \) \cite{ felferningGroupBasedConfiguration2016}.
+
+\section{Group-Based Configuration-Solution}
+\label{sec:Foundations:GroupBasedConfigurationSolution}
+
+\autoref{sec:Foundations:ProductConfiguration} and \autoref{sec:Foundations:GroupBasedProductConfiguration} expand to a solution of a group-based configuration with the addition of variable assignments
+\[
+    C_{CONF} = \bigcup_{v_i \in V} \{ v_i = x_i \}, \ x_i \in dom(v_i)
+\]
+and where \( C_{CONF} \cup C_{PREF} \cup C_{KB} \) is consistent \cite{ felferningGroupBasedConfiguration2016}.
+
+\section{Group Bias}
+\label{sec:Foundations:GroupBias}
+
+Groups have biases same as individuals. Some of these stem from individual biases that are transferred to a group and others only occur in group settings. This section covers some of those effects. These effects are described by \citeauthor{felfernigBiasesGroupDecisions2018} \cite{felfernigBiasesGroupDecisions2018}.
+
+\subsection{GroupThink}
+
+The bias called GroupThink occurs, when group members prefer to avoid conflicts instead of being mainly interested in getting the best decision outcome. Alternative options are in these circumstances not analysed close enough \cite{janis1982groupthink}.
+An avoidance strategy for this effect is for leaders to delay stating there opinion until all alternatives have been viewed in detail \citeauthor{felfernigBiasesGroupDecisions2018}. Recommender systems can aid group decision quality through encouraged information exchange as discussed by \citeauthor{atasItemRecommendationUsing2017} in \cite{atasItemRecommendationUsing2017}.
+
+
+\subsection{Anchoring}
+
+The first information provided is relied upon to heavily. In a group setting this can be triggered by the group member to first express their opinion. Often this is triggered if group members see preferences of others too early, therefore recommender systems should not show the rating of other users \cite{cosley2003seeing}.
+
+\subsection{Serial Position Effects}
+
+The serial positioning effects is the effect that users have a higher retention rate of items in a list that are presented first or last and these items are more closely examined \cite{felfernigPersuasiveRecommendationSerial2007,murphyPrimacyRecencyEffects2006}. Additionally to remembering and examining items at the start and the end of a list also the order of items can change the option the user chooses in the end \cite{felfernigBiasesGroupDecisions2018}.
+
+
