@@ -5,7 +5,7 @@
 \newcommand{\tabitem}[1][\textbullet]{~~\llap{#1}~~}
 
 \begin{document}
-\title{Collaborative Decision-Making in Group-Based Configuration Processes}
+\title{Decision Support for Group Configuration using Recommender Systems}
 \author{Hannes F. Kuchelmeister}
 \date{2020/01/23}
 
@@ -13,23 +13,11 @@
 
 \section{Research Gap}
 
-Collaborative Filtering for group recommender and configuration recommender but not 
+There exists research on group recommenders and research on recommenders for configuration but there does not exists research recommendation for group configuration. An approach for group recommenders is collaborative filtering. This approach is used also in recommenders for configuration. That is why adapting these approaches to suit the use case of group recommenders for configuration.
 
-\begin{center}
-    \begin{tabular}{ p{5cm}|p{5cm} } 
-        \hline
-        Group Recommender & Configuration Recommender \\
-        \hline
-        Preferences & Current unfinished configuration \\ 
-        Aggregation Strategy (aggregate preferences vs. aggregate recommendations &  \\
-        Use aggregation strategy for recommendations or preferences to decide on which product will be choosen (e.g Song) & Compare current unfinished configuration with stored finished configuration. \\
-        \hline
-        \multicolumn{2}{c}{This thesis} \\
-        \hline
-        \multicolumn{2}{c}{aggregate preferences} \\
-        \multicolumn{2}{c}{current unfinished configuration combined with preferences} \\
-    \end{tabular}
-\end{center}
+Commonly for collaborative filtering with group recommenders the preferences of the group members are combined with an aggregation function to generate a group profile. This profile is compared to historic group profiles from other groups and their choice of items (e.g. songs to listen to, things to buy) is used for recommendations.
+
+Collaborative filtering in configuration on the other hand usually uses the similarity of the current unfinished configuration to historic configurations to give recommendations.
 
 \section{Problem}
 A group of people with different personal preferences (knowledge and hierarchical power) want to buy products with high variability. Making decisions in the group comes with problems as communicating preferences is complicated.
@@ -48,16 +36,12 @@ Examples of that are:
 \begin{itemize}
     \item A system should give recommendation for the group using a utility function that takes into account preferences of group members, the current state (and potentially hierarchy and knowledge)  of group members.
     \item Recommendations should allow different strategies
-\end{itemize}
-
-\begin{itemize}
     \item Recommendations should always be valid options (i.e. configurations)
-    \item Recommendations should allow different strategies
 \end{itemize}
-
-\FloatBarrier
 
 \section{Use Cases}
+The system has one main use case as defined here. See Table \ref{table:simulation_parameters}.
+
 \begin{table}
     \begin{center}
         \begin{tabularx}{\columnwidth}{l|X}
@@ -74,8 +58,8 @@ Examples of that are:
                             & \tabitem[3.] If not all users have given their preferences go to step 1. \\
             \hline
         \end{tabularx}
-        \caption{Simulation parameters}
-        \label{table: simulation parameters}
+        \caption{Main Use Case}
+        \label{table:simulation_parameters}
     \end{center}
 \end{table}
 
@@ -85,15 +69,27 @@ Examples of that are:
 
 Given an unfinished configuration and preferences of all group members rate a finished configuration on how well "similar" it reflects the configuration + preferences.
 
-$$utility : (configurationState,\ preferences,\ configurationToRate) \mapsto rating$$
+$$utility_{group} : (configurationState,\ preferences,\ configurationToRate) \mapsto rating$$
 
 Use this to choose the best finished configuration out of a list to recommend
 
-\section{Possible extensions}
+\subsection{Generating a Recommendation}
+
+Hereby the idea is there is a store of complete configurations (possibly historic from other groups or automatically generated or both).
+Now the recommendation procedure looks as follows:
+
+\begin{enumerate}
+    \item For each configuration $c$ in store calculate $utility_{group}(state,\ preferences, \ c)$.
+    \item Chose the configuration with the highest utility as recommendation.
+\end{enumerate}
+
+
+\section{Possible Extensions or Further Research}
 
 \begin{itemize}
     \item How to optimise such that no need to search through all stored finished configurations is necessary? (e.g. improve runtime from $\mathcal{O}(n)$ to $\mathcal{O}(log\ n)$)
     \item How to model hierarchy and knowledge about part of the products in preferences?
+    \item Letting users just chose functions and how much they value them instead of rating individual attributes (more lay friendly). And how does this compare to explicitly choosing preferences.
 \end{itemize}
     
     
@@ -103,15 +99,18 @@ For one example e.g. forest example generate all possible valid configurations.
 
 Generate groups with preferences (explicit preferences) and configuration state (which would be for example the currently existing forest).
 
+\subsection{Group Types During Evaluation}
 \begin{itemize}
     \item Groups shall be generated with random preferences
-    \item With grouped preferences -> people adhere more or less to one profile (Forest Owner, Athlete, Consumer, Environmentalist)
-    \item Group of only one profile type -> rather homogenous group
+    \item With grouped preferences: people adhere more or less to one profile (Forest Owner, Athlete, Consumer, Environmentalist)
+    \item Group of only one profile type: rather homogenous group
 \end{itemize}
 
-With these preferences analyse how close the recommendations are to ideal recommendations depending on the number of stored finished configurations.
+\subsection{Questions to Answer During the Evaluation}
 
-Is this approach practical -> how many finished configurations do you need to get good recommendations.
-
+\begin{itemize}
+    \item How close are recommendations to the ideal recommendations depending on the number of stored finished configurations?
+    \item Is this approach practical?
+\end{itemize}
 
 \end{document}
