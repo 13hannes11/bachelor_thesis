@@ -3,6 +3,10 @@
 \usepackage{placeins}
 \usepackage{hyperref}
 
+% MATH PACKAGES
+\usepackage{amsmath}
+\usepackage{amssymb}
+
 \newcommand{\tabitem}[1][\textbullet]{~~\llap{#1}~~}
 
 \begin{document}
@@ -66,7 +70,77 @@ The system has one main way to be used as defined in \autoref{table:simulation_p
 
 \FloatBarrier
 
-\FloatBarrier
+\section{Defintions}
+
+Set of variables:
+\begin{equation}
+    V = \{V_1, \dotsc, V_m\}
+\end{equation}
+
+Set of their domains of values:
+\begin{equation}
+    D = \{D_1, \dotsc, D_m\}
+\end{equation}
+
+Set of users:
+\begin{equation}
+    U = \{1, \dotsc, n\}
+\end{equation}
+
+Users utility for a domain value of a variable:
+\begin{equation}
+    \begin{split}
+        u_i(d_j),\ \text{where}\ & d_j \in D_j,\\
+        & 1 <= j <= m, \\
+        & 1 <= i <= n
+    \end{split}
+\end{equation}
+
+User preferences:
+\begin{gather}
+    P = \{ P_1, \dotsc, P_n\},\ \text{where} \\
+    P_i = \{(d,\ u_i(d)) \ | \ \forall D_i \in D \ \forall d \in D_i\} \notag
+\end{gather}
+
+Configuration state:
+\begin{equation}
+    S = \{ (v,\ d) \ |\ v \in V_i \ \land \ d \in D_i \}
+\end{equation}
+
+Finished configuration state:
+\begin{equation}
+\begin{split}
+    S_F \subset S,\ where \  & \forall v \in V_i (\exists (v, d) \in S_F : d \in D_i) \\
+    & \land is\_valid(S_F)
+\end{split}
+\end{equation}
+
+% TODO: define valid configuration state
+
+Group configuration scoring function using preferences and current configuration state:
+
+\begin{equation}
+    score_{group}: S \times P \times S_F \to \mathbb{R}
+\end{equation}
+
+An example group configuration scoring function is $score_{group}$ with
+
+\begin{equation}
+    \notag \alpha \in \mathbb{R}, \qquad     changed(d,\overline{s}, s) = 
+    \begin{cases}
+      1, & d \in \overline{s} \land d \notin s \\
+      0, & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        score_{group}(\overline{s},\ \overline{p},\ s)
+        & = score(\overline{p},\ s) - penalty(\overline{s},\ s) \\
+        & = score(\overline{p},\ s) - \sum_{d \in \overline{s}} changed(d,\overline{s}, s) \cdot \alpha
+    \end{split}
+\end{equation}
+
 
 \section{Technical Focus}
 
