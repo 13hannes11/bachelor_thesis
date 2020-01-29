@@ -34,7 +34,7 @@ Examples of that are:
 \section{Solution Objectives}
 
 \begin{itemize}
-    \item A system should give recommendation for the group using a utility function that takes into account preferences of group members, the current state (and potentially hierarchy and knowledge)  of group members.
+    \item A system should give recommendation for the group using a scoring function that takes into account preferences of group members, the current state (and potentially hierarchy and knowledge)  of group members.
     \item Recommendations should allow different strategies
     \item Recommendations should always be valid options (i.e. configurations)
 \end{itemize}
@@ -69,11 +69,10 @@ The system has one main way to be used as defined in \autoref{table:simulation_p
 
 \section{Technical Focus}
 
-Given an unfinished configuration and preferences of all group members rate a finished configuration on how well "similar" it reflects the configuration + preferences.
+Given an unfinished configuration and preferences of all group members rate a finished configuration on how well "similar" it reflects the configuration and preferences.
+$$score_{group} : (configState,\ preferences,\ configurationToScore) \mapsto rating$$
 
-$$utility_{group} : (configurationState,\ preferences,\ configurationToRate) \mapsto rating$$
-
-Use this to choose the best finished configuration out of a list to recommend
+Use this to choose the best finished configuration out of a list to recommend.
 
 \subsection{Generating a Recommendation}
 
@@ -81,8 +80,8 @@ Hereby the idea is there is a store of complete configurations (possibly histori
 Now the recommendation procedure looks as follows:
 
 \begin{enumerate}
-    \item For each configuration $c$ in store calculate $utility_{group}(state,\ preferences, \ c)$.
-    \item Chose the configuration with the highest utility as recommendation.
+    \item Assign a score to each stored configuration according to $$score_{group}(\overline{configurationState},\ \overline{preferences}, \ configurationInStore)$$
+    \item Chose the configuration with the highest score as recommendation.
 \end{enumerate}
 
 
