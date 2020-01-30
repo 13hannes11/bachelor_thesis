@@ -74,12 +74,12 @@ The system has one main way to be used as defined in \autoref{table:simulation_p
 
 Set of variables:
 \begin{equation}
-    V = \{V_1, \dotsc, V_m\}
+    V = \{v_1, \dotsc, v_m\}
 \end{equation}
 
 Set of their domains of values:
 \begin{equation}
-    D = \{D_1, \dotsc, D_m\}
+    D = \{D_1, \dotsc, D_m\}, \qquad where \ D_i = \{d_1, \dotsc, d_o\}
 \end{equation}
 
 Set of users:
@@ -90,7 +90,7 @@ Set of users:
 Users utility for a domain value of a variable:
 \begin{equation}
     \begin{split}
-        u_i(d_j),\ \text{where}\ & d_j \in D_j,\\
+        u_i(d_j), \qquad \text{where}\ & d_j \in D_j,\\
         & 1 <= j <= m, \\
         & 1 <= i <= n
     \end{split}
@@ -99,18 +99,18 @@ Users utility for a domain value of a variable:
 User preferences:
 \begin{gather}
     P = \{ P_1, \dotsc, P_n\},\ \text{where} \\
-    P_i = \{(d,\ u_i(d)) \ | \ \forall D_i \in D \ \forall d \in D_i\} \notag
+    P_i = \{(d,\ u_i(d)) \ | \ \forall d \in D_i,\ i=1,\dotsc,m \} \notag
 \end{gather}
 
 Configuration state:
 \begin{equation}
-    S = \{ (v,\ d) \ |\ v \in V_i \ \land \ d \in D_i \}
+    S = \{ (v_i,\ d) \ |\ v_i \in V \ \land \ d \in D_i,\ i=1,\dotsc,m \}
 \end{equation}
 
 Finished configuration state:
 \begin{equation}
 \begin{split}
-    S_F \subset S,\ where \  & \forall v \in V_i (\exists (v, d) \in S_F : d \in D_i) \\
+    S_F \subset S,\ where \  & \forall v_i \in V (\exists (v_i, d) \in S_F : d \in D_i) \\
     & \land is\_valid(S_F)
 \end{split}
 \end{equation}
