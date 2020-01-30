@@ -2,6 +2,7 @@
 \usepackage{tabularx}
 \usepackage{placeins}
 \usepackage{hyperref}
+\usepackage{multirow}
 
 % MATHS PACKAGES
 \usepackage{amsmath}
@@ -23,6 +24,78 @@ There exists research on group recommenders and research on recommenders for con
 Commonly for collaborative filtering with group recommenders the preferences of the group members are combined with an aggregation function to generate a group profile. This profile is compared to historic group profiles from other groups and their choice of items (e.g. songs to listen to, things to buy) is used for recommendations.
 
 Collaborative filtering in configuration on the other hand usually uses the similarity of the current unfinished configuration to historic configurations to give recommendations.
+
+\section{Recommender Systems}
+
+\subsection{Advantages over Collaborative Filtering}
+\begin{itemize}
+    \item No cold start problem for items
+    \item No grey sheep problem as not dependent on similar groups having existed before.
+    \item Domain knowledge is existent
+    \item No issues with data sparsity as item description is given by product structure
+    \item No reliance on preferences that would result in a comparison space that is too large
+    \item No dependence of historic group preference accuracy 
+\end{itemize}
+
+\subsection{Advantages over Constrained-Based Recommendation}
+\begin{itemize}
+    \item Configuration state does not cause absence of recommendations
+    \item Expendable to also support constraints 
+    \item No need to handle inconsistencies explicitly
+\end{itemize}
+
+\begin{table}
+    \begin{center}
+        \begin{tabularx}{\columnwidth}{X|X|X}
+            \hline
+            Collaborative Filtering 
+            &   \begin{itemize}
+                    \item Serendipity of results 
+                    \item Automatic learning of market segments
+                    \item Grey sheep problem
+                    \item No domain knowledge required
+                \end{itemize}
+            &   \begin{itemize}
+                    \item Cold start problem for users and items
+                    \item Grey sheep problem
+                    \item Quality based on rating quality
+                    \item Data sparsity
+                    \item Privacy not guaranteed
+                \end{itemize} \\
+            \hline
+            Content-Based Filtering 
+            &   \begin{itemize}
+                    \item No community required 
+                    \item User independent
+                    \item Transparent
+                    \item No item cold start
+                    \item Simplicity
+                    \item Robust
+                    \item Stable to constant influx of new users
+                    \item Possible to have profitability metric
+                \end{itemize}
+            &   \begin{itemize}
+                    \item Overspecialisation
+                    \item No serendipity
+                    \item User cold start problem
+                    \item Requires domain knowledge
+                \end{itemize} \\
+            \hline
+            Constraint-Based Recommendation 
+            &   \begin{itemize}
+                    \item Transparent
+                    \item Good for non discrete values
+                \end{itemize}
+            &   \begin{itemize}
+                    \item Inconsistent constraints
+                    \item No results
+                \end{itemize} \\ 
+        \end{tabularx}
+        \caption{A description of the advantages and disadvantages of common recommendation techniques}
+    \end{center}
+\end{table}
+
+\FloatBarrier
 
 \section{Problem}
 A group of people with different personal preferences wants to buy products with high variability. Making decisions in the group comes with problems as communicating preferences is complicated.
@@ -64,7 +137,6 @@ The system has one main way to be used as defined in \autoref{table:simulation_p
             \hline
         \end{tabularx}
         \caption{A description of the main way users will interact with the system}
-        \label{table:simulation_parameters}
     \end{center}
 \end{table}
 
