@@ -7,6 +7,7 @@
 % MATHS PACKAGES
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage[framemethod=TikZ]{mdframed}
 
 \newcommand{\tabitem}[1][\textbullet]{~~\llap{#1}~~}
 
@@ -212,6 +213,42 @@ An example group configuration scoring function is $score_{group}$ with
         & = score(\overline{p},\ s) - \sum_{d \in \overline{s}} changed(d,\overline{s}, s) \cdot \alpha
     \end{split}
 \end{equation}
+
+\begin{mdframed}[frametitle={Forest Example}]
+    \begin{align}
+        \begin{split}
+            V = \{ & Heimisch, Klimaresilient, Verwertbar, Ernteaufwand, \\
+            & Menge, Preis, Walderfahrung \},
+        \end{split} \notag \\
+        \begin{split}
+            D = \{ & D_{Heimisch}, D_{Klimaresilient}, D_{Verwertbar}, \\ 
+            & D_{Ernteaufwand}, D_{Menge}, D_{Preis}, D_{Walderfahrung}\},
+        \end{split} \notag \\
+            D_{Heimisch} =  \{ & Gering, Mittel, Hoch\}, \notag \\
+            D_{Klimaresilient} = \{ & Gering, Mittel, Hoch\}, \notag \\
+            D_{Verwertbar} = \{ & Gering, Mittel, Hoch\}, \notag \\
+            D_{Ernteaufwand} = \{ & Motormanuel, Harvester, Vollautomatisch\}, \notag \\
+            D_{Menge} = \{ & Keine, Gering, Hoch\}, \notag \\
+            D_{Preis} = \{ & Gering, Mittel, Hoch\}, \notag\\
+            D_{Walderfahrung} = \{ & Gering, Mittel, Intensiv\},\notag \\
+        U = \{ & 1,2\} \notag\\
+        P = \{ & P_1, P_2\} \notag\\
+        \begin{split}
+            P_1 = \{ & (Motormanuel, 0.5), (Harvester, -0.3) \} \\ 
+            & \cup \{ (d,0)\ |\ d \in D_i,\ D_i \in D,\ i \notin \{ Motormanuel, Harvester\} \ \} \ 
+        \end{split} \notag \\
+        P_2 = \{ & (d,0)\ |\ d \in D_i,\ D_i \in D \} \notag \\
+        S  =  \{ & (Heimisch, Gering), (Menge, Gering) \} \notag \\
+        \begin{split}
+        S_F  =  \{ & (Heimisch, Gering), (Klimaresilient, Gering), (Verwertbar, Gering), \\
+        & (Ernteaufwand, Motormanuel),
+        (Menge, Keine), (Preis, Hoch),\\ 
+        & (Walderfahrung, Gering) \} 
+        \end{split} \notag
+    \end{align}
+\end{mdframed}
+
+
 
 
 \section{Technical Focus}
