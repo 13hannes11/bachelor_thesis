@@ -56,13 +56,28 @@ package Scoring {
         class PerFeatureToListConverter
     }
 
+    class ScoringFunctionFactory{
 
-    ScoringFunction --> "1..*" RatingToListConverter : Stage 1
-    ScoringFunction --> "0..*" ListToListFunction : Stage 2
-    ScoringFunction --> "1..*" ListToValueFunction : Stage 3
-    ScoringFunction --> "0..*" ValueFunction : Stage 4
+    }
+    ScoringFunctionFactory --> ScoringFunction : builds
 
-    class ScoringFunction{
+
+    PreferenceScoringFunction --> "1" RatingToListConverter : Stage 1
+    PreferenceScoringFunction --> "0..*" ListToListFunction : Stage 2
+    PreferenceScoringFunction --> "1" ListToValueFunction : Stage 3
+    PreferenceScoringFunction --> "0..*" ValueFunction : Stage 4
+
+    ScoringFunction <|-- PreferenceScoringFunction
+    class PreferenceScoringFunction{
+
+    }
+    ScoringFunction <|-- ConfigurationPenealty
+    class ConfigurationPenealty{
+
+    }
+    ScoringFunction <|-- SumScoringFunction
+    SumScoringFunction --* "2..*" ScoringFunction
+    class SumScoringFunction{
 
     }
 
@@ -133,6 +148,7 @@ RecommenderAPI --> RecommendationManager
 
 RecommendationManager --> ProductStructureDAO
 RecommendationManager --> ConfigurationDAO
+RecommendationManager --> ScoringFunctionFactory :uses
 ScoringFunction --[hidden]--> ConfigurationDAO
 
 
