@@ -1,0 +1,103 @@
+@startuml
+
+skinparam class {
+	BackgroundColor White
+	ArrowColor Grey
+	BorderColor Black
+}
+skinparam shadowing false
+
+package Scoring {  
+    package List {
+        class ListFunction
+        class ListToListFunction
+        class ListToValueFunction
+        class Average
+        class Product
+        class ForEachValue
+    }
+
+    package Value {
+        class ValueFunction
+        class Threshold
+    }
+
+    package Rating {
+        class RatingToListConverter
+        class FlatToListConverter
+        class PerUserToListConverter
+        class PerFeatureToListConverter
+    }
+
+
+    ScoringFunction --> "1..*" RatingToListConverter : Stage 1
+    ScoringFunction --> "0..*" ListToListFunction : Stage 2
+    ScoringFunction --> "1..*" ListToValueFunction : Stage 3
+    ScoringFunction --> "0..*" ValueFunction : Stage 4
+
+    class ScoringFunction{
+
+    }
+
+    abstract class RatingToListConverter {
+
+    }
+
+    RatingToListConverter <|-- PerFeatureToListConverter
+    PerFeatureToListConverter --> ListToValueFunction :uses
+    class PerFeatureToListConverter {
+
+    }
+    RatingToListConverter <|-- PerUserToListConverter
+    PerUserToListConverter --> ListToValueFunction :uses
+    class PerUserToListConverter {
+
+    }
+    RatingToListConverter <|-- FlatToListConverter
+    class FlatToListConverter {
+
+    }
+ 
+    abstract class ListFunction {
+
+    }
+
+    ListFunction <|-- ListToListFunction
+    abstract class ListToListFunction {
+
+    }
+
+    ListToListFunction <|-- ForEachValue
+    ForEachValue --> ValueFunction:uses
+    class ForEachValue {
+
+    }
+
+
+    ListFunction <|-- ListToValueFunction
+    abstract class ListToValueFunction {
+        
+    }
+
+    ListToValueFunction <|-- Average
+    class Average {
+        
+    }
+    ListToValueFunction <|-- Product
+    class Product {
+
+    }
+
+    abstract class ValueFunction{
+
+    }
+
+    ValueFunction <|-- Threshold
+    class Threshold {
+        
+    }
+}
+
+
+
+@enduml
