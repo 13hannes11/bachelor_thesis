@@ -12,6 +12,9 @@ package API {
     class RecommenderAPI
     class ProductStructureAPI
 }
+"/config/" ()-- ConfigurationAPI
+"/recommender/" ()-- RecommenderAPI
+"/product_structure/" ()-- ProductStructureAPI
 
 package Manager {
     class RecommendationManager
