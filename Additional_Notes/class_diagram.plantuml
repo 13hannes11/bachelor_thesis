@@ -7,7 +7,31 @@ skinparam class {
 }
 skinparam shadowing false
 
+package API {
+    class ConfigurationAPI
+    class RecommenderAPI
+    class ProductStructureAPI
+}
+
+package Manager {
+    class RecommendationManager
+}
+
+package Model{
+    class ConfigurationModel
+    class PreferenceModel
+    class ProductStructureModel
+}
+
+package DAO {
+    class ConfigurationDAO
+    class ProductStructureDAO
+}
+
 package Scoring {  
+    
+    
+
     package List {
         class ListFunction
         class ListToListFunction
@@ -97,6 +121,8 @@ package Scoring {
         
     }
 }
+
+RecommendationManager *-- ScoringFunction
 
 
 
