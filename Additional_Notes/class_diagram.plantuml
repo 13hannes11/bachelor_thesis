@@ -124,6 +124,18 @@ package Scoring {
 
 RecommendationManager *-- ScoringFunction
 
+ConfigurationAPI --> ConfigurationDAO
+ProductStructureAPI --> ProductStructureDAO
+RecommenderAPI --> RecommendationManager
+
+RecommendationManager --> ProductStructureDAO
+RecommendationManager --> ConfigurationDAO
+ScoringFunction --[hidden]--> ConfigurationDAO
+
+
+
+ConfigurationDAO --> ConfigurationModel
+ProductStructureDAO --> ProductStructureModel
 
 
 @enduml
