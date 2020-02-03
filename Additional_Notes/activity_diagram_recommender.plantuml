@@ -1,5 +1,13 @@
 @startuml
 
+
+skinparam activity {
+  BarColor Black 
+  BackgroundColor White
+  BorderColor Black
+}
+
+
 (*) --> "Using MAUT create partial configuration based on preferences"
 --> validate and repair configuration
 --> "save in db"
