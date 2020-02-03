@@ -154,5 +154,6 @@ RecommendationManager --> ScoringFunctionFactory :uses
 ConfigurationDAO --> ConfigurationModel
 ProductStructureDAO --> ProductStructureModel
 
+Scoring --> Model
 
 @enduml
