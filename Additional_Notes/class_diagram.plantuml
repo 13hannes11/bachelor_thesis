@@ -149,8 +149,6 @@ RecommenderAPI --> RecommendationManager
 RecommendationManager --> ProductStructureDAO
 RecommendationManager --> ConfigurationDAO
 RecommendationManager --> ScoringFunctionFactory :uses
-ScoringFunction --[hidden]--> ConfigurationDAO
-
 
 
 ConfigurationDAO --> ConfigurationModel
