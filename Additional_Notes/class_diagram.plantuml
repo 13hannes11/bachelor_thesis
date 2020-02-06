@@ -8,9 +8,17 @@ skinparam class {
 skinparam shadowing false
 
 package API {
-    class ConfigurationAPI
-    class RecommenderAPI
-    class ProductStructureAPI
+    class ConfigurationAPI {
+        +get() : JSON
+        +post(configuration : JSON) : JSON
+    }
+    class RecommenderAPI {
+        +post(preferences : JSON, configuration : JSON) : JSON
+    }
+    class ProductStructureAPI {
+        +put(productStructure : JSON) : JSON
+        +get() : JSON
+    }
 }
 "/config/" ()-- ConfigurationAPI
 "/recommender/" ()-- RecommenderAPI
