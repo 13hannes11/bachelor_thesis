@@ -82,8 +82,22 @@ package Model{
 }
 
 package DAO {
-    class ConfigurationDAO
-    class ProductStructureDAO
+    class ConfigurationDAO {
+        -{static} instance : ConfigurationDAO
+        +{static} getInstance() : ConfigurationDAO
+        + getAll_as_objects() : List<Configuration>
+        + getAll() : JSON
+        + add(config : JSON)
+        + exists(config : JSON) : bool
+    }
+    class ProductStructureDAO {
+        -{static} instance : ProductStructureDAO
+        +{static} getInstance() : ProductStructureDAO
+        +get_as_objects() : ProductStructureModel
+        +get() : JSON
+        +replace(structure : JSON)
+        -get_highest_id() : Integer
+    }
 }
 
 package Scoring {  
