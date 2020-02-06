@@ -21,9 +21,54 @@ package Manager {
 }
 
 package Model{
-    class ConfigurationModel
-    class PreferenceModel
-    class ProductStructureModel
+    package ConfigurationModel {
+        class Configuration {
+            configuration : List<String>
+        }
+        class ConfigurationVariable {
+
+        }
+        Configuration *-- ConfigurationVariable : variables
+    }
+    package PreferenceModel {
+        class Preferences {
+            getAllUserPreferences() : List<UserPreferences>
+            getAllRatingsByCode(code : String) : List<Ratings>
+            getRatingValue(code : String, user : String) : float
+        }
+        class UserPreference {
+            user : String
+            getAllRatings() : List<Rating>
+        }
+        class Rating {
+            code : String
+            value : float
+        }
+        Preferences *-- UserPreference : preferences
+        UserPreference *-- Rating : ratings
+    }
+
+    package ProductStructure {
+        class ProductStructureModel {
+            + get_list_of_features(self) : List<ProductStructureElementModel>
+            + get_list_of_characteristics(self) : List<ProductStructureElementModel>
+            + isCharacteristic(code:String) : bool
+        }
+        class ProductStructureElementModel {
+            elementId : String
+            name : String
+        }
+        enum ProductStructureTypeEnum {
+            CHARACTERISTIC
+            FEATURE
+            CLUSTER
+            VARIABLE
+        }
+
+        ProductStructureModel *-- ProductStructureElementModel
+        ProductStructureElementModel <-- ProductStructureElementModel:children
+        ProductStructureElementModel --> ProductStructureTypeEnum:type
+    }
 }
 
 package DAO {
@@ -49,7 +94,7 @@ package Scoring {
         class Threshold
     }
 
-    package Rating {
+    package RatingConverter {
         class RatingToListConverter
         class FlatToListConverter
         class PerUserToListConverter
@@ -82,7 +127,7 @@ package Scoring {
     ConfigurationPenealty <|-- PreferenceWeightedConfigurationPenalty
     ListToValueFunction --* "1" PreferenceWeightedConfigurationPenalty
     class PreferenceWeightedConfigurationPenalty {
-
+        
     }
 
     ScoringFunction <|-- ReduceScoringFunction
@@ -161,9 +206,10 @@ RecommendationManager --> ConfigurationDAO
 RecommendationManager --> ScoringFunctionFactory :uses
 
 
-ConfigurationDAO --> ConfigurationModel
+ConfigurationDAO --> Configuration
 ProductStructureDAO --> ProductStructureModel
 
 Scoring --> Model
+
 
 @enduml
