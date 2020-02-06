@@ -59,7 +59,7 @@ package Scoring {
     class ScoringFunctionFactory{
 
     }
-    ScoringFunctionFactory --> ScoringFunction : builds
+    ScoringFunctionFactory --> PreferenceScoringFunction : builds
 
 
     PreferenceScoringFunction --> "1" RatingToListConverter : Stage 1
@@ -72,12 +72,22 @@ package Scoring {
 
     }
     ScoringFunction <|-- ConfigurationPenealty
-    class ConfigurationPenealty{
+    abstract class ConfigurationPenealty{
 
     }
-    ScoringFunction <|-- SumScoringFunction
-    SumScoringFunction --* "2..*" ScoringFunction
-    class SumScoringFunction{
+    ConfigurationPenealty <|-- RatioConfigurationPenalty
+    class RatioConfigurationPenalty {
+
+    }
+    ConfigurationPenealty <|-- PreferenceWeightedConfigurationPenalty
+    ListToValueFunction --* "1" PreferenceWeightedConfigurationPenalty
+    class PreferenceWeightedConfigurationPenalty {
+
+    }
+
+    ScoringFunction <|-- ReduceScoringFunction
+    ReduceScoringFunction --* "2..*" ScoringFunction
+    class ReduceScoringFunction{
 
     }
 
