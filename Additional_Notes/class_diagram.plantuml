@@ -25,7 +25,9 @@ package API {
 "/product_structure/" ()-- ProductStructureAPI
 
 package Manager {
-    class RecommendationManager
+    class RecommendationManager {
+        getRecommentdation(strategy : String, preferences : Preferences, current_configuration : Configuration) : Configuration
+    }
 }
 
 package Model{
