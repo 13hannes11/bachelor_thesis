@@ -9,15 +9,15 @@ skinparam shadowing false
 
 package API {
     class ConfigurationAPI {
-        +get() : JSON
-        +post(configuration : JSON) : JSON
+        + get() : JSON
+        + post(configuration : JSON) : JSON
     }
     class RecommenderAPI {
-        +post(preferences : JSON, configuration : JSON) : JSON
+        + post(preferences : JSON, configuration : JSON) : JSON
     }
     class ProductStructureAPI {
-        +put(productStructure : JSON) : JSON
-        +get() : JSON
+        + put(productStructure : JSON) : JSON
+        + get() : JSON
     }
 }
 "/config/" ()-- ConfigurationAPI
@@ -26,7 +26,7 @@ package API {
 
 package Manager {
     class RecommendationManager {
-        getRecommentdation(strategy : String, preferences : Preferences, current_configuration : Configuration) : Configuration
+        + getRecommentdation(strategy : String, preferences : Preferences, current_configuration : Configuration) : Configuration
     }
 }
 
@@ -42,13 +42,13 @@ package Model{
     }
     package PreferenceModel {
         class Preferences {
-            getAllUserPreferences() : List<UserPreferences>
-            getAllRatingsByCode(code : String) : List<Ratings>
-            getRatingValue(code : String, user : String) : float
+            + getAllUserPreferences() : List<UserPreferences>
+            + getAllRatingsByCode(code : String) : List<Ratings>
+            + getRatingValue(code : String, user : String) : float
         }
         class UserPreference {
             user : String
-            getAllRatings() : List<Rating>
+            + getAllRatings() : List<Rating>
         }
         class Rating {
             code : String
@@ -83,20 +83,20 @@ package Model{
 
 package DAO {
     class ConfigurationDAO {
-        -{static} instance : ConfigurationDAO
-        +{static} getInstance() : ConfigurationDAO
+        - {static} instance : ConfigurationDAO
+        + {static} getInstance() : ConfigurationDAO
         + getAll_as_objects() : List<Configuration>
         + getAll() : JSON
         + add(config : JSON)
         + exists(config : JSON) : bool
     }
     class ProductStructureDAO {
-        -{static} instance : ProductStructureDAO
-        +{static} getInstance() : ProductStructureDAO
-        +get_as_objects() : ProductStructureModel
-        +get() : JSON
-        +replace(structure : JSON)
-        -get_highest_id() : Integer
+        - {static} instance : ProductStructureDAO
+        + {static} getInstance() : ProductStructureDAO
+        + get_as_objects() : ProductStructureModel
+        + get() : JSON
+        + replace(structure : JSON)
+        - get_highest_id() : Integer
     }
 }
 
@@ -114,39 +114,41 @@ package Scoring {
     }
 
     package Value {
-        class ValueFunction
+        class ValueToValueFunction
         class Threshold
     }
 
     package RatingConverter {
-        class RatingToListConverter
+        class PreferenceToListFunction
         class FlatToListConverter
         class PerUserToListConverter
         class PerFeatureToListConverter
     }
-
-    class ScoringFunctionFactory{
-
+    class ScoringFunction {
+        + calc_score(currentConfiguration : Configuration, preferences : Preferences, toRate : ConfigurationModel) : float
     }
-    ScoringFunctionFactory --> PreferenceScoringFunction : builds
+    class ScoringFunctionFactory{
+        + build_scoring_function(params : List<String>) : ScoringFunction
+    }
+    ScoringFunctionFactory --> ScoringFunction : builds
 
 
-    PreferenceScoringFunction --> "1" RatingToListConverter : Stage 1
-    PreferenceScoringFunction --> "0..*" ListToListFunction : Stage 2
-    PreferenceScoringFunction --> "1" ListToValueFunction : Stage 3
-    PreferenceScoringFunction --> "0..*" ValueFunction : Stage 4
+    PreferenceScoringFunction --> "1" PreferenceToListFunction : preferenceToListFunction
+    PreferenceScoringFunction --> "0..*" ListToListFunction : listToListFunctions
+    PreferenceScoringFunction --> "1" ListToValueFunction : listToValueFunction
+    PreferenceScoringFunction --> "0..*" ValueToValueFunction : valueToValues
 
     ScoringFunction <|-- PreferenceScoringFunction
     class PreferenceScoringFunction{
-
+        + calc_score(currentConfiguration : Configuration, preferences : Preferences, toRate : ConfigurationModel) : float
     }
     ScoringFunction <|-- ConfigurationPenealty
     abstract class ConfigurationPenealty{
-
+        + ConfigurationPenealty(product_Structure : ProductStructure)
     }
     ConfigurationPenealty <|-- RatioConfigurationPenalty
     class RatioConfigurationPenalty {
-
+        + calc_score(currentConfiguration : Configuration, preferences : Preferences, toRate : ConfigurationModel) : float
     }
     ConfigurationPenealty <|-- PreferenceWeightedConfigurationPenalty
     ListToValueFunction --* "1" PreferenceWeightedConfigurationPenalty
@@ -155,67 +157,74 @@ package Scoring {
     }
 
     ScoringFunction <|-- ReduceScoringFunction
-    ReduceScoringFunction --* "2..*" ScoringFunction
+    ReduceScoringFunction *-- "2..*" ScoringFunction
     class ReduceScoringFunction{
-
+        reduce_operator : Operator
+        + ReduceScoringFunction(scoringFunctions : List<ScoringFunction>, reduceOperator : Operator)
+        + calc_score(currentConfiguration : Configuration, preferences : Preferences, toRate : ConfigurationModel) : float
     }
 
-    abstract class RatingToListConverter {
-
+    interface PreferenceToListFunction {
+        + convertToList(preferences : Preferences, toRate : Configuration) : List<float>:
     }
 
-    RatingToListConverter <|-- PerFeatureToListConverter
+    PreferenceToListFunction <|-- PerFeatureToListConverter
     PerFeatureToListConverter --> ListToValueFunction :uses
     class PerFeatureToListConverter {
-
+        + PerFeatureToListConverter(listToValueFunction : ListToValueFunction)
+        + convertToList(preferences : Preferences, toRate : Configuration) : List<float>:
     }
-    RatingToListConverter <|-- PerUserToListConverter
+    PreferenceToListFunction <|-- PerUserToListConverter
     PerUserToListConverter --> ListToValueFunction :uses
     class PerUserToListConverter {
-
+        + PerUserToListConverter(listToValueFunction : ListToValueFunction)
+        + convertToList(preferences : Preferences, toRate : Configuration) : List<float>:
     }
-    RatingToListConverter <|-- FlatToListConverter
+    PreferenceToListFunction <|-- FlatToListConverter
     class FlatToListConverter {
-
+        + convertToList(preferences : Preferences, toRate : Configuration) : List<float>:
     }
  
-    abstract class ListFunction {
+    interface ListFunction {
 
     }
 
     ListFunction <|-- ListToListFunction
     abstract class ListToListFunction {
-
+            + {abstract} applyToList(list : List[float]) : List[float]
     }
 
     ListToListFunction <|-- ForEachValue
-    ForEachValue --> ValueFunction:uses
-    class ForEachValue {
-
+    ForEachValue --> ValueToValueFunction:uses
+    class ForEachValue  {
+            + FoEachValue(valueFunction : ValueToValueFunction)
+            + applyToList(list : List[float]) : List[float]
     }
 
 
     ListFunction <|-- ListToValueFunction
     abstract class ListToValueFunction {
-        
+        + {abstract} convertToFloat(list : List<float>) : float
     }
 
     ListToValueFunction <|-- Average
     class Average {
-        
+        + convertToFloat(list : List<float>) : float
     }
     ListToValueFunction <|-- Product
     class Product {
-
+        + convertToFloat(list : List<float>) : float
     }
 
-    abstract class ValueFunction{
-
+    interface ValueToValueFunction{
+        + applyToValue(value : float) : float
     }
 
-    ValueFunction <|-- Threshold
+    ValueToValueFunction <|-- Threshold
     class Threshold {
-        
+        - threshold : float
+        + Threshold(threshold : float)
+        + applyToValue(value : float) : float
     }
 }
 
