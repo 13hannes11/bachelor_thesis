@@ -14,13 +14,13 @@
 \begin{document}
 \title{Decision Support for Group Configuration using Recommender Systems}
 \author{Hannes F. Kuchelmeister}
-\date{2020/01/31}
+\date{2020/02/10}
 
 \maketitle
 
 \section{Research Gap}
 
-There exists research on group recommenders and research on recommenders for configuration but there does not exists research on recommendation for group configuration. An approach for group recommenders is content-based filtering. This approach is used also in recommenders for configuration. That is why adapting this approaches to suit the use case of group recommenders for configuration will be analysed in this thesis.
+There exists research on group recommenders and research on recommenders for configuration but there does not exists much research on recommendation for group configuration. An approach for group recommenders is content-based filtering. This approach is used also in recommenders for configuration. That is why adapting this approaches to suit the use case of group recommenders for configuration will be analysed in this thesis.
 
 Commonly for content-based recommenders categories based on content are created and a separate user or group profile is generated based on the preferences of whole items. For configuration recommenders however this would create additional modelling or content grouping workload, therefore in this thesis it is proposed to use attributes of a configuration as distinguishing categories.
 
@@ -275,6 +275,10 @@ Now the recommendation procedure looks as follows:
     \item How to model hierarchy and knowledge about product components in preferences?
     \item Letting users set preferences for product functions (e.g. for a forest a recreation function, a productive function, a protective function, etc.). How does it compare to explicitly choosing preferences?
 \end{itemize}
+
+\section{Benefits}
+
+The benefits of this approach are, that the need for a group to communicate is reduced. Each user gives their own preferences and the group will get a recommendation based on that. This allows to reduce problems with communication of preferences and eliminates misunderstandings.
     
     
 \section{Evaluation of Case Study}
