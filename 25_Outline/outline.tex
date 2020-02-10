@@ -9,6 +9,10 @@
 \usepackage{amssymb}
 \usepackage[framemethod=TikZ]{mdframed}
 
+% Bibliogreaphy
+\usepackage[citestyle=numeric,style=numeric,sorting=none,backend=biber]{biblatex}
+\addbibresource{outline.bib}
+
 \begin{document}
 \title{Decision Support for Group Configuration using Recommender Systems}
 \author{Hannes F. Kuchelmeister}
@@ -288,7 +292,7 @@ Now the recommendation procedure looks as follows:
 
 The benefits of this approach are, that the need for a group to communicate is reduced. Each user gives their own preferences and the group will get a recommendation based on that. This allows to reduce problems with communication of preferences and eliminates misunderstandings.
     
-    
+
 \section{Evaluation of Case Study}
 
 For one example e.g. forest example generate all possible valid configurations.
@@ -308,5 +312,7 @@ Generate groups with preferences (explicit preferences) and configuration state 
     \item How close are recommendations of the recommender system to the ideal recommendation depending on the number of stored recommendations? The ideal configuration is the configuration that has the highest score with the given group scoring function $score_{group}$.
     \item Is this approach practical?
 \end{itemize}
+
+\printbibliography[heading=bibintoc]
 
 \end{document}
