@@ -9,8 +9,6 @@
 \usepackage{amssymb}
 \usepackage[framemethod=TikZ]{mdframed}
 
-\newcommand{\tabitem}[1][\textbullet]{~~\llap{#1}~~}
-
 \begin{document}
 \title{Decision Support for Group Configuration using Recommender Systems}
 \author{Hannes F. Kuchelmeister}
@@ -37,6 +35,7 @@ Commonly for content-based recommenders categories based on content are created 
 \end{itemize}
 
 \subsection{Advantages over Constrained-Based Recommendation}
+
 \begin{itemize}
     \item Configuration state does not cause absence of recommendations
     \item Expendable to also support constraints 
@@ -125,15 +124,24 @@ The system has one main way to be used as defined in \autoref{tab:MainUseCase}.
         \begin{tabularx}{\columnwidth}{l|X}
             \multicolumn{2}{c}{Main System Usage} \\
             \hline
-            Preconditions   & \tabitem The configurator is opened with the same session on each of the group member's machines \\
-                            & \tabitem The configuration is in an unfinished state (this state is a consensus state)\\
+            Preconditions   & 
+                \begin{itemize}
+                    \item The configurator is opened with the same session on each of the group member's machines
+                    \item The configuration is in an unfinished state (this state is a consensus state)
+                \end{itemize} \\
             \hline
-            Postcondition   & \tabitem All users have entered their preferences for each attribute explicitly \\
-                            & \tabitem The system gives a recommendation based on all preferences and the unfinished configuration state \\
+            Postcondition   & 
+                \begin{itemize}
+                    \item All users have entered their preferences for each attribute explicitly.
+                    \item The system gives a recommendation based on all preferences and the unfinished configuration state
+                \end{itemize} \\
             \hline
-            Basic Flow      & \tabitem[1.] A user indicates a preference for an attribute \\
-                            & \tabitem[2.] The system generates a recommendation (based on preferences and configuration status) \\
-                            & \tabitem[3.] If not all users have given their preferences go to step 1. \\
+            Basic Flow      & 
+                \begin{enumerate}
+                    \item A user indicates a preference for an attribute
+                    \item The system generates a recommendation (based on preferences and configuration status)
+                    \item If not all users have given their preferences go to step 1.
+                \end{enumerate} \\
             \hline
         \end{tabularx}
         \caption{A description of the main way users will interact with the system}
