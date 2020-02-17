@@ -157,22 +157,22 @@ The system has one main way to be used as defined in \autoref{tab:MainUseCase}.
 
 \section{Definitions}
 
-Set of variables:
+Set of \emph{variables}:
 \begin{equation}
     V = \{v_1, \dotsc, v_m\}
 \end{equation}
 
-Set of their domains of values:
+A corresponding \emph{domain mapping function} that maps a variable to its possible values:
 \begin{equation}
     \mathfrak{D} : V \to D; x \mapsto \mathfrak{D}(x) \qquad where \ D = \{d_1, \dotsc, d_o\}
 \end{equation}
 
-Set of users:
+Set of \emph{users}:
 \begin{equation}
     U = \{1, \dotsc, n\}
 \end{equation}
 
-Users utility for a domain value of a variable:
+A users \emph{utility function} for a domain value of a variable. This is the utility that a user has from a certain selected domain value. It is a function that only the user himself knows:
 \begin{equation}
     \begin{split}
         u_i(d_j), \qquad \text{where}\ & d_j \in  \mathfrak{D}(j),\\
@@ -181,18 +181,18 @@ Users utility for a domain value of a variable:
     \end{split}
 \end{equation}
 
-User preferences:
+\emph{User preferences} that are entered into the system by the user according to his utility function:
 \begin{gather}
     P = \{ P_1, \dotsc, P_n\},\ \text{where} \\
     P_i = \{(d,\ u_i(d)) \ | \ \forall d \in \mathfrak{D}(i),\ i=1,\dotsc,m \} \notag
 \end{gather}
 
-Configuration state:
+A \emph{configuration} has a state it is defined by a tuple of variables and their corresponding domain value. Essentially it is a set of variables and assigned values:
 \begin{equation}
     S = \{ (v_i,\ d) \ |\ v_i \in V \ \land \ d \in \mathfrak{D}(i),\ i=1,\dotsc,m \}
 \end{equation}
 
-Finished configuration state:
+A \emph{finished configuration} is a configuration that contains all variables:
 \begin{equation}
 \begin{split}
     S_F \subset S,\ where \  & \forall v_i \in V (\exists (v_i, d) \in S_F : d \in \mathfrak{D}(i)) \\
@@ -202,7 +202,7 @@ Finished configuration state:
 
 % TODO: define valid configuration state
 
-Group configuration scoring function using preferences and current configuration state:
+\emph{Group configuration scoring function} using preferences and current configuration state. This function gives a score for a finished configuration (while using the current configuration state and all user preferences):
 
 \begin{equation}
     score_{group}: S \times P \times S_F \to \mathbb{R}
@@ -229,29 +229,29 @@ An example group configuration scoring function is $score_{group}$ with
 \begin{mdframed}[frametitle={Forest Example}]
     \begin{align}
         \begin{split}
-            V = \{ & Heimisch, Klimaresilient, Verwertbar, Ernteaufwand, \\
-            & Menge, Preis, Walderfahrung \},
+            V = \{ & \textit{Heimisch}, \textit{Klimaresilient}, \textit{Verwertbar}, \textit{Ernteaufwand}, \\
+            & \textit{Menge}, \textit{Preis}, \textit{Walderfahrung} \},
         \end{split} \notag \\
-        \mathfrak{D}(Heimisch) =  \{ & Gering, Mittel, Hoch\}, \notag \\
-        \mathfrak{D}(Klimaresilient) = \{ & Gering, Mittel, Hoch\}, \notag \\
-        \mathfrak{D}(Verwertbar) = \{ & Gering, Mittel, Hoch\}, \notag \\
-        \mathfrak{D}(Ernteaufwand) = \{ & Motormanuel, Harvester, Vollautomatisch\}, \notag \\
-        \mathfrak{D}(Menge) = \{ & Keine, Gering, Hoch\}, \notag \\
-        \mathfrak{D}(Preis) = \{ & Gering, Mittel, Hoch\}, \notag\\
-        \mathfrak{D}(Walderfahrung) = \{ & Gering, Mittel, Intensiv\},\notag \\
+        \mathfrak{D}(\textit{Heimisch}) =  \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
+        \mathfrak{D}(\textit{Klimaresilient}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
+        \mathfrak{D}(\textit{Verwertbar}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
+        \mathfrak{D}(\textit{Ernteaufwand}) = \{ & \text{Motormanuel}, \text{Harvester}, \text{Vollautomatisch}\}, \notag \\
+        \mathfrak{D}(\textit{Menge}) = \{ & \text{Keine}, \text{Gering}, \text{Hoch}\}, \notag \\
+        \mathfrak{D}(\textit{Preis}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag\\
+        \mathfrak{D}(\textit{Walderfahrung}) = \{ & \text{Gering}, \text{Mittel}, \text{Intensiv}\},\notag \\
         U = \{ & 1,2\} \notag\\
         P = \{ & P_1, P_2\} \notag\\
         \begin{split}
-            P_1 = \{ & (Motormanuel, 0.5), (Harvester, -0.3) \} \\ 
-            & \cup \{ (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V,\ i \notin \{ Motormanuel, Harvester\} \ \} \ 
+            P_1 = \{ & (\text{Motormanuel}, 0.5), (\text{Harvester}, -0.3) \} \\ 
+            & \cup \{ (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V,\ i \notin \{ \text{Motormanuel}, \text{Harvester}\} \ \} \ 
         \end{split} \notag \\
         P_2 = \{ & (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V \} \notag \\
-        S  =  \{ & (Heimisch, Gering), (Menge, Gering) \} \notag \\
+        S  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Menge}, \text{Gering}) \} \notag \\
         \begin{split}
-        S_F  =  \{ & (Heimisch, Gering), (Klimaresilient, Gering), (Verwertbar, Gering), \\
-        & (Ernteaufwand, Motormanuel),
-        (Menge, Keine), (Preis, Hoch),\\ 
-        & (Walderfahrung, Gering) \} 
+        S_F  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Klimaresilient}, \text{Gering}), (\textit{Verwertbar}, \text{Gering}), \\
+        & (\textit{Ernteaufwand}, \text{Motormanuel}),
+        (\textit{Menge}, \text{Keine}), (\textit{Preis}, \text{Hoch}),\\ 
+        & (\textit{Walderfahrung}, \text{Gering}) \} 
         \end{split} \notag
     \end{align}
 \end{mdframed}
