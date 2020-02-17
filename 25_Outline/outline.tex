@@ -164,7 +164,7 @@ Set of variables:
 
 Set of their domains of values:
 \begin{equation}
-    D = \{D_1, \dotsc, D_m\}, \qquad where \ D_i = \{d_1, \dotsc, d_o\}
+    \mathfrak{D} : V \to D; x \mapsto \mathfrak{D}(x) \qquad where \ D = \{d_1, \dotsc, d_o\}
 \end{equation}
 
 Set of users:
@@ -175,7 +175,7 @@ Set of users:
 Users utility for a domain value of a variable:
 \begin{equation}
     \begin{split}
-        u_i(d_j), \qquad \text{where}\ & d_j \in D_j,\\
+        u_i(d_j), \qquad \text{where}\ & d_j \in  \mathfrak{D}(j),\\
         & 1 <= j <= m, \\
         & 1 <= i <= n
     \end{split}
@@ -184,18 +184,18 @@ Users utility for a domain value of a variable:
 User preferences:
 \begin{gather}
     P = \{ P_1, \dotsc, P_n\},\ \text{where} \\
-    P_i = \{(d,\ u_i(d)) \ | \ \forall d \in D_i,\ i=1,\dotsc,m \} \notag
+    P_i = \{(d,\ u_i(d)) \ | \ \forall d \in \mathfrak{D}(i),\ i=1,\dotsc,m \} \notag
 \end{gather}
 
 Configuration state:
 \begin{equation}
-    S = \{ (v_i,\ d) \ |\ v_i \in V \ \land \ d \in D_i,\ i=1,\dotsc,m \}
+    S = \{ (v_i,\ d) \ |\ v_i \in V \ \land \ d \in \mathfrak{D}(i),\ i=1,\dotsc,m \}
 \end{equation}
 
 Finished configuration state:
 \begin{equation}
 \begin{split}
-    S_F \subset S,\ where \  & \forall v_i \in V (\exists (v_i, d) \in S_F : d \in D_i) \\
+    S_F \subset S,\ where \  & \forall v_i \in V (\exists (v_i, d) \in S_F : d \in \mathfrak{D}(i)) \\
     & \land is\_valid(S_F)
 \end{split}
 \end{equation}
@@ -232,24 +232,20 @@ An example group configuration scoring function is $score_{group}$ with
             V = \{ & Heimisch, Klimaresilient, Verwertbar, Ernteaufwand, \\
             & Menge, Preis, Walderfahrung \},
         \end{split} \notag \\
-        \begin{split}
-            D = \{ & D_{Heimisch}, D_{Klimaresilient}, D_{Verwertbar}, \\ 
-            & D_{Ernteaufwand}, D_{Menge}, D_{Preis}, D_{Walderfahrung}\},
-        \end{split} \notag \\
-            D_{Heimisch} =  \{ & Gering, Mittel, Hoch\}, \notag \\
-            D_{Klimaresilient} = \{ & Gering, Mittel, Hoch\}, \notag \\
-            D_{Verwertbar} = \{ & Gering, Mittel, Hoch\}, \notag \\
-            D_{Ernteaufwand} = \{ & Motormanuel, Harvester, Vollautomatisch\}, \notag \\
-            D_{Menge} = \{ & Keine, Gering, Hoch\}, \notag \\
-            D_{Preis} = \{ & Gering, Mittel, Hoch\}, \notag\\
-            D_{Walderfahrung} = \{ & Gering, Mittel, Intensiv\},\notag \\
+        \mathfrak{D}(Heimisch) =  \{ & Gering, Mittel, Hoch\}, \notag \\
+        \mathfrak{D}(Klimaresilient) = \{ & Gering, Mittel, Hoch\}, \notag \\
+        \mathfrak{D}(Verwertbar) = \{ & Gering, Mittel, Hoch\}, \notag \\
+        \mathfrak{D}(Ernteaufwand) = \{ & Motormanuel, Harvester, Vollautomatisch\}, \notag \\
+        \mathfrak{D}(Menge) = \{ & Keine, Gering, Hoch\}, \notag \\
+        \mathfrak{D}(Preis) = \{ & Gering, Mittel, Hoch\}, \notag\\
+        \mathfrak{D}(Walderfahrung) = \{ & Gering, Mittel, Intensiv\},\notag \\
         U = \{ & 1,2\} \notag\\
         P = \{ & P_1, P_2\} \notag\\
         \begin{split}
             P_1 = \{ & (Motormanuel, 0.5), (Harvester, -0.3) \} \\ 
-            & \cup \{ (d,0)\ |\ d \in D_i,\ D_i \in D,\ i \notin \{ Motormanuel, Harvester\} \ \} \ 
+            & \cup \{ (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V,\ i \notin \{ Motormanuel, Harvester\} \ \} \ 
         \end{split} \notag \\
-        P_2 = \{ & (d,0)\ |\ d \in D_i,\ D_i \in D \} \notag \\
+        P_2 = \{ & (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V \} \notag \\
         S  =  \{ & (Heimisch, Gering), (Menge, Gering) \} \notag \\
         \begin{split}
         S_F  =  \{ & (Heimisch, Gering), (Klimaresilient, Gering), (Verwertbar, Gering), \\
