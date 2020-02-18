@@ -1,13 +1,16 @@
 \chapter{Concept}
+\label{ch:Concept}
 
 \section{User Interaction with the System}
-The system has one main way to be used as defined in \autoref{tab:MainUseCase}.
+\label{sec:Concept:UserSystemInteraction}
+
+The system has one main way to be used as defined in \autoref{tab:Concept:MainUseCase}.
 
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{./figures/bpmn_configuration_process_with_continious_recommendation.pdf}
     \caption{A bpmn diagram of the configuration process.}
-    \label{fig:ConfigurationProcess}
+    \label{fig:Concept:ConfigurationProcess}
 \end{figure}
 
 \begin{table}
@@ -36,19 +39,21 @@ The system has one main way to be used as defined in \autoref{tab:MainUseCase}.
             \hline
         \end{tabularx}
         \caption{A description of the main way users will interact with the system}
-        \label{tab:MainUseCase}
+        \label{tab:Concept:MainUseCase}
     \end{center}
 \end{table}
 
 \FloatBarrier
 
 \section{Solution Objectives}
+\label{sec:Concept:SolutionObjectives}
 
 Given an unfinished configuration and preferences of all group members rate a finished configuration on how well "similar" it reflects the configuration and preferences.
 
 Use this to choose the best finished configuration out of a list to recommend.
 
 \subsection{Generating a Recommendation}
+\label{sec:Concept:GeneratingRecommendation}
 
 Hereby the idea is there is a database of complete configurations (possibly historic from other groups or automatically generated or both).
 Now the recommendation procedure looks as follows:
@@ -61,6 +66,7 @@ Now the recommendation procedure looks as follows:
 
 
 \section{Benefits}
+\label{sec:Concept:Benefits}
 
 The benefits of this approach are, that the need for a group to communicate is reduced. Each user gives their own preferences and the group will get a recommendation based on that. This allows to reduce problems with communication of preferences and eliminates misunderstandings.
     
