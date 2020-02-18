@@ -104,10 +104,81 @@ An example group configuration scoring function is $score_{group}$ with
     \end{align}
 \end{mdframed}
 
-\section{Recommender Systems}
-\label{sec:Foundations:RecommenderSystems}
+\section{Recommender System}
+\label{sec:Foundations:RecommenderSystem}
 
-\subsection{Advantages over Collaborative Filtering}
+A recommender system is a system that gives individualized recommendations to users to guide them through a large space of objects \cite[~ p. 331]{burkeHybridRecommenderSystems2002}.
+
+There are several approaches to recommender systems presented in \cite{felfernigGroupRecommenderSystems2018}, these are: collaborative filtering, content-based filtering, critiquing-based filtering, constraint-based, hybrid recommendation.
+
+\begin{table}
+    \centering    
+    \begin{tabular}{ l | c | c | c | c | c }
+        & The Matrix & Titanic & Die Hard & Forest Gump & Wall-E \\ \hline
+         John  & 5 & 1 &   & 2 & 2 \\
+         Lucy  & 1 & 5 & 2 & 5 & 5 \\
+         Eric  & 2 & ? & 3 & 5 & 4 \\
+         Diane & 4 & 3 & 5 & 3 &   \\
+    \end{tabular}
+    \caption{An example showing users ratings for movies by \citeauthor{ningComprehensiveSurveyNeighborhoodBased2015} \cite{ningComprehensiveSurveyNeighborhoodBased2015}.}
+    
+    \label{tab:Foundations:RecommenderSystem:MoviePreferences}
+\end{table}
+
+\subsection{Collaborative Filtering}
+In collaborative filtering a users rating for unknown items is predicted by finding similar users who have rated it. Their rating is used as prediction
+\cite[~ pp. 7, 8]{felfernigDecisionTasksBasic2018}.
+
+Collaborative Filtering can not only be done using users, it can also be item-based. Hereby the similarity between items is used for a recommendation and not similar users \cite{ricciRecommenderSystemsHandbook2015}. In the context of configuration the similarity to other historic configurations can be used which makes it an item based approach. 
+
+\autoref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix. A simple user-based way to calculate rating would be now to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance our closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving us a predicted rating of $4$.  If we use item based illustration instead, we will try to find similar items based on the users rating. An example of similar items here would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the sane rating and Eric's rating is off by one. Using again kNN with $k := 2$ we find that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$.
+However this simple similarity and prediction function does not take into account different distances. For example Lucy's ratings are more similar compared to Eric's than Diane's but Diane's and Lucy's rating is valued the same amount.
+
+\subsection{Critiquing-Based Recommendation}
+Items are recommended and a user can then critique on attributes of the recommendation. Based on that a similar item which does not have those critiques can be recommended. User preferences are implicitly collected this way \cite{knijnenburgEachHisOwn2011}.
+
+With a critique based approach Eric sees a suggestion of watching \textit{The Island} and its attributes. He then can say that he finds this movie has too much action. The critique based recommender will now present a movie that has similar attributes as \textit{The Island} but with less action. For example \textit{Titanic} could be the next suggestion.
+
+\subsection{Constraint-Based Recommendation}
+Hereby filter rules are defined which filter out items that don't fulfil specified rules. A user models their requirements with these rules and thereby gets a list of recommended items. This approach requires deep knowledge about a product because it needs a detailed description of features  \cite[~ p. 12]{felfernigDecisionTasksBasic2018}.
+
+Our movie example (see \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}) needs have additional information for example about plot structure, pacing, length and other attributes of the movie. Now the user could give as filter, that the movie should be no longer than 120 minutes, be categorized as action or thriller and have a fast pacing. The system will only recommend movies that fit into these categories.
+
+\subsection{Content-Based Filtering}
+Items and users are assigned to categories. Based on consumption and rating of items a user will have implicit ratings for categories. Predictions are now made based on a categories of the new item \cite[~ pp. 10, 11]{felfernigDecisionTasksBasic2018}.
+
+Using our example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences} and using an additional category matrix (see \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}) we can derive a rating matrix per category (using the average rating of the user of each movie contained in this category). The result can be seen in \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringProfiles}. To predict Eric's rating of Titanic we now can use the categories of \textit{Titanic} and average out Eric's implicit rating per category. Titanic is only in the category romance and as Eric's rating of \textit{Forest Gump} is $5$ the prediction is a rating of $5$. Categories don't have to be the genre, they could be any kind of data about a movie.
+
+\begin{table}
+    \centering    
+    \begin{tabular}{ l | c | c | c | c | c }
+        & The Matrix & Titanic & Die Hard & Forest Gump & Wall-E \\ \hline
+         Action  & x &  & x  &  &  \\
+         Sci-Fi  & x &  &  &  &  \\
+         Thriller  &  & & x &  &  \\
+         Romance & & x & & x & \\
+         Family & & & & x & x \\
+    \end{tabular}
+    \caption{Showing example categories for movies in \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}.}
+    
+    \label{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}
+\end{table}
+
+\begin{table}
+    \centering    
+    \begin{tabular}{ l | c | c | c | c | c }
+        & Action & Sci-Fi & Thriller & Romance & Family \\ \hline
+        John  & 5 & 5 & & 1.5 & 2 \\
+        Lucy  & 1.5 & 1 & 2 & 5 & 5 \\
+        Eric  & 2.5 & 2 & 3 & 5 & 4.5 \\
+        Diane & 4.5 & 4 & 5 & 3 & 3  \\
+    \end{tabular}
+    \caption{User profiles generated from categories and rating from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences} and \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}.}
+    
+    \label{tab:Foundations:RecommenderSystem:ContentBasedFilteringProfiles}
+\end{table}
+
+\subsubsection{Advantages over Collaborative Filtering}
 \begin{itemize}
     \item No cold start problem for items
     \item No grey sheep problem as not dependent on similar groups having existed before.
@@ -117,7 +188,11 @@ An example group configuration scoring function is $score_{group}$ with
     \item No dependence of historic group preference accuracy 
 \end{itemize}
 
-\subsection{Advantages over Constrained-Based Recommendation}
+\subsubsection{Advantages over Critique-Based Recommendation}
+\todo[inline]{ fill out section}
+
+
+\subsubsection{Advantages over Constrained-Based Recommendation}
 
 \begin{itemize}
     \item Configuration state does not cause absence of recommendations
@@ -125,7 +200,9 @@ An example group configuration scoring function is $score_{group}$ with
     \item No need to handle inconsistencies explicitly
 \end{itemize}
 
+
 \begin{table}
+    \todo[inline]{ add critique based recommendation}
     \begin{center}
         \begin{tabularx}{\columnwidth}{X|X|X}
             \hline
@@ -164,6 +241,14 @@ An example group configuration scoring function is $score_{group}$ with
             \hline
             Constraint-Based Recommendation 
             &   \begin{itemize}
+                    \item todo
+                \end{itemize}
+            &   \begin{itemize}
+                    \item todo
+                \end{itemize} \\ 
+            \hline
+            Constraint-Based Recommendation 
+            &   \begin{itemize}
                     \item Transparent
                     \item Good for non discrete values
                 \end{itemize}
@@ -176,5 +261,12 @@ An example group configuration scoring function is $score_{group}$ with
         \label{tab:Foundations:RecommenderComparison}
     \end{center}
 \end{table}
+
+\subsection{Hybrid Recommendation}
+A hybrid recommender combines different recommendation approaches to use the strengths of each individual one and to reduce effects of weaknesses \cite{burkeHybridRecommenderSystems2002}.
+
+\section{Group Recommender System}
+
+A group recommender system is a recommender system aimed at making recommendations for a group instead of a single user. To make recommendations group members preferences have to be aggregated. This can be done by either aggregating single user recommendations or by merging preferences of each user into a group preference model. Based on this model recommendation strategies as described in \autoref{sec:Foundations:RecommenderSystem} can be used to generate recommendations \cite{jamesonRecommendationGroups2007}.
 
 \FloatBarrier
