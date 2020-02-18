@@ -1,0 +1,175 @@
+\section{Definitions}
+
+Set of \emph{variables}:
+\begin{equation}
+    V = \{v_1, \dotsc, v_m\}
+\end{equation}
+
+A corresponding \emph{domain mapping function} that maps a variable to its possible values:
+\begin{equation}
+    \mathfrak{D} : V \to D; x \mapsto \mathfrak{D}(x) \qquad where \ D = \{d_1, \dotsc, d_o\}
+\end{equation}
+
+Set of \emph{users}:
+\begin{equation}
+    U = \{1, \dotsc, n\}
+\end{equation}
+
+A users \emph{utility function} for a domain value of a variable. This is the utility that a user has from a certain selected domain value. It is a function that only the user himself knows:
+\begin{equation}
+    \begin{split}
+        u_i(d_j), \qquad \text{where}\ & d_j \in  \mathfrak{D}(j),\\
+        & 1 <= j <= m, \\
+        & 1 <= i <= n
+    \end{split}
+\end{equation}
+
+\emph{User preferences} that are entered into the system by the user according to his utility function:
+\begin{gather}
+    P = \{ P_1, \dotsc, P_n\},\ \text{where} \\
+    P_i = \{(d,\ u_i(d)) \ | \ \forall d \in \mathfrak{D}(i),\ i=1,\dotsc,m \} \notag
+\end{gather}
+
+A \emph{configuration} has a state it is defined by a tuple of variables and their corresponding domain value. Essentially it is a set of variables and assigned values:
+\begin{equation}
+    S = \{ (v_i,\ d) \ |\ v_i \in V \ \land \ d \in \mathfrak{D}(i),\ i=1,\dotsc,m \}
+\end{equation}
+
+A \emph{finished configuration} is a configuration that contains all variables:
+\begin{equation}
+\begin{split}
+    S_F \subset S,\ where \  & \forall v_i \in V (\exists (v_i, d) \in S_F : d \in \mathfrak{D}(i)) \\
+    & \land is\_valid(S_F)
+\end{split}
+\end{equation}
+
+% TODO: define valid configuration state
+
+\emph{Group configuration scoring function} using preferences and current configuration state. This function gives a score for a finished configuration (while using the current configuration state and all user preferences):
+
+\begin{equation}
+    score_{group}: S \times P \times S_F \to \mathbb{R}
+\end{equation}
+
+An example group configuration scoring function is $score_{group}$ with
+
+\begin{equation}
+    \notag \alpha \in \mathbb{R}, \qquad     changed(d,\overline{s}, s) = 
+    \begin{cases}
+      1, & d \in \overline{s} \land d \notin s \\
+      0, & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        score_{group}(\overline{s},\ \overline{p},\ s)
+        & = score(\overline{p},\ s) - penalty(\overline{s},\ s) \\
+        & = score(\overline{p},\ s) - \sum_{d \in \overline{s}} changed(d,\overline{s}, s) \cdot \alpha
+    \end{split}
+\end{equation}
+
+\begin{mdframed}[frametitle={Forest Example}]
+    In this example we have two users. The use case is a piece of forest and variables are for example harvesting activity, which trees to grow and accessibility for people.
+    \begin{align}
+        \begin{split}
+            V = \{ & \textit{Heimisch}, \textit{Klimaresilient}, \textit{Verwertbar}, \textit{Ernteaufwand}, \\
+            & \textit{Menge}, \textit{Preis}, \textit{Walderfahrung} \},
+        \end{split} \notag \\
+        \mathfrak{D}(\textit{Heimisch}) =  \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
+        \mathfrak{D}(\textit{Klimaresilient}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
+        \mathfrak{D}(\textit{Verwertbar}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
+        \mathfrak{D}(\textit{Ernteaufwand}) = \{ & \text{Motormanuel}, \text{Harvester}, \text{Vollautomatisch}\}, \notag \\
+        \mathfrak{D}(\textit{Menge}) = \{ & \text{Keine}, \text{Gering}, \text{Hoch}\}, \notag \\
+        \mathfrak{D}(\textit{Preis}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag\\
+        \mathfrak{D}(\textit{Walderfahrung}) = \{ & \text{Gering}, \text{Mittel}, \text{Intensiv}\},\notag \\
+        U = \{ & 1,2\} \notag\\
+        P = \{ & P_1, P_2\} \notag\\
+        \begin{split}
+            P_1 = \{ & (\text{Motormanuel}, 0.5), (\text{Harvester}, -0.3) \} \\ 
+            & \cup \{ (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V,\ i \notin \{ \text{Motormanuel}, \text{Harvester}\} \ \} \ 
+        \end{split} \notag \\
+        P_2 = \{ & (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V \} \notag \\
+        S  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Menge}, \text{Gering}) \} \notag \\
+        \begin{split}
+        S_F  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Klimaresilient}, \text{Gering}), (\textit{Verwertbar}, \text{Gering}), \\
+        & (\textit{Ernteaufwand}, \text{Motormanuel}),
+        (\textit{Menge}, \text{Keine}), (\textit{Preis}, \text{Hoch}),\\ 
+        & (\textit{Walderfahrung}, \text{Gering}) \} 
+        \end{split} \notag
+    \end{align}
+\end{mdframed}
+
+\section{Recommender Systems}
+
+\subsection{Advantages over Collaborative Filtering}
+\begin{itemize}
+    \item No cold start problem for items
+    \item No grey sheep problem as not dependent on similar groups having existed before.
+    \item Domain knowledge is existent
+    \item No issues with data sparsity as item description is given by product structure
+    \item No reliance on preferences that would result in a comparison space that is too large
+    \item No dependence of historic group preference accuracy 
+\end{itemize}
+
+\subsection{Advantages over Constrained-Based Recommendation}
+
+\begin{itemize}
+    \item Configuration state does not cause absence of recommendations
+    \item Expendable to also support constraints 
+    \item No need to handle inconsistencies explicitly
+\end{itemize}
+
+\begin{table}
+    \begin{center}
+        \begin{tabularx}{\columnwidth}{X|X|X}
+            \hline
+            Collaborative Filtering 
+            &   \begin{itemize}
+                    \item Serendipity of results 
+                    \item Automatic learning of market segments
+                    \item Grey sheep problem
+                    \item No domain knowledge required
+                \end{itemize}
+            &   \begin{itemize}
+                    \item Cold start problem for users and items
+                    \item Grey sheep problem
+                    \item Quality based on rating quality
+                    \item Data sparsity
+                    \item Privacy not guaranteed
+                \end{itemize} \\
+            \hline
+            Content-Based Filtering 
+            &   \begin{itemize}
+                    \item No community required 
+                    \item User independent
+                    \item Transparent
+                    \item No item cold start
+                    \item Simplicity
+                    \item Robust
+                    \item Stable to constant influx of new users
+                    \item Possible to have profitability metric
+                \end{itemize}
+            &   \begin{itemize}
+                    \item Overspecialisation
+                    \item No serendipity
+                    \item User cold start problem
+                    \item Requires domain knowledge
+                \end{itemize} \\
+            \hline
+            Constraint-Based Recommendation 
+            &   \begin{itemize}
+                    \item Transparent
+                    \item Good for non discrete values
+                \end{itemize}
+            &   \begin{itemize}
+                    \item Inconsistent constraints
+                    \item No results
+                \end{itemize} \\ 
+        \end{tabularx}
+        \caption{A description of the advantages and disadvantages of common recommendation techniques}
+        \label{tab:RecommenderComparison}
+    \end{center}
+\end{table}
+
+\FloatBarrier
