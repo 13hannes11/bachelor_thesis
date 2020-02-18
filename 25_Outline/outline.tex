@@ -1,28 +1,161 @@
-\documentclass{article}
-\usepackage{tabularx}
+%% LaTeX2e class for student theses
+%% thesis.tex
+%% 
+%% Karlsruhe Institute of Technology
+%% Institute for Program Structures and Data Organization
+%% Chair for Software Design and Quality (SDQ)
+%%
+%% Dr.-Ing. Erik Burger
+%% burger@kit.edu
+%%
+%% See https://sdqweb.ipd.kit.edu/wiki/Dokumentvorlagen
+%%
+%% {$HeadURL: https://svnserver.informatik.kit.edu/i43/svn/lehre/Abschlussarbeiten-Vorlage/thesis.tex $}
+%% {$LastChangedDate: 2018-08-02 14:19:06 +0200 (Do, 02 Aug 2018) $}
+%% {$LastChangedRevision: 5705 $}
+%% {$LastChangedBy: burger $}
+
+%% Available page modes: oneside, twoside
+%% Available modes: draft, final (see README)
+\documentclass[oneside, english, draft]{sdqthesis}
+
+
+%% ---------------------------------
+%% | Information about the thesis  |
+%% ---------------------------------
+
+%% Name of the author
+\author{Hannes F. Kuchelmeister}
+
+%% Title (and possibly subtitle) of the thesis
+\title{Decision Support for Group-Based Configuration using Recommender Systems}
+
+%% Type of the thesis 
+\thesistype{Bachelor's Thesis Outline}
+
+%% Change the institute here, ``IPD'' is default
+% \myinstitute{Institute for \dots}
+
+%% You can put a logo in the ``logos'' directory and include it here
+%% instead of the SDQ logo
+% \grouplogo{myfile}
+%\secondgrouplogo{iism_logo}
+%\companylogo{cas_software_logo}
+%\externallogo{fzi_logo}
+
+%% Alternatively, you can disable the group logo
+\nogrouplogo
+\nosecondgrouplogo
+\nocompanylogo
+\noexternallogo
+
+%% The reviewers are the professors that grade your thesis
+\reviewerone{Prof. Dr. Ralf H. Reussner}
+\reviewertwo{Prof. Dr. Christof Weinhardt}
+
+%% The advisors are PhDs or Postdocs
+\advisorone{Dr. rer. nat. Robert Heinrich}
+%% The second advisor can be omitted
+\advisortwo{M.A. Jonas Fegert}
+
+%% Please enter the start end end time of your thesis
+\usepackage{texdate}
+\initdate{2019}{12}{16}
+\editingtime{\printfdate{british}}{\advancebymonths{4}\printfdate{british}}
+
+\settitle
+
+%% --------------------------------
+%% | Settings for word separation |
+%% --------------------------------
+
+%% Describe separation hints here.
+%% For more details, see 
+%% http://en.wikibooks.org/wiki/LaTeX/Text_Formatting#Hyphenation
+\hyphenation{
+% me-ta-mo-del
+}
+
+%% --------------------
+%% |  Float Barriers  |
+%% --------------------
 \usepackage{placeins}
-\usepackage{hyperref}
+
+%% --------------------
+%% |  Table Packages  |
+%% --------------------
+\usepackage{tabularx}
 \usepackage{multirow}
 
-% MATHS PACKAGES
+%% --------------------
+%% |  Maths Packages  |
+%% --------------------
 \usepackage{amsmath}
 \usepackage{amssymb}
+
+%% ---------------------
+%% | Generating Frames |
+%% ---------------------
 \usepackage[framemethod=TikZ]{mdframed}
 
-% Bibliogreaphy
+%% --------------------------------
+%% | PDF Comments                 |
+%% --------------------------------
+\usepackage[colorinlistoftodos, obeyDraft]{todonotes}
+
+%% --------------------------------
+%% | Gantt Charts                 |
+%% --------------------------------
+\usepackage{pgfgantt}
+
+%% --------------------------------
+%% | Quotation                 |
+%% --------------------------------
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+
+%% --------------------------------
+%% | Bibliography                 |
+%% --------------------------------
+
+%% Use biber instead of BibTeX, see README
 \usepackage[citestyle=numeric,style=numeric,sorting=none,backend=biber]{biblatex}
 \addbibresource{outline.bib}
 
+%% ====================================
+%% ====================================
+%% ||                                ||
+%% || Beginning of the main document ||
+%% ||                                ||
+%% ====================================
+%% ====================================
 \begin{document}
-\title{Decision Support for Group Configuration using Recommender Systems}
-\author{Hannes F. Kuchelmeister}
-%\date{2020/02/10}
 
+%% Set PDF metadata
+\setpdf
+
+%% Set the title
 \maketitle
 
+%% The Preamble begins here
+\frontmatter
+
+\setcounter{page}{1}
+\pagenumbering{roman}
+
+%% ------------------------
+%% |   Table of Contents  |
+%% ------------------------
 \tableofcontents
 
-\newpage
+\listoffigures
+\listoftables
+
+%% -----------------
+%% |   Main part   |
+%% -----------------
+
+\mainmatter
 
 \input{sections/00_introduction.tex}
 \input{sections/20_foundations.tex}
@@ -31,6 +164,17 @@
 \input{sections/60_evaluation.tex}
 \input{sections/70_further_work.tex}
 
+%% --------------------
+%% |   Bibliography   |
+%% --------------------
+
+%% Add entry to the table of contents for the bibliography
 \printbibliography[heading=bibintoc]
+
+%% ----------------
+%% |   Appendix   |
+%% ----------------
+\appendix
+%\input{sections/appendix.tex}
 
 \end{document}
