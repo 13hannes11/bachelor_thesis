@@ -4,51 +4,7 @@
 \section{Definitions}
 \label{sec:Foundations:Definitions}
 
-Set of \emph{variables}:
-\begin{equation}
-    V = \{v_1, \dotsc, v_m\}
-\end{equation}
-
-A corresponding \emph{domain mapping function} that maps a variable to its possible values:
-\begin{equation}
-    \mathfrak{D} : V \to D; x \mapsto \mathfrak{D}(x) \qquad where \ D = \{d_1, \dotsc, d_o\}
-\end{equation}
-
-Set of \emph{users}:
-\begin{equation}
-    U = \{1, \dotsc, n\}
-\end{equation}
-
-A users \emph{utility function} for a domain value of a variable. This is the utility that a user has from a certain selected domain value. It is a function that only the user himself knows:
-\begin{equation}
-    \begin{split}
-        u_i(d_j), \qquad \text{where}\ & d_j \in  \mathfrak{D}(j),\\
-        & 1 <= j <= m, \\
-        & 1 <= i <= n
-    \end{split}
-\end{equation}
-
-\emph{User preferences} that are entered into the system by the user according to his utility function:
-\begin{gather}
-    P = \{ P_1, \dotsc, P_n\},\ \text{where} \\
-    P_i = \{(d,\ u_i(d)) \ | \ \forall d \in \mathfrak{D}(i),\ i=1,\dotsc,m \} \notag
-\end{gather}
-
-A \emph{configuration} has a state it is defined by a tuple of variables and their corresponding domain value. Essentially it is a set of variables and assigned values:
-\begin{equation}
-    S = \{ (v_i,\ d) \ |\ v_i \in V \ \land \ d \in \mathfrak{D}(i),\ i=1,\dotsc,m \}
-\end{equation}
-
-A \emph{finished configuration} is a configuration that contains all variables:
-\begin{equation}
-\begin{split}
-    S_F \subset S,\ where \  & \forall v_i \in V (\exists (v_i, d) \in S_F : d \in \mathfrak{D}(i)) \\
-    & \land is\_valid(S_F)
-\end{split}
-\end{equation}
-
-% TODO: define valid configuration state
-
+\todo[inline]{move scoring functions to the right place and remove definitions section}
 \emph{Group configuration scoring function} using preferences and current configuration state. This function gives a score for a finished configuration (while using the current configuration state and all user preferences):
 
 \begin{equation}
