@@ -60,6 +60,7 @@ Now the recommendation procedure looks as follows:
 
 \begin{enumerate}
     \item Assign a score to each stored configuration according to $$score_{group}(\overline{configurationState},\ \overline{preferences}, \ configurationInStore)$$
+    \item Optional: Filter out configurations that have a score below a certain value using a different scoring function. For example filter out configurations that cause a certain level of misery.
     \item Chose the configuration with the highest score as recommendation.
 \end{enumerate}
 
