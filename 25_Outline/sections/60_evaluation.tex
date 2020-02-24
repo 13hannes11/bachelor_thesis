@@ -1,24 +1,69 @@
 \chapter{Evaluation}
 \label{ch:Evaluation}
 
-
-\section{Evaluation of Case Study}
-\label{sec:Evaluation:CaseStudy}
-
 For one example e.g. forest example generate all possible valid configurations.
 
 Generate groups with preferences (explicit preferences) and configuration state (which would be for example the currently existing forest).
 
-\subsection{Group Types During Evaluation}
+\section{Group Types During Evaluation}
+\label{sec:Evaluation:GroupTypes}
+
 \begin{itemize}
     \item Groups shall be generated with random preferences
     \item With grouped preferences: people adhere more or less to one profile (Forest Owner, Athlete, Consumer, Environmentalist)
     \item Group of only one profile type: rather homogenous group
 \end{itemize}
 
-\subsection{Questions to Answer During the Evaluation}
+\section{Questions to Answer During the Evaluation}
+\label{sec:Evaluation:Questions}
+
+%\begin{itemize}
+    %\item How close are recommendations of the recommender system to the ideal recommendation depending on the number of stored recommendations? The ideal configuration is the configuration that has the highest score with the given group scoring function $score_{group}$.
+    %\item Is this approach practical?
+%\end{itemize}
 
 \begin{itemize}
-    \item How close are recommendations of the recommender system to the ideal recommendation depending on the number of stored recommendations? The ideal configuration is the configuration that has the highest score with the given group scoring function $score_{group}$.
-    \item Is this approach practical?
+    \item Main Question: How does the group decision differ from the individual decision (Randomly draw person from group -> satisfaction vs group score)
+    \item satisfiability -> count individual score for example: above threshold 55\% as satisfied below 45\% as unsatisfied -> how many people on average satisfied
+    \item How much negative impact does the configuration state have on outcome?
+    \item Is one user type always worse off than another?
+    \item Recommendation quality in relation to how many stored configurations.
+    \item How much better is the best configuration than the average -> MMSE, RMSE, MAE ... % see: https://medium.com/@george.drakos62/how-to-select-the-right-evaluation-metric-for-machine-learning-models-part-1-regrression-metrics-3606e25beae0 or https://en.wikipedia.org/wiki/Error_metric
 \end{itemize}
+
+\section{Generating Data}
+\label{sec:Evaluation:GeneratingGroups}
+
+For the forest use case, the idea is that there are multiple types of user profiles. Each group profile is represented by a neutral, negative or positive attitude to an attribute value. Now during data generation the attitude is converted to a preference using a normal distribution. \autoref{fig:Evaluation:DataGeneration} shows how we convert the user profile to preferences.
+
+\pgfplotsset{height=5cm,width=\textwidth,compat=1.8}
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+
+
+\begin{figure}
+    \begin{tikzpicture}
+        \begin{axis}[
+            every axis plot post/.append style={
+                mark=none, domain=0:1, samples=50, smooth
+            },
+            axis x line*=bottom,
+            xmin=0,
+            xmax=1,
+            ymin=0.1,
+            xticklabel style={
+                /pgf/number format/precision=3,
+            },
+            xtick={0,0.25, 0.5, 0.75,1},
+            hide y axis]
+          \addplot [draw=red][very thick] {gauss(0.25,0.1)} node[text=red][above,pos=0.5] {negative};
+          \addplot [draw=blue][very thick] {gauss(0.5,0.05)} node[text=blue][above,pos=0.48] {neutral};
+          \addplot [draw=green!60!black][very thick] {gauss(0.75,0.1)} node[text=green!60!black][above,pos=0.5] {positive};
+        \end{axis}
+        \end{tikzpicture}
+ \caption{Distribution of preferences for a user type.}
+\label{fig:Evaluation:DataGeneration}
+\end{figure}
+
+These user profiles can be used to generate rather homogenous groups but also to create groups that have interests that are more conflicting. For completely random groups a uniform distribution is used to create more chaotic groups.
