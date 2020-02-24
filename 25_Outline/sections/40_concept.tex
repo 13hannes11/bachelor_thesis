@@ -53,7 +53,6 @@ Given an unfinished configuration and preferences of all group members rate a fi
 Use this to choose the best finished configuration out of a list to recommend.
 
 \subsection{Generating a Recommendation}
-\label{sec:Concept:GeneratingRecommendation}
 
 Hereby the idea is there is a database of complete configurations (possibly historic from other groups or automatically generated or both).
 Now the recommendation procedure looks as follows:
@@ -64,10 +63,72 @@ Now the recommendation procedure looks as follows:
     \item Chose the configuration with the highest score as recommendation.
 \end{enumerate}
 
+\todo[inline]{move definitions that are made by me to here}
+
+\subsection{Scoring Function}
+
+\emph{Group configuration scoring function} using preferences and current configuration state. This function gives a score for a finished configuration (while using the current configuration state and all user preferences):
+
+\begin{equation}
+    score_{group}: S \times P \times S_F \to \mathbb{R}
+\end{equation}
+
+An example group configuration scoring function is $score_{group}$ with
+
+\begin{equation}
+    \notag \alpha \in \mathbb{R}, \qquad     changed(d,\overline{s}, s) = 
+    \begin{cases}
+      1, & d \in \overline{s} \land d \notin s \\
+      0, & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        score_{group}(\overline{s},\ \overline{p},\ s)
+        & = score(\overline{p},\ s) - penalty(\overline{s},\ s) \\
+        & = score(\overline{p},\ s) - \sum_{d \in \overline{s}} changed(d,\overline{s}, s) \cdot \alpha
+    \end{split}
+\end{equation}
+
+\begin{figure}
+\begin{mdframed}[frametitle={Example for Forest Use Case}]
+    In this example we have two users. The use case is a piece of forest and variables are for example harvesting activity, which trees to grow and accessibility for people.
+    \begin{align}
+        \begin{split}
+            V = \{ & \textit{Heimisch}, \textit{Klimaresilient}, \textit{Verwertbar}, \textit{Ernteaufwand}, \\
+            & \textit{Menge}, \textit{Preis}, \textit{Walderfahrung} \},
+        \end{split} \notag \\
+        \mathfrak{D}(\textit{Heimisch}) =  \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
+        \mathfrak{D}(\textit{Klimaresilient}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
+        \mathfrak{D}(\textit{Verwertbar}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
+        \mathfrak{D}(\textit{Ernteaufwand}) = \{ & \text{Motormanuel}, \text{Harvester}, \text{Vollautomatisch}\}, \notag \\
+        \mathfrak{D}(\textit{Menge}) = \{ & \text{Keine}, \text{Gering}, \text{Hoch}\}, \notag \\
+        \mathfrak{D}(\textit{Preis}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag\\
+        \mathfrak{D}(\textit{Walderfahrung}) = \{ & \text{Gering}, \text{Mittel}, \text{Intensiv}\},\notag \\
+        U = \{ & 1,2\} \notag\\
+        P = \{ & P_1, P_2\} \notag\\
+        \begin{split}
+            P_1 = \{ & (\text{Motormanuel}, 0.5), (\text{Harvester}, -0.3) \} \\ 
+            & \cup \{ (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V,\ i \notin \{ \text{Motormanuel}, \text{Harvester}\} \ \} \ 
+        \end{split} \notag \\
+        P_2 = \{ & (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V \} \notag \\
+        S  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Menge}, \text{Gering}) \} \notag \\
+        \begin{split}
+        S_F  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Klimaresilient}, \text{Gering}), (\textit{Verwertbar}, \text{Gering}), \\
+        & (\textit{Ernteaufwand}, \text{Motormanuel}),
+        (\textit{Menge}, \text{Keine}), (\textit{Preis}, \text{Hoch}),\\ 
+        & (\textit{Walderfahrung}, \text{Gering}) \} 
+        \end{split} \notag
+    \end{align}
+\end{mdframed}
+\caption{An example of a forest use case that includes two people.}
+\label{fig:Concept:ForestExample}
+\end{figure}
 
 
 \section{Benefits}
 \label{sec:Concept:Benefits}
 
-The benefits of this approach are, that the need for a group to communicate is reduced. Each user gives their own preferences and the group will get a recommendation based on that. This allows to reduce problems with communication of preferences and eliminates misunderstandings.
+The benefits of this approach are, that the need for a group to communicate is reduced. Each user gives their own preferences and the group will get a recommendation based on that. This allows to reduce problems with communication and bias in groups.
     
