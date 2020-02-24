@@ -40,8 +40,6 @@ For the forest use case, the idea is that there are multiple types of user profi
 \pgfmathdeclarefunction{gauss}{2}{%
   \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
 }
-
-
 \begin{figure}
     \begin{tikzpicture}
         \begin{axis}[
@@ -66,4 +64,13 @@ For the forest use case, the idea is that there are multiple types of user profi
 \label{fig:Evaluation:DataGeneration}
 \end{figure}
 
-These user profiles can be used to generate rather homogenous groups but also to create groups that have interests that are more conflicting. For completely random groups a uniform distribution is used to create more chaotic groups.
+These user profiles can be used to generate rather homogenous groups but also to create groups that have interests that are more conflicting. For completely random groups a uniform distribution is used to create more chaotic groups. The whole process is shown in \autoref{fig:Evaluation:GeneratingDataProcess}.
+
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{./figures/bpmn_evaluation_input_data_generation.pdf}
+    \caption{The process used for generating data for the evaluation.}
+    \label{fig:Evaluation:GeneratingDataProcess}
+\end{figure}
