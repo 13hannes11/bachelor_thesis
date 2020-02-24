@@ -1,64 +1,67 @@
 \chapter{Foundations}
 \label{ch:Foundations}
 
-\section{Definitions}
-\label{sec:Foundations:Definitions}
+\section{Product Configuration}
+\label{sec:Foundations:ProductConfiguration}
 
-\todo[inline]{move scoring functions to the right place and remove definitions section}
-\emph{Group configuration scoring function} using preferences and current configuration state. This function gives a score for a finished configuration (while using the current configuration state and all user preferences):
+Product configuration is a process consisting of a series of decision tasks whereby a product is constructed of components which interact with each other. During a configuration process no new components are created. Their interplay and specification is defined beforehand \cite[~ pp. 42, 43]{sabinProductConfigurationFrameworksa1998}. This section defines product configuration analogues to \citeauthor{felfernigOpenConfiguration2014} \cite{felfernigOpenConfiguration2014}.
 
-\begin{equation}
-    score_{group}: S \times P \times S_F \to \mathbb{R}
+Formally a configuration problem can be specified as a \emph{constraint satisfaction problem (CSP)} \cite{tsangFoundationsConstraintSatisfaction1993} as 
+\begin{equation} \label{eq:Foundations:ProductConfiguration:ConstraintSatisfactionProblem}
+    CSP(V,\mathfrak{D},C),
+\end{equation}
+where we have a set of \emph{variables} $V$ with
+\begin{equation} \label{eq:Foundations:ProductConfiguration:Variables}
+    V = \{v_1, \dotsc, v_m\},
+\end{equation}
+a \emph{domain mapping} $\mathfrak{D}$ that maps variable to their corresponding domain values $D$ i.e. the values that can be assigned to each variable
+\begin{equation}\label{eq:Foundations:ProductConfiguration:DomainMapping}
+    \mathfrak{D} : V \to D; x \mapsto \mathfrak{D}(x) \qquad where \ D = \{d_1, \dotsc, d_o\},
+\end{equation}
+and \emph{constraints} $C$ that limit the solution space with 
+\begin{equation}\label{eq:Foundations:ProductConfiguration:Constraints}
+    C = \{c_1, \cdots, c_k\}.
 \end{equation}
 
-An example group configuration scoring function is $score_{group}$ with
+\subsection{Configuration State}
 
-\begin{equation}
-    \notag \alpha \in \mathbb{R}, \qquad     changed(d,\overline{s}, s) = 
+A \emph{configuration} $S$  is defined by a tuple of variables (\autoref{eq:Foundations:ProductConfiguration:Variables}) and their corresponding domain value with
+\begin{equation} \label{eq:Foundations:ProductConfiguration:ConfigurationState}
+    S = \{ (v_i,\ d) \ |\ v_i \in V \ \land \ d \in \mathfrak{D}(i),\ i=1,\dotsc,m \}.
+\end{equation}
+Essentially it is a set of variables and assigned values.
+
+\subsection{Finished Configuration}
+To define a \emph{finished configuration} we first need to define what a valid configuration is. Therefore we define $is\_valid$ as
+\begin{equation} \label{eq:Foundations:ProductConfiguration:IsValid}
+    is\_valid : S \to \{true, false\}; x \mapsto 
     \begin{cases}
-      1, & d \in \overline{s} \land d \notin s \\
-      0, & \text{otherwise}
-    \end{cases}
+        true, & S \in solution\_space \\
+        false, & \text{otherwise}
+    \end{cases},
+\end{equation}
+with $solution\_space$ being the solution space of the corresponding constraint satisfaction problem. A \emph{finished configuration} $S_F$ is a configuration that contains all variables and is a valid configuration:
+\begin{equation} \label{eq:Foundations:ProductConfiguration:FinishedConfiguration}
+    S_F \subset S,\ where \ \forall v_i \in V (\exists (v_i, d) \in S_F : d \in \mathfrak{D}(i)) \land is\_valid(S_F).
 \end{equation}
 
+
+\section{Group-Based Product Configuration}
+\label{sec:Foundations:GroupBasedProductConfiguration}
+
+Instead of a single person configuring a product a group of people is configuring one product which can be useful in multi-stakeholder decisions, it needs mechanisms for describing the preferences of multiple people. Therefore we will add to our definitions, a set of users $U$ with
+\begin{equation}\label{eq:Foundations:ProductConfiguration:Users}
+    U = \{1, \dotsc, n\},
+\end{equation}
+a users \emph{utility function} that maps a domain value to a utility value and is only known to the user
 \begin{equation}
     \begin{split}
-        score_{group}(\overline{s},\ \overline{p},\ s)
-        & = score(\overline{p},\ s) - penalty(\overline{s},\ s) \\
-        & = score(\overline{p},\ s) - \sum_{d \in \overline{s}} changed(d,\overline{s}, s) \cdot \alpha
+        u_i(d_j), \qquad \text{where}\ & d_j \in  \mathfrak{D}(j),\\
+        & 1 <= j <= m, \\
+        & 1 <= i <= n .
     \end{split}
 \end{equation}
-
-\begin{mdframed}[frametitle={Forest Example}]
-    In this example we have two users. The use case is a piece of forest and variables are for example harvesting activity, which trees to grow and accessibility for people.
-    \begin{align}
-        \begin{split}
-            V = \{ & \textit{Heimisch}, \textit{Klimaresilient}, \textit{Verwertbar}, \textit{Ernteaufwand}, \\
-            & \textit{Menge}, \textit{Preis}, \textit{Walderfahrung} \},
-        \end{split} \notag \\
-        \mathfrak{D}(\textit{Heimisch}) =  \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
-        \mathfrak{D}(\textit{Klimaresilient}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
-        \mathfrak{D}(\textit{Verwertbar}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
-        \mathfrak{D}(\textit{Ernteaufwand}) = \{ & \text{Motormanuel}, \text{Harvester}, \text{Vollautomatisch}\}, \notag \\
-        \mathfrak{D}(\textit{Menge}) = \{ & \text{Keine}, \text{Gering}, \text{Hoch}\}, \notag \\
-        \mathfrak{D}(\textit{Preis}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag\\
-        \mathfrak{D}(\textit{Walderfahrung}) = \{ & \text{Gering}, \text{Mittel}, \text{Intensiv}\},\notag \\
-        U = \{ & 1,2\} \notag\\
-        P = \{ & P_1, P_2\} \notag\\
-        \begin{split}
-            P_1 = \{ & (\text{Motormanuel}, 0.5), (\text{Harvester}, -0.3) \} \\ 
-            & \cup \{ (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V,\ i \notin \{ \text{Motormanuel}, \text{Harvester}\} \ \} \ 
-        \end{split} \notag \\
-        P_2 = \{ & (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V \} \notag \\
-        S  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Menge}, \text{Gering}) \} \notag \\
-        \begin{split}
-        S_F  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Klimaresilient}, \text{Gering}), (\textit{Verwertbar}, \text{Gering}), \\
-        & (\textit{Ernteaufwand}, \text{Motormanuel}),
-        (\textit{Menge}, \text{Keine}), (\textit{Preis}, \text{Hoch}),\\ 
-        & (\textit{Walderfahrung}, \text{Gering}) \} 
-        \end{split} \notag
-    \end{align}
-\end{mdframed}
+\citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019}'s approach, which this thesis extends, is to treat the group configuration the same as one shared configuration and to sync the selection of attributes across clients \cite{raabKollaborativeProduktkonfigurationEchtzeit2019}. 
 
 \section{Recommender System}
 \label{sec:Foundations:RecommenderSystem}
@@ -90,10 +93,10 @@ Collaborative Filtering can not only be done using users, it can also be item-ba
 \autoref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix. A simple user-based way to calculate rating would be now to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance our closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving us a predicted rating of $4$.  If we use item based illustration instead, we will try to find similar items based on the users rating. An example of similar items here would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the sane rating and Eric's rating is off by one. Using again kNN with $k := 2$ we find that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$.
 However this simple similarity and prediction function does not take into account different distances. For example Lucy's ratings are more similar compared to Eric's than Diane's but Diane's and Lucy's rating is valued the same amount.
 
-\subsection{Critiquing-Based Recommendation}
-Items are recommended and a user can then critique on attributes of the recommendation. Based on that a similar item which does not have those critiques can be recommended. User preferences are implicitly collected this way \cite{knijnenburgEachHisOwn2011}.
-
-With a critique based approach Eric sees a suggestion of watching \textit{The Island} and its attributes. He then can say that he finds this movie has too much action. The critique based recommender will now present a movie that has similar attributes as \textit{The Island} but with less action. For example \textit{Titanic} could be the next suggestion.
+%\subsection{Critiquing-Based Recommendation}
+%Items are recommended and a user can then critique on attributes of the recommendation. Based on that a similar item which does not have those critiques can be recommended. User preferences are implicitly collected this way \cite{knijnenburgEachHisOwn2011}.
+%
+%With a critique based approach Eric sees a suggestion of watching \textit{The Island} and its attributes. He then can say that he finds this movie has too much action. The critique based recommender will now present a movie that has similar attributes as \textit{The Island} but with less action. For example \textit{Titanic} could be the next suggestion.
 
 \subsection{Constraint-Based Recommendation}
 Hereby filter rules are defined which filter out items that don't fulfil specified rules. A user models their requirements with these rules and thereby gets a list of recommended items. This approach requires deep knowledge about a product because it needs a detailed description of features  \cite[~ p. 12]{felfernigDecisionTasksBasic2018}.
@@ -144,8 +147,8 @@ Using our example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferenc
     \item No dependence of historic group preference accuracy 
 \end{itemize}
 
-\subsubsection{Advantages over Critique-Based Recommendation}
-\todo[inline]{ fill out section}
+%\subsubsection{Advantages over Critique-Based Recommendation}
+%\todo[inline]{ fill out section}
 
 
 \subsubsection{Advantages over Constrained-Based Recommendation}
@@ -158,7 +161,7 @@ Using our example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferenc
 
 
 \begin{table}
-    \todo[inline]{ add critique based recommendation and check sources}
+    %\todo[inline]{ add critique based recommendation and check sources}
     \begin{center}
         \begin{tabularx}{\columnwidth}{X|X|X}
             \hline
@@ -195,14 +198,14 @@ Using our example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferenc
                     \item Requires domain knowledge
                 \end{itemize} \\
             \hline
-            Critique-Based Recommendation 
-            &   \begin{itemize}
-                    \item todo
-                \end{itemize}
-            &   \begin{itemize}
-                    \item todo
-                \end{itemize} \\ 
-            \hline
+            %Critique-Based Recommendation 
+            %&   \begin{itemize}
+            %        \item todo
+            %    \end{itemize}
+            %&   \begin{itemize}
+            %        \item todo
+            %    \end{itemize} \\ 
+            %\hline
             Constraint-Based Recommendation 
             &   \begin{itemize}
                     \item Transparent
@@ -222,7 +225,20 @@ Using our example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferenc
 A hybrid recommender combines different recommendation approaches to use the strengths of each individual one and to reduce effects of weaknesses \cite{burkeHybridRecommenderSystems2002}.
 
 \section{Group Recommender System}
+\label{sec:Foundations:GroupRecommenderSystem}
 
 A group recommender system is a recommender system aimed at making recommendations for a group instead of a single user. To make recommendations group members preferences have to be aggregated. This can be done by either aggregating single user recommendations or by merging preferences of each user into a group preference model. Based on this model recommendation strategies as described in \autoref{sec:Foundations:RecommenderSystem} can be used to generate recommendations \cite{jamesonRecommendationGroups2007}.
 
+For a group recommender system additional definitions are needed. The attitude of a user is represented by their preferences $P$ which is directly related to the utility a user has from a domain value being present in the configuration. Let 
+\begin{gather} \label{tab:Foundations:GroupRecommenderSystem:Preferences}
+    P = \{ P_1, \dotsc, P_n\},\ \text{where} \\
+    P_i = \{(d,\ u_i(d)) \ | \ \forall d \in \mathfrak{D}(i),\ i=1,\dotsc,m \} \notag
+\end{gather}
+
+\todo[inline]{example of a group recommender}
+\todo[inline]{go more into detail about preference aggregation}
+
+
 \FloatBarrier
+
+
