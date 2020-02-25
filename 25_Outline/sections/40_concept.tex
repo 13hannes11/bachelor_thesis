@@ -43,7 +43,47 @@ The system has one main way to be used as defined in \autoref{tab:Concept:MainUs
     \end{center}
 \end{table}
 
-\FloatBarrier
+\section{Case Study}
+\label{sec:Concept:CaseStudy}
+
+The case study used in this thesis is a simplified version from forestry.
+The used characteristics and attributes are shown in \autoref{fig:Concept:ForestExample}. Additionally as example are given preferences, a configuration state and a finished configuration.
+
+\begin{figure}
+    \begin{mdframed}[frametitle={Example for Forest Use Case}]
+        In this example we have two users. The use case is a piece of forest and variables are for example harvesting activity, which trees to grow and accessibility for people.
+        \begin{align}
+            \begin{split}
+                V = \{ & \textit{Heimisch}, \textit{Klimaresilient}, \textit{Verwertbar}, \textit{Ernteaufwand}, \\
+                & \textit{Menge}, \textit{Preis}, \textit{Walderfahrung} \},
+            \end{split} \notag \\
+            \mathfrak{D}(\textit{Heimisch}) =  \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
+            \mathfrak{D}(\textit{Klimaresilient}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
+            \mathfrak{D}(\textit{Verwertbar}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
+            \mathfrak{D}(\textit{Ernteaufwand}) = \{ & \text{Motormanuel}, \text{Harvester}, \text{Vollautomatisch}\}, \notag \\
+            \mathfrak{D}(\textit{Menge}) = \{ & \text{Keine}, \text{Gering}, \text{Hoch}\}, \notag \\
+            \mathfrak{D}(\textit{Preis}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag\\
+            \mathfrak{D}(\textit{Walderfahrung}) = \{ & \text{Gering}, \text{Mittel}, \text{Intensiv}\},\notag \\
+            U = \{ & 1,2\} \notag\\
+            P = \{ & P_1, P_2\} \notag\\
+            \begin{split}
+                P_1 = \{ & (\text{Motormanuel}, 0.5), (\text{Harvester}, -0.3) \} \\ 
+                & \cup \{ (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V,\ i \notin \{ \text{Motormanuel}, \text{Harvester}\} \ \} \ 
+            \end{split} \notag \\
+            P_2 = \{ & (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V \} \notag \\
+            S  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Menge}, \text{Gering}) \} \notag \\
+            \begin{split}
+            S_F  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Klimaresilient}, \text{Gering}), (\textit{Verwertbar}, \text{Gering}), \\
+            & (\textit{Ernteaufwand}, \text{Motormanuel}),
+            (\textit{Menge}, \text{Keine}), (\textit{Preis}, \text{Hoch}),\\ 
+            & (\textit{Walderfahrung}, \text{Gering}) \} 
+            \end{split} \notag
+        \end{align}
+    \end{mdframed}
+    \caption{An example of a forest use case that includes two people.}
+    \label{fig:Concept:ForestExample}
+    \end{figure}
+
 
 \section{Solution Objectives}
 \label{sec:Concept:SolutionObjectives}
@@ -91,41 +131,42 @@ An example group configuration scoring function is $score_{group}$ with
     \end{split}
 \end{equation}
 
-\begin{figure}
-\begin{mdframed}[frametitle={Example for Forest Use Case}]
-    In this example we have two users. The use case is a piece of forest and variables are for example harvesting activity, which trees to grow and accessibility for people.
-    \begin{align}
-        \begin{split}
-            V = \{ & \textit{Heimisch}, \textit{Klimaresilient}, \textit{Verwertbar}, \textit{Ernteaufwand}, \\
-            & \textit{Menge}, \textit{Preis}, \textit{Walderfahrung} \},
-        \end{split} \notag \\
-        \mathfrak{D}(\textit{Heimisch}) =  \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
-        \mathfrak{D}(\textit{Klimaresilient}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
-        \mathfrak{D}(\textit{Verwertbar}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
-        \mathfrak{D}(\textit{Ernteaufwand}) = \{ & \text{Motormanuel}, \text{Harvester}, \text{Vollautomatisch}\}, \notag \\
-        \mathfrak{D}(\textit{Menge}) = \{ & \text{Keine}, \text{Gering}, \text{Hoch}\}, \notag \\
-        \mathfrak{D}(\textit{Preis}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag\\
-        \mathfrak{D}(\textit{Walderfahrung}) = \{ & \text{Gering}, \text{Mittel}, \text{Intensiv}\},\notag \\
-        U = \{ & 1,2\} \notag\\
-        P = \{ & P_1, P_2\} \notag\\
-        \begin{split}
-            P_1 = \{ & (\text{Motormanuel}, 0.5), (\text{Harvester}, -0.3) \} \\ 
-            & \cup \{ (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V,\ i \notin \{ \text{Motormanuel}, \text{Harvester}\} \ \} \ 
-        \end{split} \notag \\
-        P_2 = \{ & (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V \} \notag \\
-        S  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Menge}, \text{Gering}) \} \notag \\
-        \begin{split}
-        S_F  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Klimaresilient}, \text{Gering}), (\textit{Verwertbar}, \text{Gering}), \\
-        & (\textit{Ernteaufwand}, \text{Motormanuel}),
-        (\textit{Menge}, \text{Keine}), (\textit{Preis}, \text{Hoch}),\\ 
-        & (\textit{Walderfahrung}, \text{Gering}) \} 
-        \end{split} \notag
-    \end{align}
-\end{mdframed}
-\caption{An example of a forest use case that includes two people.}
-\label{fig:Concept:ForestExample}
-\end{figure}
+This thesis will use multiple scoring functions. Among those are ones for least misery, average and multiplicative. Average and multiplicative yield good results among the studies presented by \citeauthor{Masthoff2015}. Strategies can also be combined one example here is average without misery \cite{Masthoff2015}.
 
+\subsubsection{Preference Scoring}
+
+All of the above aggregation functions use one preference per user per product. Therefore to use them in as is a score for the whole configuration per user has to be calculated. We propose to use the difference from the selected feature compared to the average rating of all characteristics. This approach includes all preferences of a user meaning a preference is also seen relative to others.
+
+As an example we could have feature
+\begin{equation}
+    F = \text{ClimateResilientTress},
+\end{equation} with characteristics
+\begin{equation}
+    \mathfrak{D}(F)= \{\text{low}, \text{medium}, \text{high}\},
+\end{equation}
+preferences
+\begin{equation}
+    P_1 = \{(\text{low}, 0), (\text{medium},0.6), (\text{high},0.9) \}
+\end{equation} 
+and the configuration we want to rate
+\begin{equation}
+    S_F = \{(\text{ClimateResilientTress}, \text{high})\}.
+\end{equation}
+The average rating for the feature is $F = 0.5$. Therefore the score given by a user $1$ is $0.9-0.5 = 0.4$.
+A second user with preferences 
+\begin{equation}
+    P_2 = \{(\text{low}, 0), (\text{medium},0), (\text{high},0.9) \}
+\end{equation} 
+on the other hand results in a feature score of $0.9-0.3=0.6$. For this user characteristic \emph{high} is of higher importance.
+
+As we would like to keep our scores as percentages and not in the interval $[-1,1]$ a normalisation is applied by adding one and dividing by two. Therefore our respective scores are $0.7$ for user one and $0.95$ for user two. A configuration usually consists of more than one feature therefore we take the average rating over all features to get the score one user gives to a configuration. Based on that score the mentioned aggregation functions can be used.
+
+\subsubsection{Cofiguration Change Penalty}
+
+In this thesis a penalty function is proposed which gives the percentage of characteristics that exist in the configuration that is to be rated. This value can be tuned to be more or less strict by potentiating. Thereby allowing more deviation or less deviation from the current configuration state. The penalty function is defined as
+\begin{equation}
+    penalty_{proportion}(\overline{s},\ s) =  \left(\frac{\sum_{d \in \overline{s}} changed(d,\overline{s}, s)}{|\overline{s}|}\right)^\alpha.
+\end{equation}
 
 \section{Benefits}
 \label{sec:Concept:Benefits}
