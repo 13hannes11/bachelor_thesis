@@ -1,7 +1,9 @@
 \chapter{Evaluation}
 \label{ch:Evaluation}
 
-For one example e.g. forest example generate all possible valid configurations.
+In this chapter the prototype is evaluated in terms of its functionality and its properties.
+
+We will generate all possible valid configurations for one use case i.e. generate all possible valid configurations for the forest use case.
 
 Generate groups with preferences (explicit preferences) and configuration state (which would be for example the currently existing forest).
 
@@ -14,21 +16,32 @@ Generate groups with preferences (explicit preferences) and configuration state 
     \item Group of only one profile type: rather homogenous group
 \end{itemize}
 
+\section{Metrics}
+For the evaluation metrics to evaluate by are needed. 
+
+\label{sec:Evaluation:Metrics}
+
+\subsection{Random Individual}
+When comparing a group to individual scores, a member of the group is randomly chosen. As metric of difference used metrics are MSE, RMSE and similar metrics.
+% see: https://medium.com/@george.drakos62/how-to-select-the-right-evaluation-metric-for-machine-learning-models-part-1-regrression-metrics-3606e25beae0 or https://en.wikipedia.org/wiki/Error_metric
+
+\subsection{Satisfaction}
+As a metric on overall satisfaction within the group we propose a threshold metric that defines a user as satisfied if his score is above a threshold of 60\% and as unsatisfied with a score of less than 40\%. Now we can measure group satisfaction by amount of members being satisfied, neutral and unsatisfied.
+
+\subsection{Group Score}
+The group score metric is to simply take the score the recommender has given to a group. This score can be compared with other configurations' score.
+
+
 \section{Questions to Answer During the Evaluation}
 \label{sec:Evaluation:Questions}
 
-%\begin{itemize}
-    %\item How close are recommendations of the recommender system to the ideal recommendation depending on the number of stored recommendations? The ideal configuration is the configuration that has the highest score with the given group scoring function $score_{group}$.
-    %\item Is this approach practical?
-%\end{itemize}
-
 \begin{itemize}
-    \item Main Question: How does the group decision differ from the individual decision (Randomly draw person from group -> satisfaction vs group score)
-    \item satisfiability -> count individual score for example: above threshold 55\% as satisfied below 45\% as unsatisfied -> how many people on average satisfied
-    \item How much negative impact does the configuration state have on outcome?
-    \item Is one user type always worse off than another?
-    \item Recommendation quality in relation to how many stored configurations.
-    \item How much better is the best configuration than the average -> MMSE, RMSE, MAE ... % see: https://medium.com/@george.drakos62/how-to-select-the-right-evaluation-metric-for-machine-learning-models-part-1-regrression-metrics-3606e25beae0 or https://en.wikipedia.org/wiki/Error_metric
+    \item Main Question: How does the group decision differ from the decision of a single decision maker? (random individual)
+    \item How much impact does the configuration state have on the recommendation outcome? (random individual, satisfaction)
+    \item How many group members are satisfied by the group decision on average? (satisfaction)
+    \item Is the recommender fair, i.e. no user type is always worse off than others? (satisfaction)
+    \item How does the amount of stored finished configurations relate to recommendation quality? (Compare the recommended configuration to the best possible configuration in terms of score using MSE and similar and in terms of satisfaction and random individual) 
+    \item How much higher is the score of the best configuration compared to average? (group score, satisfaction, random individual)
 \end{itemize}
 
 \section{Generating Data}
