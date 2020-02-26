@@ -4,7 +4,7 @@
 \section{Product Configuration}
 \label{sec:Foundations:ProductConfiguration}
 
-Product configuration is a process consisting of a series of decision tasks whereby a product is constructed of components which interact with each other. During a configuration process no new components are created. Their interplay and specification is defined beforehand \cite[~ pp. 42, 43]{sabinProductConfigurationFrameworksa1998}. This section defines product configuration analogues to \citeauthor{felfernigOpenConfiguration2014} \cite{felfernigOpenConfiguration2014}.
+Product configuration is a process consisting of a series of decision tasks whereby a product is constructed of components which interact with each other. During a configuration process no new components are created. Their interplay and specification is defined beforehand \cite[~ pp. 42, 43]{sabinProductConfigurationFrameworksa1998}. This section defines product configuration analogous to \citeauthor{felfernigOpenConfiguration2014} \cite{felfernigOpenConfiguration2014}.
 
 Formally a configuration problem can be specified as a \emph{constraint satisfaction problem (CSP)} \cite{tsangFoundationsConstraintSatisfaction1993} as 
 \begin{equation} \label{eq:Foundations:ProductConfiguration:ConstraintSatisfactionProblem}
@@ -44,13 +44,13 @@ with $solution\_space$ being the solution space of the corresponding constraint 
 \begin{equation} \label{eq:Foundations:ProductConfiguration:FinishedConfiguration}
     S_F \subset S,\ where \ \forall v_i \in V (\exists (v_i, d) \in S_F : d \in \mathfrak{D}(i)) \land is\_valid(S_F).
 \end{equation}
-In practice a finished configuration of a product (or solution) is something that is ready to be produced. This means for example if we are configuring a car that the car could be produced in the specified way that is given by the finished configuration.
+In practice a finished configuration of a product (or solution) is something that is ready to be produced. For example if we are configuring a car, this means that the car could be produced in the specified way that is given by the finished configuration.
 
 
 \section{Group-Based Product Configuration}
 \label{sec:Foundations:GroupBasedProductConfiguration}
 
-Instead of a single person configuring a product a group of people is configuring one product which can be useful in multi-stakeholder decisions, it needs mechanisms for describing the preferences of multiple people. Therefore we will add to our definitions, a set of users $U$ with
+Instead of a single person configuring a product, a group of people is configuring one product which can be useful in multi-stakeholder decisions. This setting needs mechanisms for describing the preferences of multiple people. Therefore we will add to our definitions, a set of users $U$ with
 \begin{equation}\label{eq:Foundations:ProductConfiguration:Users}
     U = \{1, \dotsc, n\},
 \end{equation}
@@ -69,7 +69,7 @@ a users \emph{utility function} that maps a domain value to a utility value and 
 
 A recommender system is a system that gives individualized recommendations to users to guide them through a large space of objects \cite[~ p. 331]{burkeHybridRecommenderSystems2002}.
 
-There are several approaches to recommender systems presented in \cite{felfernigGroupRecommenderSystems2018}, these are: collaborative filtering, content-based filtering, critiquing-based filtering, constraint-based, hybrid recommendation.
+There are several approaches to recommender systems presented in \cite{felfernigGroupRecommenderSystems2018}, these are: collaborative filtering, \todo[inline]{critiquing-based recommendation,} constraint-based recommendation, content-based filtering and hybrid recommendation.
 
 \begin{table}
     \centering    
@@ -91,7 +91,7 @@ In collaborative filtering a users rating for unknown items is predicted by find
 
 Collaborative Filtering can not only be done using users, it can also be item-based. Hereby the similarity between items is used for a recommendation and not similar users \cite{ricciRecommenderSystemsHandbook2015}. In the context of configuration the similarity to other historic configurations can be used which makes it an item based approach. 
 
-\autoref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix. A simple user-based way to calculate rating would be now to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance our closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving us a predicted rating of $4$.  If we use item based illustration instead, we will try to find similar items based on the users rating. An example of similar items here would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the sane rating and Eric's rating is off by one. Using again kNN with $k := 2$ we find that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$.
+\autoref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix. A simple user-based way to calculate a rating would be to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance our closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving us a predicted rating of $4$.  If we use an item based approach instead, we will try to find similar items based on the users rating. An example of similar items here would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the sane rating and Eric's rating is off by one. Using again kNN with $k := 2$ we find that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$.
 However this simple similarity and prediction function does not take into account different distances. For example Lucy's ratings are more similar compared to Eric's than Diane's but Diane's and Lucy's rating is valued the same amount.
 
 \todo[inline]{
@@ -104,10 +104,10 @@ With a critique based approach Eric sees a suggestion of watching \textit{The Is
 \subsection{Constraint-Based Recommendation}
 Hereby filter rules are defined which filter out items that don't fulfil specified rules. A user models their requirements with these rules and thereby gets a list of recommended items. This approach requires deep knowledge about a product because it needs a detailed description of features  \cite[~ p. 12]{felfernigDecisionTasksBasic2018}.
 
-Our movie example (see \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}) needs have additional information for example about plot structure, pacing, length and other attributes of the movie. Now the user could give as filter, that the movie should be no longer than 120 minutes, be categorized as action or thriller and have a fast pacing. The system will only recommend movies that fit into these categories.
+Our movie example (see \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}) requires additional information for example about plot structure, pacing, length and other attributes of the movie. Now the user could enter filtering criteria, e.g. that the movie should be no longer than 120 minutes, be categorized as action or thriller and have a fast pacing. The system will only recommend movies that fit into these categories.
 
 \subsection{Content-Based Filtering}
-Items and users are assigned to categories. Based on consumption and rating of items a user will have implicit ratings for categories. Predictions are now made based on a categories of the new item \cite[~ pp. 10, 11]{felfernigDecisionTasksBasic2018}.
+For the content-based filtering approach, items and users are assigned to categories. Based on consumption and rating of items a user will have implicit ratings for categories. Predictions are now made based on a categories of the new item \cite[~ pp. 10, 11]{felfernigDecisionTasksBasic2018}.
 
 Using our example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences} and using an additional category matrix (see \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}) we can derive a rating matrix per category (using the average rating of the user of each movie contained in this category). The result can be seen in \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringProfiles}. To predict Eric's rating of Titanic we now can use the categories of \textit{Titanic} and average out Eric's implicit rating per category. Titanic is only in the category romance and as Eric's rating of \textit{Forest Gump} is $5$ the prediction is a rating of $5$. Categories don't have to be the genre, they could be any kind of data about a movie.
 
@@ -167,12 +167,12 @@ Using our example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferenc
 \begin{table}
     \begin{center}
         \begin{tabularx}{\columnwidth}{X|X|X}
+            & advantages & disadvantages \\
             \hline
             Collaborative Filtering 
             &   \begin{itemize}
                     \item Serendipity of results 
                     \item Automatic learning of market segments
-                    \item Grey sheep problem
                     \item No domain knowledge required
                 \end{itemize}
             &   \begin{itemize}
@@ -192,7 +192,6 @@ Using our example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferenc
                     \item Simplicity
                     \item Robust
                     \item Stable to constant influx of new users
-                    \item Possible to have profitability metric
                 \end{itemize}
             &   \begin{itemize}
                     \item Overspecialisation
@@ -212,7 +211,7 @@ Using our example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferenc
                     \item No results
                 \end{itemize} \\ 
         \end{tabularx}
-        \caption{A description of the advantages and disadvantages of common recommendation techniques \cite{richthammerSituationAwarenessRecommender2018, shokeenStudyFeaturesSocial2019,hahslerRecommenderlabFrameworkDeveloping2015, aminiDiscoveringImpactKnowledge2011}}
+        \caption{A description of the advantages and disadvantages of common recommendation techniques \cite{richthammerSituationAwarenessRecommender2018, shokeenStudyFeaturesSocial2019,hahslerRecommenderlabFrameworkDeveloping2015, aminiDiscoveringImpactKnowledge2011, suSurveyCollaborativeFiltering2009}}
         \label{tab:Foundations:RecommenderComparison}
     \end{center}
 \end{table}
@@ -223,7 +222,7 @@ A hybrid recommender combines different recommendation approaches to use the str
 \section{Group Recommender System}
 \label{sec:Foundations:GroupRecommenderSystem}
 
-A group recommender system is a recommender system aimed at making recommendations for a group instead of a single user. To make recommendations group members preferences have to be aggregated. This can be done by either aggregating single user recommendations or by merging preferences of each user into a group preference model. Based on this model recommendation strategies as described in \autoref{sec:Foundations:RecommenderSystem} can be used to generate recommendations \cite{jamesonRecommendationGroups2007}.
+A group recommender system is a recommender system aimed at making recommendations for a group instead of a single user. To make recommendations group members preferences have to be aggregated. This can be done by either aggregating single user recommendations or by merging preferences of each user into a group preference model. Based on the resulting preference model recommendation strategies as described in \autoref{sec:Foundations:RecommenderSystem} can be used to generate recommendations \cite{jamesonRecommendationGroups2007}.
 
 For a group recommender system additional definitions are needed. The attitude of a user is represented by their preferences $P$ which is directly related to the utility a user has from a domain value being present in the configuration. Let 
 \begin{gather} \label{tab:Foundations:GroupRecommenderSystem:Preferences}
