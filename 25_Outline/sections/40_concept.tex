@@ -4,12 +4,12 @@
 \section{User Interaction with the System}
 \label{sec:Concept:UserSystemInteraction}
 
-The system has one main way to be used as defined in \autoref{tab:Concept:MainUseCase}.
+The system has one main way to be used as defined in \autoref{tab:Concept:MainUseCase}. This process is also visualized in \autoref{fig:Concept:ConfigurationProcess}.
 
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{./figures/bpmn_configuration_process_with_continious_recommendation.pdf}
-    \caption{A bpmn diagram of the configuration process.}
+    \caption{A BPMN diagram of the configuration process.}
     \label{fig:Concept:ConfigurationProcess}
 \end{figure}
 
@@ -51,7 +51,7 @@ The used characteristics and attributes are shown in \autoref{fig:Concept:Forest
 
 \begin{figure}
     \begin{mdframed}[frametitle={Example for Forest Use Case}]
-        In this example we have two users. The use case is a piece of forest and variables are for example harvesting activity, which trees to grow and accessibility for people.
+        In this example we have a small group of users. The use case is a piece of forest and variables are for example harvesting activity, which trees to grow and accessibility for people.
         \begin{align}
             \begin{split}
                 V = \{ & \textit{Heimisch}, \textit{Klimaresilient}, \textit{Verwertbar}, \textit{Ernteaufwand}, \\
@@ -85,12 +85,10 @@ The used characteristics and attributes are shown in \autoref{fig:Concept:Forest
     \end{figure}
 
 
-\section{Solution Objectives}
-\label{sec:Concept:SolutionObjectives}
+\section{Solution Generation}
+\label{sec:Concept:SolutionGeneration}
 
-Given an unfinished configuration and preferences of all group members rate a finished configuration on how well "similar" it reflects the configuration and preferences.
-
-Use this to choose the best finished configuration out of a list to recommend.
+Given an unfinished configuration and preferences of all group members, rate a finished configuration on how well it reflects the configuration state and preferences. This Use this to choose the best finished configuration out of a list to recommend.
 
 \subsection{Generating a Recommendation}
 
@@ -105,10 +103,12 @@ Now the recommendation procedure looks as follows:
 
 \todo[inline]{move definitions that are made by me to here}
 
+
+
+\begin{samepage}
 \subsection{Scoring Function}
-
-\emph{Group configuration scoring function} using preferences and current configuration state. This function gives a score for a finished configuration (while using the current configuration state and all user preferences):
-
+\label{subsec:Concept:SolutionGeneration:ScoringFunction}
+\emph{Group configuration scoring function} includes preferences and current configuration state. This function gives a score for a finished configuration (while using the current configuration state and all user preferences):
 \begin{equation}
     score_{group}: S \times P \times S_F \to \mathbb{R}
 \end{equation}
@@ -131,15 +131,16 @@ An example group configuration scoring function is $score_{group}$ with
     \end{split}
 \end{equation}
 
-This thesis will use multiple scoring functions. Among those are ones for least misery, average and multiplicative. Average and multiplicative yield good results among the studies presented by \citeauthor{Masthoff2015}. Strategies can also be combined one example here is average without misery \cite{Masthoff2015}.
+This thesis will use multiple scoring functions. Among those are ones for least misery, average and multiplicative. Average and multiplicative yield good results among the studies presented by \citeauthor{Masthoff2015}. Strategies can also be combined, one example here is average without misery \cite{Masthoff2015}.
+\end{samepage}
 
 \subsubsection{Preference Scoring}
 
-All of the above aggregation functions use one preference per user per product. Therefore to use them in as is a score for the whole configuration per user has to be calculated. We propose to use the difference from the selected feature compared to the average rating of all characteristics. This approach includes all preferences of a user meaning a preference is also seen relative to others.
+All of the aggregation functions mentioned in \autoref{subsec:Concept:SolutionGeneration:ScoringFunction} use one preference per user per product. Therefore to use them in as is a score for the whole configuration per user has to be calculated. We propose to use the difference from the selected feature compared to the average rating of all characteristics. This approach includes all preferences of a user meaning a preference is also seen relative to others.
 
 As an example we could have feature
 \begin{equation}
-    F = \text{ClimateResilientTress},
+    F = \text{ClimateResilientTrees},
 \end{equation} with characteristics
 \begin{equation}
     \mathfrak{D}(F)= \{\text{low}, \text{medium}, \text{high}\},
@@ -150,7 +151,7 @@ preferences
 \end{equation} 
 and the configuration we want to rate
 \begin{equation}
-    S_F = \{(\text{ClimateResilientTress}, \text{high})\}.
+    S_F = \{(\text{ClimateResilientTrees}, \text{high})\}.
 \end{equation}
 The average rating for the feature is $F = 0.5$. Therefore the score given by a user $1$ is $0.9-0.5 = 0.4$.
 A second user with preferences 
@@ -159,7 +160,7 @@ A second user with preferences
 \end{equation} 
 on the other hand results in a feature score of $0.9-0.3=0.6$. For this user characteristic \emph{high} is of higher importance.
 
-As we would like to keep our scores as percentages and not in the interval $[-1,1]$ a normalisation is applied by adding one and dividing by two. Therefore our respective scores are $0.7$ for user one and $0.95$ for user two. A configuration usually consists of more than one feature therefore we take the average rating over all features to get the score one user gives to a configuration. Based on that score the mentioned aggregation functions can be used.
+As we would like to keep our scores as percentages and not in the interval $[-1,1]$ a normalisation is applied by adding one and dividing by two. Therefore our respective scores are $0.7$ for user one and $0.95$ for user two. A configuration usually consists of more than one feature therefore we take the average rating over all features to get the score one user gives to a configuration. Based on that score the in \autoref{subsec:Concept:SolutionGeneration:ScoringFunction} mentioned aggregation functions can be used.
 
 \subsubsection{Cofiguration Change Penalty}
 
@@ -167,4 +168,6 @@ In this thesis a penalty function is proposed which gives the percentage of char
 \begin{equation}
     penalty_{proportion}(\overline{s},\ s) =  \left(\frac{\sum_{d \in \overline{s}} changed(d,\overline{s}, s)}{|\overline{s}|}\right)^\alpha.
 \end{equation}
+
+By including the current configuration into scoring the scoring function can take into account, changes that have been already implemented and therefore might be very costly to change.
     
