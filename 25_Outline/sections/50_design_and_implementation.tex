@@ -7,7 +7,7 @@
 
 \autoref{fig:DesignImplementation:ConfiguratorMerlin} shows the architecture of CAS Configurator Merlin.
 \begin{description}
-    \item[M.Core] provides the base of the configurator it checks configuration against all rules in the database, provides possible alternatives on a change that invalidates other parts of a configuration.
+    \item[M.Core] provides the base of the configurator. It checks the configuration against all rules in the database, provides possible alternatives if a change invalidates other parts of a configuration. The system relies on a CSP solver for validation and suggestion of alternatives.
     \item[M.Model] is the editor to create products and rules. These rules can then be uploaded to M.Core.
     \item[M.Customer] is the customer facing component. It allows a customer to configure a product.
 \end{description}
@@ -22,7 +22,7 @@
 \section{CAS Group-Configurator}
 \label{sec:DesignImplementation:GroupConfigurator}
 
-\citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} extends CAS Merlin Configurator in his thesis to allow simultaneous configuration. The extended architecture is shown in \autoref{fig:DesignImplementation:CollaborativeConfiguratorMerlin}.
+\citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019}'s extends CAS Merlin Configurator in his thesis to allow simultaneous configuration. The extended architecture is shown in \autoref{fig:DesignImplementation:CollaborativeConfiguratorMerlin}.
 He only makes changes to M.Customer which is renamed to M.Collab-Customer and introduces a new component M.Collab.
 
 \begin{description}
