@@ -1,17 +1,11 @@
 \chapter{Introduction}
 \label{ch:Introduction}
 
-\todo[inline]{1st Relevance of the topic - why is configuration relevant, why is group configuration relevant - group configuration new field - why recommendations for it}
-\todo[inline]{2nd Getting to the research question - issues with group decisions - forschungsfrage }
-\todo[inline]{3rd what does this thesis create - To answer this question xyz will be created and evaluated}
+\section{Motivation}
+\label{sec:Introduction:Goals}
 
-
-\section{Problem}
-\label{sec:Introduction:Problem}
-
-A group of people with different personal preferences wants to find a solution to a problem with high variability. Making decisions in the group comes with problems as a lack of communication leads to worse decision outcomes \cite{atasItemRecommendationUsing2017}. Group dynamics and biases can lead to suboptimal decisions \cite{kerrBiasJudgmentComparing1996}. Generally group decisions are complex and often the process that yields the decision result is unstructured, thereby not providing any reproducibility of the success. Groups have different power structures and usually individuals have different interests. Moreover finding solutions is a rather complex task and group decisions can suffer intransparency.
-
-Examples of group recommendation decisions are:
+Customers and sales people used to be faced with big catalogues that describe how a complex product can be build. This catalogues specified what is possible to combine but it was easy to make mistakes. The sales process took a long time because orders have to be manually validated. With the advent of mass customization these issues started to be addressed. In mass customization a configurator is used. The configurator has a rulebook that contains all the attributes of a product, their corresponding characteristics and rules on how these can be combined. A system like that allows to reduce the workload and cost of sales \cite{shafieeCostBenefitAnalysis2018}. "[P]roduct configuration is seen as a team activity with divergent interests" \cite{mendoncaCollaborativeProductConfiguration2008} and therefore research in the field of group-based configuration started receiving more attention. 
+To give an idea of situations that can use group-based configuration, here are some examples:
 \begin{itemize}
     \item A companies truck fleet (e.g. driver, purchasing-manager, marketing manager)
     \item A companies customer management software system (e.g. salesperson, human resource manager, accounting manager)
@@ -20,7 +14,29 @@ Examples of group recommendation decisions are:
     \item An existing company building and how it should be furnished (e.g. landlord, employee representative, CEO)
 \end{itemize}
 
-These examples are different from an ordinary group decision in the sense that the components the solution is build from are standardised but a solution is highly individual because of high variability. The solution space therefore is rather large.
+Unfortunately making decisions in the group comes with problems as a lack of communication leads to worse decision outcomes \cite{atasItemRecommendationUsing2017}. Group dynamics and biases can lead to suboptimal decisions \cite{kerrBiasJudgmentComparing1996}.
+Generally group decisions are complex and often the process that yields the decision result is unstructured, thereby not providing any reproducibility of the success. Groups have different power structures and usually individuals have different interests. Moreover finding solutions is a rather complex task and group decisions can suffer intransparency.
+
+Group recommenders promise to help with that as they can take individual user preferences and find good compromises for the whole group. They are used in movies and music. Group recommenders have received much attention in the past but to date there have not been any approaches to combine them with group-based configuration. There have been approaches to combine recommendation techniques with configuration but these were limited to configuration for a single user only. 
+
+The above listed examples of use cases for group-based configuration show that ordinary group recommenders cannot be used here as they, unlike configuration, operate on finished products. Configuration on the other hand operates with solutions that are build from standardised features. This makes it highly individual because there are a high number of variants. The solution space therefore is rather large. Therefore it is necessary to think of ways in which knowledge from group recommendation can be used in this space.
+
+\section{Goals of this Thesis}
+\label{sec:Introduction:Goals}
+This thesis aims to show the viability of using group recommenders in a configuration setting. It is discussed what needs to be done to adapt group recommenders to allow usage of the basic recommendation technique of item-based recommendation. The following questions shall be answered in this thesis.
+
+\begin{itemize}
+    \item How can a recommender system for group configuration be used in a decision to increase satisfaction within the group?
+    \item How can a group recommender translate individual preferences into recommendations that improve the overall satisfaction of group members while considering constraints given by the configuration state? 
+\end{itemize}
+
+
+\section{Structure of this Thesis}
+\label{sec:Introduction:Structure}
+
+\todo[inline]{write structure}
+
+\pagebreak
 
 \section{Idea}
 \label{sec:Introduction:Idea}
