@@ -1,16 +1,46 @@
 \chapter{Introduction}
 \label{ch:Introduction}
 
-\section{Motivation}
-\label{sec:Introduction:Motivation}
+\section{Problem}
+\label{sec:Introduction:Problem}
 
-Product configuration supports companies in their sales process, it reduces costs and decreases time needed to produce an offer for a product \cite{shafieeCostBenefitAnalysis2018}. Usually configuration is done by one user but for complex decisions the risk that a single user will make mistakes increases therefore making the decision in a group can yield better results \cite{felferningGroupBasedConfiguration2016, felfernigGroupDecisionSupport2011}. Unfortunately groups are not immune to group biases and group dynamics that can reduce the benefits of group decisions \cite{kerrBiasJudgmentComparing1996}.
-There exists work on recommender systems for configuration and there are recommender systems for groups but there has not been any work on how to combine these. A recommender system, can help reduce influence of group behaviour and thereby increases the benefit of groups making more rational decisions than individuals \cite{charnessGroupsMakeBetter2012}.
+A group of people with different personal preferences wants to find a solution to a problem with high variability. Making decisions in the group comes with problems as a lack of communication leads to worse decision outcomes \cite{atasItemRecommendationUsing2017}. Group dynamics and biases can lead to suboptimal decisions \cite{kerrBiasJudgmentComparing1996}. Generally group decisions are complex and often the process that yields the decision result is unstructured, thereby not providing any reproducibility of the success. Groups have different power structures and usually individuals have different interests. Moreover finding solutions is a rather complex task and group decisions can suffer intransparency.
 
-\section{Research Question}
-\label{sec:Introduction:ResearchQuestion}
-\begin{enumerate}
-    \item How can decision-making in group configuration processes be supported (through recommender systems)? (central question)
-    \item Which requirements do configuration systems for collaborative decision-making have and how could such a system look like?
-    \item How does group hierarchy and structure influence the decision-making process in group based configuration scenarios?
-\end{enumerate}
+Examples of group recommendation decisions are:
+\begin{itemize}
+    \item A companies truck fleet (e.g. driver, purchasing-manager, marketing manager)
+    \item A companies customer management software system (e.g. salesperson, human resource manager, accounting manager)
+    \item A public project to get a new area at a zoo (e.g. visitor, director, animal keeper)
+    \item Managing a forest (e.g. owner, environmental protection agency, consumer representative)
+    \item An existing company building and how it should be furnished (e.g. landlord, employee representative, CEO)
+\end{itemize}
+
+These examples are different from an ordinary group decision in the sense that the components the solution is build from are standardised but a solution is highly individual because of high variability. The solution space therefore is rather large.
+
+\section{Idea}
+\label{sec:Introduction:Idea}
+
+To support groups in their decision making product configuration can be used. It allows to accurately map constraints and dependencies in complex problems and to map the solution space. Using a group recommender a group is supported in their configuration decisions. The goal is to show that these approaches can help a group with the configuration task presented by the usage of a configurator and to better process individual preferences than a human can.
+
+
+There does not exists much research on recommendation for group configuration, however it is comprised of two different areas of research, recommenders for groups and recommenders for configuration.
+The existing literature on recommenders for groups is extensive with many different approaches and domains \cite{delicResearchMethodsGroup2016, chenInterfaceInteractionDesign2011, atasItemRecommendationUsing2017, jamesonRecommendationGroups2007, chenEmpatheticonsDesigningEmotion2014, liuCGSPAComprehensiveGroup2019}. \citeauthor{felfernigGroupRecommenderSystems2018} give an overview about basic approaches \cite{felfernigGroupRecommenderSystems2018}.
+In the area of product configuration research about recommender systems is undertaken as well \cite{pereiraFeatureBasedPersonalizedRecommender2016, scholzConfigurationbasedRecommenderSystem2017, scholzEffectsDecisionSpace2017}.
+Group configuration is a more specialized sub field of configuration therefore less attention has been directed towards it and because of that there has not been much research on recommenders that are for group recommendation in a configuration setting.
+
+\section{Benefits}
+\label{sec:Introduction:Benefits}
+
+The benefits of this approach are, that the need for a group to communicate directly is reduced. Each user gives their own preferences and the group will get a recommendation based on that. This allows to reduce problems arising in groups decisions like lack of communication and bias in groups. Additionally this shows the viability of combining group recommendations and configuration approaches.
+
+\section{Action}
+\label{sec:Introduction:Action}
+
+As resulting action in this thesis a prototype will be designed, implemented and evaluated that achieves the following objectives.
+\begin{itemize}
+    \item A system should give recommendation for the group using a scoring function that takes into account preferences of group members and the current state of the situation.
+    \item Recommendations should allow different scoring functions.
+    \item Recommendations should always be valid options.
+    \item The system should consider all preferences of individuals in a group and find a solution that most people of the group are happy with.
+\end{itemize}
+The results are communicated through this thesis. Thereby adhering to the research method of design science research \cite{peffersDesignScienceResearch2007}.
