@@ -1,54 +1,173 @@
 \chapter{Concept}
 \label{ch:Concept}
 
-\section{CAS Configurator Merlin}
-\label{sec:Concept:ConfiguratorMerlin}
+\section{User Interaction with the System}
+\label{sec:Concept:UserSystemInteraction}
 
-\autoref{fig:Concept:ConfiguratorMerlin} shows the architecture of CAS Configurator Merlin.
-\begin{description}
-    \item[M.Core] provides the base of the configurator it checks configuration against all rules in the database, provides possible alternatives on a change that invalidates other parts of a configuration.
-    \item[M.Model] is the editor to create products and rules. These rules can then be uploaded to M.Core.
-    \item[M.Customer] is the customer facing component. It allows a customer to configure a product.
-\end{description}
+The system has one main way to be used as defined in \autoref{tab:Concept:MainUseCase}. This process is also visualized in \autoref{fig:Concept:ConfigurationProcess}.
 
 \begin{figure}
     \centering
-    \includegraphics{./figures/40_concept/MerlinConfigurator.pdf}
-    \caption{Architecture of Configurator Merlin \cite[Fig. 4.1]{raabKollaborativeProduktkonfigurationEchtzeit2019}}
-    \label{fig:Concept:ConfiguratorMerlin}
+    \includegraphics[width=1\textwidth]{./figures/40_concept/bpmn_configuration_process_with_continious_recommendation.pdf}
+    \caption{A BPMN diagram of the configuration process.}
+    \label{fig:Concept:ConfigurationProcess}
 \end{figure}
 
-\section{CAS Group-Configurator}
-\label{sec:Concept:GroupConfigurator}
+\begin{table}
+    \begin{center}
+        \begin{tabularx}{\columnwidth}{l|X}
+            \multicolumn{2}{c}{Main System Usage} \\
+            \hline
+            Preconditions   & 
+                \begin{itemize}
+                    \item The configurator is opened with the same session on each of the group member's machines
+                    \item The configuration is in an unfinished state (this state is a consensus state)
+                \end{itemize} \\
+            \hline
+            Postcondition   & 
+                \begin{itemize}
+                    \item All users have entered their preferences for each attribute explicitly.
+                    \item The system gives a recommendation based on all preferences and the unfinished configuration state
+                \end{itemize} \\
+            \hline
+            Basic Flow      & 
+                \begin{enumerate}
+                    \item A user indicates a preference for an attribute
+                    \item The system generates a recommendation (based on preferences and configuration status)
+                    \item If not all users have given their preferences go to step 1.
+                \end{enumerate} \\
+            \hline
+        \end{tabularx}
+        \caption{A description of the main way users will interact with the system}
+        \label{tab:Concept:MainUseCase}
+    \end{center}
+\end{table}
 
-\citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} extends CAS Merlin Configurator in his thesis to allow simultaneous configuration. The extended architecture is shown in \autoref{fig:Concept:CollaborativeConfiguratorMerlin}.
-He only makes changes to M.Customer which is renamed to M.Collab-Customer and introduces a new component M.Collab.
+\section{Case Study}
+\label{sec:Concept:CaseStudy}
 
-\begin{description}
-    \item[M.Collab] is a node.js server application that communicates with M.Core via REST-API and with M.Collab-Customer via WebSocket. It sits in between M.Collab-Customer and M.Core and handles all processing regarding collaborative configuration.
-    \item[M.Collab-Customer] a modified version of M.Customer that does all communication via WebSocket and does communicate with M.Collab instead of M.Core.
-\end{description}
+The case study used in this thesis is a simplified version from forestry.
+The used characteristics and attributes are shown in \autoref{fig:Concept:ForestExample}. Additionally as example are given preferences, a configuration state and a finished configuration.
 
 \begin{figure}
-    \centering
-    \includegraphics{./figures/40_concept/MerlinCollaborativeConfigurator.pdf}
-    \caption{Architecture of Collaborative Configurator Merlin \cite[Fig. 4.3]{raabKollaborativeProduktkonfigurationEchtzeit2019}}
-    \label{fig:Concept:CollaborativeConfiguratorMerlin}
-\end{figure}
+    \begin{mdframed}[frametitle={Example for Forest Use Case}]
+        In this example we have a small group of users. The use case is a piece of forest and variables are for example harvesting activity, which trees to grow and accessibility for people.
+        \begin{align}
+            \begin{split}
+                V = \{ & \textit{Heimisch}, \textit{Klimaresilient}, \textit{Verwertbar}, \textit{Ernteaufwand}, \\
+                & \textit{Menge}, \textit{Preis}, \textit{Walderfahrung} \},
+            \end{split} \notag \\
+            \mathfrak{D}(\textit{Heimisch}) =  \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
+            \mathfrak{D}(\textit{Klimaresilient}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
+            \mathfrak{D}(\textit{Verwertbar}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
+            \mathfrak{D}(\textit{Ernteaufwand}) = \{ & \text{Motormanuel}, \text{Harvester}, \text{Vollautomatisch}\}, \notag \\
+            \mathfrak{D}(\textit{Menge}) = \{ & \text{Keine}, \text{Gering}, \text{Hoch}\}, \notag \\
+            \mathfrak{D}(\textit{Preis}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag\\
+            \mathfrak{D}(\textit{Walderfahrung}) = \{ & \text{Gering}, \text{Mittel}, \text{Intensiv}\},\notag \\
+            U = \{ & 1,2\} \notag\\
+            P = \{ & P_1, P_2\} \notag\\
+            \begin{split}
+                P_1 = \{ & (\text{Motormanuel}, 0.5), (\text{Harvester}, -0.3) \} \\ 
+                & \cup \{ (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V,\ i \notin \{ \text{Motormanuel}, \text{Harvester}\} \ \} \ 
+            \end{split} \notag \\
+            P_2 = \{ & (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V \} \notag \\
+            S  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Menge}, \text{Gering}) \} \notag \\
+            \begin{split}
+            S_F  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Klimaresilient}, \text{Gering}), (\textit{Verwertbar}, \text{Gering}), \\
+            & (\textit{Ernteaufwand}, \text{Motormanuel}),
+            (\textit{Menge}, \text{Keine}), (\textit{Preis}, \text{Hoch}),\\ 
+            & (\textit{Walderfahrung}, \text{Gering}) \} 
+            \end{split} \notag
+        \end{align}
+    \end{mdframed}
+    \caption{An example of a forest use case that includes two people.}
+    \label{fig:Concept:ForestExample}
+    \end{figure}
 
 
-\section{Extended Configurator}
-\label{sec:Concept:ExtendedConfigurator}
+\section{Solution Generation}
+\label{sec:Concept:SolutionGeneration}
 
-Extending \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} work a module called M.Recommender is added. Its aim is to provide a recommendation server that holds all the data needed for recommendations. M.Collab and M.Collab-Customer have to be modified to allow taking in preferences and to show  recommendations. The recommender engine is set up to be in a separate system which allows the easier replacement and the usage of different technologies. The extended architecture is shown in \autoref{fig:Concept:RecommenderForCollaborativeConfiguratorMerlin}.
+Given an unfinished configuration and preferences of all group members, rate a finished configuration on how well it reflects the configuration state and preferences. This Use this to choose the best finished configuration out of a list to recommend.
 
-\begin{description}
-    \item[M.Recommender] is a new system that will get queried from M.Collab for recommendations, when the configuration changes. M.Recommender will return recommendations which then can be presented to users by M.Collab-Customer.
-\end{description}
+\subsection{Generating a Recommendation}
 
-\begin{figure}
-    \centering
-    \includegraphics{./figures/40_concept/MerlinCollabRecommender.pdf}
-    \caption{Architecture of Collaborative Configurator Merlin with an added recommender system.}
-    \label{fig:Concept:RecommenderForCollaborativeConfiguratorMerlin}
-\end{figure}
+Hereby the idea is there is a database of complete configurations (possibly historic from other groups or automatically generated or both).
+Now the recommendation procedure looks as follows:
+
+\begin{enumerate}
+    \item Assign a score to each stored configuration according to $$score_{group}(\overline{configurationState},\ \overline{preferences}, \ configurationInStore)$$
+    \item Optional: Filter out configurations that have a score below a certain value using a different scoring function. For example filter out configurations that cause a certain level of misery.
+    \item Chose the configuration with the highest score as recommendation.
+\end{enumerate}
+
+\todo[inline]{move definitions that are made by me to here}
+
+
+
+\begin{samepage}
+\subsection{Scoring Function}
+\label{subsec:Concept:SolutionGeneration:ScoringFunction}
+\emph{Group configuration scoring function} includes preferences and current configuration state. This function gives a score for a finished configuration (while using the current configuration state and all user preferences):
+\begin{equation}
+    score_{group}: S \times P \times S_F \to \mathbb{R}
+\end{equation}
+
+An example group configuration scoring function is $score_{group}$ with
+
+\begin{equation}
+    \notag \alpha \in \mathbb{R}, \qquad     changed(d,\overline{s}, s) = 
+    \begin{cases}
+      1, & d \in \overline{s} \land d \notin s \\
+      0, & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        score_{group}(\overline{s},\ \overline{p},\ s)
+        & = score(\overline{p},\ s) - penalty(\overline{s},\ s) \\
+        & = score(\overline{p},\ s) - \sum_{d \in \overline{s}} changed(d,\overline{s}, s) \cdot \alpha
+    \end{split}
+\end{equation}
+
+This thesis will use multiple scoring functions. Among those are ones for least misery, average and multiplicative. Average and multiplicative yield good results among the studies presented by \citeauthor{Masthoff2015}. Strategies can also be combined, one example here is average without misery \cite{Masthoff2015}.
+\end{samepage}
+
+\subsubsection{Preference Scoring}
+
+All of the aggregation functions mentioned in \autoref{subsec:Concept:SolutionGeneration:ScoringFunction} use one preference per user per product. Therefore to use them in as is a score for the whole configuration per user has to be calculated. We propose to use the difference from the selected feature compared to the average rating of all characteristics. This approach includes all preferences of a user meaning a preference is also seen relative to others.
+
+As an example we could have feature
+\begin{equation}
+    F = \text{ClimateResilientTrees},
+\end{equation} with characteristics
+\begin{equation}
+    \mathfrak{D}(F)= \{\text{low}, \text{medium}, \text{high}\},
+\end{equation}
+preferences
+\begin{equation}
+    P_1 = \{(\text{low}, 0), (\text{medium},0.6), (\text{high},0.9) \}
+\end{equation} 
+and the configuration we want to rate
+\begin{equation}
+    S_F = \{(\text{ClimateResilientTrees}, \text{high})\}.
+\end{equation}
+The average rating for the feature is $F = 0.5$. Therefore the score given by a user $1$ is $0.9-0.5 = 0.4$.
+A second user with preferences 
+\begin{equation}
+    P_2 = \{(\text{low}, 0), (\text{medium},0), (\text{high},0.9) \}
+\end{equation} 
+on the other hand results in a feature score of $0.9-0.3=0.6$. For this user characteristic \emph{high} is of higher importance.
+
+As we would like to keep our scores as percentages and not in the interval $[-1,1]$ a normalisation is applied by adding one and dividing by two. Therefore our respective scores are $0.7$ for user one and $0.95$ for user two. A configuration usually consists of more than one feature therefore we take the average rating over all features to get the score one user gives to a configuration. Based on that score the in \autoref{subsec:Concept:SolutionGeneration:ScoringFunction} mentioned aggregation functions can be used.
+
+\subsubsection{Cofiguration Change Penalty}
+
+In this thesis a penalty function is proposed which gives the percentage of characteristics that exist in the configuration that is to be rated. This value can be tuned to be more or less strict by potentiating. Thereby allowing more deviation or less deviation from the current configuration state. The penalty function is defined as
+\begin{equation}
+    penalty_{proportion}(\overline{s},\ s) =  \left(\frac{\sum_{d \in \overline{s}} changed(d,\overline{s}, s)}{|\overline{s}|}\right)^\alpha.
+\end{equation}
+
+By including the current configuration into scoring the scoring function can take into account, changes that have been already implemented and therefore might be very costly to change.
+    
