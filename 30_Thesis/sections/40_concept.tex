@@ -51,7 +51,7 @@ The used characteristics and attributes are shown in \autoref{fig:Concept:Forest
 
 \begin{figure}
     \begin{mdframed}[frametitle={Example for Forest Use Case}]
-        In this example we have a small group of users. The use case is a piece of forest and variables are for example harvesting activity, which trees to grow and accessibility for people.
+        In this example there are a small group of users. The use case is a piece of forest and variables are for example harvesting activity, which trees to grow and accessibility for people.
         \begin{align}
             \begin{split}
                 V = \{ & \textit{Heimisch}, \textit{Klimaresilient}, \textit{Verwertbar}, \textit{Ernteaufwand}, \\
@@ -136,9 +136,9 @@ This thesis will use multiple scoring functions. Among those are ones for least 
 
 \subsubsection{Preference Scoring}
 
-All of the aggregation functions mentioned in \autoref{subsec:Concept:SolutionGeneration:ScoringFunction} use one preference per user per product. Therefore to use them in as is a score for the whole configuration per user has to be calculated. We propose to use the difference from the selected feature compared to the average rating of all characteristics. This approach includes all preferences of a user meaning a preference is also seen relative to others.
+All of the aggregation functions mentioned in \autoref{subsec:Concept:SolutionGeneration:ScoringFunction} use one preference per user per product. Therefore to use them in as is a score for the whole configuration per user has to be calculated. I propose to use the difference from the selected feature compared to the average rating of all characteristics. This approach includes all preferences of a user meaning a preference is also seen relative to others.
 
-As an example we could have feature
+As an example a feature could be
 \begin{equation}
     F = \text{ClimateResilientTrees},
 \end{equation} with characteristics
@@ -149,7 +149,7 @@ preferences
 \begin{equation}
     P_1 = \{(\text{low}, 0), (\text{medium},0.6), (\text{high},0.9) \}
 \end{equation} 
-and the configuration we want to rate
+and the configuration that is supposed to be rated
 \begin{equation}
     S_F = \{(\text{ClimateResilientTrees}, \text{high})\}.
 \end{equation}
@@ -160,7 +160,7 @@ A second user with preferences
 \end{equation} 
 on the other hand results in a feature score of $0.9-0.3=0.6$. For this user characteristic \emph{high} is of higher importance.
 
-As we would like to keep our scores as percentages and not in the interval $[-1,1]$ a normalisation is applied by adding one and dividing by two. Therefore our respective scores are $0.7$ for user one and $0.95$ for user two. A configuration usually consists of more than one feature therefore we take the average rating over all features to get the score one user gives to a configuration. Based on that score the in \autoref{subsec:Concept:SolutionGeneration:ScoringFunction} mentioned aggregation functions can be used.
+As scores should be kept as percentages and not in the interval $[-1,1]$ a normalisation is applied by adding one and dividing by two. Therefore the respective scores are $0.7$ for user one and $0.95$ for user two. A configuration usually consists of more than one feature therefore an average rating over all features is taken to get the score one user gives to a configuration. Based on that score the in \autoref{subsec:Concept:SolutionGeneration:ScoringFunction} mentioned aggregation functions can be used.
 
 \subsubsection{Cofiguration Change Penalty}
 

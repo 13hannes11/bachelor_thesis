@@ -3,7 +3,7 @@
 
 In this chapter the prototype is evaluated in terms of its functionality and its properties.
 
-We will generate all possible valid configurations for one use case i.e. generate all possible valid configurations for the forest use case.
+All possible valid configurations will be generate for one use case i.e. all possible valid configurations for the forest use case.
 
 Generate groups with preferences (explicit preferences) and configuration state (which would be for example the currently existing forest).
 
@@ -26,7 +26,7 @@ When comparing a group to individual scores, a member of the group is randomly c
 % see: https://medium.com/@george.drakos62/how-to-select-the-right-evaluation-metric-for-machine-learning-models-part-1-regrression-metrics-3606e25beae0 or https://en.wikipedia.org/wiki/Error_metric
 
 \subsection{Satisfaction}
-As a metric on overall satisfaction within the group we propose a threshold metric that defines a user as satisfied if his score is above a threshold of 60\% and as unsatisfied with a score of less than 40\%. Now we can measure group satisfaction by amount of members being satisfied, neutral and unsatisfied.
+As a metric on overall satisfaction within the group a threshold metric is proposed that defines a user as satisfied if his score is above a threshold of 65\% and as unsatisfied with a score of less than 35\%. Now group satisfaction can be measured by the amount of members being satisfied, neutral and unsatisfied.
 
 \subsection{Group Score}
 The group score metric is to simply take the score the recommender has given to a group. This score can be compared with other configurations' score.
@@ -47,7 +47,7 @@ The group score metric is to simply take the score the recommender has given to 
 \section{Generating Data}
 \label{sec:Evaluation:GeneratingGroups}
 
-For the forest use case, the idea is that there are multiple types of user profiles. Each group profile is represented by a neutral, negative or positive attitude to an attribute value. Now during data generation the attitude is converted to a preference using a normal distribution. \autoref{fig:Evaluation:DataGeneration} shows how we convert the user profile to preferences.
+For the forest use case, the idea is that there are multiple types of user profiles. Each group profile is represented by a neutral, negative or positive attitude to an attribute value. Now during data generation the attitude is converted to a preference using a normal distribution. \autoref{fig:Evaluation:DataGeneration} shows how the user profile can be converted to preferences.
 
 \pgfplotsset{height=5cm,width=\textwidth,compat=1.8}
 \pgfmathdeclarefunction{gauss}{2}{%
