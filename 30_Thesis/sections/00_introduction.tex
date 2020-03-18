@@ -14,19 +14,20 @@ To give an idea of situations that can use group-based configuration, here are s
     \item An existing company building and how it should be furnished (e.g. landlord, employee representative, CEO)
 \end{itemize}
 
-Unfortunately making decisions in the group comes with problems as a lack of communication leads to worse decision outcomes \cite{atasItemRecommendationUsing2017}. Group dynamics and biases can lead to suboptimal decisions \cite{kerrBiasJudgmentComparing1996}.
+Unfortunately, making decisions in the group comes with problems as a lack of communication leads to worse decision outcomes \cite{atasItemRecommendationUsing2017}. Group dynamics and biases can lead to suboptimal decisions \cite{kerrBiasJudgmentComparing1996}.
 Generally group decisions are complex and often the process that yields the decision result is unstructured, thereby not providing any reproducibility of the success. Groups have different power structures and usually individuals have different interests. Moreover finding solutions is a rather complex task and group decisions can suffer intransparency.
 
-Group recommenders promise to help with that as they can take individual user preferences and find good compromises for the whole group. They are used in movies and music. Group recommenders have received much attention in the past but to date there have not been any approaches to combine them with group-based configuration. There have been approaches to combine recommendation techniques with configuration but these were limited to configuration for a single user only. 
+Group recommenders promise to help with that as they can take individual user preferences and find good compromises for the whole group. They are used in movies, music and travel \cite{garciaGroupRecommenderSystem2009, piliponyte2013sequential, peraGroupRecommenderMovies2013,felfernigGroupRecommenderApplications2018}. The existing literature on recommenders for groups is extensive with many different approaches and domains \cite{delicResearchMethodsGroup2016, chenInterfaceInteractionDesign2011, atasItemRecommendationUsing2017, jamesonRecommendationGroups2007, chenEmpatheticonsDesigningEmotion2014, liuCGSPAComprehensiveGroup2019} but to date there have not been any approaches to combine them with group-based configuration. There have been approaches to combine recommendation techniques with configuration but these were limited to configuration for a single user only \cite{pereiraFeatureBasedPersonalizedRecommender2016, scholzConfigurationbasedRecommenderSystem2017, scholzEffectsDecisionSpace2017}.
 
-The above listed examples of use cases for group-based configuration show that ordinary group recommenders cannot be used here as they, unlike configuration, operate on finished products. Configuration on the other hand operates with solutions that are build from standardised features. This makes it highly individual because there are a high number of variants. The solution space therefore is rather large. Therefore it is necessary to think of ways in which knowledge from group recommendation can be used in this space.
+
+The above listed examples of use cases for group-based configuration show that ordinary group recommenders cannot be used here as they, unlike configuration, operate on simple products. Configuration on the other hand operates with solutions that are successively build by combining standardised features. This leads to two problems when trying to apply recommenders in this field: first, because of simple combinatorics, the number of variants is enormous. Second, because of the interrelation between features, a small change in configuration can lead to many subsequent changes and thus a completely different product. Third, during configuration there is an already pre-existing configuration state that potentially is expensive to change. This could be the current state of a situation for example how a building currently looks like, an already made decisions on a project that would be expensive to change or simply an already agreed part that was decided on earlier in the project stage. The group recommender needs to account for this behaviour. Therefore it is necessary to explore new ideas to take knowledge from group recommendation into account.
 
 \section{Goals of this Thesis}
 \label{sec:Introduction:Goals}
-This thesis aims to show the viability of using group recommenders in a configuration setting. It is discussed what needs to be done to adapt group recommenders to allow usage of the basic recommendation technique of item-based recommendation. The following questions shall be answered in this thesis.
+
+This thesis aims to show the viability of using group recommenders in a configuration setting. It is discussed what needs to be done to adapt group recommenders to allow usage of the basic recommendation technique of item-based recommendation. The research question for this thesis is the following.
 
 \begin{itemize}
-    \item How can a recommender system for group configuration be used in a decision to increase satisfaction within the group?
     \item How can a group recommender translate individual preferences into recommendations that improve the overall satisfaction of group members while considering constraints given by the configuration state? 
 \end{itemize}
 
@@ -36,34 +37,21 @@ This thesis aims to show the viability of using group recommenders in a configur
 
 \todo[inline]{write structure}
 
-\pagebreak
+%\section{Benefits}
+%\label{sec:Introduction:Benefits}
 
-\section{Idea}
-\label{sec:Introduction:Idea}
+%The benefits of this approach are, that the need for a group to communicate directly is reduced. Each user gives their own preferences and the group will get a recommendation based on that. This allows to reduce problems arising in groups decisions like lack of communication and bias in groups. Additionally this shows the viability of combining group recommendations and configuration approaches.
 
-To support groups in their decision making product configuration can be used. It allows to accurately map constraints and dependencies in complex problems and to map the solution space. Using a group recommender a group is supported in their configuration decisions. The goal is to show that these approaches can help a group with the configuration task presented by the usage of a configurator and to better process individual preferences than a human can.
+%\section{Action}
+%\label{sec:Introduction:Action}
 
+%\todo[inline]{move to evaluation}
 
-There does not exists much research on recommendation for group configuration, however it is comprised of two different areas of research, recommenders for groups and recommenders for configuration.
-The existing literature on recommenders for groups is extensive with many different approaches and domains \cite{delicResearchMethodsGroup2016, chenInterfaceInteractionDesign2011, atasItemRecommendationUsing2017, jamesonRecommendationGroups2007, chenEmpatheticonsDesigningEmotion2014, liuCGSPAComprehensiveGroup2019}. \citeauthor{felfernigGroupRecommenderSystems2018} \cite{felfernigGroupRecommenderSystems2018} give an overview about basic approaches.
-In the area of product configuration research about recommender systems is undertaken as well \cite{pereiraFeatureBasedPersonalizedRecommender2016, scholzConfigurationbasedRecommenderSystem2017, scholzEffectsDecisionSpace2017}.
-Group configuration is a more specialized sub field of configuration therefore less attention has been directed towards it and because of that there has not been much research on recommenders that are for group recommendation in a configuration setting.
-
-\section{Benefits}
-\label{sec:Introduction:Benefits}
-
-The benefits of this approach are, that the need for a group to communicate directly is reduced. Each user gives their own preferences and the group will get a recommendation based on that. This allows to reduce problems arising in groups decisions like lack of communication and bias in groups. Additionally this shows the viability of combining group recommendations and configuration approaches.
-
-\section{Action}
-\label{sec:Introduction:Action}
-
-\todo[inline]{move to evaluation}
-
-As resulting action in this thesis a prototype will be designed, implemented and evaluated that achieves the following objectives.
-\begin{itemize}
-    \item A system should give recommendation for the group using a scoring function that takes into account preferences of group members and the current state of the situation.
-    \item Recommendations should allow different scoring functions.
-    \item Recommendations should always be valid options.
-    \item The system should consider all preferences of individuals in a group and find a solution that most people of the group are happy with.
-\end{itemize}
-The results are communicated through this thesis. Thereby adhering to the research method of design science research \cite{peffersDesignScienceResearch2007}.
+%As resulting action in this thesis a prototype will be designed, implemented and evaluated that achieves the following objectives.
+%\begin{itemize}
+%    \item A system should give recommendation for the group using a scoring function that takes into account preferences of group members and the current state of the situation.
+%    \item Recommendations should allow different scoring functions.
+%    \item Recommendations should always be valid options.
+%    \item The system should consider all preferences of individuals in a group and find a solution that most people of the group are happy with.
+%\end{itemize}
+%The results are communicated through this thesis. Thereby adhering to the research method of design science research \cite{peffersDesignScienceResearch2007}.
