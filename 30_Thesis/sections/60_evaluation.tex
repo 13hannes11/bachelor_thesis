@@ -103,6 +103,59 @@ Surprisingly, all tested values for $smd \in [5,35]$ resulted in a decrease of u
 \missingfigure{Figure showing happiness and unhappiness with individual decision in relation to smd}
 
 
-\todo[inline]{explaining evaluations}
+\subsection{Analysing Data}
 
-\missingfigure{Result figure}
+In this section results for heterogeneous groups, random groups and homogenous groups, based on the forest use case, are shown. \autoref{fig:Evaluation:HeterogenousGroupIncrease} and \autoref{fig:Evaluation:HeterogenousGroupTotal} show results for heterogeneous groups. \autoref{fig:Evaluation:RandomGroupIncrease}, \autoref{fig:Evaluation:RandomGroupTotal} shows the results for random groups and \autoref{fig:Evaluation:HomogenousGroupIncrease}, \autoref{fig:Evaluation:HomogenousGroupTotal} show the results for homogenous groups.
+
+The first thing that is noticed when analysing the data is that with homogenous groups the recommender does not have any benefit to an individual choosing based on their own preferences. This is most likely due to all individuals being already happy with the individual decisions. This is an effect that was noticed even when a higher $smd$ was chosen. Here we notice that the effect of not having many configurations in the store does decrease hapiness by a large amount.
+
+When looking at results for random and heterogeneous groups the happiness level with an individual decision is much lower than individual decisions in homogenous groups. This finding is expected as random and homogenous groups are more diverse therefore opposing interest will be visible in these.
+
+All scoring functions are similarly good in decreasing unhappiness. However the results differ when looking at happiness, Here least misery performs abysmal compared to the other scoring functions. In \autoref{fig:Evaluation:HeterogenousGroupIncrease} it results even in a hapiness reduction whereby multiplication and best average increase it. Overall multiplication seems to perform the best in most scenarios. This confirms findings in expirments with real people as described by \citeauthor{Masthoff2015} \cite[p. 755f]{Masthoff2015}.
+
+The influence of stored configurations on performance can clearly be seen but the relationship does not seem to be linear. Therefore with already just a limited amount of stored finished configurations the recommender can increase happiness and decrease unhappiness. With 33\% of the stored configurations, the happiness increase is about 50\% to 75\% compared to using all stored finished configurations.
+
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{./figures/60_evaluation/heterogeneous_happy_unhappy_increase_amount-1000_smd-15.pdf}
+    \caption{The average happiness and unhappiness increase for \textbf{heterogeneous} groups consisting of four members with $smd=15\%$.}
+    \label{fig:Evaluation:HeterogenousGroupIncrease}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{./figures/60_evaluation/heterogeneous_happy_unhappy_total_group_amount-1000_smd-15.pdf}
+    \caption{The average happiness and unhappiness for \textbf{heterogeneous} groups consisting of four members with $smd=15\%$.}
+    \label{fig:Evaluation:HeterogenousGroupTotal}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{./figures/60_evaluation/random_happy_unhappy_increase_amount-1000_smd-15.pdf}
+    \caption{The average happiness and unhappiness increase for a \textbf{random} groups consisting of four members with $smd=15\%$.}
+    \label{fig:Evaluation:RandomGroupIncrease}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{./figures/60_evaluation/random_happy_unhappy_total_group_amount-1000_smd-15.pdf}
+    \caption{The average happiness and unhappiness for \textbf{random} groups consisting of four members with $smd=15\%$.}
+    \label{fig:Evaluation:RandomGroupTotal}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{./figures/60_evaluation/homogenous_happy_unhappy_increase_amount-1000_smd-15.pdf}
+    \caption{The average happiness and unhappiness increase for a \textbf{homogenous} groups consisting of four members with $smd=15\%$.}
+    \label{fig:Evaluation:HomogenousGroupIncrease}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{./figures/60_evaluation/homogenous_happy_unhappy_total_group_amount-1000_smd-15.pdf}
+    \caption{The average happiness and unhappiness for \textbf{homogenous} groups consisting of four members with $smd=15\%$.}
+    \label{fig:Evaluation:HomogenousGroupTotal}
+\end{figure}
