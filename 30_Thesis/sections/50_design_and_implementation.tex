@@ -1,65 +1,59 @@
 \chapter{Design and Implementation}
 \label{ch:DesignImplementation}
 
+\section{Architecture}
+\label{sec:DesignImplementation:Architecture}
 
-\section{CAS Configurator Merlin}
-\label{sec:DesignImplementation:ConfiguratorMerlin}
+This thesis is looking at a recommendation system for a configurator. Developing a configurator and a recommendation system for this thesis is infeasible. Therefore, the decision was made to use an existing configurator. In this thesis \emph{CAS Configurator Merlin} \cite{IndustrySpecificProduct2020} is extended. As this configurator does not allow group configuration a modified version is be used that already has been extended by \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} \cite{raabKollaborativeProduktkonfigurationEchtzeit2019}. 
 
-\autoref{fig:DesignImplementation:ConfiguratorMerlin} shows the architecture of CAS Configurator Merlin.
-\begin{description}
-    \item[M.Core] provides the base of the configurator. It checks the configuration against all rules in the database, provides possible alternatives if a change invalidates other parts of a configuration. The system relies on a CSP solver for validation and suggestion of alternatives.
-    \item[M.Model] is the editor to create products and rules. These rules can then be uploaded to M.Core.
-    \item[M.Customer] is the customer facing component. It allows a customer to configure a product.
-\end{description}
-
-\begin{figure}
-    \centering
-    \includegraphics{./figures/50_design_and_implementation/MerlinConfigurator.pdf}
-    \caption{Architecture of Configurator Merlin \cite[Fig. 4.1]{raabKollaborativeProduktkonfigurationEchtzeit2019}}
-    \label{fig:DesignImplementation:ConfiguratorMerlin}
-\end{figure}
-
-\section{CAS Group-Configurator}
-\label{sec:DesignImplementation:GroupConfigurator}
+\subsection{Base System}
+\label{subsec:DesignImplementation:BaseSystem}
 
 \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019}'s \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} extends CAS Merlin Configurator in his thesis to allow simultaneous configuration. The extended architecture is shown in \autoref{fig:DesignImplementation:CollaborativeConfiguratorMerlin}.
 He only makes changes to M.Customer which is renamed to M.Collab-Customer and introduces a new component M.Collab.
 
 \begin{description}
+    \item[M.Core] provides the base of the configurator. It checks the configuration against all rules in the database, provides possible alternatives if a change invalidates other parts of a configuration. The system relies on a CSP solver for validation and suggestion of alternatives.
+    \item[M.Model] is the editor to create products and rules. These rules can then be uploaded to M.Core.
     \item[M.Collab] is a node.js server application that communicates with M.Core via REST-API and with M.Collab-Customer via WebSocket. It sits in between M.Collab-Customer and M.Core and handles all processing regarding collaborative configuration.
-    \item[M.Collab-Customer] a modified version of M.Customer that does all communication via WebSocket and does communicate with M.Collab instead of M.Core.
+    \item[M.Collab-Customer] a modified version of M.Customer that does all communication via WebSocket and does communicate with M.Collab instead of M.Core. M.Customer is the customer facing component. It allows a customer to configure a product or solution.
 \end{description}
 
 \begin{figure}
     \centering
-    \includegraphics{./figures/50_design_and_implementation/MerlinCollaborativeConfigurator.pdf}
+    \includegraphics[width=0.6\textwidth]{./figures/50_design_and_implementation/MerlinCollaborativeConfigurator.pdf}
     \caption{Architecture of Collaborative Configurator Merlin \cite[Fig. 4.3]{raabKollaborativeProduktkonfigurationEchtzeit2019}}
     \label{fig:DesignImplementation:CollaborativeConfiguratorMerlin}
 \end{figure}
 
 
-\section{Extended Configurator}
-\label{sec:DesignImplementation:ExtendedConfigurator}
+\subsection{Extended Configurator}
+\label{subsec:DesignImplementation:ExtendedConfigurator}
 
-Extending \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} work a module called M.Recommender is added. Its aim is to provide a recommendation server that holds all the data needed for recommendations. M.Collab and M.Collab-Customer have to be modified to allow taking in preferences and to show  recommendations. The recommender engine is set up to be in a separate system which allows the easier replacement and the usage of different technologies. The extended architecture is shown in \autoref{fig:DesignImplementation:RecommenderForCollaborativeConfiguratorMerlin}.
+An existing base system can be extended in different directions. As M.Collab already functions as middleman between M.Collab-Customer one solution would be to add recommender functionality into Collab-Customer. However this approach would conflict with the single concern software design principle. It would change M.Collab from a system that works similar to a router. It manages communication between M.Collab-Customer instances and between M.Core and M.Collab-Customer. Therefore this solution was discarded.
+Another viable solution is adding the recommendation functionality into M.Core. The main benefit of this approach is that it allows the recommender to use systems that are used for solving constraint satisfaction problems to enhance recommendations. The disadvantage of this approach is that now the recommender is tightly coupled with the configurator. Not only does this mean that reproducing results in this thesis is only possible with access to a non open-source product but it also means that there is no possibility to use the recommender for other configuration solutions. Due to these reasons the decision was made to create a new service that communicates with M.Collab thereby being loosely coupled with other system components. Additionally, this approach also allows to add functionality that takes  advantage of a constraint satisfaction problem solver by either communicating with one via REST or by integrating one directly to the M.Recommend component. Moreover, it also allows the use of different technologies. Python can be used instead of JavaScript with Node.js. Using a separate system also allows to scale the system differently as it is possible to use multiple recommender instances for one configurator or one recommender for multiple configurator. This is an advantage in the age of automatically scaling systems.
 
-\begin{description}
-    \item[M.Recommender] is a new system that will get queried from M.Collab for recommendations, when the configuration changes. M.Recommender will return recommendations which then can be presented to users by M.Collab-Customer.
-\end{description}
+\autoref{fig:DesignImplementation:RecommenderForCollaborativeConfiguratorMerlin} shows how the system looks like after the recommender is added. For this thesis M.Collab and M.Collab-Customer will have to undergo some slight modifications to allow the displaying of recommendations and to query the recommender. The user interface is shown in \autoref{fig:DesignImplementation:RecommenderForCollaborativeConfiguratorMerlin} but this is a user interface for presentation only and will not be used for the evaluation. The user interface also only allows preference aggregation in terms of three discrete states: like, dislike and no rating given but the recommender supports and is evaluated with continuous values.
 
 \begin{figure}
     \centering
-    \includegraphics{./figures/50_design_and_implementation/MerlinCollabRecommender.pdf}
-    \caption{Architecture of Collaborative Configurator Merlin with an added recommender system.}
+    \includegraphics[width=0.6\textwidth]{./figures/50_design_and_implementation/MerlinCollabRecommender.pdf}
+    \caption{Architecture of Collaborative Configurator Merlin with the added recommender system.}
     \label{fig:DesignImplementation:RecommenderForCollaborativeConfiguratorMerlin}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{./figures/50_design_and_implementation/user_interface_prototype.png}
-    \caption{The user interface of the prototype, seen by one user while configuring with three other people.}
+    \caption{The user interface of the prototype, seen by one user while configuring with three other people. The circles in the top left represent the users that are connected in the current sessions. The current configuration state is shown by the in red selected characteristics. Recommendations are surrounded with a green border.}
     \label{fig:DesignImplementation:UserInterface}
 \end{figure}
 
+\subsection{Scoring Functions}
 
-\missingfigure{Figure showing screenshot of configurator UI}
+\section{Software Quality}
+\label{sec:DesignImplementation:SoftwareQuality}
+
+\subsection{Design Patterns}
+
+\subsection{Test Coverage}
