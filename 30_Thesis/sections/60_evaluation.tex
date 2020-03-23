@@ -30,6 +30,44 @@ When evaluating just a subset of stored finished configurations it is important 
 \section{Use Case}
 \label{sec:Evaluation:UseCase}
 
+To evaluate data a given use case is needed. In this thesis a forestry use case is evaluated. This is a use case with four stakeholders. \autoref{fig:Concept:ForestExample} already presented the attributes and characteristics used in this use case but an extension is needed to fully show the whole use case. Namely rules of non valid configurations. The constraints for this use case are listed in not with form in \autoref{tab:Evaluation:UseCase}. 
+
+\begin{table}
+    \begin{center}
+        \begin{tabular}{r|l}
+            & not with (either of the listed) \\
+            \hline
+            $(\textit{indigenous}, \text{moderate})$   & $(\textit{resilient}, \text{high})$ \\
+            \hline
+            $(\textit{indigenous}, \text{high})$   & $(\textit{resilient}, \text{high}), (\textit{usable}, \text{moderate}), (\textit{usable}, \text{high}),$ \\
+            & $(\textit{quantity}, \text{high}), (\textit{price}, \text{low})$ \\
+            \hline 
+            $(\textit{resilient}, \text{moderate})$   & $(\textit{usable}, \text{high})$ \\
+            \hline
+            $(\textit{resilient}, \text{high})$   & $(\textit{usable}, \text{high}), (\textit{usable}, \text{moderate}), (\textit{quantity}, \text{high}),$ \\
+            & $(\textit{price}, \text{moderate}), (\textit{price}, \text{low})$ \\
+            \hline
+            $(\textit{usable}, \text{low})$ & $(\textit{quantity}, \text{high}), (\textit{price}, \text{moderate}), (\textit{price}, \text{low})$\\
+            \hline
+            $(\textit{usable}, \text{high})$ & $(\textit{accessebility}, \text{high})$\\
+            \hline
+            $(\textit{effort}, \text{manual})$ & $(\textit{quantity}, \text{high}), (\textit{price}, \text{low}), (\textit{price}, \text{moderate})$\\
+            \hline
+            $(\textit{effort}, \text{harvester})$ & $(\textit{accessebility}, \text{high}), (\textit{accessebility}, \text{moderate})$\\
+            \hline
+            $(\textit{effort}, \text{autonomous})$ & $(\textit{accessebility}, \text{high}), (\textit{accessebility}, \text{moderate})$\\
+            \hline
+            $(\textit{quantity}, \text{low})$ & $(\textit{price}, \text{low}), (\textit{price}, \text{moderate})$\\
+            \hline
+            $(\textit{quantity}, \text{moderate})$ & $(\textit{price}, \text{low}), (\textit{price}, \text{moderate})$\\
+            \hline
+            $(\textit{quantity}, \text{high})$ & $(\textit{accessebility}, \text{high}), (\textit{accessebility}, \text{moderate})$\\
+            \hline
+        \end{tabular}
+        \caption{Constrains in not with form for the forest use case.}
+        \label{tab:Evaluation:UseCase}
+    \end{center}
+\end{table}
 
 \section{Generating Data}
 \label{sec:Evaluation:GeneratingGroups}
