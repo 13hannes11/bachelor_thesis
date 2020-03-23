@@ -54,35 +54,32 @@ The used characteristics and attributes are shown in \autoref{fig:Concept:Forest
         In this example there are a small group of users. The use case is a piece of forest and variables are for example harvesting activity, which trees to grow and accessibility for people.
         \begin{align}
             \begin{split}
-                V = \{ & \textit{Heimisch}, \textit{Klimaresilient}, \textit{Verwertbar}, \textit{Ernteaufwand}, \\
-                & \textit{Menge}, \textit{Preis}, \textit{Walderfahrung} \},
+                V = \{ & \textit{indigenous}, \textit{resilient}, \textit{usable}, \textit{effort}, \textit{quantity}, \textit{price}, \textit{accessibility} \},
             \end{split} \notag \\
-            \mathfrak{D}(\textit{Heimisch}) =  \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
-            \mathfrak{D}(\textit{Klimaresilient}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
-            \mathfrak{D}(\textit{Verwertbar}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag \\
-            \mathfrak{D}(\textit{Ernteaufwand}) = \{ & \text{Motormanuel}, \text{Harvester}, \text{Vollautomatisch}\}, \notag \\
-            \mathfrak{D}(\textit{Menge}) = \{ & \text{Keine}, \text{Gering}, \text{Hoch}\}, \notag \\
-            \mathfrak{D}(\textit{Preis}) = \{ & \text{Gering}, \text{Mittel}, \text{Hoch}\}, \notag\\
-            \mathfrak{D}(\textit{Walderfahrung}) = \{ & \text{Gering}, \text{Mittel}, \text{Intensiv}\},\notag \\
+            \mathfrak{D}(\textit{indigenous}) =  \{ & \text{low}, \text{moderate}, \text{high}\}, \notag \\
+            \mathfrak{D}(\textit{resilient}) = \{ & \text{low}, \text{moderate}, \text{high}\}, \notag \\
+            \mathfrak{D}(\textit{usable}) = \{ & \text{low}, \text{moderate}, \text{high}\}, \notag \\
+            \mathfrak{D}(\textit{effort}) = \{ & \text{manual}, \text{harvester}, \text{autonomous}\}, \notag \\
+            \mathfrak{D}(\textit{quantity}) = \{ & \text{low}, \text{moderate}, \text{high}\}, \notag \\
+            \mathfrak{D}(\textit{price}) = \{ & \text{low}, \text{moderate}, \text{high}\}, \notag\\
+            \mathfrak{D}(\textit{accessibility}) = \{ & \text{low}, \text{moderate}, \text{high}\},\notag \\
             U = \{ & 1,2\} \notag\\
             P = \{ & P_1, P_2\} \notag\\
             \begin{split}
-                P_1 = \{ & (\text{Motormanuel}, 0.5), (\text{Harvester}, -0.3) \} \\ 
-                & \cup \{ (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V,\ i \notin \{ \text{Motormanuel}, \text{Harvester}\} \ \} \ 
+                P_1 = \{ & (\text{manual}, 0.5), (\text{harvester}, -0.3) \} \\ 
+                & \cup \{ (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V,\ i \notin \{ \text{manual}, \text{harvester}\} \ \} \ 
             \end{split} \notag \\
             P_2 = \{ & (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V \} \notag \\
-            S  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Menge}, \text{Gering}) \} \notag \\
+            S  =  \{ & (\textit{indigenous}, \text{low}), (\textit{quantity}, \text{moderate}) \} \notag \\
             \begin{split}
-            S_F  =  \{ & (\textit{Heimisch}, \text{Gering}), (\textit{Klimaresilient}, \text{Gering}), (\textit{Verwertbar}, \text{Gering}), \\
-            & (\textit{Ernteaufwand}, \text{Motormanuel}),
-            (\textit{Menge}, \text{Keine}), (\textit{Preis}, \text{Hoch}),\\ 
-            & (\textit{Walderfahrung}, \text{Gering}) \} 
+            S_F  =  \{ & (\textit{indigenous}, \text{low}), (\textit{resilient}, \text{low}), (\textit{usable},\text{low}), (\textit{effort}, \text{manual}), \\
+            & (\textit{quantity}, \text{low}), (\textit{price},\text{high}),(\textit{accessibility}, \text{low}) \} 
             \end{split} \notag
         \end{align}
     \end{mdframed}
     \caption{An example of a forest use case that includes two people.}
     \label{fig:Concept:ForestExample}
-    \end{figure}
+\end{figure}
 
 
 \section{Solution Generation}
