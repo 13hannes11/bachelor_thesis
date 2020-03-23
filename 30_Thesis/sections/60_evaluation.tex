@@ -16,36 +16,39 @@ Generate groups with preferences (explicit preferences) and configuration state 
     \item Group of only one profile type: rather homogenous group
 \end{itemize}
 
-\section{Metrics}
-For the evaluation metrics to evaluate by are needed. 
-
+\section{Metric}
 \label{sec:Evaluation:Metrics}
 
-\subsection{Random Individual}
-When comparing a group to individual scores, a member of the group is randomly chosen. As metric of difference used metrics are MSE, RMSE and similar metrics.
-% see: https://medium.com/@george.drakos62/how-to-select-the-right-evaluation-metric-for-machine-learning-models-part-1-regrression-metrics-3606e25beae0 or https://en.wikipedia.org/wiki/Error_metric
-
-\subsection{Satisfaction}
-As a metric on overall satisfaction within the group a threshold metric is proposed that defines a user as satisfied if his score is above a threshold of 65\% and as unsatisfied with a score of less than 35\%. Now group satisfaction can be measured by the amount of members being satisfied, neutral and unsatisfied.
-
-\subsection{Group Score}
-The group score metric is to simply take the score the recommender has given to a group. This score can be compared with other configurations' score.
-
+For the evaluation a metric to evaluate by is needed. The proposed metric for usage is that of satisfactions. Satisfaction will be quantified by a threshold metric. A user's preference is used to calculate a rating for each possible solution. The score will be calculated using the average of a user's rating for each characteristic that is part of the solution. The result allows that a configuration can be compared to all other configurations and ranked according to the percentage of configurations that it beats. 50\% is used as base line and the parameter this metric accepts is something that will be called satisfaction mean distance $smd$. The users counting as satisfied with a solution find the solution to be better than $50\% + smd$ of all possible solutions. Respectively a solution that ranks among the lowest scored $50\% - smd$ is classified as unsatisfied.
 
 \section{Questions to Answer During the Evaluation}
 \label{sec:Evaluation:Questions}
 
 \begin{itemize}
-    \item Main question: How does the group decision differ from the decision of a single decision maker? (random individual)
-    \item How much impact does the configuration state have on the recommendation outcome? (random individual, satisfaction)
-    \item How many group members are satisfied by the group decision on average? (satisfaction)
-    \item Is the recommender fair, i.e. no user type is always worse off than others? (satisfaction)
-    \item How does the amount of stored finished configurations relate to recommendation quality? (Compare the recommended configuration to the best possible configuration in terms of score using MSE and similar and in terms of satisfaction and random individual) 
-    \item How much higher is the score of the best configuration compared to average? (group score, satisfaction, random individual)
+    \item Main question: How does the satisfaction with a group decision differ from the decision of a single decision maker?
+    \item How many group members are satisfied by the group decision on average?
+    %\item Is the recommender fair, i.e. no user type is always worse off than others? (Just uses groupe preferences)
+    \item How does the amount of stored finished configurations relate to recommendation satisfaction?
 \end{itemize}
+
+\section{Effect of Stored Finished Configurations}
+\label{sec:Evaluation:EffectFinishedConfiguration}
+
+When evaluating just a subset of stored finished configurations it is important to avoid outliers. This is the reason why a process inspired by cross validation is be used. The configuration database is randomly ordered and sliced into sub databases of the needed size. As an example, if the evaluated stored data size is 20, a configuration database containing 100 configurations is split into five sub databases of size 20. Now the evaluation is done on each of the sub databases and as a result the average is taken.
+
 
 \section{Generating Data}
 \label{sec:Evaluation:GeneratingGroups}
+
+The whole process explained in this section is visualized in \autoref{fig:Evaluation:GeneratingDataProcess}.
+
+\subsection{Generating Unfinished Configurations}
+
+Unfinished configurations are generated using all finished configurations and taking a subset of the contained characteristics. This way all generated configurations will be valid and lead to valid solutions. For the results that are presented in this chapter around $\frac{1}{7} \approx 15\%$ of characteristics is kept.
+
+\todo[inline]{why this paramter, elalobrate on that}
+
+\subsection{Generating Preferences}
 
 For the forest use case, the idea is that there are multiple types of user profiles. Each group profile is represented by a neutral, negative or positive attitude to an attribute value. Now during data generation the attitude is converted to a preference using a normal distribution. \autoref{fig:Evaluation:DataGeneration} shows how the user profile can be converted to preferences.
 
