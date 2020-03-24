@@ -10,7 +10,7 @@ Generate groups with preferences (explicit preferences) and configuration state 
 \section{Metric}
 \label{sec:Evaluation:Metrics}
 
-For the evaluation a metric to evaluate by is needed. The proposed metric for usage is that of satisfactions. Satisfaction will be quantified by a threshold metric. A user's preference is used to calculate a rating for each possible solution. The score will be calculated using the average of a user's rating for each characteristic that is part of the solution. The result allows that a configuration can be compared to all other configurations and ranked according to the percentage of configurations that it beats. 50\% is used as base line and the parameter this metric accepts is something that will be called satisfaction mean distance $smd$. The users counting as satisfied with a solution find the solution to be better than $50\% + smd$ of all possible solutions. Respectively a solution that ranks among the lowest scored $50\% - smd$ is classified as unsatisfied.
+For the evaluation a metric to evaluate by is needed. The proposed metric for usage is that of satisfactions. Satisfaction will be quantified by a threshold metric. A user's preference is used to calculate a rating for each possible solution. The score will be calculated using the average of a user's rating for each characteristic that is part of the solution. The result allows that a configuration can be compared to all other configurations and ranked according to the percentage of configurations that it beats. 50\% is used as base line and the parameter this metric accepts is something that will be called satisfaction mean distance $smd$. The users counting as satisfied with a solution find the solution to be better than $50\% + smd$ of all possible solutions. Respectively a solution that ranks among the lowest scored $50\% - smd$ is classified as dissatisfied.
 
 \section{Questions to Answer During the Evaluation}
 \label{sec:Evaluation:Questions}
@@ -210,17 +210,3 @@ The influence of stored configurations on performance can clearly be seen but th
     \label{fig:Evaluation:RandomGroupTotal}
 \end{figure}
 
-
-\begin{figure}
-    \centering
-    \includegraphics[width=1\textwidth]{./figures/60_evaluation/homogenous_happy_unhappy_increase_amount-1000_smd-15.pdf}
-    \caption{The average happiness and unhappiness increase for a \textbf{homogenous} groups consisting of four members with $smd=15\%$.}
-    \label{fig:Evaluation:HomogenousGroupIncrease}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=1\textwidth]{./figures/60_evaluation/homogenous_happy_unhappy_total_group_amount-1000_smd-15.pdf}
-    \caption{The average happiness and unhappiness for \textbf{homogenous} groups consisting of four members with $smd=15\%$.}
-    \label{fig:Evaluation:HomogenousGroupTotal}
-\end{figure}
