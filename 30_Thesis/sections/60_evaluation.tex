@@ -131,8 +131,22 @@ These user profiles can be used to generate rather homogenous groups but also to
 
 \todo[inline]{explain preference profiles}
 
-\section{Hypothesis}
-\label{sec:Evaluation:Scenario}
+\section{Hypothesises}
+\label{sec:Evaluation:Hypothesises}
+
+Understanding data is made easier by first posing hypothesises. This section gives an overview over the hypothesis used during data analysis.
+
+\begin{enumerate}[font={\bfseries},label={H\arabic*}]
+    \item \label{hyp:Evaluation:LowSMD} A low $smd$ results in more people being satisfied and in more people being dissatisfied. This is expected due to the increase of configurations that fall in the specified quantiles.
+    \item \label{hyp:Evaluation:HighSMD} A high $smd$ results in less people being satisfied and in less people being dissatisfied. This is expected due to the decrease of configurations that fall in the specified quantiles.
+    \item \label{hyp:Evaluation:IndivDecision} A higher number of people satisfied with the decision of the individual results in a lower increase in satisfaction. This is because if all people are already satisfied with the individual decision there cannot be an increase in people being additionally satisfied with the group decision.
+    \item \label{hyp:Evaluation:OnePersonSatisfied} A too high $smd$ results in a negative satisfaction results in a satisfaction increase of minus one. This is caused because only one person, the person who made the individual decision, is satisfied with it. Also the really high $smd$ causes no one to be satisfied with the group decision thereby decreasing satisfaction in the group decision by minus one compared to the individual decision.
+    \item \label{hyp:Evaluation:NoOnedissatisfied} A too high $smd$ results in a no one being dissatisfied. This means that there is no decrease in dissatisfied people when comparing the group decision with the individual decision.
+    \item \label{hyp:Evaluation:NumberOfStored} More stored finished configurations results in a higher increase in satisfaction and a higher reduction in dissatisfied group members.
+    \item \label{hyp:Evaluation:HomogenousBenefit} The benefit for homogenous groups is small as individuals interest are so closely aligned.
+    \item \label{hyp:Evaluation:SatisfactionIndividualDifferenGroupTypes} The overall number of satisfied group members with the individual decision is higher in homogeneous groups compared to heterogeneous groups.
+    \item \label{hyp:Evaluation:AggregationFunctions} Multiplication and best average aggregation strategies should perform better than least misery. These strategies are listed by \citeauthor{Masthoff2015} \cite[p. 755f]{Masthoff2015} and multiplication and best average came out as the best in most studies. Least misery was in some listed as performing worst. Therefore it fares worse than the other strategies here.
+\end{enumerate}
 
 \section{Results}
 \label{sec:Evaluation:Results}
