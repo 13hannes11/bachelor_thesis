@@ -153,12 +153,19 @@ Understanding data is made easier by first posing hypothesises. This section giv
 
 \subsection{Choosing Happiness and Unhappiness Parameter}
 
-Results for happiness increase will vary depending on the chosen $smd$ value. This is to be expected because if it is set to low, the number of people that are happy with the decision of an individual will increase. An increase in amount of happiness means, that there is less people that can additionally be made happy. In the data though even with an $smd = 5\%$, this expected effect cannot yet be seen. But it is noticeable that the amount of people happy with the individual decision is decreasing with an increased $smd$. If $smd$ is set too high the group compromise will cause less people to be satisfied. This is because with the individual decision there will be always one person that is perfectly happy. Clearly this has the effect that choosing an $smd$ that is too high the decision maker will be satisfied with her own decision but no one else will. Additionally no one of the group will be happy with the group decision. Therefore it is expected, that with a high $smd$ the change in happiness will reach a value of negative one. The data shows these effects already with an $smd$ of $25$ where across the board all scoring functions result in a happiness decrease for the group (when looking at heterogeneous groups) but they don't reach levels of minus one in the tested range ($smd \in [5,35]$).
+\subsection{Choosing smd}
 
-Surprisingly, all tested values for $smd \in [5,35]$ resulted in a decrease of unhappiness. But as expected the total number of unhappy decreased with an increase of the $smd$, as was observable already with happiness.
+Results for satisfaction increase will vary depending on the chosen $smd$ value. This is to be expected because if it is set to low, the number of people that are satisfied with the decision of an individual will increase. An increase in amount of satisfaction means, that there is less people that can additionally be made satisfied. In the data though even with an $smd = 5\%$, this expected effect cannot yet be seen. But it is noticeable that the amount of people satisfied with the individual decision is decreasing with an increased $smd$. If $smd$ is set too high the group compromise will cause less people to be satisfied. This is because with the individual decision there will be always one person that is perfectly satisfied. Clearly this has the effect that choosing an $smd$ that is too high the decision maker will be satisfied with her own decision but no one else will. Additionally no one of the group will be satisfied with the group decision. Therefore it is expected, that with a high $smd$ the change in satisfaction will reach a value of negative one. The data shows these effects already with an $smd$ of $25$ where across the board all scoring functions result in a satisfaction decrease for the group (when looking at heterogeneous groups) but they don't reach levels of minus one in the tested range ($smd \in [5,35]$).
 
-\missingfigure{Figure showing happiness and unhappiness with individual decision in relation to smd}
+Surprisingly, all tested values for $smd \in [5,35]$ resulted in a decrease of dissatisfaction. But as expected the total number of dissatisfied decreased with an increase of the $smd$, as was observable already with satisfaction.
 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{./figures/60_evaluation/smd_chamge_happy_unhappy.pdf}
+    \caption{The average satisfaction and dissatisfaction depending on \textbf{group type} and $smd$.}
+    \label{fig:Evaluation:HappyUnhappySMD}
+\end{figure}
 
 \subsection{Analysing Data}
 
