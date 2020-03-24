@@ -139,31 +139,32 @@ Understanding data is made easier by first posing hypothesises. This section giv
 \begin{enumerate}[font={\bfseries},label={H\arabic*}]
     \item \label{hyp:Evaluation:LowSMD} A low $smd$ results in more people being satisfied and in more people being dissatisfied. This is expected due to the increase of configurations that fall in the specified quantiles.
     \item \label{hyp:Evaluation:HighSMD} A high $smd$ results in less people being satisfied and in less people being dissatisfied. This is expected due to the decrease of configurations that fall in the specified quantiles.
+    \item \label{hyp:Evaluation:MoreSatisfiedLessIncrease} More people being satisfied results in a lower increase of satisfaction due to most people being satisfied already.
+    \item \label{hyp:Evaluation:OnePersonSatisfied} A too high $smd$ results in a negative satisfaction and therefore in a satisfaction change of minus one. This is caused because only one person, the person who made the individual decision, is satisfied with it.
+    \item \label{hyp:Evaluation:NoOnedissatisfied} A too high $smd$ results in no decrease in dissatisfied people when comparing the group decision with the individual decision.
     \item \label{hyp:Evaluation:IndivDecision} A higher number of people satisfied with the decision of the individual results in a lower increase in satisfaction. This is because if all people are already satisfied with the individual decision there cannot be an increase in people being additionally satisfied with the group decision.
-    \item \label{hyp:Evaluation:OnePersonSatisfied} A too high $smd$ results in a negative satisfaction results in a satisfaction increase of minus one. This is caused because only one person, the person who made the individual decision, is satisfied with it. Also the really high $smd$ causes no one to be satisfied with the group decision thereby decreasing satisfaction in the group decision by minus one compared to the individual decision.
-    \item \label{hyp:Evaluation:NoOnedissatisfied} A too high $smd$ results in a no one being dissatisfied. This means that there is no decrease in dissatisfied people when comparing the group decision with the individual decision.
     \item \label{hyp:Evaluation:NumberOfStored} More stored finished configurations results in a higher increase in satisfaction and a higher reduction in dissatisfied group members.
     \item \label{hyp:Evaluation:HomogenousBenefit} The benefit for homogenous groups is small as individuals interest are so closely aligned.
     \item \label{hyp:Evaluation:SatisfactionIndividualDifferenGroupTypes} The overall number of satisfied group members with the individual decision is higher in homogeneous groups compared to heterogeneous groups.
     \item \label{hyp:Evaluation:AggregationFunctions} Multiplication and best average aggregation strategies should perform better than least misery. These strategies are listed by \citeauthor{Masthoff2015} \cite[p. 755f]{Masthoff2015} and multiplication and best average came out as the best in most studies. Least misery was in some listed as performing worst. Therefore it fares worse than the other strategies here.
 \end{enumerate}
 
-\section{Results}
-\label{sec:Evaluation:Results}
 
-\subsection{Choosing Happiness and Unhappiness Parameter}
+\section{Findings}
+\label{sec:Evaluation:Findings}
 
 \subsection{Choosing smd}
 
-Results for satisfaction increase will vary depending on the chosen $smd$ value. This is to be expected because if it is set to low, the number of people that are satisfied with the decision of an individual will increase. An increase in amount of satisfaction means, that there is less people that can additionally be made satisfied. In the data though even with an $smd = 5\%$, this expected effect cannot yet be seen. But it is noticeable that the amount of people satisfied with the individual decision is decreasing with an increased $smd$. If $smd$ is set too high the group compromise will cause less people to be satisfied. This is because with the individual decision there will be always one person that is perfectly satisfied. Clearly this has the effect that choosing an $smd$ that is too high the decision maker will be satisfied with her own decision but no one else will. Additionally no one of the group will be satisfied with the group decision. Therefore it is expected, that with a high $smd$ the change in satisfaction will reach a value of negative one. The data shows these effects already with an $smd$ of $25$ where across the board all scoring functions result in a satisfaction decrease for the group (when looking at heterogeneous groups) but they don't reach levels of minus one in the tested range ($smd \in [5,35]$).
+The data confirms \hyporef{hyp:Evaluation:LowSMD} and \hyporef{hyp:Evaluation:HighSMD}. \autoref{fig:Evaluation:HappyUnhappySMD} shows a clear trend where with a higher $smb$ the amount of satisfied and dissatisfied is reduced. However, with homogenous group the dissatisfaction is constantly at zero and the satisfaction only takes a slight dip. This suggests that with homogenous groups an individual deciding for the whole group is a viable option. Random groups are more uniform than heterogeneous groups. This can be seen by a lower amount of dissatisfied group members and a higher amount of satisfied ones.
 
-Surprisingly, all tested values for $smd \in [5,35]$ resulted in a decrease of dissatisfaction. But as expected the total number of dissatisfied decreased with an increase of the $smd$, as was observable already with satisfaction.
+\hyporef{hyp:Evaluation:MoreSatisfiedLessIncrease} states that the amount of hapiness increase should be limited if we choose a low $smb$ because there is less people that can be changed to satisfied. This effect however is not observable in the data even when $smb = 5$. Neither can the adverse effect with a high $smb$ and dissatisfaction change. Yet it might be possible that this effect can be observed when choosing $smb > 35\%$. The effects of \hyporef{hyp:Evaluation:OnePersonSatisfied} can also not be seen in the data. Moreover the effect of \hyporef{hyp:Evaluation:NoOnedissatisfied} could also not be seen in the data but it was noticeable that a high $smb$ reduces unhappiness reduction. Nonetheless these effects still might occur when testing a higher $smb$ than $35\%$.
 
+The $smd$ will be fixed from now on to $15\%$. This allows to still show the improvements of the recommender for rather hetereogenous groups but also prevents a too high reduction in dissatisfied group members thereby preventing any effect when just looking at dissatisfaction. As \autoref{fig:Evaluation:HappyUnhappySMD} shows homogenous groups are already too happy and have no dissatisfaction. This is why they will not undergo any more evaluation.
 
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{./figures/60_evaluation/smd_chamge_happy_unhappy.pdf}
-    \caption{The average satisfaction and dissatisfaction depending on \textbf{group type} and $smd$.}
+    \caption{The average satisfaction and dissatisfaction over the individual decision depending on \textbf{group type} and $smd$.}
     \label{fig:Evaluation:HappyUnhappySMD}
 \end{figure}
 
