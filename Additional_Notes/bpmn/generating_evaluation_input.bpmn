@@ -11,7 +11,7 @@
     <bpmn:startEvent id="Event_0d8jvwa">
       <bpmn:outgoing>Flow_0gdv3ul</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:task id="Activity_1tcgmr4" name="Save">
+    <bpmn:task id="Activity_1tcgmr4" name="save">
       <bpmn:incoming>Flow_0b8m6wa</bpmn:incoming>
       <bpmn:outgoing>Flow_18mvlx8</bpmn:outgoing>
       <bpmn:property id="Property_1fza8iw" name="__targetRef_placeholder" />
@@ -20,10 +20,10 @@
         <bpmn:targetRef>Property_1fza8iw</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:task>
-    <bpmn:dataObjectReference id="Flow_1jss46c" name="Configuration State and Preferences" dataObjectRef="Flow_1be451b" />
+    <bpmn:dataObjectReference id="Flow_1jss46c" name="configuration state and preferences" dataObjectRef="Flow_1be451b" />
     <bpmn:dataObject id="Flow_1be451b" />
-    <bpmn:dataStoreReference id="Flow_0vog5x8" name="Finished Configuration Database" />
-    <bpmn:task id="Activity_0wp44i7" name="Generate Preference, Configuration Pairs">
+    <bpmn:dataStoreReference id="Flow_0vog5x8" name="finished configuration database" />
+    <bpmn:task id="Activity_0wp44i7" name="generate pairs of preferences and configurations">
       <bpmn:incoming>Flow_0y9052u</bpmn:incoming>
       <bpmn:outgoing>Flow_0b8m6wa</bpmn:outgoing>
       <bpmn:property id="Property_0bni9in" name="__targetRef_placeholder" />
@@ -39,11 +39,11 @@
         <bpmn:targetRef>Flow_1jss46c</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:task>
-    <bpmn:dataObjectReference id="Flow_1gbqvo5" name="Partial Configurations" dataObjectRef="Flow_1cu24j2" />
+    <bpmn:dataObjectReference id="Flow_1gbqvo5" name="partial configurations" dataObjectRef="Flow_1cu24j2" />
     <bpmn:dataObject id="Flow_1cu24j2" />
-    <bpmn:dataObjectReference id="Flow_0dc8ucf" name="Group Types" dataObjectRef="Flow_0majyqj" />
+    <bpmn:dataObjectReference id="Flow_0dc8ucf" name="group types" dataObjectRef="Flow_0majyqj" />
     <bpmn:dataObject id="Flow_0majyqj" />
-    <bpmn:task id="Activity_0xj4ejn" name="Generate Partial Configuration">
+    <bpmn:task id="Activity_0xj4ejn" name="generate partial configuration">
       <bpmn:incoming>Flow_0gdv3ul</bpmn:incoming>
       <bpmn:outgoing>Flow_0y9052u</bpmn:outgoing>
       <bpmn:property id="Property_0g89kuk" name="__targetRef_placeholder" />
@@ -64,13 +64,13 @@
       <bpmndi:BPMNShape id="Flow_0dc8ucf_di" bpmnElement="Flow_0dc8ucf">
         <dc:Bounds x="412" y="95" width="36" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="399" y="152" width="63" height="14" />
+          <dc:Bounds x="402" y="152" width="58" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Flow_1gbqvo5_di" bpmnElement="Flow_1gbqvo5">
         <dc:Bounds x="412" y="230" width="36" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="396" y="287" width="71" height="27" />
+          <dc:Bounds x="398" y="287" width="69" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0wp44i7_di" bpmnElement="Activity_0wp44i7">
@@ -79,7 +79,7 @@
       <bpmndi:BPMNShape id="Flow_0vog5x8_di" bpmnElement="Flow_0vog5x8">
         <dc:Bounds x="255" y="345" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="248" y="402" width="65" height="40" />
+          <dc:Bounds x="250" y="402" width="63" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataInputAssociation_1lr92f2_di" bpmnElement="DataInputAssociation_1lr92f2">
@@ -101,7 +101,7 @@
       <bpmndi:BPMNShape id="Flow_1jss46c_di" bpmnElement="Flow_1jss46c">
         <dc:Bounds x="582" y="275" width="36" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="568" y="332" width="65" height="40" />
+          <dc:Bounds x="570" y="332" width="63" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1tcgmr4_di" bpmnElement="Activity_1tcgmr4">
