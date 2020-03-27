@@ -204,19 +204,22 @@ Understanding data is made easier by first posing hypothesises. This section giv
 \section{Findings}
 \label{sec:Evaluation:Findings}
 
-\subsection{Choosing smd}
+\subsection{Choosing tc}
 
-The data confirms \hyporef{hyp:Evaluation:LowSMD} and \hyporef{hyp:Evaluation:HighSMD}. \autoref{fig:Evaluation:HappyUnhappySMD} shows a clear trend where with a higher $smb$ the amount of satisfied and dissatisfied is reduced. However, with homogenous group the dissatisfaction is constantly at zero and the satisfaction only takes a slight dip. This suggests that with homogenous groups an individual deciding for the whole group is a viable option. Random groups are more uniform than heterogeneous groups. This can be seen by a lower amount of dissatisfied group members and a higher amount of satisfied ones.
-
-\hyporef{hyp:Evaluation:MoreSatisfiedLessIncrease} states that the amount of hapiness increase should be limited if we choose a low $smb$ because there is less people that can be changed to satisfied. This effect however is not observable in the data even when $smb = 5$. Neither can the adverse effect with a high $smb$ and dissatisfaction change. Yet it might be possible that this effect can be observed when choosing $smb > 35\%$. The effects of \hyporef{hyp:Evaluation:OnePersonSatisfied} can also not be seen in the data. Moreover the effect of \hyporef{hyp:Evaluation:NoOnedissatisfied} could also not be seen in the data but it was noticeable that a high $smb$ reduces unhappiness reduction. Nonetheless these effects still might occur when testing a higher $smb$ than $35\%$.
-
-The $smd$ will be fixed from now on to $15\%$. This allows to still show the improvements of the recommender for rather heterogeneous groups but also prevents a too high reduction in dissatisfied group members thereby preventing any effect when just looking at dissatisfaction. As \autoref{fig:Evaluation:HappyUnhappySMD} shows homogenous groups are already too happy and have no dissatisfaction. This is why they will not undergo any more evaluation.
+To get an understanding of the data all parameters except the $tc$ will be fixed. The preference aggregation strategy looked at is multiplication. The configuration database is used with all possible solutions (which is 148 in total). This results in a bigger visible effect as the recommender has access to all possible configurations. 
 
 \begin{figure}
     \centering
-    \includegraphics[width=1\textwidth]{./figures/60_evaluation/smd_chamge_happy_unhappy.pdf}
-    \caption{The average satisfaction and dissatisfaction over the individual decision depending on \textbf{group type} and $smd$.}
-    \label{fig:Evaluation:HappyUnhappySMD}
+    \includegraphics[width=1\textwidth]{./figures/60_evaluation/tc_change__multi__db-size-148.pdf}
+    \caption{The average satisfaction and dissatisfaction change based on $tc$ with a database size of 148 and multiplication as aggregation strategy.}
+    \label{fig:Evaluation:tcChange}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{./figures/60_evaluation/tc_dictator__multi__db-size-148.pdf}
+    \caption{The average satisfaction and dissatisfaction with the dictator's decision based on $tc$ with a database size of 148 and multiplication as aggregation strategy.}
+    \label{fig:Evaluation:tcCount}
 \end{figure}
 
 \subsection{Analysing Data}
