@@ -204,11 +204,14 @@ Understanding data is made easier by first posing hypothesises. This section giv
 \section{Findings}
 \label{sec:Evaluation:Findings}
 
-\subsection{Choosing tc}
+\subsection{Threshold Center}
 
 To get an understanding of the data all parameters except the $tc$ will be fixed. The preference aggregation strategy looked at is multiplication. The configuration database is used with all possible solutions (which is 148 in total). This results in a bigger visible effect as the recommender has access to all possible configurations. \autoref{fig:Evaluation:tcChange} shows the satisfaction change based on choice of $tc$. Of note is that the maxima of satisfaction change precedes the minima of dissatisfaction change for all group types. Maxima and minima occur at different tc values depending on the group type. Heterogeneous groups peek earliest while homogenous groups only show a peek towards the maximum $tc$ value. Changes in dissatisfaction are minimal even with $tc$ close to its maximum value. \autoref{fig:Evaluation:tcCount} shows the amount of group members satisfied and dissatisfied with a decision. The number of satisfied people decreases with an increasing $tc$ and its downward movement accelerates. The dissatisfaction curve shows a similar trend but in contrast here the number of dissatisfied group members increases with and increase in $tc$. The curve accelerates its growth analogues to the acceleration of the satisfaction curve. The behaviour of heterogeneous groups and random groups is similar but the curve for heterogeneous groups show less happiness for a given tc and more unhappiness. Also both curves have a negative satisfaction change when $tc$ reaches a certain height. Homogeneous groups only have happy group members for most $tc$ values but they decrease rapidly for values greater $85$. Dissatisfied group members are at zero for the whole value range of $tc$ except a very slight upward tick at the end that is barely noticeable.
 
 \todo[inline]{take reference to hypothesises that are regarding tc}
+
+During a group decision it is better to make one less person dissatisfied opposed to one more person satisfied. Therefore, this thesis uses $tc$ values that are closer to minima of unhappiness reduction than to the maxima of satisfaction change. The minima for heterogeneous is at $tc = 70$ therefore this is the chosen value for the evaluation of other aspects. For random groups the minima of dissatisfaction change can be found at $tc = 85$ which is the value used for all following analysis of random groups. For homogenous group dissatisfaction change is sinking until the highest value of $tc$. Because of that $tc = 94$ is used for analysis.
+
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{./figures/60_evaluation/tc_change__multi__db-size-148.pdf}
