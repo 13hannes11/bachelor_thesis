@@ -1,0 +1,36 @@
+@startuml
+skinparam monochrome true
+skinparam SequenceBoxBackgroundColor #ffffff
+skinparam ParticipantPadding 5
+skinparam shadowing false
+hide footbox
+
+title generating a recommendation 
+
+box "Client B"
+participant "M.Customer B"
+end box
+
+box "Client A"
+participant "M.Customer A"
+end box
+
+box "Server"
+participant M.Collab
+participant M.Recommend
+end box
+
+activate "M.Customer A"
+activate "M.Customer B"
+activate M.Collab
+
+M.Collab -> M.Recommend : get_recommendation(configuration, preferences)
+activate M.Recommend
+M.Collab <-- M.Recommend : return recommendedFeatures
+deactivate M.Recommend
+
+par
+    M.Collab --> "M.Customer A" : broadcast (recommendedFeatures)
+    M.Collab --> "M.Customer B" : broadcast (recommendedFeatures)
+end
+@enduml

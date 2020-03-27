@@ -13,7 +13,7 @@ This thesis is looking at a recommendation system for a configurator. Developing
 He only makes changes to M.Customer which is renamed to M.Collab-Customer and introduces a new component M.Collab.
 
 \begin{description}
-    \item[M.Core] provides the base of the configurator. It checks the configuration against all rules in the database, provides possible alternatives if a change invalidates other parts of a configuration. The system relies on a CSP solver for validation and suggestion of alternatives.
+    \item[M.Core] provides the base of the configurator. It checks the configuration against all rules in the database, provides possible alternatives if a change invalidates other parts of a configuration. The system relies on a CSP solver for valida tion and suggestion of alternatives.
     \item[M.Model] is the editor to create products and rules. These rules can then be uploaded to M.Core.
     \item[M.Collab] is a node.js server application that communicates with M.Core via REST-API and with M.Collab-Customer via WebSocket. It sits in between M.Collab-Customer and M.Core and handles all processing regarding collaborative configuration.
     \item[M.Collab-Customer] a modified version of M.Customer that does all communication via WebSocket and does communicate with M.Collab instead of M.Core. M.Customer is the customer facing component. It allows a customer to configure a product or solution.
@@ -48,6 +48,18 @@ Another viable solution is adding the recommendation functionality into M.Core. 
     \caption{The user interface of the prototype, seen by one user while configuring with three other people. The circles in the top left represent the users that are connected in the current sessions. The current configuration state is shown by the in red selected characteristics. Recommendations are surrounded with a green border.}
     \label{fig:DesignImplementation:UserInterface}
 \end{figure}
+
+When a recommendation is supposed to be generated M.Collab sends a REST request to M.Recommend (see \autoref{fig:DesignImplementation:SequenceDiagramRecommendation}). This request contains preferences and the current configuration. M.Recommend generates a recommendation based on the received data. The recommended finished configuration is now send via broadcast over WebSocket to all M.Customer clients. 
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{./figures/50_design_and_implementation/sequence_diagram_generating_recommendation.pdf}
+    \caption{A sequence diagram showing the recommendation process.}
+    \label{fig:DesignImplementation:SequenceDiagramRecommendation}
+\end{figure}
+
+
 
 \subsection{Scoring Functions}
 
