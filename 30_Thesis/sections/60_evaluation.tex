@@ -182,13 +182,13 @@ These user profiles can be used to generate rather homogenous groups but also to
 Understanding data is made easier by first posing hypothesises. This section gives an overview over the hypothesis used during data analysis.
 
 \begin{enumerate}[font={\bfseries},label={H\arabic*}]
-    \item Highest improvements with group recommendation are when the amount of people satisfied with the dictators decision is slightly lower than two. Respectively that holds true for dissatisfaction. 
-    \item A higher $tc$ value results in less satisfied people and more unsatisfied people with regard to the dictator's decision.
-    \item There exists a $tc$ value which causes only one person to be satisfied with the dictator's decision and no one is satisfied with the group recommender's decision.
-    \item Homogeneous groups have more satisfied members with the recommender's decision but also with the dictator's decision compared to heterogeneous groups.
-    \item More heterogeneous groups see a bigger satisfaction increase than less heterogeneous groups when comparing the dictator's decision with the recommender's decision.
-    \item A higher amount of stored finished configurations results in a higher amount of satisfied and a lower amount of dissatisfied group member.
-    \item Multiplication and best average aggregation strategies perform better than least misery. % These strategies are listed by \citeauthor{Masthoff2015} \cite[p. 755f]{Masthoff2015} and multiplication and best average came out as the best in most studies. Least misery was in some listed as performing worst. Therefore it fares worse than the other strategies here.
+    \item \label{hyp:Evaluation:MaximumMinimum} Highest improvements with group recommendation are when the amount of people satisfied with the dictators decision is slightly lower than two. Respectively that holds true for dissatisfaction. 
+    \item \label{hyp:Evaluation:HigherTcLessSatisfied} A higher $tc$ value results in less satisfied people and more unsatisfied people with regard to the dictator's decision.
+    \item \label{hyp:Evaluation:OnlyOneSatisfied} There exists a $tc$ value which causes only one person to be satisfied with the dictator's decision and no one is satisfied with the group recommender's decision.
+    \item \label{hyp:Evaluation:HomogenousMoreSatisfied} Homogeneous groups have more satisfied members with the recommender's decision but also with the dictator's decision compared to heterogeneous groups.
+    \item \label{hyp:Evaluation:HeterogenousBiggerSatisfactionIncrease} More heterogeneous groups see a bigger satisfaction increase than less heterogeneous groups when comparing the dictator's decision with the recommender's decision.
+    \item \label{hyp:Evaluation:StoreSizeBetterResults} A higher amount of stored finished configurations results in a higher amount of satisfied and a lower amount of dissatisfied group member.
+    \item \label{hyp:Evaluation:AggregationStrategies} Multiplication and best average aggregation strategies perform better than least misery. % These strategies are listed by \citeauthor{Masthoff2015} \cite[p. 755f]{Masthoff2015} and multiplication and best average came out as the best in most studies. Least misery was in some listed as performing worst. Therefore it fares worse than the other strategies here.
 \end{enumerate}
 
 \todo[inline]{explain hypotheses}
