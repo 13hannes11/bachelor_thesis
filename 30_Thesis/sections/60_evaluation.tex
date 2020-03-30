@@ -222,24 +222,34 @@ The predicted trend that a higher $tc$ results in a lower satisfaction and a hig
 
 During a group decision it is better to make one less person dissatisfied opposed to one more person satisfied. Therefore, this thesis uses $tc$ values that are closer to minima of unhappiness reduction than to the maxima of satisfaction change. The minima for heterogeneous is at $tc = 70\%$ therefore this is the chosen value for the evaluation of other aspects. For random groups the minima of dissatisfaction change can be found at $tc = 85\%$ which is the value used for all following analysis of random groups. For homogenous group dissatisfaction change is sinking until the highest value of $tc$. Because of that $tc = 94\%$ is used for analysis.
 
-All scoring functions are similarly good in decreasing dissatisfaction. However the results differ when looking at satisfaction, Here least misery performs abysmal compared to the other scoring functions. In \autoref{fig:Evaluation:HeterogenousGroupIncrease} it results even in a hapiness reduction whereby multiplication and best average increase it. Overall multiplication seems to perform the best in most scenarios. This confirms findings in expirments with real people as described by \citeauthor{Masthoff2015} \cite[p. 755f]{Masthoff2015}.
+\subsection{Analysing Data}
 
-The influence of stored configurations on performance can clearly be seen but the relationship does not seem to be linear. Therefore with already just a limited amount of stored finished configurations the recommender can increase satisfaction and decrease dissatisfaction. With 33\% of the stored configurations, the satisfaction increase is about 50\% to 75\% compared to using all stored finished configurations.
+This subsection holds fixed parameters of $tc$. In it the satisfaction change and the total amount of satisfied people with the recommenders decision dependent on the amount of stored configurations. For clarity reasons not all graphs of the data are included. The missing graphs are in the appendix and have references to them.
 
+\autoref{fig:Evaluation:HeteroSatisfactionIncrease} shows the relationship between the change in satisfaction and dissatisfaction and the stored number of configurations. There are three graphs each. One for multiplication, one for least misery and one for best average. The graphs for satisfaction look similar to a logarithmic curve. The increase in change satisfaction decelerates with a higher number of stored configurations. The change in satisfaction is always above zero and a satisfaction increase of more than three quarters of the maximum can already be seen with around 25 stored configurations. The curve for multiplication is above all other curves. Least misery reaches the lowest amount of change across all values. The minimum number of satisfaction change is $0$ for least misery and $0.1$ for best average and multiplications. The highest number is around $0.3$ for least misery, $0.4$ for best average and $0.5$ for multiplication
+When looking at dissatisfaction change the graphs are all in the negative number range. Multiplication reaches the lowest number and best average the highest. The gap between all three functions is less than for satisfaction increase. And overall the curves are flatter meaning the change with 25 stored configurations already reaches close to five sixth of the minimum value. The highest number of satisfaction change is $-0.4$ for all strategies meanwhile the lowest number is around $-0.57$ for least misery, $-0.53$ for best average and $-0.63$ for multiplication.
 
+The figures for homogenous (\autoref{fig:Appendix:HomoSatisfactionIncrease}) and random groups (\autoref{fig:Appendix:RandomSatisfactionIncrease}) are in the appendix. The figures have a similar shape but their values and slope vary. The satisfaction change for homogenous groups is mostly negative, starting at $-2$, and only reaches a positive level for more than $100$ stored configurations with a value of $0.04$. Multiplication and best average have higher values than least misery here too. Moreover the dissatisfaction change is positive across the bored with a value range of $[0,1]$.
+Random groups as seen in \autoref{fig:Appendix:RandomSatisfactionIncrease} mostly have a positive change in satisfaction. Values range here from $-0.55$ to $0.27$ for least misery, from $-0.27$ and $-0.28$ to $0.74$ for best average and multiplication. The change is higher than the change for heterogeneous groups. dissatisfaction also changes similarly to heterogeneous groups. Here the values for random groups reach a lower level. They range from $0$ to $-0.59$ for least misery. Multiplication and best average both have as minimum value around $-0.21$ and behave similarly. The range goes down to $-0.84$ for best average and $-0.86$ for multiplication.
 
 \begin{figure}
     \centering
-    \includegraphics[width=1\textwidth]{./figures/60_evaluation/heterogeneous_happy_unhappy_increase_amount-1000_smd-15.pdf}
-    \caption{The average satisfaction and dissatisfaction increase for \textbf{heterogeneous} groups consisting of four members with $smd=15\%$.}
-    \label{fig:Evaluation:HeterogenousGroupIncrease}
+    \includegraphics[width=1\textwidth]{./figures/60_evaluation/heterogeneous_happy_unhappy_increase_amount-1000__tc-70}
+    \caption{The satisfaction and dissatisfaction change using the group recommender for heterogeneous groups with $tc = 70$.}
+    \label{fig:Evaluation:HeteroSatisfactionIncrease}
 \end{figure}
 
+\autoref{fig:Evaluation:HeteroSatisfactionTotal} shows the total number of group members satisfied and dissatisfied with the recommender's decision. The horizontal black continuous line shows the value for satisfaction and dissatisfaction with the dictators decision. The graphs show the same curve as \autoref{fig:Evaluation:HeteroSatisfactionIncrease} but in absolute numbers. Satisfaction with the recommender's decision starts at $2.4$ and quickly reaches $2.65$ for least misery and $2.8$ for best average and multiplication. The highest value for multiplication is at $2.89$. Dissatisfaction also  quickly plateaus. Here values for different recommenders are closer together. They start at $0.74$ (least misery) to $0.78$ (best average) and go as low as $0.62$ for least misery, $0.66$ for best average and $0.56$ for multiplication.
+
+As shown in \autoref{fig:Appendix:HomoSatisfactionTotal} the value range for homogenous groups is much larger but the overall shape stays the same. Here satisfaction numbers go from $0.55$ to $2.95$. Least misery performs visibly worse than multiplication and best average reaching only $2.7$. Dissatisfaction values range from $1.21$ to $0.01$ and the values are not really visibly distinguishable besides that in the range $[25,50]$ least misery seems to have the highest number of dissatisfied group members.
+
+Random groups have less overall satisfaction with $tc = 85\%$ as seen in \autoref{fig:Appendix:RandomSatisfactionTotal}. Satisfaction numbers start from $1.33$ (least misery), $1.61$ (best average) and $1.6$ (multiplication) and go up to $2.15$ for least misery and $2.62$ for best average and multiplication. The dissatisfaction numbers start at $1.5$ for least misery and $1.27$ for best average and multiplication and level of at $0.9$ (least misery), $0.65$ (best average) and $0.63$ (multiplication). Visibly there is a big difference between least misery and the other two aggregation functions.
+
 \begin{figure}
     \centering
-    \includegraphics[width=1\textwidth]{./figures/60_evaluation/heterogeneous_happy_unhappy_total_group_amount-1000_smd-15.pdf}
-    \caption{The average satisfaction and dissatisfaction for \textbf{heterogeneous} groups consisting of four members with $smd=15\%$.}
-    \label{fig:Evaluation:HeterogenousGroupTotal}
+    \includegraphics[width=1\textwidth]{./figures/60_evaluation/heterogeneous_happy_unhappy_total_amount-1000__tc-70}
+    \caption{The average satisfaction and dissatisfaction with the recommender's decision for heterogeneous groups based on $tc = 70$.}
+    \label{fig:Evaluation:HeteroSatisfactionTotal}
 \end{figure}
 
 \begin{figure}
