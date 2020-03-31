@@ -216,8 +216,6 @@ To get an understanding of the data all parameters except the $tc$ will be fixed
     \label{fig:Evaluation:tcCount}
 \end{figure}
 
-\hyporef{hyp:Evaluation:MaximumMinimum} states that the highest satisfaction change is expected at places where the overall satisfaction with the dictator's decision is one. However the data shows a slightly different result. This hypothesis does not hold true. When looking at the data we see peeks in satisfaction change when $2.81, 2.51, 3$ (heterogeneous, random, homogenous). Therefore the expectation does not hold up. Moreover, valleys for dissatisfaction change are also not at the expected value of \textit{two}. They are instead at $1.19, 1.49, 0.04$ (heterogeneous, random, homogenous). Here the valleys are lower than expected. However data from homogenous groups seems cut of therefore it is not possible to say if there could be a potentially bigger decrease if the solution space is bigger.
-
 The predicted trend that a higher $tc$ results in a lower satisfaction and a higher dissatisfaction, with the dictator's decision, as predicted by \hyporef{hyp:Evaluation:HigherTcLessSatisfied} can be clearly seen in \autoref{fig:Evaluation:tcCount} and has been described in this section already.
 
 \hyporef{hyp:Evaluation:OnlyOneSatisfied} predicts that the satisfaction with the individual decision eventually reaches one and that no one is satisfied with the group recommender decision. This means the satisfaction change should reach minus one. \autoref{fig:Evaluation:tcCount} shows a downward trend that come close to one for heterogeneous and random groups. Also homogenous groups see a big drop but this drop does not reach one. Nonetheless, the steep drop suggests that the hypothesis holds in regards to reaching only one person satisfied with the individual decision when using quantiles that do not have to be integers. Also, satisfaction change in heterogeneous groups reaches close to minus one but this value is neither reached by random groups, nor by homogenous groups. The hypothesis therefore should not be seen as confirmed in that regard and further investigation is needed.
@@ -254,16 +252,11 @@ Random groups have less overall satisfaction with $tc = 85\%$ as seen in \autore
     \label{fig:Evaluation:HeteroSatisfactionTotal}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=1\textwidth]{./figures/60_evaluation/random_happy_unhappy_increase_amount-1000_smd-15.pdf}
-    \caption{The average satisfaction and dissatisfaction increase for a \textbf{random} groups consisting of four members with $smd=15\%$.}
-    \label{fig:Evaluation:RandomGroupIncrease}
-\end{figure}
+\hyporef{hyp:Evaluation:HomogenousMoreSatisfied} states that homogenous groups have more satisfied member's with regards to the dictator's and the group recommender's decision. \autoref{fig:Evaluation:tcCount} shows that this holds true for dictator's decision as for every instance satisfaction in homogeneous groups is higher than that of other groups. However \autoref{fig:Evaluation:HeteroSatisfactionTotal}, \autoref{fig:Appendix:HomoSatisfactionTotal} and \autoref{fig:Appendix:RandomSatisfactionTotal} show that for satisfaction with the recommender's decision this does not hold when looking at $tc$ values where the recommender performs best for each  segment. In those places the homogenous group only reaches the highest amount of satisfaction when the recommender has access to all stored configurations. With a decreasing number of stored configurations both random groups and heterogeneous groups perform better. It is important to note, when the same $tc$ values are used homogenous groups have a higher amount of satisfied people across the board.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=1\textwidth]{./figures/60_evaluation/random_happy_unhappy_total_group_amount-1000_smd-15.pdf}
-    \caption{The average satisfaction and dissatisfaction for \textbf{random} groups consisting of four members with $smd=15\%$.}
-    \label{fig:Evaluation:RandomGroupTotal}
-\end{figure}
+\hyporef{hyp:Evaluation:HeterogenousBiggerSatisfactionIncrease} states that the increase in satisfaction should be bigger for more heterogeneous groups. However \autoref{fig:Evaluation:HeteroSatisfactionIncrease}, \autoref{fig:Appendix:HomoSatisfactionIncrease} and \autoref{fig:Appendix:RandomSatisfactionIncrease} show this to be not true. The recommendations for heterogeneous groups indeed cause a larger change in satisfaction compared to homogeneous groups but random groups cause a bigger positive of higher magnitude. Also the decrease in dissatisfaction is higher among random groups.
+
+The data shows that having a larger configuration store causes the amount of satisfied group members to be greater than compared to recommendation's using a smaller store. With dissatisfaction the same is seen, just that here it is lower with a higher amount of stored configurations. However in some runs there have been instances of least misery that have seen a slightly lower number. This can be seen in \autoref{fig:Evaluation:HeteroSatisfactionIncrease} when comparing $74$ and $148$ as number of stored configurations. Why this happens is not entirely clear but a cause of that might be that least misery just takes into account the worst performing group member of the group. Therefore it is possible that there is a second slightly worse rated solution (by least misery) that actually has a slight advantage over the configuration chosen by least misery. Having a second best configuration can cause it to land in the second partition of the data therefore resulting in an on average less unhappiness. \hyporef{hyp:Evaluation:StoreSizeBetterResults} therefore is mostly supported by the data but it does not fully hold up when looking at least misery.
+
+\hyporef{hyp:Evaluation:AggregationStrategies} states least misery performs worse than multiplication. For a change in satisfaction this can be seen across the board however for dissatisfaction change this is not true everywhere. \autoref{fig:Evaluation:HeteroSatisfactionIncrease} shows that least misery performs better than best average in terms of dissatisfaction reduction. However in other cases it performs visibly worse. Also of note is multiplication performs best across the board. This supports the findings by \citeauthor{Masthoff2015} \cite[p. 755f]{Masthoff2015} and also shows that the satisfaction model does show some similar results to online evaluations.  
+
