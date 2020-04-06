@@ -179,11 +179,19 @@ When evaluating a subset of stored finished configurations it is important to av
 \section{Hypotheses}
 \label{sec:Evaluation:Hypotheses}
 
-This section gives an overview over the hypothesis used during data analysis. First a hypothesis is posed followed by its explanation.
+This section gives an overview over the hypothesis tested during data analysis. Each hypothesis is followed by an explanation to why the hypothesis was posed. In later sections the truthfulness of the hypothesis is tested. This allows to test if expectations about the behaviour of the recommender are true or false.
 
 \begin{hypothesis}
     \begin{itshape}
-        \label{hyp:Evaluation:MaximumMinimum} Highest improvements with group recommendation are when the amount of people satisfied with the dictator's decision is slightly lower than two. Respectively that holds true for dissatisfaction.
+        The recommender improves satisfaction in the group compared to a decision made by a dictator.
+    \end{itshape} \medskip \\* 
+    
+    \todo[inline]{hypothesis 0 explanation}
+\end{hypothesis}
+
+\begin{hypothesis}
+    \begin{itshape}
+        \label{hyp:Evaluation:MaximumMinimum} Highest improvements with group recommendation are when the amount of people satisfied with the dictator's decision is slightly lower than two and the highest reduction in dissatisfied group members can be seen with around two group members dissatisfied respectively.
     \end{itshape} \medskip \\*    
     This expectation is made because the assumption is made that in a real situation a group of four with having a few less than two satisfied members on average (with a dictator's decision) has enough room for improvement so that potentially three group members can be satisfied after the use of the recommender. Meaning that at least one more person is satisfied with the compromise. Potentially in some groups it might even be possible to then lift the last person from dissatisfaction towards a neutral attitude. A higher base satisfaction is assumed to reduce the possibility to make an additional group member satisfied.
 \end{hypothesis}
@@ -198,7 +206,7 @@ This section gives an overview over the hypothesis used during data analysis. Fi
 
 \begin{hypothesis}
     \begin{itshape}
-        \label{hyp:Evaluation:OnlyOneSatisfied} There exists a $tc$ value which causes only one person to be satisfied with the dictator's decision and no one is satisfied with the group recommender's decision.
+        \label{hyp:Evaluation:OnlyOneSatisfied} There exists a $tc$ value which causes only one person to be classified as satisfied with the dictator's decision and no one is classified as satisfied with the group recommender's decision.
     \end{itshape} \medskip \\*
     A $tc$ value that reaches a high enough level eventually should make only the dictator herself satisfied with the dictator's decision. The bar for satisfaction lies so high that any group recommendation will cause the dictator to also be not satisfied or at least neutral with the group decision. This can be understood as that in a group where nobody is willing to compromise everyone is only satisfied with one's own decision. Having two members with identical interest of course results in this effect not being present but this is expected to be rare for a group size of four. 
 \end{hypothesis}
@@ -219,7 +227,7 @@ This section gives an overview over the hypothesis used during data analysis. Fi
 
 \begin{hypothesis}
     \begin{itshape}
-        \label{hyp:Evaluation:StoreSizeBetterResults} A higher amount of stored finished configurations results in a higher amount of satisfied and a lower amount of dissatisfied group member.
+        \label{hyp:Evaluation:StoreSizeBetterResults} A higher amount of stored finished configurations results in a higher amount of satisfied and a lower amount of dissatisfied group members when the recommender is used to make the group decision.
     \end{itshape} \medskip \\*
     This hypothesis is born by the fact that having a bigger pool of configurations to choose from increases the chances of having a good recommendation. This of course requires the assumption that aggregation strategies that pick recommendations pick configurations that also fare better in the chosen satisfaction metric. If that is not the case this hypothesis should not hold.
 \end{hypothesis}
