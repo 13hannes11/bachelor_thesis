@@ -79,7 +79,7 @@
 %% --------------------------------
 %% | Ref Hypothesis                 |
 %% --------------------------------
-\newcommand{\hyporef}[1]{\hyperref[#1]{Hypothesis \ref*{#1}}}
+\newcommand{\hypothesisautorefname}{Hypothesis}
 
 %% --------------------------------
 %% | PDF Comments                 |
@@ -112,6 +112,12 @@
 %% | Generating Frames |
 %% ---------------------
 \usepackage[framemethod=TikZ]{mdframed}
+\mdtheorem[
+    linecolor=gray!60,
+    linewidth=1pt,
+    frametitlebackgroundcolor=gray!20,
+    frametitlefont=\sffamily\bfseries\color{black},
+]{hypothesis}{Hypothesis}[section]
 
 %% --------------------------------
 %% | PDF Comments                 |
