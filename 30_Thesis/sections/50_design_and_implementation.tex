@@ -1,23 +1,15 @@
 \chapter{Design and Implementation}
 \label{ch:DesignImplementation}
 
-\section{Architecture}
-\label{sec:DesignImplementation:Architecture}
+This thesis is looking at a recommendation system for a configurator. Developing a configurator and a recommendation system for this thesis is infeasible. Therefore, the decision was made to use an existing configurator. In this thesis \emph{CAS Configurator Merlin} \cite{IndustrySpecificProduct2020} is extended. As this configurator does not allow group configuration a modified version is used that already has been extended by \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} \cite{raabKollaborativeProduktkonfigurationEchtzeit2019}. 
 
-This thesis is looking at a recommendation system for a configurator. Developing a configurator and a recommendation system for this thesis is infeasible. Therefore, the decision was made to use an existing configurator. In this thesis \emph{CAS Configurator Merlin} \cite{IndustrySpecificProduct2020} is extended. As this configurator does not allow group configuration a modified version is be used that already has been extended by \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} \cite{raabKollaborativeProduktkonfigurationEchtzeit2019}. 
-
-\subsection{Base System}
+\section{Base System}
 \label{subsec:DesignImplementation:BaseSystem}
+
+\todo[inline]{move this section to foundations}
 
 \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019}'s \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} extends CAS Merlin Configurator in his thesis to allow simultaneous configuration. The extended architecture is shown in \autoref{fig:DesignImplementation:CollaborativeConfiguratorMerlin}.
 He only makes changes to M.Customer which is renamed to M.Collab-Customer and introduces a new component M.Collab.
-
-\begin{description}
-    \item[M.Core] provides the base of the configurator. It checks the configuration against all rules in the database, provides possible alternatives if a change invalidates other parts of a configuration. The system relies on a CSP solver for valida tion and suggestion of alternatives.
-    \item[M.Model] is the editor to create products and rules. These rules can then be uploaded to M.Core.
-    \item[M.Collab] is a node.js server application that communicates with M.Core via REST-API and with M.Collab-Customer via WebSocket. It sits in between M.Collab-Customer and M.Core and handles all processing regarding collaborative configuration.
-    \item[M.Collab-Customer] a modified version of M.Customer that does all communication via WebSocket and does communicate with M.Collab instead of M.Core. M.Customer is the customer facing component. It allows a customer to configure a product or solution.
-\end{description}
 
 \begin{figure}
     \centering
@@ -26,14 +18,32 @@ He only makes changes to M.Customer which is renamed to M.Collab-Customer and in
     \label{fig:DesignImplementation:CollaborativeConfiguratorMerlin}
 \end{figure}
 
+\begin{description}
+    \item[M.Core] provides the base of the configurator. It checks the configuration against all rules in the database, provides possible alternatives if a change invalidates other parts of a configuration. The system relies on a CSP solver for valida tion and suggestion of alternatives.
+    \item[M.Model] is the editor to create products and rules. These rules can then be uploaded to M.Core.
+    \item[M.Collab] is a node.js server application that communicates with M.Core via REST-API and with M.Collab-Customer via WebSocket. It sits in between M.Collab-Customer and M.Core and handles all processing regarding collaborative configuration.
+    \item[M.Collab-Customer] a modified version of M.Customer that does all communication via WebSocket and does communicate with M.Collab instead of M.Core. M.Customer is the customer facing component. It allows a customer to configure a product or solution.
+\end{description}
 
-\subsection{Extended Configurator}
+\FloatBarrier
+
+\section{Extended Configurator}
 \label{subsec:DesignImplementation:ExtendedConfigurator}
 
-An existing base system can be extended in different directions. As M.Collab already functions as middleman between M.Collab-Customer one solution would be to add recommender functionality into Collab-Customer. However this approach would conflict with the single concern software design principle. It would change M.Collab from a system that works similar to a router. It manages communication between M.Collab-Customer instances and between M.Core and M.Collab-Customer. Therefore this solution was discarded.
-Another viable solution is adding the recommendation functionality into M.Core. The main benefit of this approach is that it allows the recommender to use systems that are used for solving constraint satisfaction problems to enhance recommendations. The disadvantage of this approach is that now the recommender is tightly coupled with the configurator. Not only does this mean that reproducing results in this thesis is only possible with access to a non open-source product but it also means that there is no possibility to use the recommender for other configuration solutions. Due to these reasons the decision was made to create a new service that communicates with M.Collab thereby being loosely coupled with other system components. Additionally, this approach also allows to add functionality that takes  advantage of a constraint satisfaction problem solver by either communicating with one via REST or by integrating one directly to the M.Recommend component. Moreover, it also allows the use of different technologies. Python can be used instead of JavaScript with Node.js. Using a separate system also allows to scale the system differently as it is possible to use multiple recommender instances for one configurator or one recommender for multiple configurator. This is an advantage in the age of automatically scaling systems.
+\autoref{fig:DesignImplementation:RecommenderForCollaborativeConfiguratorMerlin} shows how the system looks like after the recommender is added. For this thesis M.Collab and M.Collab-Customer have undergone some slight modifications to allow the displaying of recommendations and to query the recommender. The user interface is shown in \autoref{fig:DesignImplementation:RecommenderForCollaborativeConfiguratorMerlin} but this is a user interface for presentation only and will not be used for the evaluation. The user interface also only allows preference aggregation in terms of three discrete states: like, dislike and no rating given but the recommender supports and is evaluated with continuous values.
 
-\autoref{fig:DesignImplementation:RecommenderForCollaborativeConfiguratorMerlin} shows how the system looks like after the recommender is added. For this thesis M.Collab and M.Collab-Customer will have to undergo some slight modifications to allow the displaying of recommendations and to query the recommender. The user interface is shown in \autoref{fig:DesignImplementation:RecommenderForCollaborativeConfiguratorMerlin} but this is a user interface for presentation only and will not be used for the evaluation. The user interface also only allows preference aggregation in terms of three discrete states: like, dislike and no rating given but the recommender supports and is evaluated with continuous values.
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{./figures/50_design_and_implementation/user_interface_prototype.png}
+    \caption{The user interface of the prototype, seen by one user while configuring with three other people. The circles in the top left represent the users that are connected in the current sessions. The current configuration state is shown by the in red selected characteristics. Recommendations are surrounded with a green border.}
+    \label{fig:DesignImplementation:UserInterface}
+\end{figure}
+
+
+\subsection{Microservice}
+
+An existing base system can be extended in different directions. As M.Collab already functions as middleman between M.Collab-Customer one solution would be to add recommender functionality into Collab-Customer. However this approach would conflict with the single concern software design principle. It would change M.Collab from a system that works similar to a router. It manages communication between M.Collab-Customer instances and between M.Core and M.Collab-Customer. Therefore this solution was discarded.
+Another viable solution is adding the recommendation functionality into M.Core. The main benefit of this approach is that it allows the recommender to use systems that are used for solving constraint satisfaction problems to enhance recommendations. The disadvantage of this approach is however, that now the recommender is tightly coupled with the configurator. Not only does this mean that reproducing results in this thesis is only possible with access to a non open-source product but it also means that there is no possibility to use the recommender for other configuration solutions. Moreover no plugin api exists and therefore the extension would require additional effort. Due to these reasons the decision was made to create a new microservice that communicates with M.Collab thereby being loosely coupled with other system components. Additionally, this approach also allows to add functionality that takes  advantage of a constraint satisfaction problem solver by either communicating with one via REST or by integrating one directly to the M.Recommend component. Moreover, it also allows the use of different technologies instead of JavaScript with Node.js. Using a separate system also allows to scale the system differently as it is possible to use multiple recommender instances for one configurator or one recommender for multiple configurators. This is an advantage in the age of automatically scaling systems.
 
 \begin{figure}
     \centering
@@ -42,12 +52,10 @@ Another viable solution is adding the recommendation functionality into M.Core. 
     \label{fig:DesignImplementation:RecommenderForCollaborativeConfiguratorMerlin}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=1\textwidth]{./figures/50_design_and_implementation/user_interface_prototype.png}
-    \caption{The user interface of the prototype, seen by one user while configuring with three other people. The circles in the top left represent the users that are connected in the current sessions. The current configuration state is shown by the in red selected characteristics. Recommendations are surrounded with a green border.}
-    \label{fig:DesignImplementation:UserInterface}
-\end{figure}
+\subsection{API}
+
+
+
 
 When a recommendation is supposed to be generated M.Collab sends a REST request to M.Recommend (see \autoref{fig:DesignImplementation:SequenceDiagramRecommendation}). This request contains preferences and the current configuration. M.Recommend generates a recommendation based on the received data. The recommended finished configuration is now send via broadcast over WebSocket to all M.Customer clients. 
 
@@ -59,13 +67,35 @@ When a recommendation is supposed to be generated M.Collab sends a REST request 
     \label{fig:DesignImplementation:SequenceDiagramRecommendation}
 \end{figure}
 
+\begin{description}
+    \item[/product\_structure/] is reachable via POST request and accepts data a configuration state and preferences. Based on that the response is a finished configuration.
+    \item[/config/] accepts GET and POST requests. Sending a get requests results in a list of all stored configurations being send back. POST is used for adding a finished configuration to the configuration database.
+    \item[/recommender/] is reachable via GET and PUT. GET returns the current product structure and PUT is there to replace it.
+\end{description}
 
+The api is implemented with a minimal amount of functions and the recommender currently only supports one product at the same time. However, the architecture is built in a way that can be easily extended into supporting multiple products.
+The general architecture adheres to the model view controller inspired architecture.
+Data is stored and retrieved using a data access objects therefore the currently used simple TinyDB database backend can be switched to a different one easily.
+
+\subsection{Database}
+
+The choice among database systems was between \emph{non-relational} and \emph{relational} databases. Relational databases are great at the four ACID (atomicity, consistency, isolation durability) principles. Moreover if the data structures are not changing it provides a solid basis that keeps the data reliable. A non-relational database on the other hand is ideal for rapid agile development. Moreover it shines if data requirements are not entirely clear and if a large amount of unstructured  data has to be stored. Moreover non-relational databases allows the system to store the data in any kind of structure. This proves as an advantage as it allows to use the same data structure to be stored that also has to be fed out through the api. Therefore parsing methods for the api can be reused and changed upon changing requirements. Moreover the data used for the recommender is mostly not interconnected therefore a relational databases main strength the data structure doesn't really come into play here.
 
 \subsection{Scoring Functions}
 
-\section{Software Quality}
-\label{sec:DesignImplementation:SoftwareQuality}
+Scoring functions are implemented in a modular fashion. There is different types of scoring functions. Some are meant for evaluating user preferences (and inherit from the class \emph{PreferenceScoringFunction}), others are meant for penalising changes in the current configuration state and therefore inheriting from  \emph{ConfigurationPenalty}. The last type of scoring function is a composite scoring function that consists of one or multiple scoring functions and combines their score into one. It uses the \emph{composite} design pattern. These functions allow a flexible combination function but moreover because of their underlying structure they can use similar components. For example preference scoring functions uses a pipeline for first converting preferences to a list of values. This is done using \emph{PreferenceToListFunction}. A list can now be modified with a\emph{ListToListFunction}. This step is optional. The last mandatory step is converting the list to a value using \emph{ListToValueFunction}. After this step the value can be modified further for example with a threshold function or any other function. All these components allow the easy and quick addition of new scoring functions. A scoring function factory is used to assemble a scoring function based on input parameters. Flexibility in the scoring functions was necessary because the mechanisms for scoring had not been finalised at this point of software development.
 
-\subsection{Design Patterns}
 
-\subsection{Test Coverage}
+\subsection{Technologies}
+
+M.Recommend is built in Python using FlaskRESTPlus. It is meant to build a REST-Service and allows the generation of a web ui which documents the API. The REST-API exposes three endpoints.
+
+\begin{itemize}
+    \item FlaskRESTPlus
+    \item TinyDB (with Tinyrecord)
+    \item Numpy
+    \item Matplotlib
+    \item jsonref
+    \item pytest
+    \item pandas
+\end{itemize}
