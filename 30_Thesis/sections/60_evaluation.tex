@@ -15,10 +15,7 @@ A satisfaction and dissatisfaction classification allows groups to be measured b
 \section{Evaluation Objective}
 \label{sec:Evaluation:Questions}
 
-An introduction to which questions lead the evaluation
-
-\todo[inline]{fülle dieses Kapitel noch etwas mit Leben: Kurze Einleitung, dass die Evaluation von folgenden Fragen geleitet wird und im Anschluss an die Fragen jeweils noch eine Erläuterung, warum diese Fragen relevant sind / auf was das Beantworten dieser Fragen abzielt. zB Main Question -> herausfinden,ob der Recommender für die Gruppe tatsächlich von Vorteil ist
-Und, dass zB die Frage bzgl Anzahl auf die technischen Eigenschaften des Recommenders abzielt}
+This section poses three questions that will be answered during the evaluation. The questions aim is to guide through this chapter. They set the guidelines for this evaluation and where focuses are set. The questions answered during the evaluation are:
 
 \begin{itemize}
     \item Main question: How does the satisfaction with a group decision, guided by the recommender, differ from the decision of a single decision maker, the dictator, who does not take the other group member's opinions into account?
@@ -26,47 +23,53 @@ Und, dass zB die Frage bzgl Anzahl auf die technischen Eigenschaften des Recomme
     \item How does the amount of stored finished configurations relate to satisfaction with a recommendation?
 \end{itemize}
 
+The main question is used to understand the usefulness of the recommender and if it gives benefits to groups. The second question is aimed at providing information regarding the data and how satisfaction looks like in group decisions and what factors influence it. Last, a technical question is posed. This question is relevant because it shows technical aspects of the recommender. This is important because other work for using the recommender in other possibly larger use cases depend on performance figures in relation to number of stored configurations.
+
 \section{Use Case}
 \label{sec:Evaluation:UseCase}
 
 To evaluate the recommender, a use case is needed. In this thesis, a forestry use case is evaluated. This is a use case with four stakeholders. \autoref{fig:Concept:ForestExample} presents the attributes and characteristics of this use case but an extension is needed to fully show the whole use case. Namely rules of non valid configurations. The constraints for this use case are listed in \emph{not with} form in \autoref{tab:Evaluation:UseCase}. 
 
 \begin{table}
+    \tiny
     \begin{center}
-        \begin{tabular}{r|l}
-            \textbf{characteristic} & \textbf{not with (either of the listed) characteristics} \\
+        \begin{tabularx}{\columnwidth}{cl|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|}
+            & & \multicolumn{3}{c|}{\textit{indigenous}} & \multicolumn{3}{c|}{\textit{resilient}} & \multicolumn{3}{c|}{\textit{usable}} & \multicolumn{3}{c|}{\textit{effort}} & \multicolumn{3}{c|}{\textit{quantity}} & \multicolumn{3}{c|}{\textit{price}} & \multicolumn{3}{c|}{\textit{accessibility}} \\
+            & & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} & \rotatebox[origin=c]{90}{manual} & \rotatebox[origin=c]{90}{harvester} & \rotatebox[origin=c]{90}{autonomous} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} \\
+
             \hline
-            $(\textit{indigenous}, \text{moderate})$   & $(\textit{resilient}, \text{high})$ \\
-            \hline
-            $(\textit{indigenous}, \text{high})$   & $(\textit{resilient}, \text{high}), (\textit{usable}, \text{moderate}), (\textit{usable}, \text{high}),$ \\
-            & $(\textit{quantity}, \text{high}), (\textit{price}, \text{low})$ \\
-            \hline 
-            $(\textit{resilient}, \text{moderate})$   & $(\textit{usable}, \text{high})$ \\
-            \hline
-            $(\textit{resilient}, \text{high})$   & $(\textit{usable}, \text{high}), (\textit{usable}, \text{moderate}), (\textit{quantity}, \text{high}),$ \\
-            & $(\textit{price}, \text{moderate}), (\textit{price}, \text{low})$ \\
-            \hline
-            $(\textit{usable}, \text{low})$ & $(\textit{quantity}, \text{high}), (\textit{price}, \text{moderate}), (\textit{price}, \text{low})$\\
-            \hline
-            $(\textit{usable}, \text{high})$ & $(\textit{accessibility}, \text{high})$\\
-            \hline
-            $(\textit{effort}, \text{manual})$ & $(\textit{quantity}, \text{high}), (\textit{price}, \text{low}), (\textit{price}, \text{moderate})$\\
-            \hline
-            $(\textit{effort}, \text{harvester})$ & $(\textit{accessibility}, \text{high}), (\textit{accessibility}, \text{moderate})$\\
-            \hline
-            $(\textit{effort}, \text{autonomous})$ & $(\textit{accessibility}, \text{high}), (\textit{accessibility}, \text{moderate})$\\
-            \hline
-            $(\textit{quantity}, \text{low})$ & $(\textit{price}, \text{low}), (\textit{price}, \text{moderate})$\\
-            \hline
-            $(\textit{quantity}, \text{moderate})$ & $(\textit{price}, \text{low}), (\textit{price}, \text{moderate})$\\
-            \hline
-            $(\textit{quantity}, \text{high})$ & $(\textit{accessibility}, \text{high}), (\textit{accessibility}, \text{moderate})$\\
-            \hline
-        \end{tabular}
+            \multirow{3}{*}{\textit{indigenous}}    & low       & - & - & - &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   \\ \cline{2-23}
+                                                    & moderate  & - & - & - &   &   & n &   &   & n &   &   &   &   &   &   &   &   &   &   &   &   \\ \cline{2-23}
+                                                    & high      & - & - & - &   &   & n &   & n & n &   &   &   &   &   & n & n &   &   &   &   &   \\ \hline
+
+            \multirow{3}{*}{\textit{resilient}}     & low       &   &   &   & - & - & - &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   \\ \cline{2-23}
+                                                    & moderate  &   &   &   & - & - & - &   &   & n &   &   &   &   &   &   &   &   &   &   &   &   \\ \cline{2-23}
+                                                    & high      &   & n & n & - & - & - &   & n & n &   &   &   &   &   & n & n & n &   &   &   &   \\ \hline
+
+            \multirow{3}{*}{\textit{usable}}        & low       &   &   &   &   &   &   & - & - & - &   &   &   &   &   & n & n & n &   &   &   &   \\ \cline{2-23}
+                                                    & moderate  &   &   & n &   &   & n & - & - & - &   &   &   &   &   &   &   &   &   &   &   &   \\ \cline{2-23}
+                                                    & high      &   & n & n &   & n & n & - & - & - &   &   &   &   &   &   &   &   &   &   &   & n \\ \hline
+
+            \multirow{3}{*}{\textit{effort}}        & low       &   &   &   &   &   &   &   &   &   & - & - & - &   &   & n & n & n &   &   &   &   \\ \cline{2-23}
+                                                    & moderate  &   &   &   &   &   &   &   &   &   & - & - & - &   &   &   &   &   &   &   & n & n \\ \cline{2-23}
+                                                    & high      &   &   &   &   &   &   &   &   &   & - & - & - &   &   &   &   &   &   &   &   &   \\ \hline
+
+            \multirow{3}{*}{\textit{quantity}}      & low       &   &   &   &   &   &   &   &   &   &   &   &   & - & - & - & n & n &   &   &   &   \\ \cline{2-23}
+                                                    & moderate  &   &   &   &   &   &   &   &   &   &   &   &   & - & - & - & n & n &   &   & n & n \\ \cline{2-23}
+                                                    & high      &   &   & n &   &   & n & n &   &   & n &   &   & - & - & - &   &   &   &   &   &   \\ \hline
+
+            \multirow{3}{*}{\textit{price}}         & low       &   &   & n &   &   & n & n &   &   & n &   &   & n & n &   & - & - & - &   &   &   \\ \cline{2-23}
+                                                    & moderate  &   &   &   &   &   & n & n &   &   & n &   &   & n & n &   & - & - & - &   &   &   \\ \cline{2-23}
+                                                    & high      &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & - & - & - &   &   &   \\ \hline
+
+            \multirow{3}{*}{\textit{accessibility}} & low       &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & - & - & - \\ \cline{2-23}
+                                                    & moderate  &   &   &   &   &   &   &   &   &   &   & n & n &   &   & n &   &   &   & - & - & - \\ \cline{2-23}
+                                                    & high      &   &   &   &   &   &   &   &   & n &   & n & n &   &   & n &   &   &   & - & - & - \\ \hline
+        
+        \end{tabularx}
         \caption{Constrains in \emph{not with} form for the forest use case.}
         \label{tab:Evaluation:UseCase}
     \end{center}
-    \todo[inline]{matrix anstelle von tabelle}
 \end{table}
 
 The stakeholders in this use case are: a forest owner, an athlete, an environmentalist, and a consumer. The owner sees the forest as an investment, he is interested in a high long term profit. On the other hand the consumer is interested in reasonable wood price as she uses wood for furniture and also for her fireplace. In contrast, the environmentalist is interested in a healthy forest that is not impacted negatively by human activity. Last is the athlete who is interested in good accessibility of the forest and that there is some plant and animal life.
@@ -179,14 +182,6 @@ Another important component of the evaluation is the influence of stored finishe
 \label{sec:Evaluation:Hypotheses}
 
 This section gives an overview over the hypothesis tested during data analysis. Each hypothesis is followed by an explanation to why the hypothesis was posed. In later sections the truthfulness of the hypothesis is tested. This allows to test if expectations about the behaviour of the recommender are true or false.
-
-\begin{hypothesis}
-    \begin{itshape}
-        The recommender improves satisfaction in the group compared to a decision made by a dictator.
-    \end{itshape} \medskip \\* 
-    
-    \todo[inline]{hypothesis 0 explanation}
-\end{hypothesis}
 
 \begin{hypothesis}
     \begin{itshape}
