@@ -166,5 +166,45 @@ In this thesis a penalty function is proposed which gives the percentage of char
     penalty_{proportion}(\overline{s},\ s) =  \left(\frac{\sum_{d \in \overline{s}} changed(d,\overline{s}, s)}{|\overline{s}|}\right)^\alpha.
 \end{equation}
 
-By including the current configuration into scoring the scoring function can take into account, changes that have been already implemented and therefore might be very costly to change.
-    
+By including the current configuration into scoring the scoring function can take into account, changes that have been already implemented and therefore might be very costly to changed to make illustrations more easy.
+
+\section{Illustration}
+\label{sec:Concept:Illustration}
+
+This section gives an example to illustrate how the recommendation works. The example in \autoref{fig:Concept:ForestExample} is used for that but the preferences are extended.
+
+\begin{itemize}
+    \item[$S_{F2}$ vs. $S_{F1}$] effect of divergence from configuration state
+    \item[$S_{F3}$ vs. $S_{F1}$] preference comparison
+    \item[$S_{F4}$ vs. $S_{F1}$] better preferences but divergence configuration state
+\end{itemize}
+
+\begin{table}
+    \tiny
+    \begin{tabularx}{\columnwidth}{C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|}
+        & \multicolumn{3}{c|}{\textit{indigenous}} & \multicolumn{3}{c|}{\textit{resilient}} & \multicolumn{3}{c|}{\textit{usable}} & \multicolumn{3}{c|}{\textit{effort}} & \multicolumn{3}{c|}{\textit{quantity}} & \multicolumn{3}{c|}{\textit{price}} & \multicolumn{3}{c|}{\textit{accessibility}} \\
+        \rotatebox[origin=c]{90}{\ preferences} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} & \rotatebox[origin=c]{90}{manual} & \rotatebox[origin=c]{90}{harvester} & \rotatebox[origin=c]{90}{autonomous} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} \\
+        \hline
+        $P_1$   & 0.5 & 0.5 & 0.5 & 0.5 & 0.5 & 0.5 & \textbf{0.1} & \textbf{0.7} & \textbf{0.9} & \textbf{0.6} & \textbf{0.8} & \textbf{0.2} & 0.5 & 0.5 & 0.5 & 0.5 & 0.5 & 0.5 & 0.5 & 0.5 & 0.5 \\
+        $P_2$   & \textbf{0.1} & \textbf{0.6} & \textbf{0.9} & 0.5 & 0.5 & 0.5 & 0.5 & 0.5 & 0.5 & \textbf{0.8} & \textbf{0.3} & \textbf{0.1} & 0.5 & 0.5 & 0.5 & 0.5 & 0.5 & 0.5 & 0.5 & 0.5 & 0.5 \\
+    \end{tabularx}
+    \caption{A table showing the preferences of an example for this section.}
+    \label{tab:Concept:UseCaseRating}
+\end{table}
+
+\begin{table}
+    \tiny
+    \begin{tabularx}{\columnwidth}{C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|}
+        & \multicolumn{3}{c|}{\textit{indigenous}} & \multicolumn{3}{c|}{\textit{resilient}} & \multicolumn{3}{c|}{\textit{usable}} & \multicolumn{3}{c|}{\textit{effort}} & \multicolumn{3}{c|}{\textit{quantity}} & \multicolumn{3}{c|}{\textit{price}} & \multicolumn{3}{c|}{\textit{accessibility}} \\
+        \rotatebox[origin=c]{90}{\ configuration} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} & \rotatebox[origin=c]{90}{manual} & \rotatebox[origin=c]{90}{harvester} & \rotatebox[origin=c]{90}{autonomous} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} & \rotatebox[origin=c]{90}{low} & \rotatebox[origin=c]{90}{moderate} & \rotatebox[origin=c]{90}{high} \\
+        \hline
+        $S_{\ \ }$         & - & \pmb{\checkmark} & - & - & \pmb{\checkmark} & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\
+        $S_{F1}$    & - & \pmb{\checkmark} & - & - & \pmb{\checkmark} & - & - & \checkmark & - & \pmb{\checkmark} & - & - & - & - & \checkmark & - & \checkmark & - & \checkmark & - & - \\
+        $S_{F2}$    & - & \pmb{\checkmark} & - & - & - & \pmb{\checkmark} & - & \checkmark & - & \pmb{\checkmark} & - & - & - & - & \checkmark & - & \checkmark & - & \checkmark & - & - \\
+        $S_{F3}$    & - & \pmb{\checkmark} & - & - & \pmb{\checkmark} & - & - & \checkmark & - & - & \pmb{\checkmark} & - & - & - & \checkmark & - & \checkmark & - & \checkmark & - & - \\
+        $S_{F4}$    & - & - & \pmb{\checkmark} & - & \pmb{\checkmark} & - & - & \checkmark & - & \pmb{\checkmark} & - & - & - & - & \checkmark & - & \checkmark & - & \checkmark & - & - \\
+    \end{tabularx}
+    \caption{A table showing the current configuration state $ S $ and the stored finished configurations $ S_{Fi} $.}
+    \label{tab:Concept:UseCaseConfigurations}
+\end{table}
+ 
