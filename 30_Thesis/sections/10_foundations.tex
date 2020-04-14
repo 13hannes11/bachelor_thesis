@@ -23,46 +23,13 @@ and \emph{constraints} $C$ that limit the solution space with
     C = \{c_1, \cdots, c_k\}.
 \end{equation}
 
-\subsection{Configuration State}
+In group-based configuration (also known as collaborative or group configuration) a group instead of a single user is set to configure a configuration. This entails challenges in terms of synchronising  workspaces and keeping the data consistent for every group member. \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019}'s \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} approach, which this thesis extends, is to treat the group configuration the same as one shared configuration and to sync the selection of attributes across clients.
 
-A \emph{configuration} $S$ will be defined as a tuple of variables (\autoref{eq:Foundations:ProductConfiguration:Variables}) and their corresponding domain value with
-\begin{equation} \label{eq:Foundations:ProductConfiguration:ConfigurationState}
-    S = \{ (v_i,\ d) \ |\ v_i \in V \ \land \ d \in \mathfrak{D}(i),\ i=1,\dotsc,m \}.
-\end{equation}
-Essentially it is a set of variables and assigned values.
-
-\subsection{Finished Configuration}
-To define what a \emph{finished configuration} is, it is required to first define what it means for a configuration to be valid. Therefore $is\_valid$ is defined as
-\begin{equation} \label{eq:Foundations:ProductConfiguration:IsValid}
-    is\_valid : S \to \{true, false\}; x \mapsto 
-    \begin{cases}
-        true, & S \in solution\_space \\
-        false, & \text{otherwise}
-    \end{cases},
-\end{equation}
-with $solution\_space$ being the solution space of the corresponding constraint satisfaction problem. A \emph{finished configuration} $S_F$ is a configuration that contains all variables and is a valid configuration:
-\begin{equation} \label{eq:Foundations:ProductConfiguration:FinishedConfiguration}
-    S_F \subset S,\ where \ \forall v_i \in V (\exists (v_i, d) \in S_F : d \in \mathfrak{D}(i)) \land is\_valid(S_F).
-\end{equation}
-In practice a finished configuration of a product (or solution) is something that is ready to be produced. For example if a care is being configured, this means that the car could be produced in the specified way that is given by the finished configuration.
-
-
-\section{Group-Based Product Configuration}
+\subsection{Group-Based Product Configuration}
 \label{sec:Foundations:GroupBasedProductConfiguration}
 
-Instead of a single person configuring a product, a group of people is configuring one product which can be useful in multi-stakeholder decisions. This setting needs mechanisms for describing the preferences of multiple people. Therefore to the definitions there will be added a set of users $U$ with
-\begin{equation}\label{eq:Foundations:ProductConfiguration:Users}
-    U = \{1, \dotsc, n\},
-\end{equation}
-a users \emph{utility function} that maps a domain value to a utility value and is only known to the user
-\begin{equation}
-    \begin{split}
-        u_i(d_j), \qquad \text{where}\ & d_j \in  \mathfrak{D}(j),\\
-        & 1 <= j <= m, \\
-        & 1 <= i <= n .
-    \end{split}
-\end{equation}
-\citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019}'s \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} approach, which this thesis extends, is to treat the group configuration the same as one shared configuration and to sync the selection of attributes across clients. 
+\todo[inline]{write here about group based configuration and challanges posed by it}
+
 
 \section{Recommender System}
 \label{sec:Foundations:RecommenderSystem}
