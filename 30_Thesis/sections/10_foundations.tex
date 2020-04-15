@@ -194,6 +194,20 @@ A group recommender system is a recommender system aimed at making recommendatio
 \todo[inline]{example of a group recommender}
 \todo[inline]{go more into detail about preference aggregation}
 
+Merging preferences has to be done using an aggregation strategy. This section presents three strategies: multiplication, average and least misery. The multiplication strategy multiplies preferences of users and thereby combines them into a group preference. Similarly the average strategy takes the average of a rating and the least misery strategy takes the lowest rating among group members. To illustrate the example in \autoref{tab:Foundations:RecommenderSystem:MoviePreferences} is used. A group is formed out of Lucy, Eric and Diane. The resulting ratings for each strategy are shown in \autoref{tab:Foundations:RecommenderSystem:AggregationStrategy}.
+
+\begin{table}
+    \centering    
+    \begin{tabular}{ l | c | c | c | c | c }
+        & The Matrix & Titanic & Die Hard & Forest Gump & Wall-E \\ \hline
+         multiplication  & 8 & - & 30 & 75 & - \\
+         average  & $\frac{7}{3}$ & - & $\frac{10}{3}$ & $\frac{13}{3}$ & - \\
+         least misery  & 1 & - & 2 & 3 & - \\
+    \end{tabular}
+    \caption{An example showing preference aggregation strategies for a group using the data from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}. Titanic and Wall-E were left out because not all group members have rated these movies.}
+    
+    \label{tab:Foundations:RecommenderSystem:AggregationStrategy}
+\end{table}
 
 
 \section{Base Recommender System}
