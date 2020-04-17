@@ -39,7 +39,7 @@ In group-based configuration (also known as collaborative or group configuration
 
 A recommender system is a system that gives individualized recommendations to users to guide them through a large space of objects \cite[~ p. 331]{burkeHybridRecommenderSystems2002}.
 
-There are several approaches to recommender systems presented in \cite{felfernigGroupRecommenderSystems2018}, these are: collaborative filtering, \todo[inline]{critiquing-based recommendation,} constraint-based recommendation, content-based filtering and hybrid recommendation.
+There are several approaches to recommender systems presented in \cite{felfernigGroupRecommenderSystems2018}, some of them are: collaborative filtering, constraint-based recommendation, content-based filtering and hybrid recommendation.
 
 \begin{table}
     \centering    
@@ -63,13 +63,6 @@ Collaborative Filtering can not only be done using users, it can also be item-ba
 
 \autoref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix. A simple user-based way to calculate a rating would be to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance our closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving us a predicted rating of $4$. If an item-based approach is used instead, it will be tried to find similar items based on the user's rating. An example of similar items here would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the sane rating and Eric's rating is off by one. Using again kNN with $k := 2$ it is found that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$.
 However this simple similarity and prediction function does not take into account different distances. For example Lucy's ratings are more similar compared to Eric's than Diane's but Diane's and Lucy's rating is valued the same amount.
-
-\todo[inline]{
-Critiquing-Based Recommendation %\subsection{Critiquing-Based Recommendation}
-Items are recommended and a user can then critique on attributes of the recommendation. Based on that a similar item which does not have those critiques can be recommended. User preferences are implicitly collected this way \cite{knijnenburgEachHisOwn2011}.
-
-With a critique based approach Eric sees a suggestion of watching \textit{The Island} and its attributes. He then can say that he finds this movie has too much action. The critique based recommender will now present a movie that has similar attributes as \textit{The Island} but with less action. For example \textit{Titanic} could be the next suggestion.
-}
 
 \subsection{Constraint-Based Recommendation}
 Hereby filter rules are defined which filter out items that don't fulfil specified rules. A user models their requirements with these rules and thereby gets a list of recommended items. This approach requires deep knowledge about a product because it needs a detailed description of features  \cite[~ p. 12]{felfernigDecisionTasksBasic2018}.
