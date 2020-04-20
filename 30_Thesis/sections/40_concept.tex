@@ -58,30 +58,32 @@ For a group recommender system additional definitions are needed. The attitude o
 \section{Requirements}
 \label{sec:Concept:Requirements}
 
-\todo[inline]{add requirements}
+This section lists requirements that are considered and implemented in this thesis. 
+
 \begin{itemize}
-    \item Simple user interface that only uses three discrete states (like in some social media platforms e.g. reddit)
-    \item Usable without proprietary software
-    \item Give recommendations to a group based on their preferences and the current configuration state
-    \item Usage by multiple users at the same time
-    \item The system should be able to work with other configuration systems too
-    \item A system should give recommendation for the group using a scoring function that takes into account preferences of group members and the current state of the situation.
+    \item Have a simple user interface that only uses three discrete states (like, neutral, dislike).
+    \item The recommendation engine can be used without proprietary software.
+    \item Give recommendations to a group based on their preferences and the current configuration state.
+    \item The system supports multiple users at the same time.
+    \item The system should be able to work with other configuration systems.
+    \item The system should take the current configuration state into account.
     \item Recommendations should allow different scoring functions.
-    \item Recommendations should always be valid options.
-    \item The system should consider all preferences of individuals in a group and find a solution that most people of the group are happy with.
+    \item Recommendations should always be valid solutions.
+    \item They system has to respond in a timely manner.
 \end{itemize}
 
 
 \section{Assumptions}
 \label{sec:Concept:Assumptions}
 
-\todo[inline]{add assumptions}
+Due to a thesis having a limited scale some assumptions have to be made. The assumptions made are listed in this section.
 
 \begin{itemize}
-    \item Only one product/solution is supposed to be configured at the same time
-    \item Features only support single value attributes
-    \item Users join the system and start configuring once all group members have joined
-    \item User interface is for demoing purposes only
+    \item Only one product/solution is supposed to be configured at the same time by one group.
+    \item Features only support single value attributes.
+    \item Users join the system and start configuring only after all group members have joined.
+    \item The user interface is for demoing purposes.
+    \item Speed and optimization of the system is not a high priority.
 \end{itemize}
 
 \section{User Interaction with the System}
