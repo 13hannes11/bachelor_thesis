@@ -1,8 +1,7 @@
 \chapter{Foundations}
 \label{ch:Foundations}
 
-This chapter gives an overview over the foundations this thesis is based upon.
-\todo[inline]{write introduction paragraph which tells the order things are introduced in.}
+This chapter gives an overview over the foundations this thesis is based upon. It introduces product configuration, shows how group based product configuration looks like, goes over recommender systems and basic approaches, describes group recommenders and introduces the prototype that is extended by this thesis.
 
 \section{Product Configuration}
 \label{sec:Foundations:ProductConfiguration}
@@ -39,6 +38,8 @@ Group-based product configuration is an approach to product configuration where 
 A recommender system is a system that gives individualized recommendations to users to guide them through a large space of objects \cite[~ p. 331]{burkeHybridRecommenderSystems2002}.
 
 There are several approaches to recommender systems presented in \cite{felfernigGroupRecommenderSystems2018}, some of them are: collaborative filtering, constraint-based recommendation, content-based filtering and hybrid recommendation.
+
+Advantages and disadvantages of 
 
 \begin{table}
     \centering    
@@ -102,25 +103,7 @@ Using the example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferenc
     \label{tab:Foundations:RecommenderSystem:ContentBasedFilteringProfiles}
 \end{table}
 
-\subsubsection{Advantages over Collaborative Filtering}
-\todo[inline]{write as text and not bullet points}
-\begin{itemize}
-    \item No cold start problem for items
-    \item No grey sheep problem as not dependent on similar groups having existed before.
-    \item Domain knowledge is existent
-    \item No issues with data sparsity as item description is given by product structure
-    \item No reliance on preferences that would result in a comparison space that is too large
-    \item No dependence of historic group preference accuracy 
-\end{itemize}
-
-\subsubsection{Advantages over Constrained-Based Recommendation}
-\todo[inline]{write as text and not bullet points}
-\begin{itemize}
-    \item Configuration state does not cause absence of recommendations
-    \item Expendable to also support constraints 
-    \item No need to handle inconsistencies explicitly
-\end{itemize}
-
+Advantages and disadvantages of basic recommendation techniques are listed in \autoref{tab:Foundations:RecommenderComparison}. The following subsections show advantages of content-based filtering over collaborative filtering and over constrained-based recommendation.
 
 \begin{table}
     \begin{center}
@@ -173,6 +156,18 @@ Using the example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferenc
     \end{center}
 \end{table}
 
+\subsubsection{Advantages over Collaborative Filtering}
+
+Collaborative filtering has several issues that content-based filtering doesn't have. According to \citeauthor{likaFacingColdStart2014} \cite{likaFacingColdStart2014} the \emph{cold start problem} is one of the most known problems for recommender systems. It occurs, when there is sparse information for users or items. In the case of collaborative filtering this issue exists for both items and users. Content based filtering does not have that issue with items as items are classified based on similarity to other items. The user cold start problem however still persists as a new user has not rated any items therefore no similar items can be recommended. 
+Another common issue is the \emph{grey sheep problem} \citeauthor{grasIdentifyingGreySheep2016} \cite{grasIdentifyingGreySheep2016}. Collaborative filtering approaches assume that users that are similar, have similar preferences. A user that is not similar to any of the current user or community of users. Therefore good recommendations cannot be made. These users are called \emph{grey sheep users}. Item-based filtering does not have this issue as a user's preference is directly used to find similar items to the ones she liked, not similar users.
+Usually, the need for domain knowledge is a disadvantage. However, as product configuration already has domain knowledge baked in to describe feature and how they can be combined here this is not a disadvantage and can even be seen as an advantage. Therefore, domain knowledge can directly be used and does not first need to be learned indirectly.
+Additionally, a collaborative filtering spans a larger comparison space, based on preferences, compared to content-based filtering that only uses the item attributes. Thus for applications with a large solution space, reliance on product features instead of user similarity should be considered.
+Last, content-based filtering does not depend on historic group preference accuracy. Therefore, malicious actors that try to manipulate the recommendation system do not decrease recommendation accuracy. The same is true for inaccurate preferences. For example if a user input into a system does not accurately reflect what they actually like.
+
+\subsubsection{Advantages over Constrained-Based Recommendation}
+
+In constrained-based recommendation approaches it is possible that constraints lead to no possible solution \cite[~ p. 44]{felfernigAlgorithmsGroupRecommendation2018}. This then requires further techniques of constrained relaxing and a user is faced with the situation that he has to search for constraints which fulfil less strict requirements. Moreover, in groups a constraint-based approach has to deal with contrary user constraints. Therefore, diverse groups could have issues with it.
+
 \subsection{Hybrid Recommendation}
 A hybrid recommender combines different recommendation approaches to use the strengths of each individual one and to reduce effects of weaknesses \cite{burkeHybridRecommenderSystems2002}.
 
@@ -204,7 +199,7 @@ Both the approach of merging preferences and the approach of using individual us
 \section{Base Recommender System}
 \label{sec:Foundations:BaseSystem}
 
-\citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019}'s \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} extends CAS Merlin Configurator in his thesis to allow simultaneous configuration. The extended architecture is shown in \autoref{fig:DesignImplementation:CollaborativeConfiguratorMerlin}.
+\citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} extends CAS Merlin Configurator in his thesis to allow simultaneous configuration. The extended architecture is shown in \autoref{fig:DesignImplementation:CollaborativeConfiguratorMerlin}.
 He only makes changes to M.Customer which is renamed to M.Collab-Customer and introduces a new component M.Collab.
 
 \begin{figure}
