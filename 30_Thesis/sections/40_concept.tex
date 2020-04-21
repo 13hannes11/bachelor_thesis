@@ -27,17 +27,17 @@ with $solution\_space$ being the solution space of the corresponding constraint 
 \begin{equation} \label{eq:Foundations:ProductConfiguration:FinishedConfiguration}
     S_F \subset S,\ where \ \forall v_i \in V (\exists (v_i, d) \in S_F : d \in \mathfrak{D}(i)) \land is\_valid(S_F).
 \end{equation}
-In practice a finished configuration of a product (or solution) is something that is ready to be produced. For example if a care is being configured, this means that the car could be produced in the specified way that is given by the finished configuration.
+In practice a finished configuration of a product is something that is ready to be produced. For example if a car is being configured, this means that the car can be produced in the specified way that is given by the finished configuration.
 
 
 \subsection{Group-Based Product Configuration}
 \label{sec:Foundations:GroupBasedProductConfiguration}
 
-Instead of a single person configuring a product, a group of people is configuring one product which can be useful in multi-stakeholder decisions. This setting needs mechanisms for describing the preferences of multiple people. Therefore to the definitions there will be added a set of users $U$ with
+Instead of a single person configuring a product, a group of people is configuring one product which can be useful in multi-stakeholder decisions. This setting needs mechanisms for describing the preferences of multiple people. Therefore there will be introduced a set of users $U$ with
 \begin{equation}\label{eq:Foundations:ProductConfiguration:Users}
     U = \{1, \dotsc, n\},
 \end{equation}
-a users \emph{utility function} that maps a domain value to a utility value and is only known to the user
+and a user's \emph{utility function} that maps a domain value to a utility value and is only known to the user
 \begin{equation}
     \begin{split}
         u_i(d_j), \qquad \text{where}\ & d_j \in  \mathfrak{D}(j),\\
@@ -58,10 +58,15 @@ For a group recommender system additional definitions are needed. The attitude o
 \section{Requirements}
 \label{sec:Concept:Requirements}
 
-This section lists requirements that are considered and implemented in this thesis. 
+\todo[inline]{sind alles muss-Anforderungen, oder auch kann-Anforderungen?
+
+Gibt es am Ende ein Kapitel, wo du das Erfüllen der Anforderungen bewertest?}
+
+This section lists requirements that are considered and implemented in this thesis \todo{genauer: auf was beziehen sich die Requirements? -> auf den Gruppen Recommender}. 
 
 \begin{itemize}
-    \item Have a simple user interface that only uses three discrete states (like, neutral, dislike).
+    \item Have a simple user interface that only uses three discrete states (like, neutral, dislike). \todo[]{passt das zu deinen kontinuierlichen Nutzen?}
+    \item The recommender should support a continuous value range for preferences
     \item The recommendation engine can be used without proprietary software.
     \item Give recommendations to a group based on their preferences and the current configuration state.
     \item The system supports multiple users at the same time.
@@ -76,7 +81,8 @@ This section lists requirements that are considered and implemented in this thes
 \section{Assumptions}
 \label{sec:Concept:Assumptions}
 
-Due to a thesis having a limited scale some assumptions have to be made. The assumptions made are listed in this section.
+Due to a thesis having limited resources, some assumptions have to be made. The assumptions made are listed in this section.
+\todo[inline]{es wäre gut, die Annahmen kurz zu erläutern: warum werden sie getroffen, wie wird die Arbeit dadurch einfacher, welchen Effekt hat das auf die Ergebnisse / wie steht es um die Allgemeingültigkeit der Ergebnisse?}
 
 \begin{itemize}
     \item Only one product/solution is supposed to be configured at the same time by one group.
@@ -90,6 +96,7 @@ Due to a thesis having a limited scale some assumptions have to be made. The ass
 \label{sec:Concept:UserSystemInteraction}
 
 The system has one main way to be used as defined in \autoref{tab:Concept:MainUseCase}. This process is also visualized in \autoref{fig:Concept:ConfigurationProcess}.
+hier braucht es noch eine genauere textliche Beschreibung, was in der Grafik zu sehen ist. Auch: woher kommt diese Prozessdefinition? Wurde sie aus den Requirements und Einschränkungen abgeleitet?
 
 \begin{figure}
     \centering
@@ -131,7 +138,7 @@ The system has one main way to be used as defined in \autoref{tab:Concept:MainUs
 \section{Case Study}
 \label{sec:Concept:CaseStudy}
 
-The case study used in this thesis is a simplified version from forestry.
+The case study used in this thesis is a simplified version from forestry \todo[]{hier evtl ergänzen: wo kommt der Use Case her / aus welchem Forschungsprojekt / warum ist er interessant?}.
 The used characteristics and attributes are shown in \autoref{fig:Concept:ForestExample}. Additionally as example are given preferences, a configuration state and a finished configuration.
 
 \begin{figure}
