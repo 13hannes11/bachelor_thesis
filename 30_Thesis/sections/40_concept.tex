@@ -160,9 +160,9 @@ The used characteristics and attributes are shown in \autoref{fig:Concept:Forest
             P = \{ & P_1, P_2\} \notag\\
             \begin{split}
                 P_1 = \{ & (\text{manual}, 0.8), (\text{harvester}, 0.3) \} \\ 
-                & \cup \{ (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V,\ i \notin \{ \text{manual}, \text{harvester}\} \ \} \ 
+                & \cup \{ (d,0.5)\ |\ d \in \mathfrak{D}(i),\ i \in V,\ i \notin \{ \text{manual}, \text{harvester}\} \ \} \ 
             \end{split} \notag \\
-            P_2 = \{ & (d,0)\ |\ d \in \mathfrak{D}(i),\ i \in V \} \notag \\
+            P_2 = \{ & (d,0.5)\ |\ d \in \mathfrak{D}(i),\ i \in V \} \notag \\
             S  =  \{ & (\textit{indigenous}, \text{low}), (\textit{quantity}, \text{moderate}) \} \notag \\
             \begin{split}
             S_F  =  \{ & (\textit{indigenous}, \text{low}), (\textit{resilient}, \text{low}), (\textit{usable},\text{low}), (\textit{effort}, \text{manual}), \\
@@ -213,35 +213,21 @@ This thesis will use multiple scoring functions. Among those are ones for least 
 
 \subsubsection{Preference Scoring}
 
-\todo[inline]{possibly remove distance from average scoring from thesis}
-
 All of the aggregation functions mentioned in \autoref{subsec:Concept:SolutionGeneration:ScoringFunction} have one preference per product. For configuration where a preference for all characterises exists there needs to be a function that combines the preferences of one user into her configuration score. After one score has been calculated per user the mentioned preference aggregation strategies can be used.
-This thesis proposes two different scoring functions. 
-First, to use the difference \todo[]{es wäre gut, diese Bewertung auch als Formel auszudrücken} from the selected characteristic compared to the average rating of all characteristics of the corresponding feature. This approach considers all preferences of a user meaning a preference is also seen relative to other preferences of alternative characteristics of the same feature.
 
-As an example a feature could be
-\begin{equation}
-    F = \text{ClimateResilientTrees},
-\end{equation} with characteristics
-\begin{equation}
-    \mathfrak{D}(F)= \{\text{low}, \text{medium}, \text{high}\},
-\end{equation}
-preferences
-\begin{equation}
-    P_1 = \{(\text{low}, 0), (\text{medium},0.6), (\text{high},0.9) \}
-\end{equation} 
-and the configuration that is supposed to be rated
-\begin{equation}
-    S_F = \{(\text{ClimateResilientTrees}, \text{high})\}.
-\end{equation}
-The average rating for the feature is $F = 0.5$. Therefore the score given by a user $1$ is $0.9-0.5 = 0.4$.
-A second user with preferences 
-\begin{equation}
-    P_2 = \{(\text{low}, 0), (\text{medium},0), (\text{high},0.9) \}
-\end{equation} 
-on the other hand results in a feature score of $0.9-0.3=0.6$. For this user the characteristic \emph{high} is of higher importance.
+A simple scoring function approach is to use the the preference for each characteristic that is part of the configuration and then use the average. This approach is transparent because the preference of a user is directly translated into the score and no weighting is done. It means that a configuration score is simple to understand and to calculate. However, if needed, for example, to give one group member more power, it allows relative weighting. This can be done with preprocessing of preferences. Moreover, an approach like this ensures that through preprocessing feature weights can be added. It is therefore possible that a user gives different importances to features. Also, other means of weighting ratings are possible. For example the ratings of one group member who has more knowledge in an area can be increased by multiplication with a factor or alternatively the preferences for all other users can be decreased.
+The formula for this rating function looks as follows:
 
-As scores should be kept as percentages and not in the interval $[-1,1]$ a normalisation is applied by adding one and dividing by two \todo[]{die allgemeine Erklärung der Berechnung sollte vor dem Beispiel kommen}. Therefore the respective scores are $0.7$ for user one and $0.95$ for user two. A configuration usually consists of more than one feature therefore an average rating over all features is taken to get the score one user gives to a configuration. Based on that score the in \autoref{subsec:Concept:SolutionGeneration:ScoringFunction} mentioned aggregation functions can be used.
+\begin{equation}
+    score(\overline{p},\ s) = aggr( \ \{score_{user}(P_i, s) \ | \ P_i \in \overline{p} \} \ )
+\end{equation}
+where $aggr$ the aggregation function and $score_{user}(P_i, s)$ the configuration score of user $i$ which is defined as
+\begin{equation}
+    score_{user}(P_i, s) = average(\{x \ | \ (characteristic, x) \in P_i \land characteristic \in s \}) \notag . 
+\end{equation}
+
+The example in \autoref{fig:Concept:ForestExample} contains two users. The first user has preferences for the characteristic \emph{manual} of the feature with $0.8$ and the characteristic \emph{harvester} of the same feature with $0.3$. All other characteristics have a preference of $0.5$. The second user's preferences are $0.5$ for all characteristics. The finished configuration that is supposed to be rated in this example contains the characteristics \emph{low} for each feature except for \emph{effort} and \emph{quantity} which are set to \emph{manual} and \emph{high}. The score fore the finished configuration $S_F$ of user one is $0.54$. This score is the average of all seven features. User one rates all characteristics of all features as $0.5$ except two characteristics for \emph{effort}. Therefore all, feature scores for this user are $0.5$ except the score for \emph{effort} is $0.8$ because of the user's preference of $0.8$ for the characteristic \emph{manual}. The resulting average score per feature of $0.54$ is the user's score for this configuration. User two rates all characteristics with $0.5$ therefore the resulting average is $0.5$.
+The group configuration score is dependent on the used aggregation strategy. Multiplication results in a score of $0.54 \cdot 0.5 = 0.27$. The score for average is $\frac{1}{2}(0.54 + 0.5) = 0.52$ and for least misery $\min \{0.54, 0.5\} = 0.5$.
 
 The second simpler scoring function approach is to use the the preference for each characteristic that is part of the configuration and then use the average. This approach is more transparent because the preference of a user is directly translated into the oscore and no weighting is done. It means that a configuration score is more simple to understand and to calculate. However, if needed, for example to give one group member more power, it allows relative weighting, too. This can be done with preprocessing of preferences. Moreover, an approach like this ensures that through preprocessing feature weights can be added \todo[]{das kann ich doch bei der anderen Funktion auch zB nachdem ich das Scoring für eine einzelne Ausprägung berechnet habe}. It is therefore possible that a user gives different importances to features. Also, other means of weighting ratings is possible. For example the ratings of one group member who has more knowledge in an area can be increased by multiplication with a factor or alternatively the preferences for all other users can be decreased.
 The example above would not result in different feature scores for $P_1$ and $P_2$. Both would result in a score of $0.9$. Therefore there is a more direct link between a users preference and the score. 
