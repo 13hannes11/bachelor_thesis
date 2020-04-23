@@ -237,7 +237,7 @@ The simplicity of the second approach in combination with transparency is why it
 \subsubsection{Cofiguration Change Penalty}
 \label{subsubsec:Concept:SolutionGeneration:ScoringFunction:Penalty}
 
-In this thesis a penalty function is proposed which gives the percentage of characteristics that exist in the configuration that is to be rated. This value can be tuned to be more or less strict by potentiating. Thereby allowing more deviation or less deviation from the current configuration state. The penalty function is defined as
+In this thesis a penalty function is proposed which gives the percentage of characteristics that exist in the configuration that is to be rated. This value can be tuned to be more or less strict by potentiating. This is done by selection different values for $\alpha$. Thereby allowing more deviation or less deviation from the current configuration state. The penalty function is defined as
 \begin{equation}
     \notag \alpha \in \mathbb{R}, \qquad     unchanged(d,\overline{s}, s) = 
     \begin{cases}
@@ -245,13 +245,13 @@ In this thesis a penalty function is proposed which gives the percentage of char
       0, & \text{otherwise}
     \end{cases}
 \end{equation}
-\todo[]{erkläre die Formel $penalty_\text{proportion}$ genauer}
-\todo[]{erkläre die Rolle von $\alpha$ }
+
 \begin{equation}
     penalty_{proportion}(\overline{s},\ s) =  \left(\frac{\sum_{d \in \overline{s}} unchanged(d,\overline{s}, s)}{|\overline{s}|}\right)^\alpha.
 \end{equation}
+In essence the the function checks the number of unchanged characteristics and divides this by the number of characteristics that are in the current configuration state. The result is the proportion of unchanged characteristics when comparing the current configuration state to the finished configuration.
 
-By including the current configuration state, the scoring function can take into account that some characteristics have already been realized and therefore might be very costly to change.
+By including the current configuration state, the scoring function can take into account that some characteristics have already been realized and therefore might be very costly to change. A higher $\alpha$ resembles a higher cost of change and an alpha of zero represents no costs for changes.
 
 \section{Illustration}
 \label{sec:Concept:Illustration}
