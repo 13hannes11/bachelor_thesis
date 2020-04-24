@@ -75,3 +75,14 @@ As testing library for unittests \emph{pytest} \cite{PytestDocumentation} is use
 For the evaluation of data and also for some operations with lists \emph{numpy} \cite{NumPy} is used. This library is optimised for fast scientific computing. 
 
 Visualisation is done using \emph{Matplotlib} \cite{MatplotlibDocumentation} in combination with \emph{pandas} \cite{PandasPythonData}. \emph{Pandas} is a powerful framework for data analysis and manipulation tool which in the context of this thesis is used to load evaluation data.
+
+
+\section{Requirements Assessment}
+\label{sec:DesignImplementation:RequirementsAssesment}
+
+The requirements posed in \autoref{sec:Concept:Requirements} are assessed in this section. The recommender uses a continuous value range between zero and one for preferences. Moreover, the recommendation component is designed to be used independently therefore it is possible to use without proprietary software.
+Additionally the group scoring function takes into account preferences of each group member and the current configuration state. The recommendation system can be used by multiple users at the same time as all information needed for a recommendation are send with the recommendation request. Therefore multiple group configurators can use the system at the same time. Furthermore, only valid solutions are recommended because the recommender system's configuration database stores finished configurations. Moreover, the system responds in a timely manner with all components running on the same machine, a modern laptop.
+Therefore all mandatory requirements have been fulfilled.
+
+The user interface is simple because a user only has two possible actions. He can change his preferences with a slider or change the configuration state. Additionally, the system is made to be compatible with other configuration systems. These have to implement the correct APIs calls. However, this requirement was not tested with a different configuration system. Different scoring functions can be used however they can neither be selected through user interface nor through the API. Thus, this requirement is only partially fulfilled but the system allows extension to fulfil this requirement fully.
+Overall optional requirements have been addressed but they have not been thoroughly evaluated and some of them have been only partially implemented.
