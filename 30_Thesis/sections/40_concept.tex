@@ -59,23 +59,27 @@ For a group recommender system additional definitions are needed. The attitude o
 \section{Requirements}
 \label{sec:Concept:Requirements}
 
-\todo[inline]{sind alles muss-Anforderungen, oder auch kann-Anforderungen?
+\todo[inline]{Gibt es am Ende ein Kapitel, wo du das Erfüllen der Anforderungen bewertest?}
 
-Gibt es am Ende ein Kapitel, wo du das Erfüllen der Anforderungen bewertest?}
-
-This section lists requirements that are considered and implemented in this thesis \todo{genauer: auf was beziehen sich die Requirements? -> auf den Gruppen Recommender}. 
+This section lists requirements that are considered and implemented in this thesis by the group-based configurator, including the recommendation system.
 
 \begin{itemize}
-    \item Have a simple user interface.
-    \item The recommender should support a continuous value range for preferences
-    \item The recommendation engine can be used without proprietary software.
-    \item Give recommendations to a group based on their preferences and the current configuration state.
-    \item The system supports multiple users at the same time.
-    \item The system should be able to work with other configuration systems.
-    \item The system should take the current configuration state into account.
-    \item Recommendations should allow different scoring functions.
-    \item Recommendations should always be valid solutions.
-    \item They system has to respond in a timely manner.
+    \item Mandatory:
+        \begin{itemize}
+            \item The recommender should support a continuous value range for preferences
+            \item The recommendation engine can be used without proprietary software.
+            \item Give recommendations to a group, based on their preferences and the current configuration state.
+            \item The system supports multiple users at the same time
+            \item The system should take the current configuration state into account.
+            \item Recommendations should allow different scoring functions.
+            \item Recommendations should always be valid solutions.
+            \item They system has to respond in a timely manner.
+        \end{itemize}
+    \item Optional:
+        \begin{itemize}
+            \item Have a simple user interface.
+            \item The system should be able to work with other configuration systems.
+        \end{itemize}
 \end{itemize}
 
 
@@ -83,15 +87,18 @@ This section lists requirements that are considered and implemented in this thes
 \label{sec:Concept:Assumptions}
 
 Due to a thesis having limited resources, some assumptions have to be made. The assumptions made are listed in this section.
-\todo[inline]{es wäre gut, die Annahmen kurz zu erläutern: warum werden sie getroffen, wie wird die Arbeit dadurch einfacher, welchen Effekt hat das auf die Ergebnisse / wie steht es um die Allgemeingültigkeit der Ergebnisse?}
 
 \begin{itemize}
     \item Only one product/solution is supposed to be configured at the same time by one group.
     \item Features only support single value attributes.
     \item Users join the system and start configuring only after all group members have joined.
-    \item The user interface is for demoing purposes.
     \item Speed and optimization of the system is not a high priority.
+    \item The user interface is for demoing purposes.
 \end{itemize}
+
+Only supporting one product to be configured at a time by a group and the assumption that only single value attributes are supported is made to reduce complexity. Therefore less implementation work is needed. However, results are not dependent on these implementations. Most features use only single value attributes. Also it is possible to model a feature that supports multiple attributes. As an example the feature \emph{audio system} has the following options \emph{Bluetooth} or \emph{CD}. To allow multiple attributes to be selected the characteristic \emph{Bluetooth and CD} can be added.
+The assumption that users join the system and only start configuring once all members of the group joined is made to reduce the amount of work needed for creating a lobby and waiting system which is not relevant for showing the functionality of the recommender. Speed and optimization of the system are not of high priority as the speed has no influence on the results of this thesis. Therefore as long as the system is fast enough, no further optimisation of speed is needed.
+The evaluation is done solely with the recommender system and its APIs therefore the user interface is not directly relevant for the evaluation but it is relevant for communication of results.
 
 \section{User Interaction with the System}
 \label{sec:Concept:UserSystemInteraction}
