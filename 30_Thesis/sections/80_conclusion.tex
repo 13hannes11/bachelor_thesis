@@ -3,15 +3,31 @@
 
 \todo[inline]{write chapter}
 
+Restating the aims of the study:
 \begin{itemize}
-    \item Restating the aims of the study
+    \item Proposed an approach to using item-based recommendation for group configuration
+    \item Show the viability of a recommender for group-based configuration
+    \item Produce prototype
 \end{itemize}
 
 \section{Summary}
 \label{sec:Conclusion:Summary}
+
 \begin{itemize}
     \item Summarising main research findings
+        \begin{itemize}
+            \item A group recommender for configuration is possible
+            \item Show a design for a group based recommender for configuration that recommends complete configurations
+            \item Works well for overall for groups
+            \item proposed an offline evaluation metric
+            \item Homogeneous groups have issues with a recommender that has only limited knowledge of the solution space -> 
+            \item Works with subset of configuration space configuration
+        \end{itemize}
     \item Suggesting implications for the field of knowledge
+        \begin{itemize}
+            \item Content based group  recommender approaches can be easily modified to work for group settings
+            \item The prototype can be used and extended for future usage of recommenders in  
+        \end{itemize}
     \item Explaining the significance of the findings or contribution of the study
 \end{itemize}
 
@@ -19,6 +35,13 @@
 \label{sec:Conclusion:Limitations}
 \begin{itemize}
     \item Recognising the Limitations
+        \begin{itemize}
+            \item Only looked at one use case
+            \item Only offline evaluation
+            \item Groups automatically generated - No real groups
+            \item Group size fixed to four people
+            \item Performance for bigger products not validated
+        \end{itemize}
     \item Making recommendations for further research work 
 \end{itemize}
 
@@ -26,7 +49,7 @@
 \label{sec:Conclusion:PossibleExtensions}
 
 \begin{itemize}
-    \item How to optimise such that no need to search through all stored finished configurations is necessary? (e.g. improve runtime from $\mathcal{O}(n)$ to $\mathcal{O}(log\ n)$)
+    \item How to optimise such that no need to search through all stored finished configurations is necessary? Something like tree like structure to cluster elements
     \item How to model hierarchy and knowledge about product components in preferences?
     \item Letting users set preferences for product functions (e.g. for a forest a recreation function, a productive function, a protective function, etc.). How does it compare to explicitly choosing preferences?
     \item Does the assumption that the closer the configuration state is to a finished configuration, the less the satisfaction increase and the less difference among recommended configurations hold true?
@@ -35,4 +58,7 @@
     \item Test more complex products with more attributes and characteristics. Do they see the same effect in regards to stored configuration and recommendation quality.
     \item Evaluate different types of generating user score for configuration
     \item Larger Groups
+    \item Modelling hierarchy and knowledge in group decisions for configuration
+    \item Approaches towards configuration that reduce complexity and guide users for setting preferences
+    \item Implicitly getting preferences
 \end{itemize}
