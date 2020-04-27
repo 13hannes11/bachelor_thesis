@@ -181,43 +181,38 @@ The used characteristics and attributes are shown in \autoref{fig:Concept:Forest
 \end{figure}
 
 
-\section{Solution Generation}
+\section{Recommendation Generation}
 \label{sec:Concept:SolutionGeneration}
 
-\todo[inline]{hier wird erstmal nicht klar, worum es geht. 
-The process of finding a suitable configuration to recommend, the following steps are executed: ...
-oder auf was will der Absatz hinaus?}
-
-Given an unfinished configuration and preferences of all group members, rate a finished configuration on how well it reflects the configuration state and preferences. Use this to choose the best finished configuration out of a list to recommend. This approach is an aggregated preference strategy of ranking of candidate items (see \autoref{sec:Foundations:GroupRecommenderSystem}).
-
-\subsection{Generating a Recommendation}
-
-\todo[inline]{den prozess noch ein bisschen erklären: was bezieht der Score mit ein? Warum anschließend bestimmte Konfigurationen ausschließen? Warum dafür eine neue Bewertungsfunktion? Warum ist dieser Schritt optional? Was bedeutet es dann, wenn eine Konfiguration ausgesucht wurde?}
-
-There is a database of complete configurations (possibly historic from other groups or automatically generated or both).
-Now the recommendation procedure looks as follows:
+This section describes how recommendations are generated. The recommender system has a database that stores possible finished configurations and the goal is to rank these recommendations according to a scoring function and to recommend the best possible configuration. The scoring function is referred to as the \emph{group configuration scoring function}. It uses the current configuration state, the preferences of the group and a finished configuration to calculate a score. This score resembles how good this configuration resembles the interest of the group. The exact procedure looks as follows:
 
 \begin{enumerate}
     \item Assign a score to each stored configuration according to $$score_{group}(\overline{configurationState},\ \overline{preferences}, \ configurationInStore)$$
     \item Chose the configuration with the highest score as recommendation.
 \end{enumerate}
 
+It is optionally possible to have multiple runs with different scoring functions. This, for example, allows the removal of configurations that cause a lot of misery.
+
+
+
 \subsection{Scoring Function}
+
 \label{subsec:Concept:SolutionGeneration:ScoringFunction}
 
-\emph{Group configuration scoring function} includes preferences and current configuration state. This function gives a score for a finished configuration (while using the current configuration state and all user preferences):
+The \emph{group configuration scoring function} includes preferences and current configuration state. This function gives a score for a finished configuration (while using the current configuration state and all user preferences):
 \begin{equation}
     score_{group}: S \times P \times S_F \to \mathbb{R}
 \end{equation}
 
-An example group configuration scoring function is $score_{group}$ with \todo[]{erkläre die Formel, es bleibt offen, wie über die Nutzer aggregiert wird}
+An example group configuration scoring function is $score_{group}$ with
 \begin{equation}
     score_{group}(\overline{s},\ \overline{p},\ s) = score(\overline{p},\ s) \cdot penalty(\overline{s},\ s)
 \end{equation} 
 
-This thesis will use multiple scoring functions. Among those are ones for least misery, average and multiplicative which all are implemented by $score$ \todo[]{Referenz zur Stelle, wo die verwendeten Funktionen im Detail beschrieben werden}. Average and multiplicative yield good results among the studies presented by \citeauthor{Masthoff2015} \cite{Masthoff2015}. Strategies can also be combined, one example here is average without misery. The scoring functions used for this thesis all combine $penalty$ and $score$ by multiplication. However it is possible to use other combination strategies and it is possible to combine multiple scoring functions into one group scoring function. This thesis will use simpler scoring functions that are not combined but improvement here is possible.
+This thesis will use multiple scoring functions. Among those are ones for least misery, average and multiplicative which all are implemented by $score$ (see \autoref{subsec:Concept:ReccomendationGeneration:PreferenceScoring} and \autoref{subsec:Concept:ReccomendationGeneration:PreferenceScoring}). Average and multiplicative yield good results among the studies presented by \citeauthor{Masthoff2015} \cite{Masthoff2015}. Strategies can also be combined, one example here is average without misery. The scoring functions used for this thesis all combine $penalty$ and $score$ by multiplication. However it is possible to use other combination strategies and it is possible to combine multiple scoring functions into one group scoring function. This thesis will use simpler scoring functions that are not combined but improvement here is possible.
 
-\subsubsection{Preference Scoring}
+\subsection{Preference Scoring}
+\label{subsec:Concept:ReccomendationGeneration:PreferenceScoring}
 
 All of the aggregation functions mentioned in \autoref{subsec:Concept:SolutionGeneration:ScoringFunction} have one preference per product. For configuration where a preference for all characterises exists there needs to be a function that combines the preferences of one user into her configuration score. After one score has been calculated per user the mentioned preference aggregation strategies can be used.
 
@@ -235,8 +230,8 @@ where $aggr$ the aggregation function and $score_{user}(P_i, s)$ the configurati
 The example in \autoref{fig:Concept:ForestExample} contains two users. The first user has preferences for the characteristic \emph{manual} of the feature with $0.8$ and the characteristic \emph{harvester} of the same feature with $0.3$. All other characteristics have a preference of $0.5$. The second user's preferences are $0.5$ for all characteristics. The finished configuration that is supposed to be rated in this example contains the characteristics \emph{low} for each feature except for \emph{effort} and \emph{quantity} which are set to \emph{manual} and \emph{high}. The score fore the finished configuration $S_F$ of user one is $0.54$. This score is the average of all seven features. User one rates all characteristics of all features as $0.5$ except two characteristics for \emph{effort}. Therefore all, feature scores for this user are $0.5$ except the score for \emph{effort} is $0.8$ because of the user's preference of $0.8$ for the characteristic \emph{manual}. The resulting average score per feature of $0.54$ is the user's score for this configuration. User two rates all characteristics with $0.5$ therefore the resulting average is $0.5$.
 The group configuration score is dependent on the used aggregation strategy. Multiplication results in a score of $0.54 \cdot 0.5 = 0.27$. The score for average is $\frac{1}{2}(0.54 + 0.5) = 0.52$ and for least misery $\min \{0.54, 0.5\} = 0.5$.
 
-\subsubsection{Cofiguration Change Penalty}
-\label{subsubsec:Concept:SolutionGeneration:ScoringFunction:Penalty}
+\subsection{Configuration Change Penalty}
+\label{subsec:Concept:ReccomendationGeneration:Penalty}
 
 In this thesis a penalty function is proposed which gives the percentage of characteristics that exist in the configuration that is to be rated. This value can be tuned to be more or less strict by potentiating. This is done by selection different values for $\alpha$. Thereby allowing more deviation or less deviation from the current configuration state. The penalty function is defined as
 \begin{equation}
@@ -257,7 +252,7 @@ By including the current configuration state, the scoring function can take into
 \section{Illustration}
 \label{sec:Concept:Illustration}
 
-This section gives an example to illustrate how the recommendation works. The example in \autoref{fig:Concept:ForestExample} is used for that but the preferences are extended. \autoref{tab:Concept:UseCaseConfigurations} shows the current configuration state which consists of the characteristic moderate for the feature \textit{indigenous} and  \textit{resilient} respectively. $S_{F1}$ to $S_{F4}$ show the stored configurations for this example. The features that will be focused on are \textit{indigenous}, \textit{resilient} and \textit{effort}. In the presented example $S_{F1}$ performs best. The exact reason for that will be presented here. $S_{F1}$ is compared to $S_{F2}$ to show the effect of divergence from the configuration state.  A comparison between $S_{F1}$  and $S_{F3}$ is done to show the difference between preferences and the effect on the score and last, $S_{F4}$ is done to show the effect of switching to better preferences but diverging from the current state. The configurations all differ to $S_{F1}$ in only one characteristic that is chosen differently. As aggregation strategy the \emph{average} metric is used (see \autoref{sec:Foundations:GroupRecommenderSystem}). The parameter $\alpha$ (see \autoref{subsubsec:Concept:SolutionGeneration:ScoringFunction:Penalty}) is set to 1. A lower $\alpha$ reduces the penalty given to configurations that deviate from the configuration state $S$ and a higher $\alpha$ increase the reluctance to change.
+This section gives an example to illustrate how the recommendation works. The example in \autoref{fig:Concept:ForestExample} is used for that but the preferences are extended. \autoref{tab:Concept:UseCaseConfigurations} shows the current configuration state which consists of the characteristic moderate for the feature \textit{indigenous} and  \textit{resilient} respectively. $S_{F1}$ to $S_{F4}$ show the stored configurations for this example. The features that will be focused on are \textit{indigenous}, \textit{resilient} and \textit{effort}. In the presented example $S_{F1}$ performs best. The exact reason for that will be presented here. $S_{F1}$ is compared to $S_{F2}$ to show the effect of divergence from the configuration state.  A comparison between $S_{F1}$  and $S_{F3}$ is done to show the difference between preferences and the effect on the score and last, $S_{F4}$ is done to show the effect of switching to better preferences but diverging from the current state. The configurations all differ to $S_{F1}$ in only one characteristic that is chosen differently. As aggregation strategy the \emph{average} metric is used (see \autoref{sec:Foundations:GroupRecommenderSystem}). The parameter $\alpha$ (see \autoref{subsec:Concept:ReccomendationGeneration:Penalty}) is set to 1. A lower $\alpha$ reduces the penalty given to configurations that deviate from the configuration state $S$ and a higher $\alpha$ increase the reluctance to change.
 
 The difference between  $S_{F1}$ and  $S_{F2}$ is that instead of containing \emph{moderate} for the feature \emph{resilient} $S_{F2}$ contains \emph{high}. The scores for these two characteristics are the same, with a value of $0.55$,as both users have rated them at $0.5$ but as $S_{F2}$ deviates from the configuration state there will be a penalty. There are two characteristics in the configuration state $S$ therefore the the penalty is $(\frac{1}{2})^\alpha = (\frac{1}{2})^1 = 0.5$. This means the score of $S_{F2}$ is half that of $S_{F1}$. Resulting in a final score of $0.275$ compared to $0.55$.
 
