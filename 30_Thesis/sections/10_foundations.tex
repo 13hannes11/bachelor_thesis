@@ -195,11 +195,10 @@ Both the approach of merging preferences and the approach of using individual us
     \label{tab:Foundations:RecommenderSystem:AggregationStrategy}
 \end{table}
 
-
-\section{Base Recommender System}
+\section{Base System}
 \label{sec:Foundations:BaseSystem}
 
-\citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} extends CAS Merlin Configurator in his thesis to allow simultaneous configuration. The extended architecture is shown in \autoref{fig:Foundations:CollaborativeConfiguratorMerlin}.
+This thesis extends a base software system, \emph{CAS Configurator Merlin}, from \emph{CAS Software AG} \cite{CASSoftwareAG}. \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} extends CAS Merlin Configurator in his thesis to allow simultaneous configuration. The extended architecture is shown in \autoref{fig:Foundations:CollaborativeConfiguratorMerlin}.
 He only makes changes to M.Customer which is renamed to M.Collab-Customer and introduces a new component M.Collab.
 
 \begin{figure}
@@ -216,7 +215,9 @@ He only makes changes to M.Customer which is renamed to M.Collab-Customer and in
     \item[M.Collab-Customer] a modified version of M.Customer that does all communication via WebSocket and does communicate with M.Collab instead of M.Core. M.Customer is the customer facing component. It allows a customer to configure a product or solution.
 \end{description}
 
-\todo[inline]{design patterns: composite, pipeline}
-\todo[inline]{model view controller}
+\section{Software Design}
+\label{sec:Foundations:BaseSystem}
+
+In this thesis for the deign of the prototype to improve software quality some rules of software engineering will be applied. The usage of \emph{design patterns} \cite{gamma2015design} and the rules of \emph{separation of concern} \cite{de2002importance} and \emph{single responsibility} \cite{martinCleanArchitectureCraftsman2017} are commonly known in the field of software engineering and therefore a detailed explanation is omitted here.
 
 
