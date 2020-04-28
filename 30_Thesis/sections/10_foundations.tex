@@ -30,7 +30,7 @@ In group-based configuration (also known as collaborative or group configuration
 \subsection{Group-Based Product Configuration}
 \label{sec:Foundations:GroupBasedProductConfiguration}
 
-Group-based product configuration is an approach to product configuration where a the product configuration is done by multiple users. According to \citeauthor{felferningGroupBasedConfiguration2016} \cite{felferningGroupBasedConfiguration2016} considering classical approaches as single user tasks can lead to decisions that are suboptimal. Moreover there are scenarios where a decision is inherently a group task such as \emph{Holiday Planning}, \emph{Software Release Planning} and \emph{Product Line Scoping}. Group-based configuration takes the representation of a group directly into account.
+Group-based product configuration is an approach to product configuration where product configuration is done by multiple users. According to \citeauthor{felferningGroupBasedConfiguration2016} \cite{felferningGroupBasedConfiguration2016} considering classical approaches as single user tasks can lead to decisions that are suboptimal. Moreover, there are scenarios where a decision is inherently a group task such as \emph{Holiday Planning}, \emph{Software Release Planning} and \emph{Product Line Scoping}. Group-based configuration takes the representation of a group directly into account.
 
 \section{Recommender System}
 \label{sec:Foundations:RecommenderSystem}
@@ -38,8 +38,6 @@ Group-based product configuration is an approach to product configuration where 
 A recommender system is a system that gives individualized recommendations to users to guide them through a large space of objects \cite[~ p. 331]{burkeHybridRecommenderSystems2002}.
 
 There are several approaches to recommender systems presented in \cite{felfernigGroupRecommenderSystems2018}, some of them are: collaborative filtering, constraint-based recommendation, content-based filtering and hybrid recommendation.
-
-Advantages and disadvantages of 
 
 \begin{table}
     \centering    
@@ -59,20 +57,20 @@ Advantages and disadvantages of
 In collaborative filtering a users rating for unknown items is predicted by finding similar users who have rated it. Their rating is used as prediction
 \cite[~ pp. 7, 8]{felfernigDecisionTasksBasic2018}.
 
-Collaborative Filtering can not only be done using users, it can also be item-based. Hereby the similarity between items is used for a recommendation and not similar users \cite{ricciRecommenderSystemsHandbook2015}. In the context of configuration the similarity to other historic configurations can be used which makes it an item based approach. 
+Collaborative Filtering can not only be done using users, it can also be item-based. Hereby the similarity between items is used for a recommendation and not similar users \cite{ricciRecommenderSystemsHandbook2015}.
 
-\autoref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix. A simple user-based way to calculate a rating would be to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance our closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving us a predicted rating of $4$. If an item-based approach is used instead, it will be tried to find similar items based on the user's rating. An example of similar items here would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the sane rating and Eric's rating is off by one. Using again kNN with $k := 2$ it is found that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$.
+\autoref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix. A simple user-based way to calculate a rating would be to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance Eric's closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving a predicted rating of $4$. If an item-based approach is used instead, it will be tried to find similar items based on the user's rating. An example of similar items here would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the sane rating and Eric's rating is off by one. Using again kNN with $k := 2$ it is found that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$.
 However this simple similarity and prediction function does not take into account different distances. For example Lucy's ratings are more similar compared to Eric's than Diane's but Diane's and Lucy's rating is valued the same amount.
 
 \subsection{Constraint-Based Recommendation}
 Hereby filter rules are defined which filter out items that don't fulfil specified rules. A user models their requirements with these rules and thereby gets a list of recommended items. This approach requires deep knowledge about a product because it needs a detailed description of features  \cite[~ p. 12]{felfernigDecisionTasksBasic2018}.
 
-Our movie example (see \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}) requires additional information for example about plot structure, pacing, length and other attributes of the movie. Now the user could enter filtering criteria, e.g. that the movie should be no longer than 120 minutes, be categorized as action or thriller and have a fast pacing. The system will only recommend movies that fit into these categories.
+The previous movie example (see \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}) requires additional information for example about plot structure, pacing, length and other attributes of the movie. Now the user can enter filtering criteria, e.g. that the movie should be no longer than 120 minutes, be categorized as action or thriller and have a fast pacing. The system will only recommend movies that fit into these constraints.
 
 \subsection{Content-Based Filtering}
-For the content-based filtering approach, items and users are assigned to categories. Based on consumption and rating of items a user will have implicit ratings for categories. Predictions are now made based on a categories of the new item \cite[~ pp. 10, 11]{felfernigDecisionTasksBasic2018}.
+For the content-based filtering approach, items and users are assigned to categories. Based on consumption and rating of items a user will have implicit ratings for categories. Predictions are now made based on the categories of a new item \cite[~ pp. 10, 11]{felfernigDecisionTasksBasic2018}.
 
-Using the example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences} and using an additional category matrix (see \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}) it a rating matrix per category can be derived (using the average rating of the user of each movie contained in this category). The result can be seen in \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringProfiles}. To predict Eric's rating of Titanic, the categories of \textit{Titanic} and averages of Eric's implicit rating per category are used. Titanic is only in the category romance and as Eric's rating of \textit{Forest Gump} is $5$ the prediction is a rating of $5$. Categories don't have to be the genre, they could be any kind of data about a movie.
+Using the example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences} and using an additional category matrix (see \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}), a rating matrix per category can be derived (using the average rating of the user of each movie contained in this category). The result can be seen in \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringProfiles}. To predict Eric's rating of Titanic, the categories of \textit{Titanic} and averages of Eric's implicit rating per category are used. Titanic is only in the category romance and as Eric's rating of \textit{Forest Gump} is $5$ the prediction is a rating of $5$. Categories don't have to be the genre, they could be any kind of data about a movie.
 
 \begin{table}
     \centering    
@@ -158,10 +156,10 @@ Advantages and disadvantages of basic recommendation techniques are listed in \a
 
 \subsubsection{Advantages over Collaborative Filtering}
 
-Collaborative filtering has several issues that content-based filtering doesn't have. According to \citeauthor{likaFacingColdStart2014} \cite{likaFacingColdStart2014} the \emph{cold start problem} is one of the most known problems for recommender systems. It occurs, when there is sparse information for users or items. In the case of collaborative filtering this issue exists for both items and users. Content based filtering does not have that issue with items as items are classified based on similarity to other items. The user cold start problem however still persists as a new user has not rated any items therefore no similar items can be recommended. 
-Another common issue is the \emph{grey sheep problem} \citeauthor{grasIdentifyingGreySheep2016} \cite{grasIdentifyingGreySheep2016}. Collaborative filtering approaches assume that users that are similar, have similar preferences. A user that is not similar to any of the current user or community of users. Therefore good recommendations cannot be made. These users are called \emph{grey sheep users}. Item-based filtering does not have this issue as a user's preference is directly used to find similar items to the ones she liked, not similar users.
-Usually, the need for domain knowledge is a disadvantage. However, as product configuration already has domain knowledge baked in to describe feature and how they can be combined here this is not a disadvantage and can even be seen as an advantage. Therefore, domain knowledge can directly be used and does not first need to be learned indirectly.
-Additionally, a collaborative filtering spans a larger comparison space, based on preferences, compared to content-based filtering that only uses the item attributes. Thus for applications with a large solution space, reliance on product features instead of user similarity should be considered.
+Collaborative filtering has several issues that content-based filtering doesn't have. According to \citeauthor{likaFacingColdStart2014} \cite{likaFacingColdStart2014} the \emph{cold start problem} is one of the most known problems for recommender systems. It occurs, when there is sparse information for users or items. In the case of collaborative filtering this issue exists for both items and users. Content based filtering does not have that issue with items as items are classified based on similarity to other items. The user cold start problem however still persists as a new user has not rated any items. Therefore, no similar items can be recommended. 
+Another common issue is the \emph{grey sheep problem}. \citeauthor{grasIdentifyingGreySheep2016} \cite{grasIdentifyingGreySheep2016}. Collaborative filtering approaches assume that users that are similar, have similar preferences. A user that is not similar to any of the current user or community of users. Therefore, good recommendations cannot be made. These users are called \emph{grey sheep users}. Item-based filtering does not have this issue as a user's preference is directly used to find similar items to the ones she liked, not similar users.
+Usually, the need for domain knowledge is a disadvantage. However, as product configuration already has domain knowledge baked in, to describe features and how they can be combined, this is not a disadvantage and can even be seen as an advantage. Therefore, domain knowledge can directly be used and does not first need to be learned indirectly.
+Additionally, a collaborative filtering approach spans a larger comparison space, based on preferences, compared to content-based filtering that only uses the item attributes. Thus for applications with a large solution space, reliance on product features instead of user similarity should be considered.
 Last, content-based filtering does not depend on historic group preference accuracy. Therefore, malicious actors that try to manipulate the recommendation system do not decrease recommendation accuracy. The same is true for inaccurate preferences. For example if a user input into a system does not accurately reflect what they actually like.
 
 \subsubsection{Advantages over Constrained-Based Recommendation}
@@ -174,9 +172,9 @@ A hybrid recommender combines different recommendation approaches to use the str
 \section{Group Recommender System}
 \label{sec:Foundations:GroupRecommenderSystem}
 
-A group recommender system is a recommender system aimed at making recommendations for a group instead of a single user. To make recommendations group members preferences have to be aggregated. This can be done by either aggregating single user recommendations or by merging preferences of each user into a group preference model. Based on the resulting preference model recommendation strategies as described in \autoref{sec:Foundations:RecommenderSystem} can be used to generate recommendations \cite{jamesonRecommendationGroups2007}.
+A group recommender system is a recommender system aimed at making recommendations for a group instead of a single user. To make recommendations group members preferences have to be aggregated. This can be done by either aggregating single user recommendations or by merging preferences of each user into a group preference model. Based on the resulting preference model recommendation strategies as described by \citeauthor{jamesonRecommendationGroups2007} \cite{jamesonRecommendationGroups2007} can be used to generate recommendations.
 
-The strategy of aggregating predictions can be further divided into two strategies. \citeauthor{felfernigAlgorithmsGroupRecommendation2018} \cite{felfernigAlgorithmsGroupRecommendation2018} describes merging recommendations and "ranking of candidate items". Merging recommendations can be used when multiple possible solutions should be presented. The recommender picks $n$ recommendation from each user's individual recommendations and merges them into a list. The second approach is that each user's individual recommender ranks all items. The group member specific rankings can are aggregated to get a group ranking of items. Instead of ranking it is also possible to simply predict a users rating for an item.
+The strategy of aggregating predictions can be further divided into two strategies. \citeauthor{felfernigAlgorithmsGroupRecommendation2018} \cite{felfernigAlgorithmsGroupRecommendation2018} describes merging recommendations and "ranking of candidate items". Merging recommendations can be used when multiple possible solutions should be presented. The recommender picks $n$ recommendation from each user's individual recommendations and merges them into a list. The second approach is that each user's individual recommender ranks all items. The group member specific rankings then are aggregated to get a group ranking of items. Instead of ranking it is also possible to simply predict a users rating for an item.
 
 The aggregation of preferences uses a merging strategy to combine the individual preferences into group preferences. This allows a group to change its preferences during the course of the decision without changing individual preferences.
 
@@ -208,16 +206,18 @@ He only makes changes to M.Customer which is renamed to M.Collab-Customer and in
     \label{fig:Foundations:CollaborativeConfiguratorMerlin}
 \end{figure}
 
+The following list provides a short overview over each component.
+
 \begin{description}
-    \item[M.Core] provides the base of the configurator. It checks the configuration against all rules in the database, provides possible alternatives if a change invalidates other parts of a configuration. The system relies on a CSP solver for valida tion and suggestion of alternatives.
+    \item[M.Core] provides the base of the configurator. It checks the configuration against all rules in the database, provides possible alternatives if a change invalidates other parts of a configuration. The system relies on a CSP solver for validation and suggestion of alternatives.
     \item[M.Model] is the editor to create products and rules. These rules can then be uploaded to M.Core.
     \item[M.Collab] is a node.js server application that communicates with M.Core via REST-API and with M.Collab-Customer via WebSocket. It sits in between M.Collab-Customer and M.Core and handles all processing regarding collaborative configuration.
-    \item[M.Collab-Customer] a modified version of M.Customer that does all communication via WebSocket and does communicate with M.Collab instead of M.Core. M.Customer is the customer facing component. It allows a customer to configure a product or solution.
+    \item[M.Collab-Customer] ia a modified version of M.Customer that does all communication via WebSocket and does communicate with M.Collab instead of M.Core. M.Customer is the customer facing component. It allows a customer to configure a product or solution.
 \end{description}
 
 \section{Software Design}
 \label{sec:Foundations:BaseSystem}
 
-In this thesis for the deign of the prototype to improve software quality some rules of software engineering will be applied. The usage of \emph{design patterns} \cite{gamma2015design} and the rules of \emph{separation of concern} \cite{de2002importance} and \emph{single responsibility} \cite{martinCleanArchitectureCraftsman2017} are commonly known in the field of software engineering and therefore a detailed explanation is omitted here.
+In this thesis for the deign of the prototype to improve software quality some rules of software engineering will be applied. The usage of \emph{design patterns} \cite{gamma2015design} and the rules of \emph{separation of concern} \cite{de2002importance} and \emph{single responsibility} \cite{martinCleanArchitectureCraftsman2017} are commonly known in the field of software engineering and therefore, a detailed explanation is omitted here.
 
 
