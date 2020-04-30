@@ -1,6 +1,8 @@
 \chapter{Concept}
 \label{ch:Concept}
 
+In this chapter definitions from \autoref{ch:Foundations} are extended, requirements formulated and assumptions made. Later, user interaction with the recommender system is described and the case study presented. Moreover, the process of generating recommendations is formulated and described. Last, the concept is illustrated using an example.
+
 \section{Foundations Extension}
 \label{sec:Concept:Requirements}
 
@@ -146,7 +148,7 @@ They select the current state at the beginning of the process. Then repeatedly u
 \label{sec:Concept:CaseStudy}
 
 The case study used in this thesis is a simplified version from forestry \todo[]{hier evtl ergänzen: wo kommt der Use Case her / aus welchem Forschungsprojekt / warum ist er interessant?}.
-The used characteristics and attributes are shown in \autoref{fig:Concept:ForestExample}. Additionally as example are given preferences, a configuration state and a finished configuration.
+The used characteristics and attributes are shown in \autoref{fig:Concept:ForestExample}. Additionally as example preferences, a configuration state and a finished configuration are given.
 
 \begin{figure}
     \begin{mdframed}[frametitle={Example for Forest Use Case}, linecolor=black, frametitlerulecolor=black, frametitlebackgroundcolor=gray!5]
@@ -209,7 +211,7 @@ An example group configuration scoring function is $score_{group}$ with
     score_{group}(\overline{s},\ \overline{p},\ s) = score(\overline{p},\ s) \cdot penalty(\overline{s},\ s)
 \end{equation} 
 
-This thesis will use multiple scoring functions. Among those are ones for least misery, average and multiplicative which all are implemented by $score$ (see \autoref{subsec:Concept:ReccomendationGeneration:PreferenceScoring} and \autoref{subsec:Concept:ReccomendationGeneration:PreferenceScoring}). Average and multiplicative yield good results among the studies presented by \citeauthor{Masthoff2015} \cite{Masthoff2015}. Strategies can also be combined, one example here is average without misery. The scoring functions used for this thesis all combine $penalty$ and $score$ by multiplication. However it is possible to use other combination strategies and it is possible to combine multiple scoring functions into one group scoring function. This thesis will use simpler scoring functions that are not combined but improvement here is possible.
+This thesis will use multiple scoring functions. Among those are ones for least misery, average and multiplicative which all are implemented by $score$ (see \autoref{subsec:Concept:ReccomendationGeneration:PreferenceScoring} and \autoref{subsec:Concept:ReccomendationGeneration:Penalty}). Average and multiplicative yield good results among the studies presented by \citeauthor{Masthoff2015} \cite{Masthoff2015}. Strategies can also be combined, one example here is average without misery. The scoring functions used for this thesis all combine $penalty$ and $score$ by multiplication. However it is possible to use other combination strategies and it is possible to combine multiple scoring functions into one group scoring function. This thesis will use simpler scoring functions that are not combined but improvement here is possible.
 
 \subsection{Preference Scoring}
 \label{subsec:Concept:ReccomendationGeneration:PreferenceScoring}
