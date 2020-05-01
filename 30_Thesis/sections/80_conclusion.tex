@@ -6,86 +6,12 @@ This chapter gives a summary about the thesis, discusses limitations and gives a
 \section{Summary}
 \label{sec:Conclusion:Summary}
 
-\todo[inline]{hab da nochmal drüber nachgedacht: die Zusammenfassung ist mir noch zu knapp.
-hier solltest du nochmal den Bogen ganz an den Anfang schlagen: was war die Motivation \& welche Forschungsfragen hattest du gestellt? wurden die Fragen beantwortet und wie?
-tatsächlich solltest du hier nochmal kurz \& knapp durch die komplette Thesis führen (stell dir vor deine Profs lesen nur dieses Kapitel (und das ist sehr wahrscheinlich) -> sie sollen trotzdem verstehen, was du alles gemacht hast, wenn auch nur auf einem top-level). Also:
--welche theoretischen Grunlagen wurden aufbereitet
--was war das konzept
--wie wurde implementiert
-- wie wurde evaluiert und mit welchem Ergebnis
-ja, das wiederholt sich, muss hier aber so sein.}
-
-
 
 To summarise, this thesis was motivated by the research area of group-based configuration gaining more traction. As group decisions come with many problems and biases, recommender systems are used  to help with group decisions. This avoids mistakes and helps with reproducibility of successful group decisions. For group-based configurations there has not been any research on recommenders. The research question of this thesis therefore was the following: "How can a group recommender translate individual preferences into recommendations that improve the overall satisfaction of group members while considering constraints given by the configuration state?". This thesis answers the research questions by proposing a concept, implementing it as a prototype and evaluating it. Thereby the viability of such a system and such an approach is shown.
 First, the thesis introduces foundations about product configuration and extends them to group-based product configuration. Next, recommender systems are introduced and three basic approaches, collaborative filtering, content-based filtering and constraint based recommendation, are compared. Last, the foundations chapter gives an introduction into group recommendation.
 Second, a concept for an item-based recommender for group-based configuration is introduced. This concepts uses a database of finished configurations to chose a configuration that fits best to the group. Each users preferences are used to assign a score to a configuration. The score of all group members is then aggregated into a group score and the best configuration from the database is recommended. The recommender also gives penalties for deviating from the current configuration state.
 Third, the concept is implemented as an open source microservice which is integrated into an already existing group-based configurator.
 Last, an offline metric for satisfaction is introduced and it is used for evaluation. Three group types are evaluated, homogenous groups, random groups and heterogeneous groups. Overall, the evaluation shows the recommender yields good results for groups and help group form a compromise. Satisfaction among group members is increased. A simple item-based approach therefore,  already improves group decisions by finding good compromises. This is also the case when the knowledge of the recommender is limited.
-
-
-
-\begin{itemize}
-    \item Motivation
-        \begin{itemize}
-            \item group decisions hard
-            \item products not always single user configuration
-            \item group avoids mistakes
-            \item compromise found
-            \item reproducible
-        \end{itemize}
-    \item Forschungsfrage
-        \begin{itemize}
-            \item show viability of group recommenderrs for configuration
-            \item How can a group recommender translate individual preferences into recommendations that improve the overall satisfaction of group members while considering constraints given by the configuration state?
-        \end{itemize}
-    \item Theoretische Grundlagen
-        \begin{itemize}
-            \item product configuration
-            \item group-based configuration
-            \item recommender systems
-                \begin{itemize}
-                    \item Collaborative Filtering
-                    \item Content-Based Filtering 
-                    \item Constraint based recommendation
-                \end{itemize}
-            \item group recommmender
-        \end{itemize}
-    \item konzept
-        \begin{itemize}
-            \item all users configure simultaniously
-            \item recommendations are generated based on a pool of known valid configurations (database)
-            \item scoring and penalty function
-        \end{itemize}
-    \item implementiert
-        \begin{itemize}
-            \item extending configurator merlin
-            \item microservice open source
-        \end{itemize}
-    \item was wurde evaluiert und welches ergebnis?
-        \begin{itemize}
-            \item introduce satisfaction offline metric
-            \item Finetune and select parameter for this metric
-            \item Look at homogeneous hetereogeneous and random groups of size four
-            \item Results: works already with just part configuration. Especially great effects for hetereogeneous and random. For homogenous groups reduced knowledge yielded bad results
-        \end{itemize}
-\end{itemize}
-
-
-
-The aim of this thesis was to look at recommendation approaches and to propose a concept for recommenders in group-based configuration which helps groups with forming compromises. 
-
-The proposed concept suggests means to calculate per-user-scores for configurations. This allows the usage of a basic approach like item-based recommendation. 
-
-Moreover, these recommendations help a group to form a decision and show possible compromises for groups without requiring direct communication between group members. The usefulness of this approach was validated by introducing an offline metric to model group member satisfaction. 
-
-Generated recommendations improve group decisions and thereby the implemented recommender can be used as a solid base line to improve upon. 
-
-Overall it is possible to suggest compromises in group-based configuration which are based on group member's preferences. 
-
-Furthermore, the recommender works well, also, when knowledge is limited to only a subset of the configuration space. 
-
-Moreover, it is possible to conclude that content-based recommendation approaches can be adapted to be used for group-based configuration settings.
 
 \section{Limitations and Further Research}
 \label{sec:Conclusion:LimitationsFurtherResearch}
