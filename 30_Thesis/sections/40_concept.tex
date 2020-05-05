@@ -6,7 +6,7 @@ In this chapter definitions from \autoref{ch:Foundations} are extended, requirem
 \section{Foundations Extension}
 \label{sec:Concept:Requirements}
 
-The definitions described in \autoref{ch:Foundations} need to be extended for this thesis. This section adds definitions that are needed.
+The definitions described in \autoref{ch:Foundations} need to be extended for this thesis. This section adds definitions that are required.
 
 \subsection{Configuration State}
 
@@ -17,7 +17,7 @@ A \emph{configuration} $S$ will be defined as a tuple of variables (\autoref{eq:
 Essentially it is a set of variables and assigned values.
 
 \subsection{Finished Configuration}
-To define what a \emph{finished configuration} is, it is required to first define what it means for a configuration to be valid. Therefore $is\_valid$ is defined as
+To define what a \emph{finished configuration} is, it is necessary to first define what it means for a configuration to be valid. Therefore $is\_valid$ is defined as
 \begin{equation} \label{eq:Foundations:ProductConfiguration:IsValid}
     is\_valid : S \to \{true, false\}; x \mapsto 
     \begin{cases}
@@ -29,13 +29,13 @@ with $solution\_space$ being the solution space of the corresponding constraint 
 \begin{equation} \label{eq:Foundations:ProductConfiguration:FinishedConfiguration}
     S_F \subset S,\ where \ \forall v_i \in V (\exists (v_i, d) \in S_F : d \in \mathfrak{D}(i)) \land is\_valid(S_F).
 \end{equation}
-In practice a finished configuration of a product is something that is ready to be produced. For example if a car is being configured, this means that the car can be produced in the specified way that is given by the finished configuration.
+In practice, a finished configuration of a product is something that is ready to be produced. For example if a car is being configured, this means that the car can be produced in the specified way given by the finished configuration.
 
 
 \subsection{Group-Based Product Configuration}
 \label{sec:Foundations:GroupBasedProductConfiguration}
 
-Instead of a single person configuring a product, a group of people is configuring one product which can be useful in multi-stakeholder decisions. This setting needs mechanisms for describing the preferences of multiple people. Therefore there will be introduced a set of users $U$ with
+Instead of a single person configuring a product, a group of people configures one product which can be useful in multi-stakeholder decisions. This setting needs mechanisms for describing the preferences of multiple people. Therefore, a set of users $U$ will be introduced with
 \begin{equation}\label{eq:Foundations:ProductConfiguration:Users}
     U = \{1, \dotsc, n\},
 \end{equation}
@@ -51,7 +51,7 @@ and a user's \emph{utility function} that maps a domain value to a utility value
 
 \subsection{Group Recommender}
 
-For a group recommender system additional definitions are needed. The attitude of a user is represented by their preferences $P$ which is directly related to the utility a user has from a domain value being present in the configuration. Let 
+For a group recommender system additional definitions are required. The attitude of users is represented by their preferences $P$ which are directly related to how the user benefits from a domain value being present in the configuration. Let 
 \begin{gather} \label{tab:Foundations:GroupRecommenderSystem:Preferences}
     P = \{ P_1, \dotsc, P_n\},\ \text{where} \\
     P_i = \{(d,\ u_i(d)) \ | \ \forall d \in \mathfrak{D}(i),\ i=1,\dotsc,m \} \notag
@@ -73,11 +73,11 @@ This section lists requirements that are considered and implemented in this thes
             \item The system should take the current configuration state into account.
 
             \item Recommendations should always be valid solutions.
-            \item They system has to respond in a timely manner.
+            \item The system has to respond in a timely manner.
         \end{itemize}
     \item Optional:
         \begin{itemize}
-            \item Have a simple user interface.
+            \item Provide a simple user interface.
             \item The system should be able to work with other configuration systems.
             \item Recommendations should allow different scoring functions.
         \end{itemize}
@@ -87,19 +87,18 @@ This section lists requirements that are considered and implemented in this thes
 \section{Assumptions}
 \label{sec:Concept:Assumptions}
 
-Due to a thesis having limited resources, some assumptions have to be made. The assumptions made are listed in this section.
+Due to the fact that a thesis has limited resources, some assumptions have to be made. The assumptions made are listed in this section.
 
 \begin{itemize}
     \item Only one product/solution is supposed to be configured at the same time by one group.
     \item Features only support single value attributes.
     \item Users join the system and start configuring only after all group members have joined.
-    \item Speed and optimization of the system is not a high priority.
-    \item The user interface is for demoing purposes.
+    \item Speed and optimization of the system does not have high priority.
+    \item The user interface is for demo purposes.
 \end{itemize}
-
-Only supporting one product to be configured at a time by a group and the assumption that only single value attributes are supported is made to reduce complexity. Therefore less implementation work is needed. However, results are not dependent on these implementations. Most features use only single value attributes. Also it is possible to model a feature that supports multiple attributes. As an example the feature \emph{audio system} has the following options \emph{Bluetooth} or \emph{CD}. To allow multiple attributes to be selected the characteristic \emph{Bluetooth and CD} can be added.
-The assumption that users join the system and only start configuring once all members of the group joined is made to reduce the amount of work needed for creating a lobby and waiting system which is not relevant for showing the functionality of the recommender. Speed and optimization of the system are not of high priority as the speed has no influence on the results of this thesis. Therefore as long as the system is fast enough, no further optimisation of speed is needed.
-The evaluation is done solely with the recommender system and its APIs therefore the user interface is not directly relevant for the evaluation but it is relevant for communication of results.
+In order to reduce complexity, the assumptions are made that only single value attributes are supported and one product is configured at a time by a group. Therefore, less implementation work is needed. However, results are not dependent on these implementations. Most features use only single value attributes. It is also possible to model a feature that supports multiple attributes. As an example the feature \emph{audio system} has the following options: \emph{Bluetooth} or \emph{CD}. To allow multiple attributes to be selected the characteristics \emph{Bluetooth and CD} can be added.
+The assumption that users join the system and only start configuring once all members of the group joined is made to reduce the amount of work needed for creating a lobby and waiting system which is not relevant for showing the functionality of the recommender. Speed and optimization of the system having no high priority as the speed has no influence on the results of this thesis. Therefore, as long as the system is fast enough, no further optimisation of speed is needed.
+The evaluation is done solely with the recommender system and its APIs. Thus, the user interface is not directly relevant for the evaluation but it is relevant for communication of results.
 
 \section{User Interaction with the System}
 \label{sec:Concept:UserSystemInteraction}
@@ -148,7 +147,7 @@ They select the current state at the beginning of the process. Then repeatedly u
 \label{sec:Concept:CaseStudy}
 
 The case study used in this thesis is a simplified version from forestry \todo[]{hier evtl ergänzen: wo kommt der Use Case her / aus welchem Forschungsprojekt / warum ist er interessant?}.
-The used characteristics and attributes are shown in \autoref{fig:Concept:ForestExample}. Additionally as example preferences, a configuration state and a finished configuration are given.
+The used characteristics and attributes are shown in \autoref{fig:Concept:ForestExample}. Additionally, as examples preferences, a configuration state and a finished configuration are given.
 
 \begin{figure}
     \begin{mdframed}[frametitle={Example for Forest Use Case}, linecolor=black, frametitlerulecolor=black, frametitlebackgroundcolor=gray!5]
@@ -256,11 +255,11 @@ By including the current configuration state, the scoring function can take into
 
 This section gives an example to illustrate how the recommendation works. The example in \autoref{fig:Concept:ForestExample} is used for that but the preferences are extended. \autoref{tab:Concept:UseCaseConfigurations} shows the current configuration state which consists of the characteristic moderate for the feature \textit{indigenous} and  \textit{resilient} respectively. $S_{F1}$ to $S_{F4}$ show the stored configurations for this example. The features that will be focused on are \textit{indigenous}, \textit{resilient} and \textit{effort}. In the presented example $S_{F1}$ performs best. The exact reason for that will be presented here. $S_{F1}$ is compared to $S_{F2}$ to show the effect of divergence from the configuration state.  A comparison between $S_{F1}$  and $S_{F3}$ is done to show the difference between preferences and the effect on the score and last, $S_{F4}$ is done to show the effect of switching to better preferences but diverging from the current state. The configurations all differ to $S_{F1}$ in only one characteristic that is chosen differently. As aggregation strategy the \emph{average} metric is used (see \autoref{sec:Foundations:GroupRecommenderSystem}). The parameter $\alpha$ (see \autoref{subsec:Concept:ReccomendationGeneration:Penalty}) is set to 1. A lower $\alpha$ reduces the penalty given to configurations that deviate from the configuration state $S$ and a higher $\alpha$ increase the reluctance to change.
 
-The difference between  $S_{F1}$ and  $S_{F2}$ is that instead of containing \emph{moderate} for the feature \emph{resilient} $S_{F2}$ contains \emph{high}. The scores for these two characteristics are the same, with a value of $0.55$,as both users have rated them at $0.5$ but as $S_{F2}$ deviates from the configuration state there will be a penalty. There are two characteristics in the configuration state $S$ therefore the the penalty is $(\frac{1}{2})^\alpha = (\frac{1}{2})^1 = 0.5$. This means the score of $S_{F2}$ is half that of $S_{F1}$. Resulting in a final score of $0.275$ compared to $0.55$.
+The difference between  $S_{F1}$ and  $S_{F2}$ is that instead of containing \emph{moderate} for the feature \emph{resilient} $S_{F2}$ contains \emph{high}. The scores for these two characteristics are the same, with a value of $0.55$, as both users have rated them at $0.5$ but since $S_{F2}$ deviates from the configuration state there will be a penalty. There are two characteristics in the configuration state $S$, therefore, the penalty is $(\frac{1}{2})^\alpha = (\frac{1}{2})^1 = 0.5$. This means the score of $S_{F2}$ is half of $S_{F1}$, resulting in a final score of $0.275$ compared to $0.55$.
 
-The only difference between $S_{F1}$ and $S_{F3}$ is that $S_{F3}$ changes the selection for the feature \emph{effort}. The characteristic \emph{manual} is chosen in $S_{F1}$ and the characteristic \emph{harvester} for $S_{F3}$. The individual score for user one increases as he prefers \emph{harvester} with $0.8$ over \emph{manual} with $0.6$. However, user two has an individual score reduction as her score changes from $0.8$ for \emph{manual} to $0.3$ for \emph{harvester}. The larger decrease in the score of user two causes a decrease in the overall score when comparing  $S_{F1}$ to $S_{F3}$ with a score of $0.55$ to $0.53$. The scores for both users are closer together for $S_{F1}$ however this doesn't necessarily have to be the case because if the preference of user two for harvester were to change to $0.6$ both configurations would have the same score. A different user preference aggregation strategy can change that.
+The only difference between $S_{F1}$ and $S_{F3}$ is that $S_{F3}$ changes the selection for the feature \emph{effort}. The characteristic \emph{manual} is chosen in $S_{F1}$ and the characteristic \emph{harvester} for $S_{F3}$. The individual score for user one increases as he prefers \emph{harvester} with $0.8$ over \emph{manual} with $0.6$. However, user two has an individual score reduction as her score changes from $0.8$ for \emph{manual} to $0.3$ for \emph{harvester}. The larger decrease in the score of user two causes a decrease in the overall score when comparing  $S_{F1}$ to $S_{F3}$ with a score of $0.55$ to $0.53$. The scores for both users are closer together for $S_{F1}$. However, this does not necessarily have to be the case if the preference of user two for harvester were to change to $0.6$ because then both configurations would have the same score. A different user preference aggregation strategy can change that.
 
-Last, $S_{F1}$ and $S_{F4}$ differentiate in terms of characteristic choice for the feature \emph{indigenous}. The switch from \emph{moderate} to \emph{high} when changing from $S_{F1}$ to $S_{F4}$ causes an increase in the individual scoring function of user two. This is caused because her preference for \emph{moderate} is $0.6$ and for \emph{high} is $0.9$. This results in a score of $0.57$ for $S_{F4}$. Yet, the change that causes the preference scoring function to give a higher score entails a penalty as the characteristic \emph{high} is not part of the configuration state. This penalty causes the overall score to drop to $0.29$ compared to the score of $S_{F1}$ with $0.55$.
+Last, $S_{F1}$ and $S_{F4}$ differentiate in terms of the characteristic choice for the feature \emph{indigenous}. The switch from \emph{moderate} to \emph{high} when changing from $S_{F1}$ to $S_{F4}$ causes an increase in the individual scoring function of user two. This is caused because her preference for \emph{moderate} is $0.6$ and for \emph{high} is $0.9$. This results in a score of $0.57$ for $S_{F4}$. Yet, the change that causes the preference scoring function to give a higher score entails a penalty as the characteristic \emph{high} is not part of the configuration state. This penalty causes the overall score to drop to $0.29$ compared to the score of $S_{F1}$ with $0.55$.
 
 \begin{table}
     \tiny
