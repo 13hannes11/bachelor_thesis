@@ -1,7 +1,7 @@
 \chapter{Evaluation}
 \label{ch:Evaluation}
 
-In this chapter the prototype is evaluated in terms of its functionality and its properties. The evaluation is an offline evaluation with synthetic data. All possible valid configurations are generated for one use case, i.e. all possible valid configurations for the forest use case. Moreover, groups with explicit preferences and a configuration state (which, e.g. would be the currently existing forest) are generated, too.
+In this chapter the prototype is evaluated in terms of its functionality and its properties. The evaluation is an offline evaluation with synthetic data. All possible valid configurations are generated for one use case, i.e. all possible valid configurations for the forestry use case. Moreover, groups with explicit preferences and a configuration state (which, e.g. would be the currently existing forest) are generated, too.
 
 \section{Metric}
 \label{sec:Evaluation:Metrics}
@@ -70,7 +70,7 @@ To evaluate the recommender, a use case is needed. In this thesis, a forestry us
                                                     & high      &   &   &   &   &   &   &   &   & n &   & n & n &   &   & n &   &   &   & - & - & - \\ \hline
         
         \end{tabularx}
-        \caption{Constrains in \emph{not with} form for the forest use case.}
+        \caption{Constrains in \emph{not with} form for the foreststry use case.}
         \label{tab:Evaluation:UseCase}
     \end{center}
 \end{table}
@@ -96,7 +96,7 @@ Unfinished configurations are generated using all finished configurations and ta
 
 \subsection{Preference Generation}
 
-For the forest use case, the idea is that there are multiple types of user profiles. Each group profile is represented by a neutral, negative or positive attitude towards a characteristic. During data generation the attitude is converted to a preference using a normal distribution. Each preference lies in the interval $[0,1]$. Zero can be seen as worst possible option and one as best possible option. \autoref{fig:Evaluation:PreferenceDistribution} shows how the user profile can be converted to preferences. The actual group member profiles are shown in \autoref{tab:Evaluation:GroupMemberMappings}.
+For the forestry use case, the idea is that there are multiple types of user profiles. Each group profile is represented by a neutral, negative or positive attitude towards a characteristic. During data generation the attitude is converted to a preference using a normal distribution. Each preference lies in the interval $[0,1]$. Zero can be seen as worst possible option and one as best possible option. \autoref{fig:Evaluation:PreferenceDistribution} shows how the user profile can be converted to preferences. The actual group member profiles are shown in \autoref{tab:Evaluation:GroupMemberMappings}.
 
 \pgfplotsset{height=5cm,width=\textwidth,compat=1.8}
 \pgfmathdeclarefunction{gauss}{2}{%
