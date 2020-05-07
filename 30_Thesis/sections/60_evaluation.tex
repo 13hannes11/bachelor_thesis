@@ -68,7 +68,7 @@ To evaluate the recommender, a use case is needed. In this thesis, a forestry us
                                                     & high      &   &   &   &   &   &   &   &   & n &   & n & n &   &   & n &   &   &   & - & - & - \\ \hline
         
         \end{tabularx}
-        \caption{Constrains in \emph{not with} form for the foreststry use case.}
+        \caption[Forestry Use Case: Constraints]{Constrains in \emph{not with} form for the forestry use case.}
         \label{tab:Evaluation:UseCase}
     \end{center}
 \end{table}
@@ -84,7 +84,7 @@ This section describes the data generation process as seen in \autoref{fig:Evalu
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{./figures/60_evaluation/bpmn_evaluation_input_data_generation.pdf}
-    \caption{Data generation process for the evaluation}
+    \caption[Data Generation Process]{Data generation process for the evaluation}
     \label{fig:Evaluation:GeneratingDataProcess}
 \end{figure}
 
@@ -120,7 +120,7 @@ For the forestry use case, the idea is that there are multiple types of user pro
           \addplot [draw=black, style={dotted}][very thick] {gauss(0.75,0.1)} node[text=black][above,pos=0.5] {positive};
         \end{axis}
         \end{tikzpicture}
- \caption{Distribution of preferences for a user type.}
+ \caption[Preference Distribution]{Distribution of preferences for a user type.}
 \label{fig:Evaluation:PreferenceDistribution}
 \end{figure}
 
@@ -159,7 +159,7 @@ For the forestry use case, the idea is that there are multiple types of user pro
             $(\textit{accessibility}, \text{high})$     & \textit{positive} & \textbf{negative} & \textbf{negative} & neutral           \\
             \hline
         \end{tabular}
-        \caption{ The attitudes of each group member profile. }
+        \caption[Forestry Use Case: Group Member Profiles]{The attitudes of each group member profile.}
         \label{tab:Evaluation:GroupMemberMappings}
     \end{center}
 \end{table}
@@ -243,7 +243,7 @@ This section aims at finding a $tc$ parameter for the analysis. This is required
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{./figures/60_evaluation/tc_change__multi__db-size-148.pdf}
-    \caption{The average satisfaction and dissatisfaction change based on $tc$ with a database size of 148 and multiplication as aggregation strategy.}
+    \caption[Satisfaction and Dissatisfaction: Change based on $tc$]{The average satisfaction and dissatisfaction change based on $tc$ with a database size of 148 and multiplication as aggregation strategy.}
     \label{fig:Evaluation:tcChange}
 \end{figure}
 
@@ -252,7 +252,7 @@ This section aims at finding a $tc$ parameter for the analysis. This is required
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{./figures/60_evaluation/tc_dictator__multi__db-size-148.pdf}
-    \caption{The average satisfaction and dissatisfaction with the dictator's decision based on $tc$.}
+    \caption[Satisfaction and Dissatisfaction: Average based on $tc$]{The average satisfaction and dissatisfaction with the dictator's decision based on $tc$.}
     \label{fig:Evaluation:tcCount}
 \end{figure}
 
@@ -267,21 +267,21 @@ During a group decision it is better to make one less person dissatisfied than t
 \begin{figure}[p]
     \centering
     \includegraphics[width=1\textwidth]{./figures/60_evaluation/heterogeneous_combined__amount-1000__tc-70}
-    \caption{The satisfaction and dissatisfaction using the group recommender for heterogeneous groups with $tc = 70$.}
+    \caption[Satisfaction and Dissatisfaction: Heterogeneous Groups]{The satisfaction and dissatisfaction using the group recommender for heterogeneous groups with $tc = 70$.}
     \label{fig:Evaluation:HeteroSatisfaction}
 \end{figure}
 
 \begin{figure}[p]
     \centering
     \includegraphics[width=1\textwidth]{./figures/60_evaluation/random_combined__amount-1000__tc-85}
-    \caption{The satisfaction and dissatisfaction using the group recommender for random groups with $tc = 85$.}
+    \caption[Satisfaction and Dissatisfaction: Random Groups]{The satisfaction and dissatisfaction using the group recommender for random groups with $tc = 85$.}
     \label{fig:Evaluation:RandomSatisfaction}
 \end{figure}
 
 \begin{figure}[p]
     \centering
     \includegraphics[width=1\textwidth]{./figures/60_evaluation/homogeneous_combined__amount-1000__tc-94}
-    \caption{The satisfaction and dissatisfaction using the group recommender for homogeneous groups with $tc = 94$.}
+    \caption[Satisfaction and Dissatisfaction: Homogeneous Groups]{The satisfaction and dissatisfaction using the group recommender for homogeneous groups with $tc = 94$.}
     \label{fig:Evaluation:HomoSatisfaction}
 \end{figure}
 
