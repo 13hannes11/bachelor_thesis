@@ -35,7 +35,7 @@ In practice, a finished configuration of a product is something that is ready to
 \subsection{Group-Based Product Configuration}
 \label{sec:Foundations:GroupBasedProductConfiguration}
 
-Instead of a single person configuring a product, a group of people configures one product which can be useful in multi-stakeholder decisions. This setting needs mechanisms for describing the preferences of multiple people. Therefore, a set of users $U$ will be introduced with
+Instead of a single person configuring a product, a group of people configures one product which can be useful in multi-stakeholder decisions. This setting needs mechanisms for describing the preferences of multiple people. Thus, a set of users $U$ will be introduced with
 \begin{equation}\label{eq:Foundations:ProductConfiguration:Users}
     U = \{1, \dotsc, n\},
 \end{equation}
@@ -96,7 +96,7 @@ Due to the fact that a thesis has limited resources, some assumptions have to be
     \item Speed and optimization of the system does not have high priority.
     \item The user interface is for demo purposes.
 \end{itemize}
-In order to reduce complexity, the assumptions are made that only single value attributes are supported and one product is configured at a time by a group. Therefore, less implementation work is needed. However, results are not dependent on these implementations. Most features use only single value attributes. It is also possible to model a feature that supports multiple attributes. As an example the feature \emph{audio system} has the following options: \emph{Bluetooth} or \emph{CD}. To allow multiple attributes to be selected the characteristics \emph{Bluetooth and CD} can be added.
+In order to reduce complexity, the assumptions are made that only single value attributes are supported and one product is configured at a time by a group. Consequently, less implementation work is needed. However, results are not dependent on these implementations. Most features use only single value attributes. It is also possible to model a feature that supports multiple attributes. As an example the feature \emph{audio system} has the following options: \emph{Bluetooth} or \emph{CD}. To allow multiple attributes to be selected the characteristics \emph{Bluetooth and CD} can be added.
 The assumption that users join the system and only start configuring once all members of the group joined is made to reduce the amount of work needed for creating a lobby and waiting system which is not relevant for showing the functionality of the recommender. Speed and optimization of the system having no high priority as the speed has no influence on the results of this thesis. Therefore, as long as the system is fast enough, no further optimisation of speed is needed.
 The evaluation is done solely with the recommender system and its APIs. Thus, the user interface is not directly relevant for the evaluation but it is relevant for communication of results.
 
@@ -228,7 +228,7 @@ where $aggr$ the aggregation function and $score_{user}(P_i, s)$ the configurati
     score_{user}(P_i, s) = average(\{x \ | \ (characteristic, x) \in P_i \land characteristic \in s \}) \notag . 
 \end{equation}
 
-The example in \autoref{fig:Concept:ForestExample} contains two users. The first user has preferences for the characteristic \emph{manual} of the feature with $0.8$ and the characteristic \emph{harvester} of the same feature with $0.3$. All other characteristics have a preference of $0.5$. The second user's preferences are $0.5$ for all characteristics. The finished configuration that is supposed to be rated in this example contains the characteristics \emph{low} for each feature except for \emph{effort} and \emph{quantity} which are set to \emph{manual} and \emph{high}. The score fore the finished configuration $S_F$ of user one is $0.54$. This score is the average of all seven features. User one rates all characteristics of all features as $0.5$ except two characteristics for \emph{effort}. Therefore all, feature scores for this user are $0.5$ except the score for \emph{effort} is $0.8$ because of the user's preference of $0.8$ for the characteristic \emph{manual}. The resulting average score per feature of $0.54$ is the user's score for this configuration. User two rates all characteristics with $0.5$ therefore the resulting average is $0.5$.
+The example in \autoref{fig:Concept:ForestExample} contains two users. The first user has preferences for the characteristic \emph{manual} of the feature with $0.8$ and the characteristic \emph{harvester} of the same feature with $0.3$. All other characteristics have a preference of $0.5$. The second user's preferences are $0.5$ for all characteristics. The finished configuration that is supposed to be rated in this example contains the characteristics \emph{low} for each feature except for \emph{effort} and \emph{quantity} which are set to \emph{manual} and \emph{high}. The score fore the finished configuration $S_F$ of user one is $0.54$. This score is the average of all seven features. User one rates all characteristics of all features as $0.5$ except two characteristics for \emph{effort}. Thus, all feature scores for this user are $0.5$ except the score for \emph{effort} is $0.8$ because of the user's preference of $0.8$ for the characteristic \emph{manual}. The resulting average score per feature of $0.54$ is the user's score for this configuration. User two rates all characteristics with $0.5$ therefore the resulting average is $0.5$.
 The group configuration score is dependent on the used aggregation strategy. Multiplication results in a score of $0.54 \cdot 0.5 = 0.27$. The score for average is $\frac{1}{2}(0.54 + 0.5) = 0.52$ and for least misery $\min \{0.54, 0.5\} = 0.5$.
 
 \subsection{Configuration Change Penalty}
@@ -248,7 +248,7 @@ In this thesis a penalty function is proposed which gives the percentage of char
 \end{equation}
 In essence the the function checks the number of unchanged characteristics and divides this by the number of characteristics that are in the current configuration state. The result is the proportion of unchanged characteristics when comparing the current configuration state to the finished configuration.
 
-By including the current configuration state, the scoring function can take into account that some characteristics have already been realized and therefore might be very costly to change. A higher $\alpha$ resembles a higher cost of change and an alpha of zero represents no costs for changes.
+By including the current configuration state, the scoring function can take into account that some characteristics have already been realized and accordingly might be very costly to change. A higher $\alpha$ resembles a higher cost of change and an alpha of zero represents no costs for changes.
 
 \section{Illustration}
 \label{sec:Concept:Illustration}
