@@ -39,7 +39,9 @@ A recommender system is a system that gives individualized recommendations to us
 
 There are several approaches to recommender systems presented in \cite{felfernigGroupRecommenderSystems2018}, some of them are: collaborative filtering, constraint-based recommendation, content-based filtering and hybrid recommendation.
 
-\begin{table}
+\subsection{Collaborative Filtering}
+
+\begin{table}[tb]
     \centering    
     \begin{tabular}{ l | c | c | c | c | c }
         & The Matrix & Titanic & Die Hard & Forest Gump & Wall-E \\ \hline
@@ -52,14 +54,11 @@ There are several approaches to recommender systems presented in \cite{felfernig
     \label{tab:Foundations:RecommenderSystem:MoviePreferences}
 \end{table}
 
-\subsection{Collaborative Filtering}
-In collaborative filtering a user's rating for unknown items is predicted by finding similar users who have rated it. Their rating is used as prediction
-\cite[~ pp. 7, 8]{felfernigDecisionTasksBasic2018}.
+In collaborative filtering a user's rating for unknown items is predicted by finding similar users who have rated it. Their rating is used as prediction \cite[~ pp. 7, 8]{felfernigDecisionTasksBasic2018}.
 
 Collaborative Filtering can not only be done using users, it can also be item-based. Hereby the similarity between items is used for a recommendation and not similar users \cite{ricciRecommenderSystemsHandbook2015}.
 
-\autoref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix. A simple user-based way to calculate a rating would be to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance Eric's closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving a predicted rating of $4$. An item-based approach will try to find similar items based on the user's rating. Here, an example of similar items would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the same rating and Eric's rating is off by one. Using again kNN with $k := 2$ it is found that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$.
-However this simple similarity and prediction function does not take into account different distances. For example Lucy's ratings are more similar compared to Eric's than Diane's but Diane's and Lucy's ratings are valued the same.
+\autoref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix. A simple user-based way to calculate a rating would be to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance Eric's closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving a predicted rating of $4$. An item-based approach will try to find similar items based on the user's rating. Here, an example of similar items would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the same rating and Eric's rating is off by one. Using again kNN with $k := 2$ it is found that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$. However this simple similarity and prediction function does not take into account different distances. For example Lucy's ratings are more similar compared to Eric's than Diane's but Diane's and Lucy's ratings are valued the same.
 
 \subsection{Constraint-Based Recommendation}
 Hereby filter rules are defined which filter out items that do not fulfil specified rules. A user models their requirements with these rules and thereby gets a list of recommended items. This approach requires deep knowledge about a product because it requires a detailed description of features  \cite[~ p. 12]{felfernigDecisionTasksBasic2018}.
