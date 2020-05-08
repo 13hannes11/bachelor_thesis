@@ -126,10 +126,10 @@ Advantages and disadvantages of basic recommendation techniques are listed in \a
 \subsubsection{Advantages over Collaborative Filtering}
 
 Collaborative filtering has several issues that content-based filtering doesn't have. According to \citeauthor{likaFacingColdStart2014} \cite{likaFacingColdStart2014} the \emph{cold start problem} is one of the well-known problems of recommender systems. It occurs when there is sparse information for users or items. In the case of collaborative filtering this issue concerns for both items and users. Content-based filtering does not have that issue with items as items are classified based on similarity to other items. The user cold start problem however still persists when a new user has not yet rated any items. Accordingly, no similar items can be recommended. 
-Another common issue is the \emph{grey sheep problem}. \citeauthor{grasIdentifyingGreySheep2016} \cite{grasIdentifyingGreySheep2016}. Collaborative filtering approaches assume that users that are similar, have similar preferences. A user that is not similar to any of the current user or community of users fail that assumption. Therefore, good recommendations cannot be made. These users are called \emph{grey sheep users}. Item-based filtering does not have this issue as a user's preference is directly used to find similar items to the ones they like, not similar users.
+Another common issue is the \emph{grey sheep problem} \cite{grasIdentifyingGreySheep2016}. Collaborative filtering approaches assume that users that are similar, have similar preferences. A user that is not similar to any of the current user or community of users fail that assumption. Therefore, good recommendations cannot be made. These users are called \emph{grey sheep users}. Item-based filtering does not have this issue as a user's preference is directly used to find similar items to the ones they like, not similar users.
 Usually, the need for domain knowledge is a disadvantage. However, as product configuration already has domain knowledge baked in to describe features and how they can be combined, this is not a disadvantage and can even be seen as an advantage. Hence, domain knowledge can directly be used and does not first need to be learned indirectly.
 Additionally, a collaborative filtering approach spans a larger comparison space, based on preferences, compared to content-based filtering that only uses the item attributes. Thus, for applications with a large solution space, reliance on product features instead of user similarity should be considered.
-Last, content-based filtering does not depend on historic group preference accuracy. Thus, malicious actors that try to manipulate the recommendation system do not decrease recommendation accuracy. The same is true for inaccurate preferences. For example if a user's input into a system does not accurately reflect what they actually like.
+Last, content-based filtering does not depend on historic group preference accuracy. Thus, malicious actors that try to manipulate the recommendation system do not decrease recommendation accuracy. The same is true for inaccurate preferences. For example, this occurs if a user's input into a system does not accurately reflect what they actually like.
 
 \subsubsection{Advantages over Constrained-Based Recommendation}
 
@@ -138,7 +138,7 @@ In constrained-based recommendation approaches it is possible that constraints l
 \section{Group Recommender System}
 \label{sec:Foundations:GroupRecommenderSystem}
 
-A group recommender system is a recommender system aimed at making recommendations for a group instead of a single user. To make recommendations group members preferences have to be aggregated. This can be done by either aggregating single user recommendations or by merging preferences of each user into a group preference model. Based on the resulting preference model, recommendation strategies as described by \citeauthor{jamesonRecommendationGroups2007} \cite{jamesonRecommendationGroups2007} can be used to generate recommendations.
+A group recommender system is a recommender system aimed at making recommendations for a group instead of a single user. To make recommendations preferences of all group members have to be aggregated. This can be done by either aggregating single user recommendations or by merging preferences of each user into a group preference model \cite{jamesonRecommendationGroups2007}. Based on the resulting preference model, recommendation strategies can be used to generate recommendations.
 
 The strategy of aggregating predictions can be further divided into two strategies. \citeauthor{felfernigAlgorithmsGroupRecommendation2018} \cite{felfernigAlgorithmsGroupRecommendation2018} describes merging recommendations and "ranking of candidate items". Merging recommendations can be used when multiple possible solutions are to be presented. The recommender picks $n$ recommendation from each user's individual recommendations and merges them into a list. The second approach is that each user's individual recommender ranks all items. The group member's specific rankings then are aggregated to get a group ranking of items. Instead of ranking it is also possible to simply predict a user's rating for an item.
 
@@ -201,7 +201,7 @@ He only makes changes to M.Customer which is renamed to M.Collab-Customer and in
     \label{fig:Foundations:CollaborativeConfiguratorMerlin}
 \end{figure}
 
-The following list provides a short overview over each component.
+The following list provides a short overview of each component.
 
 \begin{description}
     \item[M.Core] provides the base of the configurator. It checks the configuration against all rules in the database, provides possible alternatives if a change invalidates other parts of a configuration. The system relies on a CSP solver for validation and suggestion of alternatives.
