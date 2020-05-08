@@ -147,7 +147,7 @@ Advantages and disadvantages of basic recommendation techniques are listed in \a
                     \item No results
                 \end{itemize} \\ 
         \end{tabularx}
-        \caption{A description of the advantages and disadvantages of common recommendation techniques \cite{richthammerSituationAwarenessRecommender2018, shokeenStudyFeaturesSocial2019,hahslerRecommenderlabFrameworkDeveloping2015, aminiDiscoveringImpactKnowledge2011, suSurveyCollaborativeFiltering2009}}
+        \caption[Comparison of Recommendation Approaches]{A description of the advantages and disadvantages of common recommendation techniques \cite{richthammerSituationAwarenessRecommender2018, shokeenStudyFeaturesSocial2019,hahslerRecommenderlabFrameworkDeveloping2015, aminiDiscoveringImpactKnowledge2011, suSurveyCollaborativeFiltering2009}}
         \label{tab:Foundations:RecommenderComparison}
     \end{center}
 \end{table}
@@ -186,7 +186,7 @@ Both the approach of merging preferences and the approach of using individual us
          average  & $\frac{7}{3}$ & - & $\frac{10}{3}$ & $\frac{13}{3}$ & - \\
          least misery  & 1 & - & 2 & 3 & - \\
     \end{tabular}
-    \caption{An example showing preference aggregation strategies for a group using the data from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}. Titanic and Wall-E were left out because not all group members have rated these movies.}
+    \caption[Movies: Result Matrix for Group Aggregation Strategies]{An example showing preference aggregation strategies for a group using the data from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}. Titanic and Wall-E were left out because not all group members have rated these movies.}
     
     \label{tab:Foundations:RecommenderSystem:AggregationStrategy}
 \end{table}
@@ -200,7 +200,7 @@ He only makes changes to M.Customer which is renamed to M.Collab-Customer and in
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]{./figures/20_fountations/MerlinCollaborativeConfigurator.pdf}
-    \caption{Architecture of Collaborative Configurator Merlin \cite[Fig. 4.3]{raabKollaborativeProduktkonfigurationEchtzeit2019}}
+    \caption[Architecture: Collaborative Configurator]{Architecture of Collaborative Configurator Merlin \cite[Fig. 4.3]{raabKollaborativeProduktkonfigurationEchtzeit2019}}
     \label{fig:Foundations:CollaborativeConfiguratorMerlin}
 \end{figure}
 
@@ -210,7 +210,7 @@ The following list provides a short overview over each component.
     \item[M.Core] provides the base of the configurator. It checks the configuration against all rules in the database, provides possible alternatives if a change invalidates other parts of a configuration. The system relies on a CSP solver for validation and suggestion of alternatives.
     \item[M.Model] is the editor to create products and rules. These rules can then be uploaded to M.Core.
     \item[M.Collab] is a node.js server application that communicates with M.Core via REST-API and with M.Collab-Customer via WebSocket. It sits in between M.Collab-Customer and M.Core and handles all processing regarding collaborative configuration.
-    \item[M.Collab-Customer] ia a modified version of M.Customer that does all communication via WebSocket and does communicate with M.Collab instead of M.Core. M.Customer is the customer facing component. It allows a customer to configure a product or solution.
+    \item[M.Collab-Customer] is a modified version of M.Customer that does all communication via WebSocket and does communicate with M.Collab instead of M.Core. M.Customer is the customer facing component. It allows a customer to configure a product or solution.
 \end{description}
 
 \section{Software Design}
