@@ -29,7 +29,7 @@ In collaborative filtering a user's rating for unknown items is predicted by fin
 
 Collaborative Filtering can not only be done using users, it can also be item-based. Hereby the similarity between items is used for a recommendation and not similar users \cite{ricciRecommenderSystemsHandbook2015}.
 
-\autoref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix. A simple user-based way to calculate a rating would be to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance Eric's closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving a predicted rating of $4$. An item-based approach will try to find similar items based on the user's rating. Here, an example of similar items would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the same rating and Eric's rating is off by one. Using again kNN with $k := 2$ it is found that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$. However this simple similarity and prediction function does not take into account different distances. For example Lucy's ratings are more similar compared to Eric's than Diane's but Diane's and Lucy's ratings are valued the same.
+\autoref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix. A simple user-based way to calculate a rating would be to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance, Eric's closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving a predicted rating of $4$. An item-based approach will try to find similar items based on the user's rating. Here, an example of similar items would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the same rating and Eric's rating is off by one. Using again kNN with $k := 2$ it is found that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$. However this simple similarity and prediction function does not take into account different distances. For example Lucy's ratings are more similar compared to Eric's than Diane's but Diane's and Lucy's ratings are valued the same.
 
 \subsection{Constraint-Based Recommendation}
 Hereby filter rules are defined which filter out items that do not fulfil specified rules. A user models their requirements with these rules and thereby gets a list of recommended items. This approach requires deep knowledge about a product because it requires a detailed description of features  \cite[~ p. 12]{felfernigDecisionTasksBasic2018}.
@@ -181,7 +181,7 @@ and \emph{constraints} $C$ that limit the solution space with
     C = \{c_1, \cdots, c_k\}.
 \end{equation}
 
-In group-based configuration (also known as collaborative or group configuration) a group instead of a single user is set to configure a configuration. This entails challenges in terms of synchronising  workspaces and keeping the data consistent for every group member. \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019}'s \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} approach, which this thesis extends, is to treat the group configuration the same as one shared configuration and to sync the selection of attributes across clients.
+In group-based configuration (also known as collaborative or group configuration) a group instead of a single user is set to configure a product. This entails challenges in terms of synchronising  workspaces and keeping the data consistent for every group member. \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019}'s \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} approach, which this thesis extends, is to treat the group configuration the same as one shared configuration and to sync the selection of attributes across clients.
 
 \subsection{Group-Based Product Configuration}
 \label{sec:Foundations:GroupBasedProductConfiguration}
@@ -191,7 +191,9 @@ Group-based product configuration is an approach to product configuration where 
 \section{Base System}
 \label{sec:Foundations:BaseSystem}
 
-This thesis extends a base software system, \emph{CAS Configurator Merlin}, from \emph{CAS Software AG} \cite{CASSoftwareAG}. \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} extends CAS Merlin Configurator in his thesis to allow simultaneous configuration. The extended architecture is shown in \autoref{fig:Foundations:CollaborativeConfiguratorMerlin}.
+This thesis extends a base software system, \emph{CAS Configurator Merlin}, from \emph{CAS Software AG} \cite{CASSoftwareAG}. \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} extends CAS Merlin Configurator in his thesis to allow simultaneous configuration. Here groups of people are able to simultaneously configure a product. If there are any conflicts, a conflict resolution process is started. However the prototype only allows a majority voting approach and does not provide any further group decision support. Also this process only starts upon the selection of an invalid state that gives alternatives and for the main configuration process no recommendation or conflict resolution exists.
+
+The extended architecture is shown in \autoref{fig:Foundations:CollaborativeConfiguratorMerlin}.
 He only makes changes to M.Customer which is renamed to M.Collab-Customer and introduces a new component M.Collab.
 
 \begin{figure}
