@@ -1,36 +1,7 @@
 \chapter{Foundations}
 \label{ch:Foundations}
 
-This chapter gives an overview of the foundations this thesis is based upon. It introduces product configuration, shows what group based product configuration looks like, examines recommender systems and basic approaches, describes group recommenders and introduces the prototype that is extended by this thesis.
-
-\section{Product Configuration}
-\label{sec:Foundations:ProductConfiguration}
-
-Product configuration is a process consisting of a series of decision tasks whereby a product is constructed of components which interact with each other. During a configuration process no new components are created. Their interplay and specification is defined beforehand \cite[~ pp. 42, 43]{sabinProductConfigurationFrameworksa1998}. This section defines product configuration analogous to \citeauthor{felfernigOpenConfiguration2014} \cite{felfernigOpenConfiguration2014}.
-
-Formally a configuration problem can be specified as a \emph{constraint satisfaction problem (CSP)} \cite{tsangFoundationsConstraintSatisfaction1993} as 
-\begin{equation} \label{eq:Foundations:ProductConfiguration:ConstraintSatisfactionProblem}
-    CSP(V,\mathfrak{D},C),
-\end{equation}
-where $V$ is a set of \emph{variables} (which in this thesis will also be referred to as \emph{features}) with
-\begin{equation} \label{eq:Foundations:ProductConfiguration:Variables}
-    V = \{v_1, \dotsc, v_m\},
-\end{equation}
-a \emph{domain mapping} $\mathfrak{D}$ that maps variable to their corresponding domain values $D$ (which in this thesis will be also referred to as \emph{characteristics}) i.e. the values that can be assigned to each variable
-\begin{equation}\label{eq:Foundations:ProductConfiguration:DomainMapping}
-    \mathfrak{D} : V \to D; x \mapsto \mathfrak{D}(x) \qquad where \ D = \{d_1, \dotsc, d_o\},
-\end{equation}
-and \emph{constraints} $C$ that limit the solution space with 
-\begin{equation}\label{eq:Foundations:ProductConfiguration:Constraints}
-    C = \{c_1, \cdots, c_k\}.
-\end{equation}
-
-In group-based configuration (also known as collaborative or group configuration) a group instead of a single user is set to configure a configuration. This entails challenges in terms of synchronising  workspaces and keeping the data consistent for every group member. \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019}'s \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} approach, which this thesis extends, is to treat the group configuration the same as one shared configuration and to sync the selection of attributes across clients.
-
-\subsection{Group-Based Product Configuration}
-\label{sec:Foundations:GroupBasedProductConfiguration}
-
-Group-based product configuration is an approach to product configuration where product configuration is done by multiple users. According to \citeauthor{felferningGroupBasedConfiguration2016} \cite{felferningGroupBasedConfiguration2016} considering classical approaches as single user tasks can lead to decisions that are suboptimal. Moreover, there are scenarios where a decision is inherently a group task such as \emph{Holiday Planning}, \emph{Software Release Planning} and \emph{Product Line Scoping}. Group-based configuration takes the representation of a group directly into account.
+This chapter gives an overview of the foundations this thesis is based upon. It examines recommender systems and basic approaches, describes group recommenders, introduces product configuration, shows what group based product configuration looks like and introduces the prototype that is extended by this thesis.
 
 \section{Recommender System}
 \label{sec:Foundations:RecommenderSystem}
@@ -190,6 +161,35 @@ Both the approach of merging preferences and the approach of using individual us
     
     \label{tab:Foundations:RecommenderSystem:AggregationStrategy}
 \end{table}
+
+\section{Product Configuration}
+\label{sec:Foundations:ProductConfiguration}
+
+Product configuration is a process consisting of a series of decision tasks whereby a product is constructed of components which interact with each other. During a configuration process no new components are created. Their interplay and specification is defined beforehand \cite[~ pp. 42, 43]{sabinProductConfigurationFrameworksa1998}. This section defines product configuration analogous to \citeauthor{felfernigOpenConfiguration2014} \cite{felfernigOpenConfiguration2014}.
+
+Formally a configuration problem can be specified as a \emph{constraint satisfaction problem (CSP)} \cite{tsangFoundationsConstraintSatisfaction1993} as 
+\begin{equation} \label{eq:Foundations:ProductConfiguration:ConstraintSatisfactionProblem}
+    CSP(V,\mathfrak{D},C),
+\end{equation}
+where $V$ is a set of \emph{variables} (which in this thesis will also be referred to as \emph{features}) with
+\begin{equation} \label{eq:Foundations:ProductConfiguration:Variables}
+    V = \{v_1, \dotsc, v_m\},
+\end{equation}
+a \emph{domain mapping} $\mathfrak{D}$ that maps variable to their corresponding domain values $D$ (which in this thesis will be also referred to as \emph{characteristics}) i.e. the values that can be assigned to each variable
+\begin{equation}\label{eq:Foundations:ProductConfiguration:DomainMapping}
+    \mathfrak{D} : V \to D; x \mapsto \mathfrak{D}(x) \qquad where \ D = \{d_1, \dotsc, d_o\},
+\end{equation}
+and \emph{constraints} $C$ that limit the solution space with 
+\begin{equation}\label{eq:Foundations:ProductConfiguration:Constraints}
+    C = \{c_1, \cdots, c_k\}.
+\end{equation}
+
+In group-based configuration (also known as collaborative or group configuration) a group instead of a single user is set to configure a configuration. This entails challenges in terms of synchronising  workspaces and keeping the data consistent for every group member. \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019}'s \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} approach, which this thesis extends, is to treat the group configuration the same as one shared configuration and to sync the selection of attributes across clients.
+
+\subsection{Group-Based Product Configuration}
+\label{sec:Foundations:GroupBasedProductConfiguration}
+
+Group-based product configuration is an approach to product configuration where product configuration is done by multiple users. According to \citeauthor{felferningGroupBasedConfiguration2016} \cite{felferningGroupBasedConfiguration2016} considering classical approaches as single user tasks can lead to decisions that are suboptimal. Moreover, there are scenarios where a decision is inherently a group task such as \emph{Holiday Planning}, \emph{Software Release Planning} and \emph{Product Line Scoping}. Group-based configuration takes the representation of a group directly into account.
 
 \section{Base System}
 \label{sec:Foundations:BaseSystem}
