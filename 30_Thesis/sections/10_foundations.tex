@@ -81,7 +81,7 @@ Using the example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferenc
          Romance & & x & & x & \\
          Family & & & & x & x \\
     \end{tabular}
-    \caption{Showing example categories for movies in \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}.}
+    \caption[Movies: Category Matrix]{Showing example categories for movies in \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}.}
     
     \label{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}
 \end{table}
@@ -95,7 +95,7 @@ Using the example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferenc
         Eric  & 2.5 & 2 & 3 & 5 & 4.5 \\
         Diane & 4.5 & 4 & 5 & 3 & 3  \\
     \end{tabular}
-    \caption{User profiles generated from categories and rating from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences} and \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}.}
+    \caption[Movies: User Profile Matrix for Genres]{User profiles generated from categories and rating from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences} and \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}.}
     
     \label{tab:Foundations:RecommenderSystem:ContentBasedFilteringProfiles}
 \end{table}
@@ -211,7 +211,7 @@ The following list provides a short overview over each component.
     \item[M.Core] provides the base of the configurator. It checks the configuration against all rules in the database, provides possible alternatives if a change invalidates other parts of a configuration. The system relies on a CSP solver for validation and suggestion of alternatives.
     \item[M.Model] is the editor to create products and rules. These rules can then be uploaded to M.Core.
     \item[M.Collab] is a node.js server application that communicates with M.Core via REST-API and with M.Collab-Customer via WebSocket. It sits in between M.Collab-Customer and M.Core and handles all processing regarding collaborative configuration.
-    \item[M.Collab-Customer] is a modified version of M.Customer that does all communication via WebSocket and does communicate with M.Collab instead of M.Core. M.Customer is the customer facing component. It allows a customer to configure a product or solution.
+    \item[M.Collab-Customer] ia a modified version of M.Customer that does all communication via WebSocket and does communicate with M.Collab instead of M.Core. M.Customer is the customer facing component. It allows a customer to configure a product or solution.
 \end{description}
 
 \section{Software Design}
