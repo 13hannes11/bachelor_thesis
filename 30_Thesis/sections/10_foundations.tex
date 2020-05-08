@@ -50,7 +50,7 @@ There are several approaches to recommender systems presented in \cite{felfernig
          Eric  & 2 & ? & 3 & 5 & 4 \\
          Diane & 4 & 3 & 5 & 3 &   \\
     \end{tabular}
-    \caption[Movies: Rating Matrix]{An example showing users ratings for movies by \citeauthor{ningComprehensiveSurveyNeighborhoodBased2015} \cite{ningComprehensiveSurveyNeighborhoodBased2015}.}  
+    \caption[Movies: Rating Matrix]{An example showing users ratings for movies by \citeauthor{ningComprehensiveSurveyNeighborhoodBased2015} \cite{ningComprehensiveSurveyNeighborhoodBased2015}. \todo[inline]{describe the questionmark}}  
     \label{tab:Foundations:RecommenderSystem:MoviePreferences}
 \end{table}
 
@@ -58,7 +58,7 @@ In collaborative filtering a user's rating for unknown items is predicted by fin
 
 Collaborative Filtering can not only be done using users, it can also be item-based. Hereby the similarity between items is used for a recommendation and not similar users \cite{ricciRecommenderSystemsHandbook2015}.
 
-\autoref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix. A simple user-based way to calculate a rating would be to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance, Eric's closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving a predicted rating of $4$. An item-based approach will try to find similar items based on the user's rating. Here, an example of similar items would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the same rating and Eric's rating is off by one. Using again kNN with $k := 2$ it is found that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$. However this simple similarity and prediction function does not take into account different distances. For example Lucy's ratings are more similar compared to Eric's than Diane's but Diane's and Lucy's ratings are valued the same.
+\autoref{tab:Foundations:RecommenderSystem:MoviePreferences} shows an example rating matrix for movies. A simple user-based way to calculate a rating would be to use a k-nearest neighbour (kNN) algorithm and then take the average of those ratings. Using this method with $k := 2$ and euclidean distance, Eric's closest neighbours are \textit{Lucy} and \textit{Diane} therefore giving a predicted rating of $4$. An item-based approach will try to find similar items based on the user's rating. Here, an example of similar items would be \textit{Forest Gump} and \textit{Wall-E} as John and Lucy each have given them the same rating and Eric's rating is off by one. Using again kNN with $k := 2$ it is found that \textit{Forest Gump} and \textit{Wall-E} are the most similar to \textit{Titanic} thereby having a predicted rating of $4.5$. However this simple similarity and prediction function does not take into account different distances. For example Lucy's ratings are more similar compared to Eric's than Diane's but Diane's and Lucy's ratings are valued the same.
 
 \subsection{Constraint-Based Recommendation}
 Hereby filter rules are defined which filter out items that do not fulfil specified rules. A user models their requirements with these rules and thereby gets a list of recommended items. This approach requires deep knowledge about a product because it requires a detailed description of features  \cite[~ p. 12]{felfernigDecisionTasksBasic2018}.
@@ -66,7 +66,7 @@ Hereby filter rules are defined which filter out items that do not fulfil specif
 The previous movie example (see \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}) requires additional information for example about plot structure, pacing, length and other attributes of the movie. Now the user can enter filtering criteria, e.g. that the movie should be no longer than 120 minutes, be categorized as action or thriller and have a fast pacing. The system will only recommend movies that fit into these constraints.
 
 \subsection{Content-Based Filtering}
-For the content-based filtering approach, items and users are assigned to categories. Based on consumption and rating of items a user will have implicit ratings for categories. Predictions are now made based on the categories of a new item \cite[~ pp. 10, 11]{felfernigDecisionTasksBasic2018}.
+For the content-based filtering approach, items and users are assigned to categories. Based on consumption and rating of items a user will have ratings for categories. Predictions are now made based on the categories of a new item \cite[~ pp. 10, 11]{felfernigDecisionTasksBasic2018}.
 
 Using the example from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences} and using an additional category matrix (see \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringCategories}), a rating matrix per category can be derived (using the average rating of the user of each movie contained in this category). The result can be seen in \autoref{tab:Foundations:RecommenderSystem:ContentBasedFilteringProfiles}. To predict Eric's rating of Titanic, the categories of \textit{Titanic} and averages of Eric's implicit rating per category are used. Titanic is only in the category romance and as Eric's rating of \textit{Forest Gump} is $5$ the prediction is a rating of $5$. Categories do not have to be the genre, they could be any kind of data relating to a movie.
 
@@ -154,7 +154,8 @@ Advantages and disadvantages of basic recommendation techniques are listed in \a
 
 \subsubsection{Advantages over Collaborative Filtering}
 
-Collaborative filtering has several issues that content-based filtering doesn't have. According to \citeauthor{likaFacingColdStart2014} \cite{likaFacingColdStart2014} the \emph{cold start problem} is one of the well-known problems of recommender systems. It occurs when there is sparse information for users or items. In the case of collaborative filtering this issue concerns for both items and users. Content-based filtering does not have that issue with items as items are classified based on similarity to other items. The user cold start problem however still persists when a new user has not yet rated any items. Accordingly, no similar items can be recommended. 
+Collaborative filtering has several issues that content-based filtering doesn't have. According to \citeauthor{likaFacingColdStart2014} \cite{likaFacingColdStart2014} the \emph{cold start problem} is one of the well-known problems of recommender systems. It occurs when there is sparse information for users or items. In the case of collaborative filtering this issue concerns for both items and users. Content-based filtering does not have that issue with items as they are classified based on similarity to other items. The user cold start problem however still persists when a new user has not yet rated any items. Accordingly, no similar items can be recommended.
+
 Another common issue is the \emph{grey sheep problem} \cite{grasIdentifyingGreySheep2016}. Collaborative filtering approaches assume that users that are similar, have similar preferences. A user that is not similar to any of the current user or community of users fail that assumption. Therefore, good recommendations cannot be made. These users are called \emph{grey sheep users}. Item-based filtering does not have this issue as a user's preference is directly used to find similar items to the ones they like, not similar users.
 Usually, the need for domain knowledge is a disadvantage. However, as product configuration already has domain knowledge baked in to describe features and how they can be combined, this is not a disadvantage and can even be seen as an advantage. Hence, domain knowledge can directly be used and does not first need to be learned indirectly.
 Additionally, a collaborative filtering approach spans a larger comparison space, based on preferences, compared to content-based filtering that only uses the item attributes. Thus, for applications with a large solution space, reliance on product features instead of user similarity should be considered.
@@ -184,7 +185,6 @@ Both the approach of merging preferences and the approach of using individual us
          least misery  & 1 & - & 2 & 3 & - \\
     \end{tabular}
     \caption[Movies: Result Matrix for Group Aggregation Strategies]{An example showing preference aggregation strategies for a group using the data from \autoref{tab:Foundations:RecommenderSystem:MoviePreferences}. Titanic and Wall-E were left out because not all group members have rated these movies.}
-    
     \label{tab:Foundations:RecommenderSystem:AggregationStrategy}
 \end{table}
 
@@ -209,8 +209,8 @@ The following list provides a short overview of each component.
 \begin{description}
     \item[M.Core] provides the base of the configurator. It checks the configuration against all rules in the database, provides possible alternatives if a change invalidates other parts of a configuration. The system relies on a CSP solver for validation and suggestion of alternatives.
     \item[M.Model] is the editor to create products and rules. These rules can then be uploaded to M.Core.
-    \item[M.Collab] is a node.js server application that communicates with M.Core via REST-API and with M.Collab-Customer via WebSocket. It sits in between M.Collab-Customer and M.Core and handles all processing regarding collaborative configuration.
-    \item[M.Collab-Customer] is a modified version of M.Customer that does all communication via WebSocket and does communicate with M.Collab instead of M.Core. M.Customer is the customer facing component. It allows a customer to configure a product or solution.
+    \item[M.Collab] is a node.js server application that communicates with M.Core via REST-API and with M.Collab-Customer via WebSockets. It sits in between M.Collab-Customer and M.Core and handles all processing regarding collaborative configuration.
+    \item[M.Collab-Customer] is a modified version of M.Customer that does all communication via WebSockets and does communicate with M.Collab instead of M.Core. M.Customer is the customer facing component. It allows a customer to configure a product or solution. \todo[inline]{M.Collab  striechen}
 \end{description}
 
 \section{Software Design}
