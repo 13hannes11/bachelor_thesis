@@ -1,13 +1,12 @@
 \chapter{Design and Implementation}
 \label{ch:DesignImplementation}
 
-This thesis requires a group configuration system with a recommender. In this thesis a modified version of \emph{CAS Configurator Merlin} \cite{IndustrySpecificProduct2020} is used that has been developed by \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} \cite{raabKollaborativeProduktkonfigurationEchtzeit2019}. The base system and its extension are described in \autoref{sec:Foundations:BaseSystem}.
+This thesis requires a group configuration system with a recommender. In this thesis a modified version of \emph{CAS Configurator Merlin} \cite{IndustrySpecificProduct2020} is used that has been developed by \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} \cite{raabKollaborativeProduktkonfigurationEchtzeit2019}. The base system is described in \autoref{sec:Foundations:BaseSystem}.
 
-\autoref{fig:DesignImplementation:RecommenderForCollaborativeConfiguratorMerlin} shows the system architecture after the recommender was added. For this thesis \texttt{M.Collab} and \texttt{M.Collab-Customer} have undergone some slight modifications to allow the displaying of recommendations and to query the recommender. The user interface is shown in \autoref{fig:DesignImplementation:RecommenderForCollaborativeConfiguratorMerlin}. It extends the user interface of \texttt{M.Collab-Customer} by adding a preference slider that works in the interval $[0,1]$. The user receives feedback on what a value means based on the thumb position. The thumb rotates from thumbs-down to neutral to thumbs-up based on the selected value. Also functionality to show other participants in the session was added.
-
-\begin{figure}
+For this thesis \texttt{M.Collab} and \texttt{M.Collab-Customer} have undergone some slight modifications to allow the displaying of recommendations and to query the recommender. The user interface is shown in \autoref{fig:DesignImplementation:UserInterface}. It is extended by adding a preference slider that works in the interval $[0,1]$. The user receives feedback on what a value means based on the thumb position. The thumb rotates from thumbs-down to neutral to thumbs-up based on the selected value. Also functionality to show other participants in the session was added.
+\begin{figure}[htb]
     \centering
-    \includegraphics[width=1\textwidth]{./figures/50_design_and_implementation/user_interface_prototype.png}
+    \includegraphics[width=0.8\textwidth]{./figures/50_design_and_implementation/user_interface_prototype.png}
     \caption[User Interface]{The user interface of the prototype, seen by one user while configuring with three other people. The circles in the top left represent the users that are connected in the current sessions. The current configuration state is shown by the characteristics coloured in red. Recommendations are surrounded with a green border.}
     \label{fig:DesignImplementation:UserInterface}
 \end{figure}
@@ -20,14 +19,16 @@ An existing base system can be extended in different directions. As \texttt{M.Co
 
 Another viable solution is adding the recommendation functionality to \texttt{M.Core}. The main benefit of this approach is that it allows the recommender to use systems that are used for solving constraint satisfaction problems to enhance recommendations. The disadvantage of this approach is, however, that now the recommender is tightly coupled with the configurator. Not only does this mean that reproducing results in this thesis is only possible with access to a non-open-source product but it also means that there is no possibility to use the recommender for other configuration solutions. Moreover, no plugin API exists and, as a result the extension would require a large effort.
 
-Due to these reasons it was decided to create a new microservice, called \texttt{M.Recommend} which communicates with \texttt{M.Collab}, and thereby it is loosely coupled with other system components. Additionally, this approach allows to add functionality that takes  advantage of a constraint satisfaction problem solver by either communicating with one via an API or by integrating one directly into the recommender component \texttt{M.Recommend}. Moreover, it also allows the use of different technologies instead of JavaScript and Node.js. Using a separate component also allows to scale the system differently as it is possible to use multiple recommender instances for one configurator instance or one recommender instance with multiple configurator instances. This is an advantage in the age of automatically scaling systems.
 
-\begin{figure}
+\begin{figure}[tb]
     \centering
-    \includegraphics[width=0.6\textwidth]{./figures/50_design_and_implementation/MerlinCollabRecommender.pdf}
+    \includegraphics[width=0.55\textwidth]{./figures/50_design_and_implementation/MerlinCollabRecommender.pdf}
     \caption[Architecture: Recommender System and Configurator]{The architecture of the extended recommender system based on \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019}'s configurator (see \autoref{fig:Foundations:CollaborativeConfiguratorMerlin}). The changes include the addition of the component \texttt{M.Recommend} and the recommender database. Changes are marked in grey. Components that have a grey background are added and components with a partial grey background undergo changes.}
     \label{fig:DesignImplementation:RecommenderForCollaborativeConfiguratorMerlin}
 \end{figure}
+
+Due to these reasons it was decided to create a new microservice (see \autoref{fig:DesignImplementation:RecommenderForCollaborativeConfiguratorMerlin}), called \texttt{M.Recommend} which communicates with \texttt{M.Collab}, and thereby it is loosely coupled with other system components. Additionally, this approach allows to add functionality that takes  advantage of a constraint satisfaction problem solver by either communicating with one via an API or by integrating one directly into the recommender component \texttt{M.Recommend}. Moreover, it also allows the use of different technologies instead of JavaScript and Node.js. Using a separate component also allows to scale the system differently as it is possible to use multiple recommender instances for one configurator instance or one recommender instance with multiple configurator instances. This is an advantage in the age of automatically scaling systems.
+
 
 \section{API}
 \label{sec:DesignImplementation:API}
@@ -35,9 +36,9 @@ Due to these reasons it was decided to create a new microservice, called \texttt
 The API used for the recommender is a REST-API. REST allows the flexible addition of new endpoints thereby making the system easy to extend.
 When a recommendation is supposed to be generated, \texttt{M.Collab} sends a HTTP-POST-request to M.Recommend (see \autoref{fig:DesignImplementation:SequenceDiagramRecommendation}). This request contains preferences and the current configuration. \texttt{M.Recommend} generates a recommendation based on the received data as a response. The recommended finished configuration is now sent from  \texttt{M.Collab} via broadcast over WebSockets to all M.Customer clients. 
 
-\begin{figure}
+\begin{figure}[b]
     \centering
-    \includegraphics[width=1\textwidth]{./figures/50_design_and_implementation/sequence_diagram_generating_recommendation.pdf}
+    \includegraphics[width=0.95\textwidth]{./figures/50_design_and_implementation/sequence_diagram_generating_recommendation.pdf}
     \caption[Sequence Diagram: Recommendation Generation]{A sequence diagram showing the recommendation process.}
     \label{fig:DesignImplementation:SequenceDiagramRecommendation}
 \end{figure}
@@ -63,15 +64,14 @@ The choice among database systems has to be made between \emph{non-relational} a
 \section{Scoring Functions}
 \label{sec:DesignImplementation:ScroingFunctions}
 
-\autoref{fig:DesignImplementation:ClassDiagramScoringFunctions}) shows a simplified class diagram for scoring functions which are implemented in a modular fashion. There are different types of scoring functions. Some are meant for evaluating user preferences (and inherit from the class \texttt{PreferenceScoringFunction}), others are meant for penalising changes in the current configuration state and therefore inherit from  \texttt{ConfigurationPenalty}. The last type of scoring function is \texttt{ReduceScoringFunction} that consists of one or multiple scoring functions and combines their scores to one. It uses the \emph{composite design pattern} \cite{gamma2015design}. These functions allow ´the flexible combination of functions and, in addition due to their underlying structure they can use similar components. For example, preference scoring functions use a \emph{pipeline} \cite{gamma2015design} to first convert preferences to a list of values. This is done using \texttt{PreferenceToListFunction}. A list can be modified with a \texttt{ListToListFunction}. This step is optional. The last mandatory step is to convert the list to a value using \texttt{ListToValueFunction}. After this step, the value can be modified further, for example with a threshold function or any other function. All these components allow the easy and quick creation of new scoring functions. A factory (\texttt{ScoringFunctionFactory}) is used to assemble a scoring function based on input parameters. This provides flexibility for quickly implementing new types of scoring functions.
-
-\begin{figure}
+\begin{figure}[tb]
     \centering
     \includegraphics[width=1\textwidth]{./figures/50_design_and_implementation/class_diagram_scoring_functions_simplified.pdf}
     \caption[Class Diagram: Scoring Functions]{A simplified class diagram of the classes and interface related to scoring functions. }
     \label{fig:DesignImplementation:ClassDiagramScoringFunctions}
 \end{figure}
 
+This section describes the implementation of scoring functions (see \autoref{fig:DesignImplementation:ClassDiagramScoringFunctions}) which are implemented in a modular fashion. There are different types of scoring functions. Some are meant for evaluating user preferences (and inherit from the class \texttt{PreferenceScoringFunction}), others are meant for penalising changes in the current configuration state and therefore inherit from  \texttt{ConfigurationPenalty}. The last type of scoring function is \texttt{ReduceScoringFunction} that consists of one or multiple scoring functions and combines their scores to one. It uses the \emph{composite design pattern} \cite{gamma2015design}. These functions allow ´the flexible combination of functions and, in addition due to their underlying structure they can use similar components. For example, preference scoring functions use a \emph{pipeline} \cite{gamma2015design} to first convert preferences to a list of values. This is done using \texttt{PreferenceToListFunction}. A list can be modified with a \texttt{ListToListFunction}. This step is optional. The last mandatory step is to convert the list to a value using \texttt{ListToValueFunction}. After this step, the value can be modified further, for example with a threshold function or any other function. All these components allow the easy and quick creation of new scoring functions. A factory (\texttt{ScoringFunctionFactory}) is used to assemble a scoring function based on input parameters. This provides flexibility for quickly implementing new types of scoring functions.
 
 \section{Technologies}
 \label{sec:DesignImplementation:Technologies}
