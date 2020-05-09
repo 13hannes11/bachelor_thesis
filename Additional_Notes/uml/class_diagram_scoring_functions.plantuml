@@ -1,0 +1,46 @@
+@startuml
+
+skinparam class {
+	BackgroundColor White
+	ArrowColor Grey
+	BorderColor Black
+    
+}
+skinparam stereotypeCBackgroundColor #fff
+skinparam stereotypeIBackgroundColor #999
+skinparam stereotypeABackgroundColor #ddd
+skinparam monochrome true
+hide members
+
+skinparam shadowing false
+
+
+interface ScoringFunction
+class ScoringFunctionFactory
+interface ListFunction
+abstract class PreferenceScoringFunction
+abstract class ConfigurationPenealty
+class ReduceScoringFunction
+interface PreferenceToListFunction
+
+abstract class ListToListFunction
+abstract class ListToValueFunction
+interface ValueToValueFunction
+
+
+ScoringFunctionFactory --> ScoringFunction : build
+
+PreferenceScoringFunction --> "1" PreferenceToListFunction : preferenceToListFunction
+PreferenceScoringFunction --> "0..*" ListToListFunction : listToListFunctions
+PreferenceScoringFunction --> "1" ListToValueFunction : listToValueFunction
+PreferenceScoringFunction --> "0..*" ValueToValueFunction : valueToValueFunctions
+
+ScoringFunction <|-- PreferenceScoringFunction
+ScoringFunction <|-- ConfigurationPenealty
+ScoringFunction <|-- ReduceScoringFunction
+
+ReduceScoringFunction *-- "2..*" ScoringFunction
+
+ListFunction <|-- ListToListFunction
+ListFunction <|-- ListToValueFunction
+@enduml
