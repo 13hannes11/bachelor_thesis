@@ -202,7 +202,7 @@ This thesis presents one use case from forestry. It gradually extends this use c
 This thesis extends a base software system, \emph{CAS Configurator Merlin}, from \emph{CAS Software AG} \cite{CASSoftwareAG}. \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} \cite{raabKollaborativeProduktkonfigurationEchtzeit2019} extends CAS Merlin Configurator in his thesis to allow simultaneous configuration. Here groups of people are able to simultaneously configure a product. If there are any conflicts, a conflict resolution process is started. However the prototype only allows a majority voting approach and does not provide any further group decision support. Also this process only starts upon the selection of an invalid state that gives alternatives and for the main configuration process no recommendation or conflict resolution exists.
 
 The extended architecture is shown in \autoref{fig:Foundations:CollaborativeConfiguratorMerlin}.
-He only makes changes to M.Customer which is renamed to M.Collab-Customer and introduces a new component M.Collab.
+He only makes changes to M.Customer which is renamed to \texttt{M.Collab-Customer} and introduces a new component \texttt{M.Collab}.
 
 \begin{figure}
     \centering
@@ -214,10 +214,10 @@ He only makes changes to M.Customer which is renamed to M.Collab-Customer and in
 The following list provides a short overview of each component.
 
 \begin{description}
-    \item[M.Core] provides the base of the configurator. It checks the configuration against all rules in the database, provides possible alternatives if a change invalidates other parts of a configuration. The system relies on a CSP solver for validation and suggestion of alternatives.
-    \item[M.Model] is the editor to create products and rules. These rules can then be uploaded to M.Core.
-    \item[M.Collab] is a node.js server application that communicates with M.Core via REST-API and with M.Collab-Customer via WebSockets. It sits in between M.Collab-Customer and M.Core and handles all processing regarding collaborative configuration.
-    \item[M.Collab-Customer] is the customer facing component. It allows a customer to configure a product or solution and contains the user interface. Actions undertaken in M.Collab-Customer are send to M.Collab.
+    \item[\texttt{M.Core}] provides the base of the configurator. It checks the configuration against all rules in the database, provides possible alternatives if a change invalidates other parts of a configuration. The system relies on a CSP solver for validation and suggestion of alternatives.
+    \item[\texttt{M.Model}] is the editor to create products and rules. These rules can then be uploaded to \texttt{M.Core} .
+    \item[\texttt{M.Collab}] is a node.js server application that communicates with \texttt{M.Core} via REST-API and with \texttt{\texttt{M.Collab-Customer}} via WebSockets. It sits in between \texttt{M.Collab-Customer} and \texttt{M.Core} and handles all processing regarding collaborative configuration.
+    \item[\texttt{M.Collab-Customer}] is the customer facing component. It allows a customer to configure a product or solution and contains the user interface. Actions undertaken in \texttt{M.Collab-Customer} are send to \texttt{M.Collab}.
 \end{description}
 
 \section{Software Design}
