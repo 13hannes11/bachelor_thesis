@@ -7,7 +7,7 @@
       <bpmn:outgoing>Flow_0sd24xk</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1ygx377</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:task id="Activity_1konb1u" name="generate recommendation">
+    <bpmn:task id="Activity_1konb1u" name="generate recommenda-tion">
       <bpmn:incoming>Flow_0sd24xk</bpmn:incoming>
       <bpmn:property id="Property_03b25wa" name="__targetRef_placeholder" />
       <bpmn:dataInputAssociation id="DataInputAssociation_0oxxzci">
