@@ -43,7 +43,7 @@ When a recommendation is supposed to be generated, \texttt{M.Collab} sends a HTT
     \label{fig:DesignImplementation:SequenceDiagramRecommendation}
 \end{figure}
 
-The REST API defines the following Endpoints.
+The REST API defines the following Endpoints and uses \emph{JSON} \cite{IntroducingJSON}.
 
 \begin{description}
     \item[/recommender/] is reachable via a POST request and accepts a configuration state and preferences. Based on that a finished configuration is sent back as response.
@@ -54,7 +54,6 @@ The REST API defines the following Endpoints.
 The API is implemented with a minimal amount of functions and the recommender currently only supports one product at a time. However, the architecture is built in a way that it can be easily extended into supporting multiple products.
 The general architecture adheres to a \emph{model-view-controller} \cite{gamma2015design} inspired architecture.
 Data is stored and retrieved using \emph{data access objects}. Therefore, the currently used simple TinyDB database backend can be replaced with a different one easily.
-\todo[]{rest uses JSON}
 
 \section{Database}
 \label{sec:DesignImplementation:Database}
