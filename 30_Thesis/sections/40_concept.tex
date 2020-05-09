@@ -149,45 +149,6 @@ They select the current state at the beginning of the process. Then users repeat
 The case study used in this thesis is a simplified version from forestry \todo[]{hier evtl ergänzen: wo kommt der Use Case her / aus welchem Forschungsprojekt / warum ist er interessant?}.
 The used characteristics and attributes are shown in \autoref{fig:Concept:ForestExample}. Additionally, as examples preferences, a configuration state and a finished configuration are given.
 
-\begin{figure}
-    \begin{mdframed}[
-        nobreak=true,
-        frametitle={Example for Forestry Use Case},
-        linecolor=black, 
-        frametitlerulecolor=black, 
-        frametitlebackgroundcolor=gray!5
-    ]
-        In this example there is a small group of users. The use case is a piece of forest and variables are for example harvesting activity, which trees to grow and accessibility for people.
-        \begin{align}
-            \begin{split}
-                V = \{ & \textit{indigenous}, \textit{resilient}, \textit{usable}, \textit{effort}, \textit{quantity}, \textit{price}, \textit{accessibility} \},
-            \end{split} \notag \\
-            \mathfrak{D}(\textit{indigenous}) =  \{ & \text{low}, \text{moderate}, \text{high}\}, \notag \\
-            \mathfrak{D}(\textit{resilient}) = \{ & \text{low}, \text{moderate}, \text{high}\}, \notag \\
-            \mathfrak{D}(\textit{usable}) = \{ & \text{low}, \text{moderate}, \text{high}\}, \notag \\
-            \mathfrak{D}(\textit{effort}) = \{ & \text{manual}, \text{harvester}, \text{autonomous}\}, \notag \\
-            \mathfrak{D}(\textit{quantity}) = \{ & \text{low}, \text{moderate}, \text{high}\}, \notag \\
-            \mathfrak{D}(\textit{price}) = \{ & \text{low}, \text{moderate}, \text{high}\}, \notag\\
-            \mathfrak{D}(\textit{accessibility}) = \{ & \text{low}, \text{moderate}, \text{high}\},\notag \\
-            U = \{ & 1,2\} \notag\\
-            P = \{ & P_1, P_2\} \notag\\
-            \begin{split}
-                P_1 = \{ & (\text{manual}, 0.8), (\text{harvester}, 0.3) \} \\ 
-                & \cup \{ (d,0.5)\ |\ d \in \mathfrak{D}(i),\ i \in V,\ i \notin \{ \text{manual}, \text{harvester}\} \ \} \ 
-            \end{split} \notag \\
-            P_2 = \{ & (d,0.5)\ |\ d \in \mathfrak{D}(i),\ i \in V \} \notag \\
-            S  =  \{ & (\textit{indigenous}, \text{low}), (\textit{quantity}, \text{moderate}) \} \notag \\
-            \begin{split}
-            S_F  =  \{ & (\textit{indigenous}, \text{low}), (\textit{resilient}, \text{low}), (\textit{usable},\text{low}), (\textit{effort}, \text{manual}), \\
-            & (\textit{quantity}, \text{low}), (\textit{price},\text{high}),(\textit{accessibility}, \text{low}) \} 
-            \end{split} \notag
-        \end{align}
-    \end{mdframed}
-    \caption[Forestry Use Case]{An example of use case in forestry that includes two people.}
-    \label{fig:Concept:ForestExample}
-\end{figure}
-
-
 \section{Recommendation Generation}
 \label{sec:Concept:SolutionGeneration}
 
@@ -233,6 +194,45 @@ where $aggr$ is the aggregation function and $score_{user}(P_i, s)$ is the confi
 \begin{equation}
     score_{user}(P_i, s) = average(\{x \ | \ (characteristic, x) \in P_i \land characteristic \in s \}) \notag . 
 \end{equation}
+
+
+\begin{figure}[htb]
+    \begin{mdframed}[
+        nobreak=true,
+        frametitle={Example for Forestry Use Case},
+        linecolor=black, 
+        frametitlerulecolor=black, 
+        frametitlebackgroundcolor=gray!5
+    ]
+        In this example there is a small group of users. The use case is a piece of forest and variables are for example harvesting activity, which trees to grow and accessibility for people.
+        \begin{align}
+            \begin{split}
+                V = \{ & \textit{indigenous}, \textit{resilient}, \textit{usable}, \textit{effort}, \textit{quantity}, \textit{price}, \textit{accessibility} \},
+            \end{split} \notag \\
+            \mathfrak{D}(\textit{indigenous}) =  \{ & \text{low}, \text{moderate}, \text{high}\}, \notag \\
+            \mathfrak{D}(\textit{resilient}) = \{ & \text{low}, \text{moderate}, \text{high}\}, \notag \\
+            \mathfrak{D}(\textit{usable}) = \{ & \text{low}, \text{moderate}, \text{high}\}, \notag \\
+            \mathfrak{D}(\textit{effort}) = \{ & \text{manual}, \text{harvester}, \text{autonomous}\}, \notag \\
+            \mathfrak{D}(\textit{quantity}) = \{ & \text{low}, \text{moderate}, \text{high}\}, \notag \\
+            \mathfrak{D}(\textit{price}) = \{ & \text{low}, \text{moderate}, \text{high}\}, \notag\\
+            \mathfrak{D}(\textit{accessibility}) = \{ & \text{low}, \text{moderate}, \text{high}\},\notag \\
+            U = \{ & 1,2\} \notag\\
+            P = \{ & P_1, P_2\} \notag\\
+            \begin{split}
+                P_1 = \{ & (\text{manual}, 0.8), (\text{harvester}, 0.3) \} \\ 
+                & \cup \{ (d,0.5)\ |\ d \in \mathfrak{D}(i),\ i \in V,\ i \notin \{ \text{manual}, \text{harvester}\} \ \} \ 
+            \end{split} \notag \\
+            P_2 = \{ & (d,0.5)\ |\ d \in \mathfrak{D}(i),\ i \in V \} \notag \\
+            S  =  \{ & (\textit{indigenous}, \text{low}), (\textit{quantity}, \text{moderate}) \} \notag \\
+            \begin{split}
+            S_F  =  \{ & (\textit{indigenous}, \text{low}), (\textit{resilient}, \text{low}), (\textit{usable},\text{low}), (\textit{effort}, \text{manual}), \\
+            & (\textit{quantity}, \text{low}), (\textit{price},\text{high}),(\textit{accessibility}, \text{low}) \} 
+            \end{split} \notag
+        \end{align}
+    \end{mdframed}
+    \caption[Forestry Use Case]{An example of use case in forestry that includes two people.}
+    \label{fig:Concept:ForestExample}
+\end{figure}
 
 The example in \autoref{fig:Concept:ForestExample} contains two users. The first user has preferences for the characteristic \emph{manual} of the feature with $0.8$ and the characteristic \emph{harvester} of the same feature with $0.3$. All other characteristics have a preference of $0.5$. The second user's preferences are $0.5$ for all characteristics. The finished configuration that is supposed to be rated in this example contains the characteristics \emph{low} for each feature except for \emph{effort} and \emph{quantity} which are set to \emph{manual} and \emph{high}. The score fore the finished configuration $S_F$ of user one is $0.54$. This score is the average of all seven features. User one rates all characteristics of all features as $0.5$ except two characteristics for \emph{effort}. Thus, all feature scores for this user are $0.5$ except the score for \emph{effort} is $0.8$ because of the user's preference of $0.8$ for the characteristic \emph{manual}. The resulting average score per feature of $0.54$ is the user's score for this configuration. User two rates all characteristics with $0.5$ therefore the resulting average is $0.5$.
 The group configuration score is dependent on the used aggregation strategy. Multiplication results in a score of $0.54 \cdot 0.5 = 0.27$. The score for average is $\frac{1}{2}(0.54 + 0.5) = 0.52$ and for least misery $\min \{0.54, 0.5\} = 0.5$.
