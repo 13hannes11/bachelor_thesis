@@ -27,12 +27,8 @@ This section poses three questions that will be answered during the evaluation. 
 
 The main question is addressed to understand the behaviour the recommender and whether it gives benefits to groups. The second question is aimed at providing information regarding the data and what satisfaction looks like in group decisions and which factors influence it. Last, a technical question is posed. This question is relevant because it shows technical aspects of the recommender. This is important since other work for using the recommender in other possibly larger use cases depend on performance figures in relation to number of stored configurations.
 
-\section{Use Case}
-\label{sec:Evaluation:UseCase}
 
-To evaluate the recommender, a use case is needed. In this thesis, a forestry use case is evaluated. This is a use case with four stakeholders. \autoref{fig:Concept:ForestExample} presents the attributes and characteristics of this use case but an extension is needed to fully show the whole use case. Namely the rules of non-valid configurations are missing. Therefore, the constraints for this use case are listed in \emph{not with} form in \autoref{tab:Evaluation:UseCase}. 
-
-\begin{table}
+\begin{table}[tb]
     \tiny
     \begin{center}
         \setlength\tabcolsep{3pt}
@@ -75,17 +71,23 @@ To evaluate the recommender, a use case is needed. In this thesis, a forestry us
     \end{center}
 \end{table}
 
+\section{Use Case}
+\label{sec:Evaluation:UseCase}
+The evaluation uses the forestry use case. This is a use case with four stakeholders. \autoref{fig:Concept:ForestExample} presents the attributes and characteristics of this use case. \autoref{tab:Evaluation:UseCase} extends it with rules that dictate which configurations valid.
+
 The stakeholders in this use case are: a forest owner, an athlete, an environmentalist, and a consumer. The owner sees the forest as an investment, they are interested in a high long-term profit. On the other hand consumers are interested in reasonable wood price as they use wood for furniture and also for their fireplaces. In contrast, the environmentalist is interested in a healthy forest that is not impacted negatively by human activity. Last is the athlete who is interested in good accessibility of the forest and that there is some plant and animal life.
 Every group consists of four people which is why they need to try and find a compromise. Diverging preferences make this difficult. All stakeholders have an interest in getting their will but also all parties need others to accept the decision. It is not in the interest of a stakeholder to fully have their preferences met while ending up with protests that arise from the deep dissatisfaction of other group members.
+
+
 
 \section{Data Generation}
 \label{sec:Evaluation:GeneratingGroups}
 
-This section describes the data generation process as seen in \autoref{fig:Evaluation:GeneratingDataProcess} that generates data based on the use case int \autoref{sec:Evaluation:UseCase}. Group profiles are used to generate groups of four with different group member types. The exact group composition depends on the group type. For every parameter and group type $1000$ groups are generated and converted to preferences. This number was chosen as it is the highest number that allows computing times to work overnight on the hardware that is available. Also this number is large enough to reduce strong variability between runs. For each group unfinished configurations are generated and its preferences are paired up with the generated unfinished configurations. These pairs later on are used for the evaluation. 
+This section describes the data generation process as seen in \autoref{fig:Evaluation:GeneratingDataProcess} that generates data based on the use case in \autoref{sec:Evaluation:UseCase}. Group profiles are used to generate groups of four with different group member types. The exact group composition depends on the group type. For every parameter and group type $1000$ groups are generated and converted to preferences. This number was chosen as it is the highest number that allows computing times to work overnight on the hardware that is available. Also this number is large enough to reduce strong variability between runs. For each group unfinished configurations are generated and its preferences are paired up with the generated unfinished configurations. These pairs later on are used for the evaluation. 
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
-    \includegraphics[width=1\textwidth]{./figures/60_evaluation/bpmn_evaluation_input_data_generation.pdf}
+    \includegraphics[width=0.9\textwidth]{./figures/60_evaluation/bpmn_evaluation_input_data_generation.pdf}
     \caption[Data Generation Process]{Data generation process for the evaluation}
     \label{fig:Evaluation:GeneratingDataProcess}
 \end{figure}
@@ -102,7 +104,7 @@ For the forestry use case, the idea is that there are multiple types of user pro
 \pgfmathdeclarefunction{gauss}{2}{%
   \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
 }
-\begin{figure}
+\begin{figure}[tb]
     \begin{tikzpicture}
         \begin{axis}[
             every axis plot post/.append style={
@@ -127,7 +129,7 @@ For the forestry use case, the idea is that there are multiple types of user pro
 \end{figure}
 
 
-\begin{table}
+\begin{table}[htb]
     \begin{center}
         \begin{tabular}{l|c|c|c|c}
             characteristic                              & athlete           & forest owner      & environmentalist  & consumer          \\
@@ -180,11 +182,8 @@ The natural group type for the use case is a heterogeneous group but to widen th
 
 Another important component of the evaluation is the influence of stored finished configurations. When evaluating a subset of stored finished configurations it is important to avoid outliers. This is the reason why a process inspired by \emph{cross validation} \todo{referenz hinzufügen} is used. The configuration database is randomly ordered and sliced into sub-databases of the needed size. As an example, if the evaluated stored data size is 20, a configuration database containing 100 configurations is split into five sub-databases of size 20. Now the evaluation is carried out for each of the sub-databases and finally the average is determined. This avoids the random picking of a subset which either performs much better than most other possible combinations of databases or which performs much worse. This way the data is more aligned to the expected value.
 
-
 \section{Hypotheses}
 \label{sec:Evaluation:Hypotheses}
-
-\todo{define dictator}
 
 This section gives an overview on the hypotheses tested during data analysis. Each hypothesis is followed by an explanation as to why the hypothesis is presented. In later sections the truthfulness of the hypothesis is examined. This allows to verify if expectations about the behaviour of the recommender are true or false.
 
@@ -242,7 +241,9 @@ This section gives an overview on the hypotheses tested during data analysis. Ea
 \label{sec:Evaluation:Findings}
 
 \subsection{Threshold Center Selection}
-This section aims at finding a $tc$ parameter for the analysis. This is required to reduce the amount of data that has to be looked at and to get valuable results. For this purpose all parameters except $tc$ will be fixed. The preference aggregation strategy looked at is multiplication because this strategy shows good results across the board when briefly looking at the generated data. The configuration database is used with all possible solutions (which is 148 in total). This results in a bigger visible effect in terms of satisfaction and dissatisfaction change as the recommender has access to all possible configurations and also provides more solid and predictable results. \autoref{fig:Evaluation:tcChange} shows the satisfaction change based on choice of $tc$. Of note is that the maxima of satisfaction change precedes the minima of dissatisfaction change for all group types. Maxima and minima occur at different tc values depending on the group type. Heterogeneous groups peek earliest while homogenous groups only show a peek towards the maximum $tc$ value. Changes in dissatisfaction are minimal even with $tc$ close to its maximum value for homogeneous groups. \autoref{fig:Evaluation:tcCount} shows the amount of group members satisfied and dissatisfied with the dictator's decision. The number of satisfied people decreases with an increasing $tc$ and its downward movement accelerates. The dissatisfaction curve shows a similar trend in reverse. Here the number of dissatisfied group members increases with an increase in $tc$. The curve accelerates its growth analogous to the acceleration of the satisfaction curve. The behaviour of heterogeneous groups and random groups is similar but the curve for heterogeneous groups shows less satisfaction and more dissatisfaction for a given tc. Also both curves have a negative satisfaction change when $tc$ reaches a certain height. Homogeneous groups only have satisfied group members for most $tc$ values but they decrease rapidly for values greater than $85$. Dissatisfied group members are at zero for the whole value range of $tc$ except a very slight upward tick at the end that is barely noticeable.
+This section aims at finding a $tc$ parameter for the analysis. This is required to reduce the amount of data that has to be looked at and to get valuable results. For this purpose all parameters except $tc$ will be fixed. The preference aggregation strategy looked at is multiplication because this strategy shows good results across the board when briefly looking at the generated data. The configuration database is used with all possible solutions (which is 148 in total). This results in a bigger visible effect in terms of satisfaction and dissatisfaction change as the recommender has access to all possible configurations and also provides more solid and predictable results. \autoref{fig:Evaluation:tcChange} shows the satisfaction change based on choice of $tc$. Of note is that the maxima of satisfaction change precedes the minima of dissatisfaction change for all group types. Maxima and minima occur at different tc values depending on the group type. Heterogeneous groups peek earliest while homogenous groups only show a peek towards the maximum $tc$ value. Changes in dissatisfaction are minimal even with $tc$ close to its maximum value for homogeneous groups. 
+
+\autoref{fig:Evaluation:tcCount} shows the amount of group members satisfied and dissatisfied with the dictator's decision. The number of satisfied people decreases with an increasing $tc$ and its downward movement accelerates. The dissatisfaction curve shows a similar trend in reverse. Here the number of dissatisfied group members increases with an increase in $tc$. The curve accelerates its growth analogous to the acceleration of the satisfaction curve. The behaviour of heterogeneous groups and random groups is similar but the curve for heterogeneous groups shows less satisfaction and more dissatisfaction for a given tc. Also both curves have a negative satisfaction change when $tc$ reaches a certain height. Homogeneous groups only have satisfied group members for most $tc$ values but they decrease rapidly for values greater than $85$. Dissatisfied group members are at zero for the whole value range of $tc$ except a very slight upward tick at the end that is barely noticeable.
 
 \begin{figure}
     \centering
@@ -251,14 +252,17 @@ This section aims at finding a $tc$ parameter for the analysis. This is required
     \label{fig:Evaluation:tcChange}
 \end{figure}
 
-\autoref{hyp:Evaluation:MaximumMinimum} states that the highest satisfaction change is expected at places where the overall satisfaction with the dictator's decision is close to two. However, the data shows a slightly different result. This hypothesis does not hold true. When looking at the data we see peeks in satisfaction change when values are equal to $2.81, 2.51$ and $3$ (heterogeneous, random, homogenous). Therefore, the expectation does not hold up. Most likely this happens because at lower satisfaction numbers with the dictator's decision the threshold for satisfaction is set too high which causes the group compromise to classify less group members as satisfied. Moreover, valleys for dissatisfaction change are also not at the expected value of \textit{two}. They are instead at $1.19, 1.49, 0.04$ (heterogeneous, random, homogenous). Here the valleys are lower than expected. However, the data from homogenous groups seems to be cut off. Therefore, a judgement for homogenous groups is difficult and with slightly less heterogeneous groups this graph should show bigger effects.
-
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{./figures/60_evaluation/tc_dictator__multi__db-size-148.pdf}
     \caption[Satisfaction and Dissatisfaction: Average based on $tc$]{The average satisfaction and dissatisfaction with the dictator's decision based on $tc$.}
     \label{fig:Evaluation:tcCount}
 \end{figure}
+
+
+\autoref{hyp:Evaluation:MaximumMinimum} states that the highest satisfaction change is expected at places where the overall satisfaction with the dictator's decision is close to two. However, the data shows a slightly different result. This hypothesis does not hold true. When looking at the data we see peeks in satisfaction change when values are equal to $2.81, 2.51$ and $3$ (heterogeneous, random, homogenous). Therefore, the expectation does not hold up. Most likely this happens because at lower satisfaction numbers with the dictator's decision the threshold for satisfaction is set too high which causes the group compromise to classify less group members as satisfied. Moreover, valleys for dissatisfaction change are also not at the expected value of \textit{two}. They are instead at $1.19, 1.49, 0.04$ (heterogeneous, random, homogenous). Here the valleys are lower than expected. However, the data from homogenous groups seems to be cut off. Therefore, a judgement for homogenous groups is difficult and with slightly less heterogeneous groups this graph should show bigger effects.
+
+
 
 The predicted trend that a higher $tc$ results in a lower satisfaction and a higher dissatisfaction with the dictator's decision, as predicted by \autoref{hyp:Evaluation:HigherTcLessSatisfied}, can be clearly seen in \autoref{fig:Evaluation:tcCount} and has already been described in this section. This means for the evaluation that the behaviour of the recommender is predictable and suggests that the used metrics are modelling behaviour expected in reality.
 
