@@ -1,8 +1,7 @@
 \chapter{Design and Implementation}
 \label{ch:DesignImplementation}
 
-This thesis requires a group configuration system with a recommender. In this thesis \emph{CAS Configurator Merlin} \cite{IndustrySpecificProduct2020} is extended. As this configurator does not allow group configuration, a modified version is used that has been developed by \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} \cite{raabKollaborativeProduktkonfigurationEchtzeit2019}. The base system and its extension are described in \autoref{sec:Foundations:BaseSystem}.
-\todo[inline]{refactor}
+This thesis requires a group configuration system with a recommender. In this thesis a modified version of \emph{CAS Configurator Merlin} \cite{IndustrySpecificProduct2020} is used that has been developed by \citeauthor{raabKollaborativeProduktkonfigurationEchtzeit2019} \cite{raabKollaborativeProduktkonfigurationEchtzeit2019}. The base system and its extension are described in \autoref{sec:Foundations:BaseSystem}.
 
 \autoref{fig:DesignImplementation:RecommenderForCollaborativeConfiguratorMerlin} shows the system architecture after the recommender was added. For this thesis \texttt{M.Collab} and \texttt{M.Collab-Customer} have undergone some slight modifications to allow the displaying of recommendations and to query the recommender. The user interface is shown in \autoref{fig:DesignImplementation:RecommenderForCollaborativeConfiguratorMerlin}. It extends the user interface of \texttt{M.Collab-Customer} by adding a preference slider that works in the interval $[0,1]$. The user receives feedback on what a value means based on the thumb position. The thumb rotates from thumbs-down to neutral to thumbs-up based on the selected value. Also functionality to show other participants in the session was added.
 
